@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryEngine.py,v 1.14 2004/05/19 12:42:55 finrocvs Exp $
+#$Id: EEAGlossaryEngine.py,v 1.15 2004/05/25 08:36:41 finrocvs Exp $
 
 import string
 
@@ -197,25 +197,25 @@ class EEAGlossaryEngine(SimpleItem, utils):
         """ maange the searchable languages for EEAGlossaryEngine """
         if self.utAddObjectAction(REQUEST):
             if string.strip(language) == '':
-                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1')
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=5')
             else:
                 self.set_searchable_langs(language)
                 self._p_changed = 1
         elif self.utUpdateObjectAction(REQUEST):
             if string.strip(language) == '':
-                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1')
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=5')
             else:
                 self.del_searchable_langs(old_language)
                 self.set_searchable_langs(language)
                 self._p_changed = 1
         elif self.utDeleteObjectAction(REQUEST):
             if not ids or len(ids) == 0:
-                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1')
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=5')
             for language in self.utConvertToList(ids):
                 self.del_searchable_langs(language)
             self._p_changed = 1
         if REQUEST is not None:
-            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1&save=ok')
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=5&save=ok')
 
     ####################
     # ROLES FUNCTIONS  #
