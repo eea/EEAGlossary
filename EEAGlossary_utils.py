@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.29 2004/05/13 08:37:24 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.30 2004/05/13 10:42:55 finrocvs Exp $
 
 #Python imports
 import string
@@ -34,6 +34,13 @@ class utils:
 
     def __init__(self):
         pass
+
+    def ut_makeId(self, p_name):
+        """ """
+        transtab=string.maketrans('/ +@','____')
+        p_name = unicode(p_name, 'latin-1')
+        p_name = string.lower(p_name.encode('ascii', 'replace'))
+        return string.translate(p_name,transtab,'?&!;()<=>*#[]{}^~:|\/???$?%?')
 
     def element_list_sorted(self):
         """Return all 'EEA Glossary Element' from a Centre root"""
@@ -214,3 +221,9 @@ class catalog_utils:
             results = results[:howmany]
         results = self.__get_objects(catalog, results)
         return results
+
+    def cu_search_catalog(self, catalog, meta_type=None, query='', size=10000, language='English', definition=''):
+        """ """
+        command= "catalog(meta_type=" + str(meta_type) + ", " + language + "='" + query + "', definition='" + definition + "')"
+        results = eval(command)
+        results = self.__get_objects(catalog, results)

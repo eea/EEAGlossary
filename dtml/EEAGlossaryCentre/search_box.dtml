@@ -1,0 +1,45 @@
+<dtml-var standard_html_header>
+
+<p class="title2">Search Results for</p>
+<dtml-let query="REQUEST.get('query', '')" size="REQUEST.get('size', '')" language="REQUEST.get('language','')" definition=REQUEST.get('definition, '')"
+        results="searchGlossary(query, size, language, definition)" lang="results[0]" term="results[1]" res="results[2]"> 
+<table border=0 cellpadding=1 cellspacing=1 width="100%">
+    <tr>
+        <td align=left>Query Term</td>
+        <td align=left>
+            <dtml-if "lang in get_unicode_langs()">
+                <dtml-var term>
+            <dtml-else>
+                <dtml-var "display_unicode_langs(term,get_language_charset(lang))">
+            </dtml-if>
+        </td>
+    </tr>
+    <tr>
+        <td align=left>Language</td>
+        <td align=left><dtml-var lang></td>
+    </tr>
+    <tr>
+        <td align=left>Definition</td>
+        <td align=left><dtml-var definition></td>
+    </tr>
+    <tr>
+        <td align=left>Show Max</td>
+        <td align=left><dtml-var size></td>
+    </tr>
+    <dtml-in res>
+        <dtml-if is_published>
+
+        <dtml-let translation="get_translation_by_language(language)">
+            <img src="misc_/EEAGlossary/element.gif" border=0>&nbsp;
+            <a href="<dtml-var absolute_url>">
+                <dtml-if "lang in get_unicode_langs()"><dtml-var translation><dtml-else>
+                <dtml-var "display_unicode_langs(translation,get_language_charset(language))"></a><br>
+            <dtml-var definition><br>Source: <dtml-var definition_source><br>
+        </dtml-let>
+
+        </dtml-if>
+    </dtml-in>
+    <tr>
+</table>
+</dtml-let>
+<dtml-var standard_html_footer>
