@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.23 2004/05/06 15:19:24 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.24 2004/05/07 13:29:59 finrocvs Exp $
 
 # python imports
 import string
@@ -32,7 +32,7 @@ from AccessControl import ClassSecurityInfo
 from OFS.Folder import Folder
 from Products.ZCatalog.CatalogAwareness import CatalogAware
 import AccessControl.User
-from Products.ZCatalog.ZCatalog import manage_addZCatalog, manage_addZCatalogForm
+from Products.ZCatalog.ZCatalog import ZCatalog
 
 # product imports
 import EEAGlossaryFolder
@@ -47,6 +47,7 @@ def manage_addGlossaryCentre(self, id, title='', description='', REQUEST=None):
     self._setObject(id, ob)
     obj = self._getOb(id)
     obj.loadProperties()
+    obj.addCatalog()
     obj._p_changed = 1
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
@@ -98,6 +99,45 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
     #####################
     # LOAD PROPERTIES   #
     #####################
+    def addCatalog(self):
+        """ add the default catalog """
+        glossary_catalog = ZCatalog(GLOSSARY_CATALOG_NAME)
+        self._setObject(GLOSSARY_CATALOG_NAME, glossary_catalog)
+        catalog_obj = self._getOb(GLOSSARY_CATALOG_NAME)
+
+        #create indexes
+        for lang in self.get_english_names():
+            try: catalog_obj.addIndex(lang, 'TextIndex')
+            except: pass
+        try: catalog_obj.addIndex('approved', 'FieldIndex')
+        except: pass
+        try: catalog_obj.addIndex('bobobase_modification_time', 'FieldIndex')
+        except: pass
+        try: catalog_obj.addIndex('definition', 'TextIndex')
+        except: pass
+        try: catalog_obj.addIndex('id', 'FieldIndex')
+        except: pass
+        try: catalog_obj.addIndex('meta_type', 'FieldIndex')
+        except: pass
+        try: catalog_obj.addIndex('name', 'TextIndex')
+        except: pass
+        try: catalog_obj.addIndex('path', 'PathIndex')
+        except: pass
+        try: catalog_obj.addIndex('title', 'TextIndex')
+        except: pass
+
+       #create metadata
+        try: catalog_obj.addColumn('id')
+        except: pass
+        try: catalog_obj.addColumn('title')
+        except: pass
+        try: catalog_obj.addColumn('meta_type')
+        except: pass
+        try: catalog_obj.addColumn('bobobase_modification_time')
+        except: pass
+        try: catalog_obj.addColumn('summary')
+        except: pass
+
     def loadProperties(self):
         """ load the properties from engine """
         from copy import copy
