@@ -1,3 +1,69 @@
 <dtml-var manage_page_header>
-    <dtml-var manage_tabs>
+<dtml-var manage_tabs>
+<dtml-var style_css>
+
+<form name="frmProperties" action="manageElementProperties" method="post">
+    <table cellspacing=0 cellpadding=0 border=1>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" name="name" size="35" value="<dtml-var name>"></td>
+        </tr>
+        <tr>
+            <td>Type</td>
+            <td><select name="type"><option name="">nimic</option></select></td>
+        </tr>
+        <tr>
+            <td>Source</td>
+            <td><input type="text" name="source" size="35" value="<dtml-var source>"></td>
+        </tr>
+        <tr>
+            <td>Context</td>
+            <td><input type="text" name="el_context" size="35" value="<dtml-var el_context>"></td>
+        </tr>
+        <tr>
+            <td>Comment</td>
+            <td><textarea rows="6" cols="35" name="comment"><dtml-var comment></textarea></td>
+        </tr>
+        <tr>
+            <td>Used for 1</td>
+            <td><input type="text" name="used_for_1" size="35" value="<dtml-var used_for_1>"></td>
+        </tr>
+        <tr>
+            <td>Used for 2</td>
+            <td><input type="text" name="used_for_2" size="35" value="<dtml-var used_for_2>"></td>
+        </tr>
+        <tr>
+            <td>Definition</td>
+            <td><textarea rows="6" cols="35" name="definition"><dtml-var definition></textarea></td>
+        </tr>
+        <tr>
+            <td>Definition source</td>
+            <td><input type="text" name="definition_source_url" size="35" value="<dtml-var definition_source_url>"></td>
+        </tr>
+        <tr>
+            <td>Subjects</td>
+            <td><select name="subjects" multiple><option name="">nimic</option></select></td>
+        </tr>
+        <tr>
+            <td>Disabled</td>
+            <td><input type="checkbox" name="disabled"></td>
+        </tr>
+        <tr>
+            <td>Approved</td>
+            <td><input type="checkbox" name="approved"></td>
+        </tr>
+        <tr>
+            <td>Long definition</td>
+            <td><textarea rows="6" cols="35" name="long_definition"><dtml-var long_definition></textarea></td>
+        </tr>
+        <tr>
+            <td>QA needed</td>
+            <td><input type="checkbox" name="QA_needed"></td>
+        </tr>
+        <tr>
+            <td>Context</td>
+            <td><input type="text" name="definition_source_url" size="35" value="<dtml-var definition_source_url>"></td>
+        </tr>
+    </table>
+</form>
 <dtml-var manage_page_footer>

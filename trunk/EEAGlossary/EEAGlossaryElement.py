@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.14 2004/05/04 15:07:53 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.15 2004/05/04 15:10:59 finrocvs Exp $
 
 # python imports
 import string
@@ -143,6 +143,28 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
     #####################
     #   MANAGEMENT TABS #
     #####################
+
+    def manageElementProperties(self, name='', type='', source='', el_context='', comment='', used_for_1='', used_for_2='', definition='',
+        definition_source='', subjects='', disabled='', approved ='', long_definition='', QA_needed='',  definition_source_url='', REQUEST=None):
+        """ """
+        self.name = name
+        self.type = type
+        self.source = source
+        self.el_context = el_context
+        self.comment = comment
+        self.used_for_1 = used_for_1
+        self.used_for_2 = used_for_2
+        self.definition = definition
+        self.definition_source_url = definition_source_url
+        self.subjects = subjects
+        self.disabled = disabled
+        self.approved = approved
+        self.long_definition = long_definition
+        self.QA_needed = QA_needed
+        self.definition_source_url = definition_source_url
+        self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?save=ok')
 
     all_translations_html = DTMLFile("dtml/EEAGlossaryElement/all_translations", globals())
     check_translation_html = DTMLFile("dtml/EEAGlossaryElement/check_translation", globals())
