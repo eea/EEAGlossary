@@ -15,13 +15,13 @@
 <b>Manager:</b><br>Tarja Porkka (mailto:Tarja.Porkka@eea.eu.int)<br>
 </p>
 
-<table width="500">
+<table width="60%">
 <dtml-comment>#################################
 Insert only those terms with definition not empty.
 #################################</dtml-comment>
     <dtml-in "objectValues('GlossaryFolder')" size=nr sort=id>
         <dtml-in "objectValues(['GlossaryElement','GlossaryElementSynonym'])" size=nr sort=id>
-               <tr><td><dtml-var viewLanguages></td></tr>
+               <tr><td><dtml-var view_languages_html></td></tr>
         </dtml-in>
     </dtml-in>
 </table>
