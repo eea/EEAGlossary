@@ -3,11 +3,18 @@
 <p>
 
 <table border=1>
-<tr><th>Context/Subject code</th><th>Context/Subject name</th></tr>
+    <tr>
+        <th>Context/Subject code</th><th>Context/Subject name</th>
+    </tr>
 <dtml-in get_subjects_list>
-<dtml-let record=sequence-item>
-<tr><td><b>{<dtml-var "record['code']">}</b></td><td><dtml-var "record['name']"></td></tr>
-</dtml-let>
+    <dtml-let record=sequence-item>
+    <tr>
+        <td>
+            <b>{<dtml-var "record['code']">}</b>
+        </td>
+        <td><dtml-var "record['name']"></td>
+    </tr>
+    </dtml-let>
 </dtml-in>
 </table>
 

@@ -6,19 +6,19 @@
 
 <table width="70%" border="1" cellpadding="0" cellspacing="0">
     <tr>
-        <td bordercolor="#CCCCCC" bgcolor="#CCCCCC" align=center>
-            <h1><font color="#244c65">Glossary Centre Help</font></h1>
+        <td align=center>
+            <h1>Glossary Centre Help</h1>
         </td>
     </tr>
 
    <tr>
-    <td class="TD_Child">
+    <td>
      &nbsp;
     </td>
    </tr>
 
     <tr>
-        <td class="TD_Child1">
+        <td>
             Click the tab <b>Contents</b> to list the terms (you may also click on the left frame). Then you can inspect and change translations by clicking on the term.<br><br>
             Click the tab <b>View</b> if you want to preview the glossary on Internet with all available information.<br><br>
             In order to change your password click <a href="change_pass_html"><b>Change Password</b></a>.<br><br><br>
@@ -26,19 +26,19 @@
     </tr>
 
     <tr>
-        <td align=center  bordercolor="#CCCCCC" bgcolor="#CCCCCC">
-            <b><h3><font color="#244c65">Support/Contact Info</font></h3></b>
+        <td align=center>
+            <b><h3>Support/Contact Info</h3></b>
         </td>
     </tr>
 
    <tr>
-    <td class="TD_Child">
+    <td>
      &nbsp;
     </td>
    </tr>
 
     <tr>
-        <td class="TD_Child1"><dtml-var help_contact_html>
+        <td><dtml-var help_contact_html>
             <br>
         </td>
     </tr>

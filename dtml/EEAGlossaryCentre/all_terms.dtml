@@ -2,9 +2,9 @@
 
 <dtml-var manage_tabs>
 
-<span class=title1><dtml-var title></span>
-<p class=mainfont>
-<span class=title2>General Information</span><br>
+<span><dtml-var title></span>
+<p>
+<span>General Information</span><br>
 <b>Glossary Link:</b><br>http://glossary.eea.eu.int/<br>
 <b>Description:</b><br><dtml-var description><br>
 <b>Publisher:</b><br>EEA (European Environment Agency)<br>
@@ -12,9 +12,7 @@
 </p>
 
 <table width="100%">
-<dtml-comment>#################################
-Insert only those terms with definition not empty.
-#################################</dtml-comment>
+<dtml-comment>Insert only those terms with definition not empty.</dtml-comment>
     <dtml-in folder_list_sorted>
         <dtml-in element_list_sorted>
                <tr><td><dtml-var view_languages_html></td></tr>

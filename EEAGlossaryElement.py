@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.42 2004/05/13 13:19:27 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.43 2004/05/14 12:57:16 finrocvs Exp $
 
 # python imports
 import string
@@ -39,24 +39,20 @@ from EEAGlossary_constants import *
 class ElementBasic:
     """ define the basic properties for EEAGlossaryElement"""
 
-    def __init__(self, name, el_type, source, subjects, el_context, comment, used_for_1, used_for_2, 
-            definition, definition_source_url, long_definition, disabled, approved, QA_needed):
+    def __init__(self, name, el_type, source, el_context, comment, used_for_1, used_for_2, 
+            definition, definition_source_url, long_definition):
         """ constructor """
 
         self.name = name
         self.el_type = el_type
         self.source = source
-        self.subjects = subjects
         self.el_context = el_context
         self.comment = comment
         self.used_for_1 = used_for_1
         self.used_for_2 = used_for_2
         self.definition = definition
         self.definition_source_url = definition_source_url
-        self.disabled = disabled
-        self.approved = approved
         self.long_definition = long_definition
-        self.QA_needed = QA_needed
 
 manage_addGlossaryElement_html = DTMLFile('dtml/EEAGlossaryElement/add', globals())
 
@@ -105,8 +101,12 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         self.actions = actions
         self.all_langs_list= {}
         self.history={}
-        ElementBasic.__dict__['__init__'](self, name, el_type, source, [], el_context, comment, used_for_1, used_for_2, 
-            definition, definition_source_url, long_definition, disabled, approved, QA_needed)
+        self.subjects = subjects
+        self.disabled = disabled
+        self.approved = approved
+        self.QA_needed = QA_needed
+        ElementBasic.__dict__['__init__'](self, name, el_type, source, el_context, comment, used_for_1, used_for_2, 
+            definition, definition_source_url, long_definition)
 
     def is_published (self):
         """."""
