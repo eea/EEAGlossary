@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.31 2004/05/13 11:05:00 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.32 2004/05/13 14:25:19 finrocvs Exp $
 
 #Python imports
 import string
@@ -159,6 +159,9 @@ class utils:
         else:           #desceding
             p_list.sort(lambda x, y, param=p_key: cmp(y[param], x[param]))
 
+    def utUtf8Encode(self, p_value):
+            """ Encode a iven value to utf-8 """
+            return unicode(str(p_value), 'latin-1').encode('utf8')
 
 class catalog_utils:
 
