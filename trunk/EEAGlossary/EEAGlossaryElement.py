@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.15 2004/05/04 15:10:59 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.16 2004/05/04 15:23:01 finrocvs Exp $
 
 # python imports
 import string
@@ -39,12 +39,12 @@ from EEAGlossary_constants import *
 class ElementBasic:
     """ define the basic properties for EEAGlossaryElement"""
 
-    def __init__(self, name, type, source, subjects, el_context, comment, used_for_1, used_for_2, 
+    def __init__(self, name, el_type, source, subjects, el_context, comment, used_for_1, used_for_2, 
             definition, definition_source_url, long_definition, disabled, approved, QA_needed):
         """ constructor"""
 
         self.name = name
-        self.type = type
+        self.el_type = el_type
         self.source = source
         self.subjects = subjects
         self.el_context = el_context
@@ -60,13 +60,13 @@ class ElementBasic:
 
 manage_addGlossaryElement_html = DTMLFile('dtml/EEAGlossaryElement/add', globals())
 
-def manage_addGlossaryElement(self, id, name='', type='', source='', subjects=[], el_context='', comment='', 
+def manage_addGlossaryElement(self, id, name='', el_type='', source='', subjects=[], el_context='', comment='', 
     used_for_1='', used_for_2='',definition='', definition_source_url='', long_definition='', disabled=0, 
     approved=1, QA_needed=0, image_url='', flash_url='', links=[], actions=[], translations={}, REQUEST=None):
 
     """ Adds a new EEAGlossaryElement object """
 
-    ob = EEAGlossaryElement(id, name, type, source, subjects, el_context, comment, used_for_1, used_for_2, 
+    ob = EEAGlossaryElement(id, name, el_type, source, subjects, el_context, comment, used_for_1, used_for_2, 
             definition, definition_source_url, long_definition, disabled, approved, QA_needed, 
             image_url, flash_url, links, actions, translations)
     self._setObject(id, ob)
@@ -98,7 +98,7 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
 
     security = ClassSecurityInfo()
 
-    def __init__(self, id, name, type, source, subjects, el_context, comment, used_for_1, used_for_2, definition, 
+    def __init__(self, id, name, el_type, source, subjects, el_context, comment, used_for_1, used_for_2, definition, 
         definition_source_url, long_definition, disabled, approved, QA_needed,  image_url, flash_url, links, actions, translations):
         """ constructor """
         self.id = id
@@ -109,7 +109,7 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
         self.translations = {}
         self.all_langs_list= {}
         self.history={}
-        ElementBasic.__dict__['__init__'](self, name, type, source, subjects, el_context, comment, used_for_1, used_for_2, 
+        ElementBasic.__dict__['__init__'](self, name, el_type, source, subjects, el_context, comment, used_for_1, used_for_2, 
             definition, definition_source_url, long_definition, disabled, approved, QA_needed)
 
     def is_published (self):

@@ -81,7 +81,7 @@
         </td>
 
         <td align="left" valign="top">
-           <select name="MyType">
+           <select name="el_type">
                <dtml-in "types_list">  
                    <div class="form-text">
                    <OPTION VALUE="<dtml-var sequence-item>"><dtml-var sequence-item></OPTION>
