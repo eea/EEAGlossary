@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.22 2004/05/10 12:14:56 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.23 2004/05/10 13:35:22 finrocvs Exp $
 
 #Python imports
 
@@ -139,7 +139,6 @@ class utils:
           0x0111, 0x0146, 0x014d, 0x0137, 0x00f4, 0x00f5, 0x00f6, 0x00f7,
           0x00f8, 0x0173, 0x00fa, 0x00fb, 0x00fc, 0x0169, 0x016b, 0x02d9,
         ]
-
         ##
         ## ISO-8859-2
         ##
@@ -164,6 +163,7 @@ class utils:
           0x0111, 0x0144, 0x0148, 0x00f3, 0x00f4, 0x0151, 0x00f6, 0x00f7,
           0x0159, 0x016f, 0x00fa, 0x0171, 0x00fc, 0x00fd, 0x0163, 0x02d9,
         ]
+        s
 
         strlist = s
         res = ""
@@ -223,7 +223,7 @@ class catalog_utils:
         """Search catalog"""
         return catalog(criteria, path)
 
-    def __getObjects(self, catalog, brains):
+    def __get_objects(self, catalog, brains):
         """ given the brains return the objects"""
         try:
             return map(catalog.getobject, map(getattr, brains, ('data_record_id_',)*len(brains)))
@@ -268,6 +268,7 @@ class catalog_utils:
         results = self.__searchCatalog(catalog, filter, path)
         if howmany != -1:
             results = results[:howmany]
-        results = self.__getObjects(results)
+        
+        results = self.__get_objects(results)
         return results
 
