@@ -50,13 +50,13 @@
         </form>
         <dtml-if "lang_code != 'Nothing'">
             <dtml-if "check_allowed_translations(lang_code)">
-                <form action="transChange" method="post">
+                <form action="#" method="post">
                 <table cellspacing="1" cellpadding="2" border="1" width="100%">
                     <tr><td align="left" valign="top">Language</td>
                         <td align="left" valign="top"><dtml-var lang_code></td>
                     </tr>
                         <td align="left" valign="top">Translation</td>
-                        <dtml-let result="get_translations_result(lang_code)">
+                        <dtml-let result="get_translation_by_language(lang_code)">
                         <td align="left" valign="top">
                             <input type="text" name="translation" size="36" 
                                 value="<dtml-if "result in get_unicode_langs()"><dtml-var result>
@@ -100,6 +100,7 @@
             <tr>
                 <td colspan="2"><b>Note!</b>: Please use the following codes for contextual translations, e.g. when several translations terms are given.</td>
             </tr>
+            <tr><td colspan="2">&nbsp;</td>
             <tr>
                 <td>Context/Subject code</td>
                 <td>Context/Subject name</td>

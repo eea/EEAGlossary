@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.28 2004/05/06 15:19:24 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.29 2004/05/06 17:35:53 finrocvs Exp $
 
 # python imports
 import string
@@ -117,22 +117,13 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
             return 0
 
     def is_image_url (self):
-        if not self.utIsEmptyString(self.image_url) and (not 'image_url' in self.hidden_fields):
-            return 0
-        else:
-            return 1
+        return not (self.utIsEmptyString(self.image_url) or 'image_url' in self.get_hidden_list())
 
     def is_long_definition (self):
-        if not self.utIsEmptyString(self.long_definition) and (not 'long_definition' in self.hidden_fields):
-            return 1
-        else:
-            return 0
+        return not (self.utIsEmptyString(self.long_definition) or 'long_definition' in self.get_hidden_list())
 
-    def is_defintion_source (self):
-        if not self.utIsEmptyString(self.definition_source_url) and (not 'definition_source_url' in self.hidden_fields):
-            return 1
-        else:
-            return 0
+    def is_definition_source(self):
+        return not (self.utIsEmptyString(self.definition_source_url) or 'definition_source_url' in self.get_hidden_list())
 
     ############################
     #     SUBJECTS FUNCTIONS   #
@@ -170,10 +161,23 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
             return 1
         return 0
 
+    def get_translation_by_language(self, language):
+        """ get translation by language """
+        for trans_info in self.get_translations_list():
+            if trans_info['language'] == language:
+                return trans_info['translation']
+
     def get_translations_list(self):
         """ get the languages """
         self.utSortListOfDictionariesByKey(self.translations, 'language')
         return self.translations
+
+    def check_if_no_translations(self):
+        """ check if translations['translation'] != '':"""
+        for trans_info in self.get_translations_list():
+            if trans_info['translation']!='':
+                return 1
+        return 0
 
     def set_translations_list(self, language, translation):
         """ set the languages """

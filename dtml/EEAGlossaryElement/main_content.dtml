@@ -17,7 +17,7 @@
 
         <tr>
             <td colspan=3 valign="top" width="100%" valign="top" bordercolor="#000000" bgcolor="#FFFFFF" >
-                <dtml-var "utToUTF8(definition,'iso-8859-1')">
+                <dtml-var "display_unicode_langs(definition,charset='iso-8859-1')">
             </td>
         </tr>
 
@@ -30,12 +30,12 @@
 
                 <tr>
                     <td colspan=3 valign="top" width="100%" valign="top" bordercolor="#000000" bgcolor="#FFFFFF">
-                        <dtml-var "utToUTF8(long_definition,'iso-8859-1')">
+                        <dtml-var "display_unicode_langs(long_definition,charset='iso-8859-1')">
                     </td>
                 </tr>
         </dtml-if>
 
-        <dtml-if is_defintion_source>
+        <dtml-if is_definition_source>
             <tr>
                 <td width="100%" valign="top" bgcolor="#808080" colspan="3">
                     <b><font color="#FFFFFF">Definition source</font></b>
@@ -49,7 +49,7 @@
             </tr>
         </dtml-if>
 
-        <dtml-if "not ('Actions' in PARENTS[2].hidden_fields)">
+        <dtml-if "not ('actions' in hidden_fields)">
             <tr>
                 <td width="100%" valign="top" bgcolor="#808080" colspan="3">
                     <b><font color="#FFFFFF">Additional info, actions and links</font></b>
@@ -58,8 +58,8 @@
 
             <tr>
                 <td width="100%" valign="top" bgcolor="#FFFFFF" colspan="3">
-                    <dtml-if "_.len(links)>0 and _.len(links[0])>0">
-                        <dtml-in Links>
+                    <dtml-if "_.len(get_links())>0 and _.len(get_actions())>0">
+                        <dtml-in get_links>
                             <li>&nbsp;
                                 <a href="&dtml-sequence-item;">
                                     <dtml-var "actions[_['sequence-index']]">
@@ -117,7 +117,7 @@
             </tr>
         </dtml-if>
 
-        <dtml-if "(not 'translations' in PARENTS[2].hidden_fields)">
+        <dtml-if "(not 'translations' in hidden_fields) and (check_if_no_translations())">
             <tr>
                 <td colspan=3 width="100%" valign="top" bgcolor="#808080">
                     <b><font color="#FFFFFF">Translations of "&dtml-name;":</font></b>
@@ -143,7 +143,7 @@
         </dtml-if>
 
 
-        <dtml-if "PARENTS[0].subjects">
+        <dtml-if get_subjects>
             <tr>
                 <td width="100%" valign="top" bgcolor="#808080" colspan="3">
                     <b><font color="#FFFFFF">Contexts / Subjects</font></b>
@@ -152,7 +152,7 @@
 
             <tr>
                 <td width="100%" valign="top" bgcolor="#FFFFFF" colspan="3">
-                    <dtml-in subjects>
+                    <dtml-in get_subjects>
                     <dtml-let record="_['sequence-item']">
                         <b><dtml-var "record['code']"></b>: <dtml-var "record['name']">
                         <br>
