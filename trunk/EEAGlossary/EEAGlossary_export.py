@@ -20,10 +20,11 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_export.py,v 1.5 2004/05/28 12:00:20 finrocvs Exp $
+#$Id: EEAGlossary_export.py,v 1.6 2004/05/28 12:29:29 finrocvs Exp $
 
 from DateTime import DateTime
 from types import UnicodeType
+import string
 
 class glossary_export:
     """ """
@@ -37,7 +38,10 @@ class glossary_export:
         results = []
         r_append = results.append   #alias for append function. For optimization purposes
         # Generate the XLIFF file header
-        if folders == '/':    folders='all'
+        if folders == '/':
+            folders='all'
+        else:
+            folders = string.split(folders, '/')[-1]
         self.REQUEST.RESPONSE.setHeader('Content-Type', 'application/data; charset=UTF-8')
         self.REQUEST.RESPONSE.setHeader('Content-Disposition', 'attachment; filename="%s_%s_%s.xml"' % (self.id, folders, language))
         r_append('<?xml version="1.0" encoding="UTF-8"?>')
@@ -70,9 +74,11 @@ class glossary_export:
         results = []
         terms = []
         r_append = results_list.append   #alias for append function. For optimization purposes
-        if published:
+        if not published:
+            print "1"
             terms.extend(self.get_published('/%s' % folder))
         else:
+            print "2"
             terms.extend(self.get_all_objects('/%s' % folder))
         results_list.extend(self.xliff_header(folder, language))
         for term in terms:
