@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.35 2004/05/11 16:53:30 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.36 2004/05/12 16:44:25 finrocvs Exp $
 
 # python imports
 import string
@@ -32,12 +32,14 @@ from AccessControl import ClassSecurityInfo
 from OFS.Folder import Folder
 import AccessControl.User
 from Products.ZCatalog.ZCatalog import ZCatalog
+from Products.ZCTextIndex.ZCTextIndex import manage_addLexicon
 
 # product imports
 import EEAGlossaryFolder
 from EEAGlossary_utils import utils
 from toutf8 import toUTF8
 from EEAGlossary_utils import catalog_utils
+
 
 from EEAGlossary_constants import *
 
@@ -154,7 +156,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         self._setObject(id_catalog, glossary_catalog)
         catalog_obj = self._getOb(id_catalog)
 
-        #create indexes
+         #create indexes
         for lang in self.get_english_names():
             try: catalog_obj.addIndex(lang, 'TextIndex')
             except: pass
@@ -500,7 +502,20 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1&save=ok')
 
-    #####################
+    ######################################
+    # GLOSSARY FUNCTIONALITIES FUNCTIONS #
+    ######################################
+    def searchGlossary(self, query='', size=10000, language='English', definition='*', REQUEST=None):
+        """ """
+        catalog = self.getGlossaryCatalog()
+        command = []
+        command.append("catalog(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], ")
+        command.append(language+"='"+query+"', definition='"+definition+"')")
+        command = ''.join(command)
+        print eval(command)
+
+
+   #####################
     #   MANAGEMENT TABS #
     #####################
     manage_properties_html = DTMLFile('dtml/EEAGlossaryCentre/properties', globals())
@@ -514,7 +529,9 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
 
     preview_html = DTMLFile('dtml/EEAGlossaryCentre/preview', globals())
     index_html = DTMLFile('dtml/EEAGlossaryCentre/index', globals())
-    search_box_html = DTMLFile('dtml/EEAGlossaryCentre/search_box', globals())
+
+    search_html = DTMLFile('dtml/EEAGlossaryCentre/search_box', globals())
+
     term_tip_box_html = DTMLFile('dtml/EEAGlossaryCentre/term_tip_box', globals())
     contexts_html = DTMLFile('dtml/EEAGlossaryCentre/contexts', globals())
     check_list_html = DTMLFile('dtml/EEAGlossaryCentre/checklist', globals())
