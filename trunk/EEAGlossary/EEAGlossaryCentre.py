@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.27 2004/05/10 09:38:07 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.28 2004/05/10 09:53:42 finrocvs Exp $
 
 # python imports
 import string
@@ -114,6 +114,27 @@ class EEAGlossaryCentre(Folder, utils):
                     return whrandom.choice(elements)
                 else:
                     return None
+
+    def change_pass_action(self,REQUEST=None):
+        """Change Password for current Zope user"""
+        domains = REQUEST.AUTHENTICATED_USER.getDomains()
+        roles = REQUEST.AUTHENTICATED_USER.getRoles()
+        name = REQUEST.AUTHENTICATED_USER.getUserName()
+        password = REQUEST.new_password
+        confirm = REQUEST.new_password_confirm
+        self.acl_users._changeUser(name,password,confirm,roles,domains,REQUEST=None)
+        if REQUEST is not None:
+            REQUEST.RESPONSE.redirect('change_pass_html?save=ok')
+
+    def folder_list(self):
+        """Return all 'EEA Glossary Folder' from a Centre"""
+        ret=''
+        lista=self.objectItems(EEA_GLOSSARY_FOLDER_METATYPE)
+        lista.sort()
+        for i in lista:
+            o=i[1]
+            ret=ret+'&nbsp;<a href="'+o.absolute_url()+'">'+o.id+'</a>&nbsp;|'
+        return ret
 
     #####################
     # LOAD PROPERTIES   #
@@ -478,6 +499,9 @@ class EEAGlossaryCentre(Folder, utils):
     prop_hidden_html = DTMLFile('dtml/EEAGlossaryCentre/properties_hidden', globals())
 
     preview_html = DTMLFile('dtml/EEAGlossaryCentre/preview', globals())
+    index_html = DTMLFile('dtml/EEAGlossaryCentre/index', globals())
+    search_box_html = DTMLFile('dtml/EEAGlossaryCentre/search_box', globals())
+    term_tip_box_html = DTMLFile('dtml/EEAGlossaryCentre/term_tip_box', globals())
     contexts_html = DTMLFile('dtml/EEAGlossaryCentre/contexts', globals())
     check_list_html = DTMLFile('dtml/EEAGlossaryCentre/checklist', globals())
     change_pass_html = DTMLFile('dtml/EEAGlossaryCentre/changepassword', globals())

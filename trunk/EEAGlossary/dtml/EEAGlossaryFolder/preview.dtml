@@ -4,5 +4,9 @@
         <td><dtml-var manage_tabs></td>
     </tr>
 
-</table>
+</table>\
+
+
+<dtml-comment>
 <dtml-var index_html>
+</dtml-comment>

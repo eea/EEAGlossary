@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryFolder.py,v 1.12 2004/05/10 09:38:07 finrocvs Exp $
+#$Id: EEAGlossaryFolder.py,v 1.13 2004/05/10 09:53:42 finrocvs Exp $
 
 # python imports
 import whrandom
@@ -113,7 +113,6 @@ class EEAGlossaryFolder(Folder, utils):
             if eobject.is_published:
                elements.append(eobject)
         if len(elements) > 0:
-            print whrandom.choice(elements)
             return whrandom.choice(elements)
         else:
             return None
@@ -129,7 +128,7 @@ class EEAGlossaryFolder(Folder, utils):
         REQUEST.RESPONSE.redirect('manage_subobjects_html?save=ok')
 
     def manage_folder_properties(self, title='', description='', REQUEST=None):
-        """ save the properties for EEAGlossaryFolder"""
+        """folder properties"""
         self.title=title
         self.description=description
         if REQUEST is not None:
