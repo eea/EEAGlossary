@@ -1,0 +1,50 @@
+<dtml-var manage_page_header>
+<dtml-var manage_tabs>
+
+<h2>List of Approved Terms</h2>
+<dtml-call "REQUEST.set('tottcount',0)">
+<dtml-call "REQUEST.set('totccount',0)">
+<dtml-call "REQUEST.set('tcount',0)">
+<dtml-call "REQUEST.set('ccount',0)">
+<p>
+
+<dtml-if isManager>
+<table width="100%">
+<tr>
+<td width="40%"><b>Name</b></td>
+<td width="*">&nbsp;<b>Last modification</b></td>
+</tr>
+    <dtml-in get_approved>
+        <dtml-call "REQUEST.set('tottcount',tottcount+1)">
+        <dtml-if "meta_type=='GlossaryElement'"><dtml-call "REQUEST.set('totccount',totccount+1)"></dtml-if>
+
+        <dtml-if is_published>
+            <dtml-call "REQUEST.set('tcount',tcount+1)">
+            <dtml-if "meta_type=='EEA Glossary Element'"><dtml-call "REQUEST.set('ccount',ccount+1)"></dtml-if>
+                <tr>
+                    <td width="40%"><li><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></li></td>
+                    <td width="*">
+                        &nbsp;<dtml-var bobobase_modification_time>&nbsp;
+                        <dtml-if QA_needed>
+                            <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
+                        </dtml-if>
+                    </td>
+                </tr>
+        </dtml-if>
+    </dtml-in>
+    <tr>
+    <td colspan="2">
+    <br>Tot. numbers of English terms (Published): <b><dtml-var tcount></b>
+    <br>Tot. numbers of concepts (Published): <b><dtml-var ccount></b>
+    <br>Tot. numbers of English terms (Published and Unpublished): <b><dtml-var tottcount></b>
+    <br>Tot. numbers of concepts (Published and Unpublished): <b><dtml-var totccount></b><br>
+    </td>
+    </tr>
+    </table>
+<dtml-else>
+    This operation is only allowed to Managers.
+</dtml-if>
+
+</p>
+
+<dtml-var manage_page_footer>
