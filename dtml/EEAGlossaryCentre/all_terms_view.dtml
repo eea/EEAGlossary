@@ -1,0 +1,19 @@
+<dtml-var standard_html_header>
+<table>
+    <tr>
+        <td>
+            <dtml-in all_objects>
+                <br>
+                <dtml-if utIsSynonym>
+                    <dtml-var view_box_html>
+                <dtml-else>
+                    <dtml-var view_box_html>
+                </dtml-if>
+                <br>
+            </dtml-in>
+        </td>
+    </tr>
+</table>
+<dtml-var standard_html_footer>
+
+
