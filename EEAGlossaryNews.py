@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryNews.py,v 1.4 2004/05/17 11:08:40 finrocvs Exp $
+#$Id: EEAGlossaryNews.py,v 1.5 2004/05/17 11:23:15 finrocvs Exp $
 
 # Zope imports
 from Globals import DTMLFile, MessageDialog, InitializeClass
@@ -49,6 +49,7 @@ class EEAGlossaryNews(SimpleItem):
 
     manage_options = (
         {'label':'Properties',                      'action':'manage_properties_html'},
+        {'label':'View',                      'action':'index_html'},
         {'label':'Undo',                       'action':'manage_UndoForm'},
         {'label':'Ownership',         'action':'manage_owner'},)
 
@@ -72,6 +73,7 @@ class EEAGlossaryNews(SimpleItem):
             REQUEST.RESPONSE.redirect('manage_properties_html?save=ok')
 
     manage_properties_html = DTMLFile("dtml/EEAGlossaryNews/properties", globals())
+    index_html = DTMLFile("dtml/EEAGlossaryNews/index", globals())
 
 InitializeClass(EEAGlossaryNews)
 
