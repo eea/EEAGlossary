@@ -116,7 +116,7 @@
                 </td>
             </tr>
         </dtml-if>
-<dtml-comment>
+
         <dtml-if "(not 'translations' in PARENTS[2].hidden_fields)">
             <tr>
                 <td colspan=3 width="100%" valign="top" bgcolor="#808080">
@@ -124,34 +124,32 @@
                 </td>
             </tr>
 
-            <dtml-comment>
-            #alec asa era initial
-            <dtml-in "PARENTS[0].translations.keys()">
-                <dtml-let langid=sequence-item>
+            <dtml-in get_translations_list>
+                <dtml-let record="_['sequence-item']">
                             <tr>
-                                <td bgcolor="#808080"><font color="#FFFFFF"><dtml-var langid>:</font></td>
-                                <td>
-                                    <dtml-if "langid in unicode_langs">
-                                        <dtml-var "_[langid]">
+                                <td bgcolor="#808080"><font color="#FFFFFF"><dtml-var "record['language']">:</font></td>
+                                <td><dtml-comment>
+                                    <dtml-if "record['language'] in get_unicode_langs">
+                                        <dtml-var "record['translation']">
                                     <dtml-else>
-                                        <dtml-var "utToUTF8(_[langid],charset)">
-                                    </dtml-if>
+                                        <dtml-var "utToUTF8(record['translation'],charset)">
+                                    </dtml-if></dtml-comment>
                                 </td>
                             </tr>
                 </dtml-let>
             </dtml-in>
-            </dtml-comment>
 
-            <dtml-let lang=translations>
-                <dtml-in "lang.keys()">
+            <dtml-in get_translations_list>
+                <dtml-let record="_['sequence-item']">
                     <tr>
-                        <td bgcolor="#808080"><font color="#FFFFFF"><dtml-var sequence-item>:</font></td>
-                        <td>aaaa<dtml-var "lang[_['sequence-item']]">aaaa</td>
+                        <td bgcolor="#808080"><font color="#FFFFFF"><dtml-var "record['language']">:</font></td>
+                        <td><dtml-var "record['translation']"></td>
                     </tr>
-                </dtml-in>
-            </dtml-let>
+                </dtml-let>
+            </dtml-in>
+
         </dtml-if>
-</dtml-comment>
+
 
         <dtml-if "PARENTS[0].subjects">
             <tr>
@@ -160,7 +158,7 @@
                 </td>
             </tr>
 
-            <tr><dtml-comment>
+            <tr>
                 <td width="100%" valign="top" bgcolor="#FFFFFF" colspan="3">
                     <dtml-in subjects>
                     <dtml-let record="_['sequence-item']">
@@ -171,7 +169,7 @@
                     <br>
                     Words between "{" in translations are used as short names for contexts (or subjects). These codes are used when there is no exact equivalence between the source and the target language. In this case several translations are supplied and tagged with a context code.
                     <a href="contexts_table">See all context/subject codes</a>.<p>&nbsp;
-                </td></dtml-comment>
+                </td>
             </tr>
         </dtml-if>
     </table>
