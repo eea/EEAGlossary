@@ -1,0 +1,23 @@
+<dtml-var manage_utf8_header>
+
+<dtml-var manage_tabs>
+
+<h2><dtml-var title_or_id> - <dtml-var document_title></h2>
+<dtml-if "'Quality Controller' in _.SecurityGetUser().getRoles()">
+<p>
+<form action="all_terms" method="post">
+<select name="languagescheck:list" multiple size=8>
+<dtml-in languages_list><option><dtml-var sequence-item html_quote></option>
+</dtml-in>
+<option>Definition</option>
+</select>
+ <input class="form-element" type="submit" name="SUBMIT" value="Go to Check List">
+</form>
+</p>
+<dtml-else>
+<p><font color=red>You're not allowed to check any terms.</font>
+</p>
+<p>Please Login</p>
+</dtml-if>
+
+<dtml-var manage_utf8_footer>
