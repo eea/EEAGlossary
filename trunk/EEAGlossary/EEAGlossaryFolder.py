@@ -18,7 +18,7 @@
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
 #
-#$Id: EEAGlossaryFolder.py,v 1.5 2004/05/03 13:43:17 finrocvs Exp $
+#$Id: EEAGlossaryFolder.py,v 1.6 2004/05/03 14:05:01 finrocvs Exp $
 
 # Zope imports
 from Globals import DTMLFile, MessageDialog, InitializeClass
@@ -89,10 +89,10 @@ class EEAGlossaryFolder(Folder, Utils):
 
     def manageSubobjects(self, REQUEST=None):
         """ Update the additional meta types for all objects """
-        subobjects = self.utConvertToList(REQUEST.get('subobjects', self.adt_meta_types))
+        subobjects = self.utConvertToList(REQUEST.get('subobjects', ''))
         self.adt_meta_types = subobjects
         self._p_changed = 1
-        REQUEST.RESPONSE.redirect('manage_subobjects_html?save=ok')
+        REQUEST.RESPONSE.redirect('manage_subobjects_html')
 
 
     def IsEmptyFolder(self):

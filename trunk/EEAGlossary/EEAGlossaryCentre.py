@@ -17,7 +17,7 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossaryCentre.py,v 1.8 2004/05/03 13:57:40 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.9 2004/05/03 14:05:01 finrocvs Exp $
 
 # python imports
 import string
@@ -45,6 +45,8 @@ def manage_addEEAGlossaryCentre(self, id, title='', description='', REQUEST=None
     """ Adds a new EEAGlossaryCentre object """
     ob = EEAGlossaryCentre(id, title, description)
     self._setObject(id, ob)
+    centre_obj  = self._getOb(id)
+    centre_obj.= load_subjects_list()
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
@@ -89,7 +91,7 @@ class EEAGlossaryCentre(Folder, CatalogAware):
     manage_addGlossaryFolder_html = EEAGlossaryFolder.manage_addGlossaryFolder_html
     manage_addGlossaryFolder = EEAGlossaryFolder.manage_addGlossaryFolder
 
-    def loadINI (self):
+    def load_languages_list(self):
         """loads languages & history properties defaults"""
         from os.path import join
         file = open(join(SOFTWARE_HOME, 'Products','EEAGlossary','languages.xml'), 'r')
