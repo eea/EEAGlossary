@@ -19,7 +19,7 @@
 # Alex Ghica, Finsiel Romania
 # Cornel Nitu, Finsiel Romania
 #
-#$Id: __init__.py,v 1.5 2004/05/04 07:23:15 finrocvs Exp $
+#$Id: __init__.py,v 1.6 2004/05/04 13:32:26 finrocvs Exp $
 
 from ImageFile import ImageFile
 
@@ -48,6 +48,8 @@ def initialize(context):
             pass
         Engine = getattr(app, EngineID)
         Engine.load_roles_list()
+        Engine.load_languages_list()
+        Engine.load_subjects_list()
     assert Engine is not None
 
     # Folder for the Glossary
@@ -72,6 +74,7 @@ def initialize(context):
 misc_ = {
     'element.gif':ImageFile('www/element.gif', globals()),
     'folder.gif':ImageFile('www/folder.gif', globals()),
+    'engine.gif':ImageFile('www/engine.gif', globals()),
 #alec
     'line.gif':ImageFile('www/line.gif', globals()),
     'img_search_med.gif':ImageFile('www/img_search_med.gif', globals()),

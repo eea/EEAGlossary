@@ -1,0 +1,53 @@
+<dtml-let record_code="REQUEST.get('code', '')">
+
+<form name="frmSubjects" action="manageSearchProperties" method="post">
+<table border="0" cellspacing="2" cellpadding="2" width="100%">
+    <tr>
+        <td class="cellheader" width="1%">&nbsp;</td>
+        <td class="cellheader"><b>Language</b></td>
+        <td class="cellheader">&nbsp;</td>
+    </tr>
+    <dtml-in "search_langs">
+    <dtml-if sequence-odd>
+        <dtml-call "REQUEST.set('cellclass', 'cellodd')">
+    <dtml-else>
+        <dtml-call "REQUEST.set('cellclass', 'celleven')">
+    </dtml-if>
+    <dtml-if "record_code == _['sequence-item']">
+    <tr>
+        <td class="<dtml-var cellclass>" width="1%"><input type="hidden" name="old_language" value="<dtml-var sequence-item html_quote>"></td>
+        <td class="<dtml-var cellclass>"><select name="language">
+            <dtml-let old_language="_['sequence-item']">
+            <dtml-in get_languages_list>
+                <option name="<dtml-var sequence-item>" <dtml-if "_['sequence-item']==old_language">selected</dtml-if>><dtml-var sequence-item html_quote></option>
+            </dtml-in>
+            </dtml-let>
+        <td class="<dtml-var cellclass>"><input type="submit" name="update" value="Update"></td>
+    </tr>
+    <dtml-else>
+    <tr>
+        <td class="<dtml-var cellclass>" width="1%"><input type="checkbox" name="ids" value="<dtml-var sequence-item html_quote>"></td>
+        <td class="<dtml-var cellclass>"><a class="itemlink" href="manage_properties_html?pagetab=5&amp;code=<dtml-var sequence-item url_quote>"><dtml-var sequence-item html_quote></a></td>
+        <td class="<dtml-var cellclass>">&nbsp;</td>
+    </tr>
+    </dtml-if>
+    </dtml-in>
+    <dtml-if "record_code==''">
+    <tr>
+        <td class="cell" width="1%">&nbsp;</td>
+        <td class="cell"><select name="language">
+            <dtml-in get_languages_list>
+                <option name="<dtml-var sequence-item>"><dtml-var sequence-item html_quote></option>
+            </dtml-in></select>
+        </td>
+        <td class="cell"><input type="submit" name="add" value="Add"></td>
+    </tr>
+    </dtml-if>
+    <tr>
+        <td width="1%">&nbsp;</td>
+        <td colspan="4"><input type="submit" name="delete" value="Delete"></td>
+    </tr>
+</table>
+</form>
+
+</dtml-let>
