@@ -8,7 +8,7 @@
 # implied. See the License for the specific language governing
 # rights and limitations under the License.
 #
-# The Original Code is EEAGlossary version 1.0.
+# The Original Code is EEAGlossary version 1.0.0
 #
 # The Initial Developer of the Original Code is European Environment
 # Agency (EEA).  Portions created by Finsiel Romania are
@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.50 2004/05/14 12:57:16 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.51 2004/05/17 08:54:19 finrocvs Exp $
 
 # python imports
 import string
@@ -33,6 +33,7 @@ from OFS.Folder import Folder
 import AccessControl.User
 from Products.ZCatalog.ZCatalog import ZCatalog
 from Products.ZCTextIndex.ZCTextIndex import manage_addLexicon
+import Products
 
 # product imports
 import EEAGlossaryFolder
@@ -92,12 +93,16 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         utils.__dict__['__init__'](self)
         toUTF8.__dict__['__init__'](self)
 
-#    def all_meta_types(self):
-#        """ Supported meta_types """
-#        meta_types = [{'name': EEA_GLOSSARY_FOLDER_METATYPE, 'action': 'manage_addGlossaryFolder_html'},]
-#        return meta_types
-#
-#    manage_addGlossaryFolder_html = EEAGlossaryFolder.manage_addGlossaryFolder_html
+    def all_meta_types(self, interfaces=None):
+        """ Can contain any kind of objects plus EWFolder """
+        meta_types = [
+            {'name': EEA_GLOSSARY_FOLDER_METATYPE, 'action': 'manage_addGlossaryFolder_html', 'product': EEA_GLOSSARY_PRODUCT_NAME},
+        ]
+        for x in Products.meta_types:
+            meta_types.append(x)
+        return meta_types
+
+    manage_addGlossaryFolder_html = EEAGlossaryFolder.manage_addGlossaryFolder_html
     manage_addGlossaryFolder = EEAGlossaryFolder.manage_addGlossaryFolder
 
 

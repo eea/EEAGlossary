@@ -8,6 +8,8 @@
 # implied. See the License for the specific language governing
 # rights and limitations under the License.
 #
+# The Original Code is EEAGlossary version 1.0.0
+#
 # The Initial Owner of the Original Code is European Environment
 # Agency (EEA).  Portions created by Finsiel Romania are
 # Copyright (C) European Environment Agency.  All
@@ -18,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: roles_parser.py,v 1.2 2004/05/05 10:24:52 finrocvs Exp $
+#$Id: roles_parser.py,v 1.3 2004/05/17 08:54:19 finrocvs Exp $
 
 from xml.sax.handler import ContentHandler
 from xml.sax import *
