@@ -19,14 +19,36 @@
 # Alex Ghica, Finsiel Romania
 # Cornel Nitu, Finsiel Romania
 #
-#$Id: __init__.py,v 1.3 2004/05/03 18:39:13 finrocvs Exp $
+#$Id: __init__.py,v 1.4 2004/05/03 20:05:32 finrocvs Exp $
+
+from ImageFile import ImageFile
 
 import EEAGlossaryCentre
 import EEAGlossaryNews
-from ImageFile import ImageFile
+import EEAGlossaryEngine
+
+EngineID = EEAGlossaryEngine.EngineID
 
 def initialize(context):
     """ EEA Glossary """
+
+    #add EEAGlossaryEngine
+    app = context._ProductContext__app
+    global Engine
+
+    if hasattr(app, EnginelID):
+        Engine = getattr(app, EnginelID)
+    else:
+        try:
+            oEngine = EEAGlossaryEngine.EEAGlossaryEngine(id=EngineID)
+            app._setObject(EngineID, oEngine)
+            get_transaction().note('Added EEAGlossaryEngine')
+            get_transaction().commit()
+        except:
+            pass
+        Engine = getattr(app, EngineID)
+        Engine.load_roles_list()
+    assert Engine is not None
 
     # Folder for the Glossary
     context.registerClass(

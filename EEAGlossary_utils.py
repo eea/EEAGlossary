@@ -18,12 +18,10 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.12 2004/05/03 18:39:13 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.13 2004/05/03 20:05:32 finrocvs Exp $
 
 #Python imports
-from xml.sax.handler import ContentHandler
-from xml.sax import *
-from cStringIO import StringIO
+
 import string
 
 
@@ -188,87 +186,3 @@ class utils:
                     else:
                         res = res + ch
         return res
-
-################################
-#   XML PARSERS                #
-################################
-
-class languages_struct:
-    """ """
-    def __init__(self, lang, charset, english_name):
-        """ """
-        self.lang = lang
-        self.charset = charset
-        self.english_name = english_name
-
-class languages_handler(ContentHandler):
-    """ """
-
-    def __init__(self):
-        """ """
-        self.languages = []
-
-    def startElement(self, name, attrs):
-        """ """
-        if name == 'language':
-            self.languages.append(languages_struct(attrs['lang'], attrs['charset'], attrs['englishname']))
-
-    def endElement(self, name):
-        """ """
-        pass
-
-class languages_parser:
-    """ """
-
-    def parseContent(self, content):
-        """ """
-        handler = languages_handler()
-        parser = make_parser()
-        parser.setContentHandler(handler)
-        inpsrc = InputSource()
-        inpsrc.setByteStream(StringIO(content))
-        try:
-            parser.parse(inpsrc)
-            return (handler, '')
-        except Exception, error:
-            return (None, error)
-
-
-class subjects_struct:
-    """ """
-    def __init__(self, code, name):
-        """ """
-        self.code = code
-        self.name = name
-
-class subjects_handler(ContentHandler):
-    """ """
-
-    def __init__(self):
-        """ """
-        self.subjects = []
-
-    def startElement(self, name, attrs):
-        """ """
-        if name == 'subject':
-            self.subjects.append(subjects_struct(attrs['code'], attrs['name']))
-
-    def endElement(self, name):
-        """ """
-        pass
-
-class subjects_parser:
-    """ """
-
-    def parseContent(self, content):
-        """ """
-        handler = subjects_handler()
-        parser = make_parser()
-        parser.setContentHandler(handler)
-        inpsrc = InputSource()
-        inpsrc.setByteStream(StringIO(content))
-        try:
-            parser.parse(inpsrc)
-            return (handler, '')
-        except Exception, error:
-            return (None, error)

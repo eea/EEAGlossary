@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<roles>
+    <role name="Quality Controller" permissions="Manage properties,View from Internet,View management screens"/>
+    <role name="GlossaryManager" permissions="Undo changes,"/>
+    <role name="QC Bulgarian" permissions=""/>
+    <role name="QC Croatian" permissions=""/>
+    <role name="QC Czech" permissions=""/>
+    <role name="QC Danish" permissions=""/>
+    <role name="QC Dutch" permissions=""/>
+    <role name="QC English" permissions=""/>
+    <role name="QC Estonian" permissions=""/>
+    <role name="QC Finnish" permissions=""/>
+    <role name="QC French" permissions=""/>
+    <role name="QC German" permissions=""/>
+    <role name="QC Greek" permissions=""/>
+    <role name="QC Hungarian" permissions=""/>
+    <role name="QC Icelandic" permissions=""/>
+    <role name="QC Italian" permissions=""/>
+    <role name="QC Latvian" permissions=""/>
+    <role name="QC Lithuanian" permissions=""/>
+    <role name="QC Macedonian" permissions=""/>
+    <role name="QC Norwegian" permissions=""/>
+    <role name="QC Polish" permissions=""/>
+    <role name="QC Portuguese" permissions=""/>
+    <role name="QC Romanian" permissions=""/>
+    <role name="QC Russian" permissions=""/>
+    <role name="QC Serbian" permissions=""/>
+    <role name="QC Slovak" permissions=""/>
+    <role name="QC Slovenian" permissions=""/>
+    <role name="QC Spanish" permissions=""/>
+    <role name="QC Swedish" permissions=""/>
+    <role name="QC Turkish" permissions=""/>
+    <role name="QC Maltese" permissions=""/>
+</roles>
