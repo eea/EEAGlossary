@@ -27,7 +27,7 @@
         </table>
 
         <form action="&dtml-URL;" method="get">
-        <table cellpadding="2" cellspacing="2" border=1 width="100%">
+        <table cellpadding="1" cellspacing="1" border=1 width="100%">
             <tr>
                 <td colspan="2">You have the permission to check and change the following languages. Pick the language to check.</td>
             </tr>
