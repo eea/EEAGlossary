@@ -7,7 +7,7 @@
         <td class="cellheader"><b>Hidden field</b></td>
         <td class="cellheader">&nbsp;</td>
     </tr>
-    <dtml-in hidden_fields>
+    <dtml-in get_hidden_list>
     <dtml-if sequence-odd>
         <dtml-call "REQUEST.set('cellclass', 'cellodd')">
     <dtml-else>

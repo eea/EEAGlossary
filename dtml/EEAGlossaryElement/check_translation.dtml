@@ -76,6 +76,13 @@
         <dtml-else>
             <b>Chosen language to check: Nothing</b>
         </dtml-if>
+        <p>
+        <table border=1 width="100%">
+            <tr>
+                <td><dtml-var definition_html></td>
+             </tr>
+        </table>
+        </p>
     </td>
     <td width="*" valign="top">
         <table border=1 width="100%">
@@ -88,6 +95,21 @@
             <tr>
                 <td>In order to <b>change your password</b> click <a href="/EEAGlossary/changePassForm">here</a></td>
             </tr>
+        </table>
+        <table border=1 width="100%">
+            <tr>
+                <td><b>Note!</b>: Please use the following codes for contextual translations, e.g. when several translations terms are given.</td>
+            </tr>
+            <tr>
+                <td>Context/Subject code</td>
+                <td>Context/Subject name</td>
+            </tr>
+            <dtml-in "get_subjects_items().items()" mapping sort=code>
+            <tr>
+                <td><b>{<dtml-var code>}</b></td>
+                <td><dtml-var name></td>
+            </tr>
+            </dtml-in>
         </table>
     </td>
 </tr>

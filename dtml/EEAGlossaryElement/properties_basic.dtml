@@ -7,7 +7,7 @@ comment here<br>
         </tr>
         <tr>
             <td>Type</td>
-            <td><select name="el_type"><dtml-in types_list>
+            <td><select name="el_type"><dtml-in get_types_list>
                 <option name="<dtml-var sequence-item>" <dtml-if "el_type==_['sequence-item']">SELECTED</dtml-if>><dtml-var sequence-item></option>
                 </dtml-in>
                 </select></td>
@@ -44,7 +44,10 @@ comment here<br>
             <td>Subjects</td>
             <td><select name="subjects" multiple size="8">
                 <dtml-in get_subjects_list>
-                    <option name="<dtml-var sequence-item>" <dtml-if "_['sequence-item'] in subjects">SELECTED</dtml-if>><dtml-var sequence-item></option></dtml-in></select></td>
+                <dtml-let record="_['sequence-item']">
+                    <option value="<dtml-var "record['code']">" <dtml-if "code_in_subjects(record['code'])">SELECTED</dtml-if>><dtml-var "record['name']"></option>
+                </dtml-let>
+                </dtml-in></select></td>
         </tr>
         <tr>
             <td>Disabled</td>

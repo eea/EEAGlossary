@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.25 2004/05/06 14:17:35 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.26 2004/05/06 14:26:15 finrocvs Exp $
 
 # python imports
 import string
@@ -59,7 +59,7 @@ class ElementBasic:
 
 manage_addGlossaryElement_html = DTMLFile('dtml/EEAGlossaryElement/add', globals())
 
-def manage_addGlossaryElement(self, id, name='', el_type='', source='', subjects=[], el_context='', comment='', 
+def manage_addGlossaryElement(self, id, name='', el_type='', source='', subjects={}, el_context='', comment='', 
     used_for_1='', used_for_2='',definition='', definition_source_url='', long_definition='', disabled=0, 
     approved=1, QA_needed=0, image_url='', flash_url='', links=[], actions=[], translations={}, REQUEST=None):
 
@@ -103,7 +103,7 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
         self.flash_url = flash_url
         self.links = links
         self.actions = actions
-        self.translations = {}
+        self.translations = []
         self.all_langs_list= {}
         self.history={}
         ElementBasic.__dict__['__init__'](self, name, el_type, source, subjects, el_context, comment, used_for_1, used_for_2, 
@@ -116,23 +116,33 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
             return 0
 
     def is_image_url (self):
-        if not self.utIsEmptyString(self.image_url) and (not 'image_url' in self.REQUEST.PARENTS[2].hidden_fields):
+        if not self.utIsEmptyString(self.image_url) and (not 'image_url' in self.hidden_fields):
             return 0
         else:
             return 1
 
     def is_long_definition (self):
-        if not self.utIsEmptyString(self.long_definition) and (not 'long_definition' in self.REQUEST.PARENTS[2].hidden_fields):
+        if not self.utIsEmptyString(self.long_definition) and (not 'long_definition' in self.hidden_fields):
             return 1
         else:
             return 0
 
     def is_defintion_source (self):
-        if not self.utIsEmptyString(self.definition_source_url) and (not 'definition_source_url' in self.REQUEST.PARENTS[2].hidden_fields):
+        if not self.utIsEmptyString(self.definition_source_url) and (not 'definition_source_url' in self.hidden_fields):
             return 1
         else:
             return 0
 
+    def code_in_subjects(self, code):
+        """ check if code is in the list """
+        for subj_info in self.subjects:
+            if subj_info['code'] == code:
+                return 1
+        return 0
+
+    ############################
+    #  TRANSLATIONS FUNCTIONS  #
+    ############################
     def check_allowed_translations(self, language):
         """ check if the authenticated user has the permission to change the translation"""
         role = 'QC ' + language
@@ -140,33 +150,36 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
             return 1
         return 0
 
+    def get_translations_list(self):
+        """ get the languages """
+        self.utSortListOfDictionariesByKey(self.translations, 'language')
+        return self.translations
+
+    def set_translations_list(self, language, translation):
+        """ set the languages """
+        self.translations.append({'language':language, 'translation':translation})
+
+    def remove_translation_from_list(self, language):
+        """ remove a language from list """
+        for lang_info in self.translations:
+            if lang_info['language'] == lang:
+                self.translations.remove(lang_info)
+
+    def del_translation_by_language(self, language):
+        """ remove a translation from list """
+        for lang_info in self.translations:
+            if lang_info['language'] == language:
+                lang_info['translation'] = ''
+
+    def del_translation_by_translation(self, translation):
+        """ remove a translation from list """
+        for lang_info in self.translations:
+            if lang_info['translation'] == translation:
+                lang_info['translation'] = ''
+
     def load_translations_list (self):
-        for lang in self.REQUEST.PARENTS[0].languages_list.keys():
-            self.translations[lang] = ''
-
-    def get_translations_languages(self):
-        """ """
-        languages = self.translations.keys()
-        languages.sort()
-        return languages
-
-    def get_translations_result(self, language):
-        """ """
-        try:
-            return self.translations[language]
-        except KeyError, error:
-            print error
-
-    def get_unicode_langs(self):
-        """ """
-        return self.getGlossaryEngine().unicode_langs
-
-    def display_unicode_langs(self, language, charset=""):
-        """ """
-        if charset=="":
-            return self.utToUTF8(language, self.get_language_charset(language))
-        else:
-            return self.utToUTF8(language, charset)
+        for lang in self.get_english_names():
+            self.set_translations_list(lang, '')
 
     def convert_element(self, synonyms=[], REQUEST=None):
         """convert element to synonym"""
@@ -183,11 +196,10 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
 
 
     #####################
-    #   MANAGEMENT TABS #
+    #  BASIC PROPERTIES #
     #####################
-
     def manageBasicProperties(self, name='', el_type='', source=[], el_context='', comment='', used_for_1='', used_for_2='', definition='',
-        definition_source_url='', subjects='', disabled=0, approved =0, long_definition='', QA_needed=0, REQUEST=None):
+        definition_source_url='', subjects=[], disabled=0, approved =0, long_definition='', QA_needed=0, REQUEST=None):
         """ manage basic properties for EEAGlossaryElement """
         self.name = name
         self.el_type = el_type
@@ -198,7 +210,7 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
         self.used_for_2 = used_for_2
         self.definition = definition
         self.definition_source_url = definition_source_url
-        self.subjects = subjects
+        self.subjects = self.get_subject_by_codes(subjects)
         self.disabled = disabled
         self.approved = approved
         self.long_definition = long_definition
@@ -215,29 +227,53 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1&save=ok')
 
+    #######################
+    #  LINKS PROPERTIES   #
+    #######################
+    def get_links(self):
+        return self.links
+
+    def set_link(self, value):
+        self.links.append(value)
+
+    def del_link(self, value):
+        self.links.remove(value)
+
     def manageLinksProperties(self, old_link='', link='', ids='', REQUEST=None):
         """ manage actions properties for EEAGlossaryElement """
         if self.utAddObjectAction(REQUEST):
             if string.strip(link) == '':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
             else:
-                self.links.append(link)
+                self.set_link(link)
                 self._p_changed = 1
         elif self.utUpdateObjectAction(REQUEST):
             if string.strip(link) == '':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
             else:
-                self.links.remove(old_link)
-                self.links.append(link)
+                self.del_link(old_link)
+                self.set_link(link)
                 self._p_changed = 1
         elif self.utDeleteObjectAction(REQUEST):
             if not ids or len(ids) == 0:
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
             for link in self.utConvertToList(ids):
-                self.links.remove(link)
+                self.del_link(link)
             self._p_changed = 1
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2&save=ok')
+
+    #######################
+    #  ACTIONS PROPERTIES #
+    #######################
+    def get_actions(self):
+        return self.actions
+
+    def set_action(self, value):
+        self.actions.append(value)
+
+    def del_action(self, value):
+        self.actions.remove(value)
 
     def manageActionsProperties(self, old_action='', action='', ids='', REQUEST=None):
         """ manage actions properties for EEAGlossaryElement """
@@ -245,27 +281,29 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
             if string.strip(action) == '':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
             else:
-                self.actions.append(action)
+                self.set_action(action)
                 self._p_changed = 1
         elif self.utUpdateObjectAction(REQUEST):
             if string.strip(action) == '':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
             else:
-                self.actions.remove(old_action)
-                self.actions.append(action)
+                self.del_action(old_action)
+                self.set_action(action)
                 self._p_changed = 1
         elif self.utDeleteObjectAction(REQUEST):
             if not ids or len(ids) == 0:
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
             for action in self.utConvertToList(ids):
-                self.actions.remove(action)
+                self.del_action(action)
             self._p_changed = 1
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2&save=ok')
 
+    #####################
+    #   MANAGEMENT TABS #
+    #####################
     all_translations_html = DTMLFile("dtml/EEAGlossaryElement/all_translations", globals())
     check_translation_html = DTMLFile("dtml/EEAGlossaryElement/check_translation", globals())
-
     manage_properties_html = DTMLFile("dtml/EEAGlossaryElement/properties", globals())
     media_html = DTMLFile("dtml/EEAGlossaryElement/properties_media", globals())
     actions_html = DTMLFile("dtml/EEAGlossaryElement/properties_actions", globals())
@@ -278,5 +316,7 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
     history_html = DTMLFile("dtml/EEAGlossaryElement/history", globals())
     index_html = DTMLFile("dtml/EEAGlossaryElement/index", globals())
     main_content_html = DTMLFile("dtml/EEAGlossaryElement/main_content", globals())
+
+    definition_html = DTMLFile("dtml/EEAGlossaryElement/definition", globals())
 
 InitializeClass(EEAGlossaryElement)

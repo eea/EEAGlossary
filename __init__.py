@@ -19,7 +19,7 @@
 # Alex Ghica, Finsiel Romania
 # Cornel Nitu, Finsiel Romania
 #
-#$Id: __init__.py,v 1.9 2004/05/05 17:44:32 finrocvs Exp $
+#$Id: __init__.py,v 1.10 2004/05/06 14:26:15 finrocvs Exp $
 
 from ImageFile import ImageFile
 
@@ -47,7 +47,6 @@ def initialize(context):
         except:
             pass
         Engine = getattr(app, EngineID)
-        #Engine.load_roles_list()
     assert Engine is not None
 
     # Folder for the Glossary

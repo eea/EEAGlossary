@@ -7,7 +7,7 @@
         <td class="cellheader"><b>Actions</b></td>
         <td class="cellheader">&nbsp;</td>
     </tr>
-    <dtml-in actions>
+    <dtml-in get_actions>
     <dtml-if sequence-odd>
         <dtml-call "REQUEST.set('cellclass', 'cellodd')">
     <dtml-else>
@@ -54,7 +54,7 @@
         <td class="cellheader"><b>Links</b></td>
         <td class="cellheader">&nbsp;</td>
     </tr>
-    <dtml-in links>
+    <dtml-in get_links>
     <dtml-if sequence-odd>
         <dtml-call "REQUEST.set('cellclass', 'cellodd')">
     <dtml-else>
