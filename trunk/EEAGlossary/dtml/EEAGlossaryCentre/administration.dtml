@@ -1,34 +1,16 @@
 <dtml-var manage_page_header>
 <dtml-var manage_tabs>
+
 <h2>EEA multilingual environmental glossary Management page</h2>
-<p>
-<li><a href="reindex_all_terms">Reindex all terms (Restricted to Manager only)</a></li>
-</p>
-<p>
-<li><a href="build_glossary">Build Glossary/Change definitions - bulk mode, initial phase (Restricted to Manager only)</a></li>
-</p>
-<p>
-<li><a href="translations_manupdate_form">Update translations/subjects - bulk mode (Restricted to Manager only)</a></li>
-</p>
-<p>
-<li><a href="updateGlossaryDefs">Update terms' definitions (Restricted to Manager only)</a></li>
-</p>
-<p>
-<li><a href="notApprovedTerms">Show not approved (waiting for quality assurance)</a></li>
-</p>
-<p>
-<li><a href="approvedTerms">Show approved</a></li>
-</p>
-<p>
-<li><a href="disabledTerms">Show disabled (waiting for correction)</a></li>
-</p>
-<p>
-<li><a href="showNotPublished">Show not published (not approved or disabled)</a></li>
-</p>
-<p>
-<li><a href="nrOfVisible">Show all published (approved and not disabled)</a></li>
-</p>
-<p>
-<li><a href="terms_stats">Show basic Glossary statistics (nr of published, unpublished ...)</a></li>
-</p>
+<p><li><a href="reindex_all_terms">Reindex all terms (Restricted to Manager only)</a></li></p>
+<p><li><a href="build_glossary">Build Glossary/Change definitions - bulk mode, initial phase (Restricted to Manager only)</a></li></p>
+<p><li><a href="translations_manupdate_form">Update translations/subjects - bulk mode (Restricted to Manager only)</a></li></p>
+<p><li><a href="updateGlossaryDefs">Update terms' definitions (Restricted to Manager only)</a></li></p>
+<p><li><a href="notApprovedTerms">Show not approved (waiting for quality assurance)</a></li></p>
+<p><li><a href="approvedTerms">Show approved</a></li></p>
+<p><li><a href="disabledTerms">Show disabled (waiting for correction)</a></li></p>
+<p><li><a href="showNotPublished">Show not published (not approved or disabled)</a></li></p>
+<p><li><a href="nrOfVisible">Show all published (approved and not disabled)</a></li></p>
+<p><li><a href="terms_stats">Show basic Glossary statistics (nr of published, unpublished ...)</a></li></p>
+
 <dtml-var  manage_page_footer>

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.46 2004/05/13 16:36:57 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.47 2004/05/13 16:41:00 finrocvs Exp $
 
 # python imports
 import string
@@ -100,6 +100,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
 
     manage_addGlossaryFolder_html = EEAGlossaryFolder.manage_addGlossaryFolder_html
     manage_addGlossaryFolder = EEAGlossaryFolder.manage_addGlossaryFolder
+
 
     #####################
     # LOAD PROPERTIES   #
