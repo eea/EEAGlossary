@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.50 2004/06/24 08:11:03 finrocvs Exp $
+#$Id$
 
 #Python imports
 import string
@@ -254,22 +254,33 @@ class utils:
     def utElementSynAdd(self, p_old_id, p_syn_au):
         """for convert or when change synonyms property"""
         if len(p_syn_au) != 0:
-            syn = self.unrestrictedTraverse(p_syn_au, None)
-            elem = self.unrestrictedTraverse(syn.synonyms[0])
+            fld_id = string.upper(p_syn_au[0])
+            fld_ob = self.unrestrictedTraverse(fld_id, None)
+            syn = fld_ob.unrestrictedTraverse(p_syn_au, None)
+
+            fld_id = string.upper(syn.synonyms[0][0])
+            fld_ob = self.unrestrictedTraverse(fld_id, None)
+            elem = fld_ob.unrestrictedTraverse(syn.synonyms[0])
             elem.synonym.append(syn.absolute_url(1))
         else:
-            elem = self.unrestrictedTraverse(self.synonyms[0], None)
+            fld_id = string.upper(self.synonyms[0][0])
+            fld_ob = self.unrestrictedTraverse(fld_id, None)
+            elem = fld_ob.unrestrictedTraverse(self.synonyms[0], None)
             elem.synonym.append(self.absolute_url(1))
         elem._p_changed = 1
         if len(p_old_id) != 0:
-            elem_old = self.unrestrictedTraverse(p_old_id[0], None)
+            fld_id = string.upper(p_old_id[0][0])
+            fld_ob = self.unrestrictedTraverse(fld_id, None)
+            elem_old = fld_ob.unrestrictedTraverse(p_old_id[0], None)
             elem_old.synonym.remove(self.absolute_url(1))
             elem_old._p_changed = 1
 
     def utElementSynDel(self):
         """for deleting a synonym"""
         if self.synonyms != []:
-            elem = self.unrestrictedTraverse(self.synonyms[0], None)
+            fld_id = string.upper(self.synonyms[0][0])
+            fld_ob = self.unrestrictedTraverse(fld_id, None)
+            elem = fld_ob.unrestrictedTraverse(self.synonyms[0], None)
             elem.synonym.remove(self.absolute_url(1))
 
 #    def utSynonymElRename(self):
