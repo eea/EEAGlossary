@@ -2,34 +2,34 @@
 
     <table border="0" width="501" cellpadding="2">
         <tr>
-            <td colspan=3  vallign="top" width="100%" valign="top" bgcolor="#808080">
+            <td colspan=3  valign="top" width="100%" valign="top" bgcolor="#808080">
                 <b><font color="#FFFFFF">Definition (english only)</font></b>
             </td>
         </tr>
 
         <dtml-if is_image_url>
             <tr>
-                <td colspan=3 vallign="top" width="100%" valign="top" bordercolor="#000000" bgcolor="#FFFFFF" >
+                <td colspan=3 valign="top" width="100%" valign="top" bordercolor="#000000" bgcolor="#FFFFFF" >
                     <img src="<dtml-var image_url>">
                 </td>
             </tr>
         </dtml-if>
 
         <tr>
-            <td colspan=3 vallign="top" width="100%" valign="top" bordercolor="#000000" bgcolor="#FFFFFF" >
+            <td colspan=3 valign="top" width="100%" valign="top" bordercolor="#000000" bgcolor="#FFFFFF" >
                 <dtml-var "utToUTF8(definition,'iso-8859-1')">
             </td>
         </tr>
 
         <dtml-if is_long_definition>
                 <tr>
-                    <td colspan=3  vallign="top" width="100%" valign="top" bgcolor="#808080">
+                    <td colspan=3  valign="top" width="100%" valign="top" bgcolor="#808080">
                         <b><font color="#FFFFFF">Long definition (english only)</font></b>
                     </td>
                 </tr>
 
                 <tr>
-                    <td colspan=3 vallign="top" width="100%" valign="top" bordercolor="#000000" bgcolor="#FFFFFF">
+                    <td colspan=3 valign="top" width="100%" valign="top" bordercolor="#000000" bgcolor="#FFFFFF">
                         <dtml-var "utToUTF8(long_definition,'iso-8859-1')">
                     </td>
                 </tr>
@@ -116,7 +116,7 @@
                 </td>
             </tr>
         </dtml-if>
-
+<dtml-comment>
         <dtml-if "(not 'translations' in PARENTS[2].hidden_fields)">
             <tr>
                 <td colspan=3 width="100%" valign="top" bgcolor="#808080">
@@ -151,7 +151,7 @@
                 </dtml-in>
             </dtml-let>
         </dtml-if>
-
+</dtml-comment>
 
         <dtml-if "PARENTS[0].subjects">
             <tr>
@@ -160,16 +160,18 @@
                 </td>
             </tr>
 
-            <tr>
+            <tr><dtml-comment>
                 <td width="100%" valign="top" bgcolor="#FFFFFF" colspan="3">
-                    <dtml-in utListSubjects>
-                        <b><dtml-var sequence-key></b>: <dtml-var sequence-item>
+                    <dtml-in subjects>
+                    <dtml-let record="_['sequence-item']">
+                        <b><dtml-var "record['code']"></b>: <dtml-var "record['name']">
                         <br>
+                    </dtml-let>
                     </dtml-in>
                     <br>
                     Words between "{" in translations are used as short names for contexts (or subjects). These codes are used when there is no exact equivalence between the source and the target language. In this case several translations are supplied and tagged with a context code.
                     <a href="contexts_table">See all context/subject codes</a>.<p>&nbsp;
-                </td>
+                </td></dtml-comment>
             </tr>
         </dtml-if>
     </table>
