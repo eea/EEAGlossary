@@ -1,0 +1,11 @@
+
+<dtml-unless "REQUEST.has_key('syn')">
+    WARNING: No synonyms links submitted! Remember to enter synonyms manually after convertion.<br>
+</dtml-unless>
+
+DELETING ORIGINAL TERM<br>
+
+ADDING SYNONYM<br>
+
+<dtml-call reindex_object>
+<p>"<dtml-var id>"&nbsp;converted as Synonym! <br> Go to the converted <a href="<dtml-var absolute_url>/manage_workspace">Synonym</a></p>
