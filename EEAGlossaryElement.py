@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.41 2004/05/13 12:42:15 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.42 2004/05/13 13:19:27 finrocvs Exp $
 
 # python imports
 import string
@@ -104,7 +104,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         self.links = links
         self.actions = actions
         self.all_langs_list= {}
-        self.history=[]
+        self.history={}
         ElementBasic.__dict__['__init__'](self, name, el_type, source, [], el_context, comment, used_for_1, used_for_2, 
             definition, definition_source_url, long_definition, disabled, approved, QA_needed)
 
@@ -166,20 +166,21 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     ############################
     #     HISTORY FUNCTIONS    #
     ############################
-    def get_history(self):
+    def get_history_by_language(self, language):
         """ get the languages """
-        self.utSortListOfDictionariesByKey(self.history, 'lang')
-        return self.history
+        try:
+            history = self.history[language]
+            self.utSortListOfDictionariesByKey(history, 'time', 1)
+            return history
+        except:
+            return []
 
     def set_history(self, lang, translation):
         """ set the languages """
-        self.history.append({'lang':lang, 'trans':translation,'time':self.utISOFormat(), 'user':self.getAuthenticatedUser()})
-
-    def del_history(self, lang):
-        """ remove a language from history list """
-        for hist_info in self.history:
-            if hist_info['lang'] == lang:
-                self.history.remove(hist_info)
+        try:
+            self.history[lang].append({'trans':translation,'time':self.utISOFormat(), 'user':self.getAuthenticatedUser()})
+        except KeyError:
+            self.history[lang] = [{'trans':translation,'time':self.utISOFormat(), 'user':self.getAuthenticatedUser()}]
 
     ############################
     #  TRANSLATIONS FUNCTIONS  #
@@ -247,7 +248,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         if not lang_code:
             return 
         if self.check_allowed_translations(lang_code):
-            #self.set_history(lang_code, translation)
+            self.set_history(lang_code, translation)
             self.set_translations_list(lang_code, translation)
             self._p_changed = 1
             self.cu_recatalog_object(self.getGlossaryCatalog(), self)
@@ -362,6 +363,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         """ This method is called, whenever _setObject in ObjectManager gets called."""
         SimpleItem.inheritedAttribute('manage_afterAdd')(self, item, container)
         item.load_translations_list()
+        item.set_translations_list('English', item.name)
         self.cu_catalog_object(self.getGlossaryCatalog(), self)
 
     def manage_beforeDelete(self, item, container):
