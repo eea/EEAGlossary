@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <roles>
     <role name="Quality Controller" permissions="Manage properties,View from Internet,View management screens"/>
-    <role name="GlossaryManager" permissions="Undo changes,"/>
+    <role name="GlossaryManager" permissions="Undo changes"/>
     <role name="QC Bulgarian" permissions=""/>
     <role name="QC Croatian" permissions=""/>
     <role name="QC Czech" permissions=""/>

@@ -20,18 +20,18 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryEngine.py,v 1.2 2004/05/04 13:32:26 finrocvs Exp $
+#$Id: EEAGlossaryEngine.py,v 1.3 2004/05/05 10:24:52 finrocvs Exp $
 
 # Zope imports
 from Globals import DTMLFile, InitializeClass
 from AccessControl import ClassSecurityInfo
 from OFS.SimpleItem import SimpleItem
-
 # product imports
 from EEAGlossary_constants import *
 from EEAGlossary_utils import utils
 from parsers.languages_parser import languages_parser
 from parsers.subjects_parser import subjects_parser
+from parsers.roles_parser import roles_parser
 
 EngineID = EEA_GLOSSARY_ENGINE_NAME
 
@@ -56,7 +56,16 @@ class EEAGlossaryEngine(SimpleItem, utils):
 
     def load_roles_list(self):
         """ """
-        pass
+        from os.path import join
+        roles_obj = roles_parser()
+        root_obj = self.utGetROOT()
+        content = self.utOpenFile(join(SOFTWARE_HOME, 'Products','EEAGlossary', 'config', 'roles.xml'))
+        roles_handler, error = roles_obj.parseContent(content)
+        for role in roles_handler.roles:
+            self.roles[role.name] = role.permissions
+            root_obj._addRole(role.name)
+            root_obj.__of__(self).manage_role(role.name, role.permissions)
+        self._p_changed = 1
 
     def load_languages_list(self):
         """loads languages & history properties defaults"""
@@ -79,6 +88,19 @@ class EEAGlossaryEngine(SimpleItem, utils):
         for code in subjects_handler.subjects:
             self.subjects[code.code] = code.name
         self._p_changed = 1
+
+    def manage_afterAdd(self, item, container):
+        """ """
+        SimpleItem.inheritedAttribute('manage_afterAdd')(self, item, container)
+        #item.load_roles_list()
+        item.load_languages_list()
+        item.load_subjects_list()
+
+    def manage_beforeDelete(self, item, container):
+        """ This method is called, when the object is deleted. """
+        SimpleItem.inheritedAttribute('manage_beforeDelete')(self, item, container)
+        root_obj = self.utGetROOT()
+        root_obj._delRoles(self.roles.keys(), None)
 
     help_html = DTMLFile("dtml/EEAGlossaryEngine/help", globals())
 

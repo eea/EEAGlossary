@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: roles_parser.py,v 1.1 2004/05/03 20:05:32 finrocvs Exp $
+#$Id: roles_parser.py,v 1.2 2004/05/05 10:24:52 finrocvs Exp $
 
 from xml.sax.handler import ContentHandler
 from xml.sax import *
@@ -42,7 +42,7 @@ class roles_handler(ContentHandler):
     def startElement(self, name, attrs):
         """ """
         if name == 'role':
-            self.roles.append(roles_struct(attrs['name'], self.splitToList(attrs['permissions']))
+            self.roles.append(roles_struct(attrs['name'].encode('latin-1'), self.convertToList(self.splitToList(attrs['permissions'].encode('latin-1')))))
 
     def endElement(self, name):
         """ """
@@ -55,12 +55,19 @@ class roles_handler(ContentHandler):
             res = string.split(s, ',')
         return res
 
+    def convertToList(self, something):
+        """Convert to list"""
+        ret = something
+        if type(something) is type(''):
+            ret = [something]
+        return ret
+
 class roles_parser:
     """ """
 
     def parseContent(self, content):
         """ """
-        handler = languages_handler()
+        handler = roles_handler()
         parser = make_parser()
         parser.setContentHandler(handler)
         inpsrc = InputSource()

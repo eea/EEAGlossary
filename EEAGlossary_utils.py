@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.16 2004/05/05 08:35:38 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.17 2004/05/05 10:24:52 finrocvs Exp $
 
 #Python imports
 
@@ -121,6 +121,10 @@ class utils:
             if term.count(" ") == len(term):
                 return 1
             return 0
+
+    def utGetROOT(self):
+        """ get the ROOT object"""
+        return self.unrestrictedTraverse(('',))
 
     def utOpenFile(self, path, mode='r'):
         file = open(path, mode)
