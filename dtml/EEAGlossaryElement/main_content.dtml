@@ -176,9 +176,6 @@
         </dtml-if>
     </table>
 
-alec:
-<dtml-var type>
-:alec
 <dtml-else>
     <b>Sorry, this term is not published.</b>
 </dtml-if>
