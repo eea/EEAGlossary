@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.21 2004/05/10 09:38:07 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.22 2004/05/10 12:14:56 finrocvs Exp $
 
 #Python imports
 
@@ -219,6 +219,17 @@ class catalog_utils:
         """Creates an id for the item to be added in catalog"""
         return '/'.join(item.getPhysicalPath())
 
+    def __searchCatalog(self, catalog, criteria, path):
+        """Search catalog"""
+        return catalog(criteria, path)
+
+    def __getObjects(self, catalog, brains):
+        """ given the brains return the objects"""
+        try:
+            return map(catalog.getobject, map(getattr, brains, ('data_record_id_',)*len(brains)))
+        except:
+            return []
+
     def cu_catalog_object(self, catalog, ob):
         """ catalog an object """
         catalog.catalog_object(ob, self.__build_catalog_path(ob))
@@ -242,4 +253,21 @@ class catalog_utils:
             catalog.catalog_object(ob, ob_path)
         except:
             pass
+
+    def cu_get_cataloged_objects(self, catalog, meta_type=None, approved=0, howmany=-1, sort_on='releasedate', sort_order='reverse', path='/'):
+        results = []
+        filter = {}
+        if approved == 1:
+            filter['approved'] = 1
+        if sort_on != '':
+            filter['sort_on'] = sort_on
+            if sort_order != '':
+                filter['sort_order'] = sort_order
+        if meta_type:
+            l_filter['meta_type'] = self.utConvertToList(meta_type)
+        results = self.__searchCatalog(catalog, filter, path)
+        if howmany != -1:
+            results = results[:howmany]
+        results = self.__getObjects(results)
+        return results
 
