@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.23 2004/05/05 17:30:19 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.24 2004/05/05 17:38:20 finrocvs Exp $
 
 # python imports
 import string
@@ -32,7 +32,6 @@ from OFS.SimpleItem import SimpleItem
 from Products.ZCatalog.CatalogAwareness import CatalogAware
 
 # product imports
-import EEAGlossaryCentre
 from EEAGlossary_utils import utils
 from EEAGlossary_constants import *
 
