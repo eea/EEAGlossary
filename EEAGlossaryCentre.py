@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.33 2004/05/10 17:42:14 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.34 2004/05/11 11:38:36 finrocvs Exp $
 
 # python imports
 import string
@@ -194,6 +194,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         self.languages_list = copy(engine.get_languages_list())
         self.subjects_list = copy(engine.get_subjects_list())
         self.types_list = copy(engine.get_types_list())
+        self.search_langs = copy(engine.get_searchable_langs())
 
     #####################
     # BASIC FUNCTIONS   #

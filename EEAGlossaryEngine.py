@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryEngine.py,v 1.8 2004/05/10 15:37:01 finrocvs Exp $
+#$Id: EEAGlossaryEngine.py,v 1.9 2004/05/11 11:38:36 finrocvs Exp $
 
 import string
 
@@ -56,6 +56,7 @@ class EEAGlossaryEngine(SimpleItem, utils):
         self.__subjects_list = []
         self.__roles = {}
         self.__unicode_langs = []
+        self.__search_langs = []
         self.__types_list = []
         self.trans_contact = {}
         self.technic_contact = {}
@@ -85,6 +86,8 @@ class EEAGlossaryEngine(SimpleItem, utils):
             self.set_languages_list(lang.lang, lang.charset, lang.english_name)
             if int(lang.unicode):
                 self.set_unicode_langs(lang.english_name)
+            if int(lang.searchable):
+                self.set_searchable_langs(lang.english_name)
         self._p_changed = 1
 
     def load_subjects_list (self):
@@ -165,6 +168,42 @@ class EEAGlossaryEngine(SimpleItem, utils):
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1')
             for language in self.utConvertToList(ids):
                 self.del_unicode_langs(language)
+            self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1&save=ok')
+
+    #########################
+    # SEARCHABLE FUNCTIONS  #
+    #########################
+    def get_searchable_langs(self):
+        return self.__search_langs
+
+    def set_searchable_langs(self, value):
+        self.__search_langs.append(value)
+
+    def del_searchable_langs(self, value):
+        self.__search_langs.remove(value)
+
+    def manageSearchableProperties(self, ids='', language='', old_language='', REQUEST=None):
+        """ maange the searchable languages for EEAGlossaryEngine """
+        if self.utAddObjectAction(REQUEST):
+            if string.strip(language) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1')
+            else:
+                self.set_searchable_langs(language)
+                self._p_changed = 1
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(language) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1')
+            else:
+                self.del_searchable_langs(old_language)
+                self.set_searchable_langs(language)
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1')
+            for language in self.utConvertToList(ids):
+                self.del_searchable_langs(language)
             self._p_changed = 1
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1&save=ok')
@@ -347,7 +386,7 @@ class EEAGlossaryEngine(SimpleItem, utils):
     languages_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_languages", globals())
     subjects_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_subjects", globals())
     contact_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_contact", globals())
-
+    search_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_search", globals())
     style_css = DTMLFile('dtml/EEAGlossaryEngine/style', globals())
 
 InitializeClass(EEAGlossaryEngine)

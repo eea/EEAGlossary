@@ -15,6 +15,7 @@ Comments here
 &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='2'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=2">Types List</a>
 &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='3'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=3">Subjects List</a>
 &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='4'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=4">Languages List</a>
+&nbsp;|&nbsp;<a class="<dtml-if "pagetab=='4'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=5">Searchable languages list</a>
 &nbsp;
 </div>
 
@@ -34,6 +35,8 @@ Saved changes. (<dtml-var ZopeTime>)
     <dtml-var subjects_prop_html>
 <dtml-elif "pagetab=='4'">
     <dtml-var languages_prop_html>
+<dtml-elif "pagetab=='5'">
+    <dtml-var search_prop_html>
 </dtml-if>
 
 </dtml-let>
