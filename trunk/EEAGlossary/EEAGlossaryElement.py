@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.7 2004/05/03 18:39:13 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.8 2004/05/04 06:29:21 finrocvs Exp $
 
 # python imports
 import string
@@ -59,9 +59,11 @@ class ElementBasic:
         self.QA_needed = QA_needed
 
 manage_addGlossaryElement_html = DTMLFile('dtml/EEAGlossaryElement_add', globals())
+
 def manage_addGlossaryElement(self, id, name='', type='', source='', subjects=[], context='', comment='', 
     used_for_1='', used_for_2='',definition='', definition_source_url='', long_definition='', disabled=0, 
     approved=0, QA_needed=0, image_url='', flash_url='', links=[], actions=[], REQUEST=None):
+
     """ Adds a new EEAGlossaryElement object """
 
     ob = EEAGlossaryElement(id, name, type, source, subjects, context, comment, used_for_1, used_for_2, 
