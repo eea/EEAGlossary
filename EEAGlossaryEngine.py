@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryEngine.py,v 1.3 2004/05/05 10:24:52 finrocvs Exp $
+#$Id: EEAGlossaryEngine.py,v 1.4 2004/05/05 17:14:08 finrocvs Exp $
 
 # Zope imports
 from Globals import DTMLFile, InitializeClass
@@ -53,6 +53,7 @@ class EEAGlossaryEngine(SimpleItem, utils):
         #self.translations = {}
         self.subjects = {}
         self.roles = {}
+        self.unicode_langs = []
 
     def load_roles_list(self):
         """ """

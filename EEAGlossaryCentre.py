@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.16 2004/05/04 13:52:07 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.17 2004/05/05 17:14:08 finrocvs Exp $
 
 # python imports
 import string
@@ -267,9 +267,24 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1&save=ok')
 
+    def get_language_charset(self, language):
+        """ get the charset for a specific language """
+        try:
+            return self.languages_list[language][1]
+        except KeyError, error:
+            print error
+
     def getGlossaryEngine(self):
         """ """
         return self.unrestrictedTraverse(EEA_GLOSSARY_ENGINE_NAME, None)
+
+    def getAuthenticatedUser(self):
+        """ return the authenticated user """
+        return self.REQUEST.AUTHENTICATED_USER.getUserName()
+
+    def getAuthenticatedUserRoles(self):
+        """ return the list of roles for authenticated user """
+        return self.REQUEST.AUTHENTICATED_USER.getRoles()
 
     #####################
     #   MANAGEMENT TABS #
@@ -294,4 +309,6 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
 
     style_css = DTMLFile('dtml/EEAGlossaryCentre/style', globals())
 
+    manage_utf8_header = DTMLFile('dtml/EEAGlossaryCentre/utf8_header', globals())
+    manage_utf8_footer = DTMLFile('dtml/EEAGlossaryCentre/utf8_footer', globals())
 InitializeClass(EEAGlossaryCentre)
