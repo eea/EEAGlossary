@@ -4,7 +4,7 @@ Add/Edit/Delete from the list of topics that can be used as keywords for the glo
 They are identified by the acronym since the description of the subjects can be changed.
 </p>
 
-<table border="1" cellspacing="0" cellpadding="0" width="90%">
+<table border="1" cellspacing="0" cellpadding="3" width="90%">
     <tr><td>
         <table border="0" cellspacing="o" cellpadding="0" width="100%">
         <form name="frmSubjects" action="manageSubjectsProperties" method="post">
@@ -52,8 +52,8 @@ They are identified by the acronym since the description of the subjects can be 
             </tr>
             </dtml-if>
             <tr>
-                <td width="1%">&nbsp;</td>
-                <td colspan="4"><input type="submit" name="delete" value="Delete"></td>
+                <td class="cell" width="1%">&nbsp;</td>
+                <td class="cell" colspan="4"><input type="submit" name="delete" value="Delete"></td>
             </tr>
         </form>
         </table>

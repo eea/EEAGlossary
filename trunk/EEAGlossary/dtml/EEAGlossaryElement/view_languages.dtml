@@ -2,20 +2,17 @@
     <dtml-call "REQUEST.set('languagescheck',['English',])">
 </dtml-if>
 
-<table border="1" cellpadding="0" cellspacing="0" width="60%">
-<tr><td>
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+<table border="0" cellpadding="3" cellspacing="0" width="60%">
+<tr>
+    <td>
+    <fieldset><legend><b><a href="<dtml-var absolute_url>"><dtml-var name></a></b></legend>
+    <table border="0" cellpadding="2" cellspacing="0" width="100%">
         <tr>
-            <td colspan=100>Status:<b> <dtml-unless is_published>Not </dtml-unless>Published</b></td>
+            <td colspan="2"><b>Status:</b>&nbsp;<dtml-unless is_published>Not </dtml-unless>Published</td>
         </tr>
-
-
         <tr>
-            <td width="100%" colspan=100>
-            <a href="<dtml-var absolute_url>"><dtml-var name></a>&nbsp;
-            <dtml-if QA_needed>
-            <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
-            </dtml-if>
+            <td colspan="2"><b>Definition:</b>&nbsp;
+            <dtml-if QA_needed><img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry"></dtml-if>
             <dtml-var definition>
             <dtml-if "'Definition' in languagescheck">
                 <dtml-var "toutf8(definition,'iso-8859-1')">
@@ -26,23 +23,21 @@
                     <dtml-if sequence-start>See </dtml-if>
                     <dtml-if "_.len(_['sequence-item'])>0">
                         <dtml-let record=sequence-item obj="utGetElement(record)">
-                                <a href="<dtml-var "obj.absolute_url()">/manage_workspace"><dtml-var "obj.name"></a>.
+                                <a href="<dtml-var "obj.absolute_url()">/manage_workspace"><dtml-var "obj.name"></a>
                         </dtml-let>
                     </dtml-if>
                 </dtml-in>
             </dtml-if>
             </td>
         </tr>
-
         <tr class="row-header">
             <td class="cell-header" align="left" valign="top"><div><b>Language</b></div></td>
             <td class="cell-header" align="left" valign="top"><div><b>Translation</b></div></td>
         </tr>
-
         <dtml-in languagescheck sort=id>
             <dtml-let langid=sequence-item role="'QC '+langid">
             <dtml-if sequence-odd>
-                <tr class="row-even">
+                <tr class="celleven">
                     <td align="left" valign="top" width="30%"><div><label for="cb-<dtml-var langid>"><dtml-var langid></label></div></td>
                     <td align="left" valign="top" width="70%">
                         <a href="<dtml-var absolute_url>/check_translation_html?lang_code=<dtml-var langid>" target="_new">
@@ -55,7 +50,7 @@
                     </td>
                 </tr>
             <dtml-else>
-                <tr class="row-odd">
+                <tr class="cellodd">
                     <td align="left" valign="top" width="30%"><div><label for="cb-<dtml-var langid>"><dtml-var langid></label></div></td>
                     <td align="left" valign="top" width="70%">
                         <a href="<dtml-var absolute_url>/check_translation_html?lang_code=<dtml-var langid>" target="_new">
@@ -64,12 +59,13 @@
                             <dtml-else>
                                 <dtml-var "toutf8(get_translation_by_language(langid),get_language_charset(langid))">
                             </dtml-if>
-                        </a><br>
+                        </a>
                     </td>
                 </tr>
             </dtml-if>
             </dtml-let>
         </dtml-in>
     </table>
+    </fieldset>
 </td></tr>
 </table>

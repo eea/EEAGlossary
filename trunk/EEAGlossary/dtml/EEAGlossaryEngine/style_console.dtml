@@ -2,37 +2,37 @@
 body
 {
     font-family: Verdana, Arial, Helvetica;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 a
 {
     font-family: Verdana, Arial, Helvetica;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 td
 {
     font-family: Verdana, Arial, Helvetica;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 input
 {
     font-family: Verdana, Arial, Helvetica;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 textarea
 {
     font-family: Verdana, Arial, Helvetica;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 select
 {
     font-family: Verdana, Arial, Helvetica;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 a.breadcrumbtrail
@@ -57,7 +57,7 @@ a.breadcrumbtrail:hover
 
 .page-description
 {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: normal;
 }
 
@@ -256,7 +256,7 @@ a.menulinkon
 {
     font-family: Verdana, Arial, Helvetica;
     font-weight: bold;
-    font-size: 11px;
+    font-size: 12px;
     color: #333333;
     text-decoration: none;
 }
@@ -265,7 +265,7 @@ a.menulinkon:hover
 {
     font-family: Verdana, Arial, Helvetica;
     font-weight: bold;
-    font-size: 11px;
+    font-size: 12px;
     color: #333333;
     text-decoration: none;
 }
@@ -274,7 +274,7 @@ a.menulinkoff
 {
     font-family: Verdana, Arial, Helvetica;
     font-weight: bold;
-    font-size: 11px;
+    font-size: 12px;
     color: #FFFFFF;
     text-decoration: none;
 }
@@ -283,7 +283,7 @@ a.menulinkoff:hover
 {
     font-family: Verdana, Arial, Helvetica;
     font-weight: bold;
-    font-size: 11px;
+    font-size: 12px;
     color: #FFFFFF;
     text-decoration: none;
 }
@@ -291,7 +291,7 @@ a.menulinkoff:hover
 .cellheader
 {
     font-family: Verdana, Arial, Helvetica;
-    font-size: 11px;
+    font-size: 12px;
     color: #000000;
     background: #EEEE00;
 }
@@ -299,7 +299,7 @@ a.menulinkoff:hover
 .celleven
 {
     font-family: Verdana, Arial, Helvetica;
-    font-size: 11px;
+    font-size: 12px;
     color: #000000;
     background: #FFFFFF;
 }
@@ -307,7 +307,7 @@ a.menulinkoff:hover
 .cellodd
 {
     font-family: Verdana, Arial, Helvetica;
-    font-size: 11px;
+    font-size: 12px;
     color: #000000;
     background: #EEEEEE;
 }
@@ -315,8 +315,8 @@ a.menulinkoff:hover
 .cell
 {
     font-family: Verdana, Arial, Helvetica;
-    font-size: 11px;
+    font-size: 12px;
     color: #000000;
-    background: #FFFFFF;
+    background: #EEEEEE;
 }
 </style>

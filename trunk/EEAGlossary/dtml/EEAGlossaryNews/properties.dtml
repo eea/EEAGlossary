@@ -7,44 +7,38 @@
     Saved changes. (<dtml-var ZopeTime>)
     </div>
 </dtml-if>
-
-<table width="60%" border="1" cellpadding="0" cellspacing="0">
+<p class="form-help">Comments here</p>
+<table width="60%" border="0" cellpadding="3" cellspacing="0">
     <tr><td>
-        <table width="100%" border="0" cellpadding="2" cellspacing="0">
-            <tr bgcolor="#0198CD"><td align="center"><div class="form-title">News properties</div></td></tr>
+        <table border="0" cellpadding="2" cellspacing="0">
+            <form action="manage_news_properties" method="post">
+                <tr>
+                    <td align="left" valign="top"><div class="form-label"><label for="cb-title">Title:</label></div></td>
+                    <td align="left" valign="top"><input type="text" name="title" size="35" value="<dtml-var title>"></td>
+                </tr>
 
-            <tr><td align="center">
-                <table border="0" cellpadding="2" cellspacing="0">
-                    <form action="manage_news_properties" method="post">
-                        <tr>
-                            <td align="left" valign="top"><div class="form-label"><label for="cb-title">Title:</label></div></td>
-                            <td align="left" valign="top"><input type="text" name="title" size="35" value="<dtml-var title>"></td>
-                        </tr>
+                <tr>
+                    <td align="left" valign="top"><div class="form-label"><label for="cb-news_date">News date:</label></div></td>
+                    <td align="left" valign="top"><input type="text" name="news_date" size="35" value="<dtml-var news_date>"></td>
+                </tr>
 
-                        <tr>
-                            <td align="left" valign="top"><div class="form-label"><label for="cb-news_date">News date:</label></div></td>
-                            <td align="left" valign="top"><input type="text" name="news_date" size="35" value="<dtml-var news_date>"></td>
-                        </tr>
+                <tr>
+                    <td align="left" valign="top"><div class="form-label"><label for="cb-description">Description:</label></div></td>
+                    <td align="left" valign="top"><div class="form-label"><textarea name="description:string" rows="6" cols="35"><dtml-var description></textarea></td>
+                </tr>
 
-                        <tr>
-                            <td align="left" valign="top"><div class="form-label"><label for="cb-description">Description:</label></div></td>
-                            <td align="left" valign="top"><div class="form-label"><textarea name="description:string" rows="6" cols="35"><dtml-var description></textarea></td>
-                        </tr>
+                <tr>
+                    <td align="left" valign="top"><div class="form-label"><label for="cb-glossary">Glossary:</label></div></td>
+                    <td align="left" valign="top"><input type="text" name="glossary" size="35" value="<dtml-var glossary>"></td>
+                </tr>
 
-                        <tr>
-                            <td align="left" valign="top"><div class="form-label"><label for="cb-glossary">Glossary:</label></div></td>
-                            <td align="left" valign="top"><input type="text" name="glossary" size="35" value="<dtml-var glossary>"></td>
-                        </tr>
-
-                        <tr>
-                            <td></td>
-                            <td align="left" valign="top">
-                                <input type="submit" class="form-element" value="Save Changes" />
-                            </td>
-                        </tr>
-                    </form>
-                </table>
-            </td></tr>
+                <tr>
+                    <td></td>
+                    <td align="left" valign="top">
+                        <input type="submit" class="form-element" value="Save Changes" />
+                    </td>
+                </tr>
+            </form>
         </table>
     </td></tr>
 </table>

@@ -2,22 +2,23 @@
 <dtml-var style_console_css>
 <dtml-var manage_tabs>
 
-<table width="100%" border="1" cellpadding="0" cellspacing="0">
+<p class="form-help">comments here</p>
+<table width="100%" border="1" cellpadding="3" cellspacing="0">
 <tr><td>
 <table width="100%" border="0" cellpadding="2" cellspacing="0">
 <tr class="row-header"><td class="cell-header" colspan="2">&nbsp;EEA multilingual environmental glossary Management page</td></tr>
 
-<tr class="row-even"><td width="2%"></td><td width="*"><li><a href="reindex_html">Reindex all terms (Restricted to Manager only)</a></li></td></tr>
-<tr class="row-odd"><td width="2%"></td><td width="*"><li><a href="build_glossary_html">Build Glossary/Change definitions - bulk mode, initial phase (Restricted to Manager only)</a></li></td></tr>
-<tr class="row-even"><td width="2%"></td><td width="*"><li><a href="#">Update translations/subjects - bulk mode (Restricted to Manager only)</a></li></td></tr>
-<tr class="row-odd"><td width="2%"></td><td width="*"><li><a href="#">Update terms' definitions (Restricted to Manager only)</a></li></td></tr>
+<tr class="celleven"><td width="2%"></td><td width="*"><li><a href="reindex_html">Reindex all terms (Restricted to Manager only)</a></li></td></tr>
+<tr class="cellodd"><td width="2%"></td><td width="*"><li><a href="build_glossary_html">Build Glossary/Change definitions - bulk mode, initial phase (Restricted to Manager only)</a></li></td></tr>
+<tr class="celleven"><td width="2%"></td><td width="*"><li><a href="#">Update translations/subjects - bulk mode (Restricted to Manager only)</a></li></td></tr>
+<tr class="cellodd"><td width="2%"></td><td width="*"><li><a href="#">Update terms' definitions (Restricted to Manager only)</a></li></td></tr>
 
-<tr class="row-even"><td width="2%"></td><td width="*"><li><a href="not_approved_html">Show not approved (waiting for quality assurance)</a></li></td></tr>
-<tr class="row-odd"><td width="2%"></td><td width="*"><li><a href="approved_html">Show approved</a></li></td></tr>
-<tr class="row-even"><td width="2%"></td><td width="*"><li><a href="disabled_html">Show disabled (waiting for correction)</a></li></td></tr>
-<tr class="row-odd"><td width="2%"></td><td width="*"><li><a href="not_published_html">Show not published (not approved or disabled)</a></li></td></tr>
-<tr class="row-even"><td width="2%"></td><td width="*"><li><a href="published_html">Show all published (approved and not disabled)</a></li></td></tr>
-<tr class="row-odd"><td width="2%"></td><td width="*"><li><a href="terms_stats_html">Show basic Glossary statistics (nr of published, unpublished ...)</a></li></td></tr>
+<tr class="celleven"><td width="2%"></td><td width="*"><li><a href="not_approved_html">Show not approved (waiting for quality assurance)</a></li></td></tr>
+<tr class="cellodd"><td width="2%"></td><td width="*"><li><a href="approved_html">Show approved</a></li></td></tr>
+<tr class="celleven"><td width="2%"></td><td width="*"><li><a href="disabled_html">Show disabled (waiting for correction)</a></li></td></tr>
+<tr class="cellodd"><td width="2%"></td><td width="*"><li><a href="not_published_html">Show not published (not approved or disabled)</a></li></td></tr>
+<tr class="celleven"><td width="2%"></td><td width="*"><li><a href="published_html">Show all published (approved and not disabled)</a></li></td></tr>
+<tr class="cellodd"><td width="2%"></td><td width="*"><li><a href="terms_stats_html">Show basic Glossary statistics (nr of published, unpublished ...)</a></li></td></tr>
 </table>
 </td></tr>
 </table>

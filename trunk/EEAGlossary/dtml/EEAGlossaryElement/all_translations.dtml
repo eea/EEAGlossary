@@ -1,37 +1,38 @@
 <dtml-var manage_utf8_header>
-
 <dtml-var manage_tabs>
 
-<br>
-<table width="100%" border="0" cellpadding="2" cellspacing="0">
-    <tr class="row-header"><td class="cell-header"><b>Welcome</b> to the management tool of <b>EEA glossary database.</b><br></td></tr>
-</table>
-<br>
+<p class="form-help"><b>Welcome</b> to the management tool of <b>EEA glossary database.</b></p>
 
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<table border="0" cellpadding="3" cellspacing="0" width="100%">
     <tr>
         <td width="40%" align="left" valign="top">
-            <table cellpadding="1" cellspacing="0" border="1" width="100%">
-                <tr class="row-header">
-                    <td class="cell-header" colspan="2"><b>User Info</b><br></td>
-                </tr>
+            <table cellpadding="2" cellspacing="0" border="1" width="100%">
                 <tr>
-                    <td class="row-odd"><b>User :&nbsp;</b></td>
-                    <td><b><dtml-var getAuthenticatedUser></b><br></td>
-                </tr>
-                <tr>
-                    <td class="row-odd"><b>Roles:&nbsp;</b></td>
                     <td>
-                        <dtml-in getAuthenticatedUserRoles>
-                            <b><dtml-var sequence-item></b><dtml-if sequence-end>.<dtml-else>,&nbsp;</dtml-if>
-                        </dtml-in>
+                        <table cellpadding="1" cellspacing="0" border="0" width="100%">
+                            <tr class="row-header">
+                                <td class="cell-header" colspan="2"><b>User Info</b><br></td>
+                            </tr>
+                            <tr>
+                                <td class="cellodd"><b>User :&nbsp;</b></td>
+                                <td><dtml-var getAuthenticatedUser></td>
+                            </tr>
+                            <tr>
+                                <td class="cellodd" valign="top"><b>Roles:&nbsp;</b></td>
+                                <td>
+                                    <dtml-in getAuthenticatedUserRoles>
+                                        <dtml-var sequence-item><dtml-if sequence-end>.<dtml-else>,&nbsp;</dtml-if>
+                                    </dtml-in>
+                                </td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
             </table>
             <br>
             <table cellpadding="0" cellspacing="0" border="1" width="100%">
             <tr><td>
-            <table cellpadding="2" cellspacing="1" border="0" width="100%">
+            <table cellpadding="3" cellspacing="0" border="0" width="100%">
                 <tr class="row-header">
                     <td width="35%" align="left" valign="top" class="cell-header"><div><b>Language</b></div></td>
                     <td width="65%" align="left" valign="top" class="cell-header"><div><b>Translation</b></div></td>
@@ -41,7 +42,7 @@
                 <dtml-let language="_['sequence-item']" translation="get_translation_by_language(language)">
                     <dtml-let record=sequence-item role="'QC '+record">
                         <dtml-if sequence-odd>
-                        <tr class="row-even">
+                        <tr class="cellodd">
                             <td width="35%" align="left" valign="top"><div><label for="cb-<dtml-var language>"><dtml-var language></label></div></td>
                             <td width="65%" align="left" valign="top">
                                 <dtml-unless translation>
@@ -55,7 +56,7 @@
                             </td>
                         </tr>
                         <dtml-else>
-                        <tr class="row-odd">
+                        <tr class="celleven">
                             <td width="35%" align="left" valign="top"><div><label for="cb-<dtml-var language>"><dtml-var language></label></div></td>
                             <td width="65%" align="left" valign="top">
                                 <dtml-unless translation>
@@ -77,15 +78,17 @@
             </table>
         </td>
         <td width="*" valign="top">
-            <table cellpadding="1" cellspacing="0" border="1" width="100%">
+            <table cellpadding="3" cellspacing="0" border="1" width="100%">
                 <tr class="row-header">
                     <td class="cell-header"><p><b>Support/Contact Info</b></p></td>
                 </tr>
                 <tr>
                     <td><dtml-var help_contact_html></td>
                 </tr>
+            </table><br>
+            <table cellpadding="3" cellspacing="0" border="1" width="100%">
                 <tr>
-                    <td class="row-odd">
+                    <td class="cellodd">
                         <b>The original english term is:<br></b><dtml-var name>&nbsp;<br><br>
                         <dtml-if definition>
                             <b>Definition</b>:<br><i><dtml-var "toutf8(definition,'iso-8859-1')"></i>
@@ -100,7 +103,7 @@
                         </dtml-if>
                     </td>
                 </tr>
-            </table>
+            </table><br>
             <table width="100%" border="1" cellpadding="0" cellspacing="0">
                 <tr><td>
                     <table width="100%" border="0" cellpadding="2" cellspacing="0">
@@ -115,12 +118,12 @@
                         <dtml-in get_subjects>
                         <dtml-let record="_['sequence-item']">
                         <dtml-if sequence-odd>
-                        <tr class="row-even">
+                        <tr class="cellodd">
                             <td><b>{<dtml-var "record['code']">}</b></td>
                             <td><dtml-var "record['name']"></td>
                         </tr>
                         <dtml-else>
-                        <tr class="row-odd">
+                        <tr class="celleven">
                             <td><b>{<dtml-var "record['code']">}</b></td>
                             <td><dtml-var "record['name']"></td>
                         </tr>

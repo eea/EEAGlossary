@@ -3,9 +3,10 @@
 Add/Edit/Delete contact information for people that administrate the EEAGlossary and for the 
 translators of terms.
 </p>
-<table border="1" cellspacing="0" cellpadding="0" width="90%">
+<table border="0" cellspacing="0" cellpadding="0" width="90%">
     <tr><td>
-        <table border="0" cellspacing="0" cellpadding="1" width="100%">
+        <fieldset><legend><b>Technic contacts</b></legend>
+        <table border="0" cellspacing="0" cellpadding="3" width="100%">
         <form name="frmActions" action="manageTechnicProperties" method="post">
             <tr class="row-header">
                 <td class="cell-header" width="1%">&nbsp;</td>
@@ -53,13 +54,15 @@ translators of terms.
             </tr>
             </dtml-if>
             <tr>
-                <td width="1%">&nbsp;</td>
-                <td colspan="4"><input type="submit" name="delete" value="Delete"></td>
+                <td class="cell" width="1%">&nbsp;</td>
+                <td class="cell" colspan="4"><input type="submit" name="delete" value="Delete"></td>
             </tr>
         </form>
         </table>
+        </fieldset>
         <br>
-        <table border="0" cellspacing="0" cellpadding="1" width="100%">
+        <fieldset><legend><b>Translation contacts</b></legend>
+        <table border="0" cellspacing="0" cellpadding="3" width="100%">
         <form name="frmActions" action="manageTranslatorProperties" method="post">
             <tr class="row-header">
                 <td class="cell-header" width="1%">&nbsp;</td>
@@ -107,11 +110,12 @@ translators of terms.
             </tr>
             </dtml-if>
             <tr>
-                <td width="1%">&nbsp;</td>
-                <td colspan="4"><input type="submit" name="delete" value="Delete"></td>
+                <td class="cell" width="1%">&nbsp;</td>
+                <td class="cell" colspan="4"><input type="submit" name="delete" value="Delete"></td>
             </tr>
         </form>
         </table>
+        </fieldset>
     </td></tr>
 </table>
 </dtml-let>

@@ -1,22 +1,23 @@
-<table cellspacing="0" cellpadding="0" border="1" width="90%">
+<p class="form-help">To change property values, edit the values and click "Save Changes"</p>
+<table cellspacing="0" cellpadding="3" border="0" width="90%">
     <tr><td>
         <table cellspacing="2" cellpadding="0" border="0" width="100%">
         <form name="frmBasicProperties" action="manageBasicProperties" method="post">
             <tr>
-                <td align="left" width="15%" class="cell"><b>Title:</b></td>
-                <td class="cell"><input type="text" name="title" value="<dtml-var title>" size="50"></td>
+                <td align="left" width="15%"><b>Title:</b></td>
+                <td><input type="text" name="title" value="<dtml-var title>" size="50"></td>
             </tr>
             <tr>
-                <td align="left" class="cell"><b>Description:</b></td>
-                <td class="cell"><textarea name="description" rows="5" cols="40"><dtml-var description></textarea></td>
+                <td align="left" valign="top"><b>Description:</b></td>
+                <td><textarea name="description" rows="5" cols="40"><dtml-var description></textarea></td>
             </tr>
             <tr>
-                <td align="left" class="cell"><b>Published:</b></td>
-                <td class="cell"><input type="checkbox" name="published" <dtml-if published>CHECKED</dtml-if>>
+                <td align="left"><b>Published:</b></td>
+                <td><input type="checkbox" name="published" <dtml-if published>CHECKED</dtml-if>>
             </tr>
             <tr>
                 <td>&nbsp;</td>
-                <td align="left" class="cell"><input type="submit" name="save" value=" Save Changes ">
+                <td align="left"><input type="submit" name="save" value=" Save Changes ">
             </tr>
         </form>
         </table>

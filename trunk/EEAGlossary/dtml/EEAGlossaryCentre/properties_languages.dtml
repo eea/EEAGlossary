@@ -4,9 +4,9 @@ Manage the list of possible languages in which glossary terms can be translated.
 Specify for every language the encoding used to display terms translations.
 </p>
 
-<table border="1" cellspacing="0" cellpadding="0" width="90%">
+<table border="1" cellspacing="0" cellpadding="3" width="90%">
     <tr><td>
-        <table border="0" cellspacing="1" cellpadding="1" width="100%">
+        <table border="0" cellspacing="0" cellpadding="2" width="100%">
         <form name="frmLanguages" action="manageLanguagesProperties" method="post">
             <tr class="row-header">
                 <td class="cell-header" width="1%">&nbsp;</td>
@@ -56,8 +56,8 @@ Specify for every language the encoding used to display terms translations.
             </tr>
             </dtml-if>
             <tr>
-                <td width="1%">&nbsp;</td>
-                <td colspan="4"><input type="submit" name="delete" value="Delete"></td>
+                <td class="cell" width="1%">&nbsp;</td>
+                <td class="cell" colspan="4"><input type="submit" name="delete" value="Delete"></td>
             </tr>
         </form>
         </table>

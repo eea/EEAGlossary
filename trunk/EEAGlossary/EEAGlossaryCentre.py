@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.58 2004/05/19 08:00:17 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.59 2004/05/19 11:46:34 finrocvs Exp $
 
 # python imports
 import string
@@ -610,18 +610,18 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         """ return sorted objects by name """
         return self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE,], sort_on='id', sort_order='')
 
-#    def get_all_elements (self):
-#        """ return sorted elements by name """
-#        my_el=[]
-#        name_lst=[]
-#        my_el = self.cu_get_cataloged_objects(meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, sort_on='id', sort_order='')
-#        for ob in my_el:
-#            if ob.approved and (not ob.disabled):
-#                name_lst.append((ob.name,1))
-#            else:
-#                name_lst.append((ob.name,0))
-#        name_lst.sort(self.utCompare)
-#        return name_lst
+    def get_all_elements_by_type(self):
+        """ return sorted elements by name """
+        my_el=[]
+        name_lst=[]
+        my_el = self.cu_get_cataloged_objects(meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, sort_on='id', sort_order='')
+        for ob in my_el:
+            if ob.approved and (not ob.disabled):
+                name_lst.append((ob.name,1))
+            else:
+                name_lst.append((ob.name,0))
+        name_lst.sort(self.utCompare)
+        return name_lst
 
     def reindexCatalog(self, REQUEST=None):
         """ reindex the catalog """
@@ -757,6 +757,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
                     if elem_ob is not None:
                         for k,v in obj.translations.items():
                             elem_ob.set_translations_list(k, v)
+                            elem_ob.set_history(k, v)
                         elem_ob.cu_recatalog_object(elem_ob)
             obj.emptyObject()
         if REQUEST is not None:

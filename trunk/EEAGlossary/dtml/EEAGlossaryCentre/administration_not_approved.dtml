@@ -2,19 +2,17 @@
 <dtml-var style_console_css>
 <dtml-var manage_tabs>
 
+<p class="form-help">List of not approved terms</p>
 <dtml-if isManager>
 
-<table width="100%" border="0" cellpadding="2" cellspacing="0">
-    <tr class="row-header"><td class="cell-header" colspan="2">List of not Approved Terms</td></tr>
-
-    <tr>
-        <td width="40%"><b>Name</b></td>
-        <td width="*">&nbsp;<b>Last modification</b></td>
+<table width="90%" border="0" cellpadding="3" cellspacing="0">
+    <tr class="row-header">
+        <td class="cell-header" width="40%"><b>Name</b></td>
+        <td class="cell-header" width="*"><b>Last modification</b></td>
     </tr>
-
     <dtml-in get_not_approved>
     <dtml-if sequence-odd>
-    <tr class="row-even">
+    <tr class="cellodd">
         <td width="40%"><li><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></li></td>
         <td width="*">
             &nbsp;<dtml-var bobobase_modification_time>&nbsp;
@@ -24,7 +22,7 @@
         </td>
     </tr>
     <dtml-else>
-    <tr class="row-odd">
+    <tr class="celleven">
         <td width="40%"><li><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></li></td>
         <td width="*">
             &nbsp;<dtml-var bobobase_modification_time>&nbsp;
@@ -34,6 +32,8 @@
         </td>
     </tr>
     </dtml-if>
+    <dtml-else>
+        <tr><td colspan="2"><b>No not approved terms</b></td></tr>
     </dtml-in>
 </table>
 
