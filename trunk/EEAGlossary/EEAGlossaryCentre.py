@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.84 2004/10/01 08:12:50 finrocvs Exp $
+#$Id$
 
 # python imports
 import string
@@ -90,7 +90,6 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                 {'label':'Contexts Reference',  'action':'contexts_html'},
                 {'label':'Check list',          'action':'check_list_html'},
                 {'label':'Change Password',     'action':'change_pass_html'},
-                {'label':'XML/RDF',             'action':'glossary_terms_rdf'},
                 {'label':'Export',              'action':'export_html'},
                 {'label':'Import',              'action':'import_html'},
                 {'label':'Management',          'action':'management_page_html'},
@@ -636,13 +635,24 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         return lst_approved
 
     def get_disabled(self):
-        """.return the elements&synonyms not disabled """
+        """.return the elements&synonyms disabled """
         lst_disabled = []
         append = lst_disabled.append
         for obj in self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
             if obj.disabled:
                 append(obj)
         return lst_disabled
+
+    def get_not_disabled(self):
+        """ return the elements&synonym not disabled """
+        not_disabled_terms = 0
+        not_disabled_concepts = 0
+        for obj in self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
+            if (obj.disabled == 0) and (obj.meta_type == EEA_GLOSSARY_ELEMENT_METATYPE):
+                not_disabled_concepts += 1
+            if obj.disabled == 0:
+                not_disabled_terms += 1
+        return [not_disabled_terms, not_disabled_concepts]
 
     def get_not_published(self):
         """.return the elements&synonyms not published """
@@ -663,7 +673,23 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         return lst_published
         
     def get_terms_stats(self):
-        """.return the stats for all elements&synonyms"""
+        """ return the stats for all elements&synonyms"""
+        published_terms = 0
+        published_concepts = 0
+        not_disabled_terms = 0
+        not_disabled_concepts = 0
+        for obj in self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
+            if (not obj.disabled and obj.approved):
+                published_terms += 1
+            if (not obj.disabled) and (obj.approved) and (obj.meta_type == EEA_GLOSSARY_ELEMENT_METATYPE):
+                published_concepts += 1
+            if (not obj.disabled) and (obj.meta_type == EEA_GLOSSARY_ELEMENT_METATYPE):
+                not_disabled_concepts += 1
+            if not obj.disabled:
+                not_disabled_terms += 1
+        return [published_terms, published_concepts, not_disabled_terms, not_disabled_concepts]
+
+
         el_syn_tot = 0
         el_tot = 0
         el_pub_tot = 0
