@@ -123,34 +123,35 @@
                     <b><font color="#FFFFFF">Translations of "&dtml-name;":</font></b>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <b><font color=maroon>!!! Lista Completa de Traduceri - neimplementata deocamdata !!!</font></b>
-                </td>
-            </tr>
 
-            <dtml-in "self.translations.keys()"><dtml-comment>#alec
+            <dtml-comment>
+            #alec asa era initial
+            <dtml-in "PARENTS[0].translations.keys()">
                 <dtml-let langid=sequence-item>
-                    <dtml-in "langcharsets(englishname=langid)">
-                        <dtml-if "_.len(_[langid])>0 or _[langid]!=''">
                             <tr>
-                                <td bgcolor="#808080">
-                                    <font color="#FFFFFF"><dtml-var langid>:</font>
-                                </td>
-
+                                <td bgcolor="#808080"><font color="#FFFFFF"><dtml-var langid>:</font></td>
                                 <td>
                                     <dtml-if "langid in unicode_langs">
                                         <dtml-var "_[langid]">
                                     <dtml-else>
-                                        <dtml-var "toutf8(_[langid],charset)">
+                                        <dtml-var "utToUTF8(_[langid],charset)">
                                     </dtml-if>
                                 </td>
                             </tr>
-                        </dtml-if>
-                    </dtml-in>
-                </dtml-let></dtml-comment>#alec
+                </dtml-let>
             </dtml-in>
+            </dtml-comment>
+
+            <dtml-let lang=translations>
+                <dtml-in "lang.keys()">
+                    <tr>
+                        <td bgcolor="#808080"><font color="#FFFFFF"><dtml-var sequence-item>:</font></td>
+                        <td>aaaa<dtml-var "lang[_['sequence-item']]">aaaa</td>
+                    </tr>
+                </dtml-in>
+            </dtml-let>
         </dtml-if>
+
 
         <dtml-if "PARENTS[0].subjects">
             <tr>
@@ -174,6 +175,10 @@
             </tr>
         </dtml-if>
     </table>
+
+alec:
+<dtml-var type>
+:alec
 <dtml-else>
     <b>Sorry, this term is not published.</b>
 </dtml-if>
