@@ -19,7 +19,7 @@
 # Alex Ghica, Finsiel Romania
 # Cornel Nitu, Finsiel Romania
 #
-#$Id: __init__.py,v 1.11 2004/05/17 11:08:40 finrocvs Exp $
+#$Id$
 
 from ImageFile import ImageFile
 
@@ -69,6 +69,7 @@ def initialize(context):
     context.registerHelpTitle('Zope Help')
 
 misc_ = {
+    'glossary.gif':ImageFile('www/glossary.gif', globals()),
     'element.gif':ImageFile('www/element.gif', globals()),
     'synonym.gif':ImageFile('www/synonym.gif', globals()),
     'folder.gif':ImageFile('www/folder.gif', globals()),

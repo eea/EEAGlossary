@@ -3,10 +3,10 @@
 
 <p>
 <dtml-with "PARENTS[1]">
-    <a href="<dtml-var absolute_url>"><img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/element.gif<dtml-else><dtml-var icon></dtml-if>" class="img-normal" alt=""></a>
+    <a href="<dtml-var absolute_url>"><img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/glossary.gif<dtml-else><dtml-var icon></dtml-if>" class="img-normal" alt=""></a>
     <a href="<dtml-var absolute_url>"><dtml-var title_or_id></a>
 </dtml-with>
-/ <img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/element.gif<dtml-else><dtml-var icon></dtml-if>" class="img-normal" alt="">&nbsp;
+/ <img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/folder.gif<dtml-else><dtml-var icon></dtml-if>" class="img-normal" alt="">&nbsp;
 <dtml-var title_or_id>
 </p>
 

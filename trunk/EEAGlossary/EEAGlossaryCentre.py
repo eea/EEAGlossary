@@ -83,6 +83,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
 
     meta_type = EEA_GLOSSARY_CENTRE_METATYPE
     product_name = EEA_GLOSSARY_PRODUCT_NAME
+    icon = "misc_/EEAGlossary/glossary.gif"
 
     manage_options =((Folder.manage_options[0],) +
                 ({'label':'Properties',         'action':'manage_properties_html'},

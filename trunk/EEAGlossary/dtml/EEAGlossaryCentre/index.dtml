@@ -2,7 +2,7 @@
 <dtml-var style_presentation_css>
 
 <p>
-    <img src="<dtml-var icon>" class="img-normal" alt="">&nbsp;<dtml-var title_or_id>
+    <img src="misc_/EEAGlossary/glossary.gif" class="img-normal" alt="">&nbsp;<dtml-var title_or_id>
 </p>
 
 <div align=center>
