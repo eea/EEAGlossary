@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.48 2004/05/13 20:51:07 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.49 2004/05/14 11:52:43 finrocvs Exp $
 
 # python imports
 import string
@@ -466,6 +466,66 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1&save=ok')
 
     ######################################
+    # GLOSSARY ADMINISTRATION FUNCTIONS  #
+    ######################################
+    def get_not_approved(self):
+        """."""
+        lst_not_approved = []
+        for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
+            if (not obj.approved):
+                lst_not_approved.append(obj)
+        return lst_not_approved
+
+    def get_approved(self):
+        """."""
+        lst_approved = []
+        for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
+            if obj.approved:
+                lst_approved.append(obj)
+        return lst_approved
+
+    def get_disabled(self):
+        """."""
+        lst_disabled = []
+        for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
+            if obj.disabled:
+                lst_disabled.append(obj)
+        return lst_disabled
+
+    def get_not_published(self):
+        """."""
+        lst_not_published = []
+        for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
+            if (not obj.approved or obj.disabled):
+                lst_not_published.append(obj)
+        return lst_not_published
+
+    def get_published(self):
+        """."""
+        lst_published = []
+        for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
+            if (obj.approved or not obj.disabled):
+                lst_published.append(obj)
+        return lst_published
+
+    def get_terms_stats(self):
+        """."""
+        lst_resuts = []
+        el_syn_tot = 0
+        el_tot = 0
+        el_pub_tot = 0
+        el_syn_pub_tot = 0
+        for obj in self.get_all_from_catalog():
+            el_syn_tot = el_syn_tot + 1
+            if obj.meta_type==EEA_GLOSSARY_ELEMENT_METATYPE:
+                el_tot = el_tot + 1
+            if obj.is_published():
+                el_syn_pub_tot = el_syn_pub_tot + 1
+                if obj.meta_type==EEA_GLOSSARY_ELEMENT_METATYPE:
+                    el_pub_tot = el_pub_tot + 1
+        return [el_syn_tot, el_tot, el_syn_pub_tot, el_pub_tot]
+
+    ######################################
     # GLOSSARY FUNCTIONALITIES FUNCTIONS #
     ######################################
     def searchGlossary(self, query='', size=10000, language='English', definition='*', REQUEST=None):
@@ -496,7 +556,12 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
                  return None
 
     def elements_from_catalog(self):
+        """."""
         return self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, sort_on='')
+
+    def get_all_from_catalog(self):
+        """."""
+        return self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE])
 
     def change_pass_action(self,REQUEST=None):
         """Change Password for current Zope user"""
@@ -583,6 +648,13 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     index_html = DTMLFile('dtml/EEAGlossaryCentre/index', globals())
 
     search_html = DTMLFile('dtml/EEAGlossaryCentre/search_box', globals())
+
+    not_approved_html = DTMLFile('dtml/EEAGlossaryCentre/administration_not_approved', globals())
+    approved_html = DTMLFile('dtml/EEAGlossaryCentre/administration_approved', globals())
+    disabled_html = DTMLFile('dtml/EEAGlossaryCentre/administration_disabled', globals())
+    not_published_html = DTMLFile('dtml/EEAGlossaryCentre/administration_not_published', globals())
+    published_html = DTMLFile('dtml/EEAGlossaryCentre/administration_published', globals())
+    terms_stats_html = DTMLFile('dtml/EEAGlossaryCentre/administration_terms_stats', globals())
 
     term_tip_box_html = DTMLFile('dtml/EEAGlossaryCentre/term_tip_box', globals())
     contexts_html = DTMLFile('dtml/EEAGlossaryCentre/contexts', globals())

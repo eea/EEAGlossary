@@ -1,0 +1,22 @@
+<dtml-var manage_page_header>
+<dtml-var manage_tabs>
+
+<h2>Glossary basic statistics</h2>
+<dtml-var get_terms_stats>
+
+<p>
+<dtml-if isManager>
+
+<dtml-let lst=get_terms_stats>
+    <br>Tot. numbers of English terms (Published): <b><dtml-var "lst[0]"></b>
+    <br>Tot. numbers of concepts (Published): <b><dtml-var "lst[1]"></b>
+    <br>Tot. numbers of English terms (Published and Unpublished): <b><dtml-var "lst[2]"></b>
+    <br>Tot. numbers of concepts (Published and Unpublished): <b><dtml-var "lst[3]"></b><br>
+</dtml-let>
+<dtml-else>
+This operation is only allowed to Managers.
+
+</dtml-if>
+</p>
+
+<dtml-var manage_page_footer>

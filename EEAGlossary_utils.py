@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.34 2004/05/13 20:51:07 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.35 2004/05/14 11:52:43 finrocvs Exp $
 
 #Python imports
 import string
@@ -67,6 +67,10 @@ class utils:
     def utIsSynonym(self):
         """ check if the object is a synonym"""
         return self.meta_type==EEA_GLOSSARY_SYNONYM_METATYPE
+
+    def utIsElement(self):
+        """ check if the object is a element"""
+        return self.meta_type==EEA_GLOSSARY_ELEMENT_METATYPE
 
     def utCompare(self, x, y):
         """."""

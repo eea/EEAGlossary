@@ -15,9 +15,6 @@
     </p>
 
     <table width="100%">
-    <dtml-comment>#################################
-    Insert only those terms with definition not empty.
-    #################################</dtml-comment>
         <dtml-in folder_list_sorted>
             <dtml-in element_list_sorted>
                    <tr><td><dtml-var view_languages_html></td></tr>

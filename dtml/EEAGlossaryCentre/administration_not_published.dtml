@@ -1,0 +1,35 @@
+<dtml-var manage_page_header>
+<dtml-var manage_tabs>
+
+<h2>Not approved or disabled</h2>
+
+<p>
+<dtml-call "REQUEST.set('mylist',[])">
+
+<dtml-if isManager>
+<table width="100%">
+<dtml-in get_not_published>
+
+    <tr>
+        <td colspan="2">
+            <b><dtml-unless approved>NOT </dtml-unless>APPROVED, <dtml-if disabled> DISABLED<dtml-else> ENABLED</dtml-if>:&nbsp;&nbsp;</b>
+        </td>
+    </tr>
+    <tr>
+        <td width="40%"><li><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></li></td>
+        <td width="*">
+            &nbsp;<dtml-var bobobase_modification_time>&nbsp;
+            <dtml-if QA_needed>
+                <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
+            </dtml-if>
+        </td>
+    </tr>
+
+</dtml-in>
+</table>
+<dtml-else>
+This operation is only allowed to Managers.
+</dtml-if>
+</p>
+
+<dtml-var manage_page_footer>
