@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.34 2004/05/11 11:38:36 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.35 2004/05/11 16:53:30 finrocvs Exp $
 
 # python imports
 import string
@@ -212,6 +212,11 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     def getAuthenticatedUserRoles(self):
         """ return the list of roles for authenticated user """
         return self.REQUEST.AUTHENTICATED_USER.getRoles()
+
+    def is_AuthenticatedUserRoles(self):
+        """ test if Quality Controller in roles"""
+        return 'Quality Controller' in self.getAuthenticatedUserRoles()
+
 
     def style_css(self):
         """ return the css file from EEAGlossaryEngine """

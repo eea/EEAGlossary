@@ -1,7 +1,12 @@
-<dtml-unless nr><dtml-call "REQUEST.set('nr',10000)"></dtml-unless>
+<dtml-unless nr>
+    <dtml-call "REQUEST.set('nr',10000)">
+</dtml-unless>
+
 <dtml-var manage_utf8_header>
+
 <dtml-var manage_tabs>
-<span class=title1><dtml-var document_title></span>
+
+<span class=title1><dtml-var title></span>
 <p class=mainfont>
 <span class=title2>General Information</span><br>
 <b>Glossary Link:</b><br>http://glossary.eea.eu.int/<br>
@@ -14,13 +19,11 @@
 <dtml-comment>#################################
 Insert only those terms with definition not empty.
 #################################</dtml-comment>
-<dtml-in "objectValues('GlossaryFolder')" size=nr sort=id>
-<dtml-in "objectValues(['GlossaryElement','GlossaryElementSynonym'])" size=nr sort=id>
-       <tr><td><dtml-var viewLanguages></td></tr>
-</dtml-in>
-</dtml-in>
+    <dtml-in "objectValues('GlossaryFolder')" size=nr sort=id>
+        <dtml-in "objectValues(['GlossaryElement','GlossaryElementSynonym'])" size=nr sort=id>
+               <tr><td><dtml-var viewLanguages></td></tr>
+        </dtml-in>
+    </dtml-in>
 </table>
-<dtml-var manage_tabs>
-<dtml-var manage_utf8_footer>
 
 <dtml-var manage_utf8_footer>

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.35 2004/05/11 13:58:38 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.36 2004/05/11 16:53:30 finrocvs Exp $
 
 # python imports
 import string
@@ -120,7 +120,6 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
             else:
                 name_lst.append((ob.name,0))
         name_lst.sort(self.utCompare)
-        print name_lst
         return name_lst
 
     def is_image_url (self):
