@@ -1,24 +1,31 @@
 <dtml-var manage_page_header>
+<dtml-var style_console_css>
 <dtml-var manage_tabs>
-
-<h2>Published terms</h2>
 
 <p>
 <dtml-if isManager>
-<table width="100%">
-        <dtml-in get_published>
-            <dtml-let record=sequence-length>
+<table width="100%" border="0" cellpadding="2" cellspacing="0">
+    <tr class="row-header"><td class="cell-header" colspan="2">Published terms</td></tr>
+    <dtml-in get_published>
+        <dtml-let record=sequence-length>
+        <dtml-if sequence-odd>
+        <tr class="row-even">
+            <td width="30%"><li><dtml-unless approved>NOT </dtml-unless>APPROVED, <dtml-if disabled> DISABLED<dtml-else> ENABLED</dtml-if></td>
+            <td width="*">&nbsp;&nbsp;<b><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></b></li></td>
+        </tr>
+        <dtml-else>
+        <tr class="row-odd">
+            <td width="30%"><li><dtml-unless approved>NOT </dtml-unless>APPROVED, <dtml-if disabled> DISABLED<dtml-else> ENABLED</dtml-if></td>
+            <td width="*">&nbsp;&nbsp;<b><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></b></li></td>
+        </tr>
+        </dtml-if>
+        <dtml-if sequence-end>
             <tr>
-                <td width="30%"><li><dtml-unless approved>NOT </dtml-unless>APPROVED, <dtml-if disabled> DISABLED<dtml-else> ENABLED</dtml-if></td>
-                <td width="*">&nbsp;&nbsp;<b><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></b></li></td>
+                <td colspan="2"><hr size="1"><br><b>TOTAL NUMBER:&nbsp;</b><dtml-var record><br></td>
             </tr>
-            <dtml-if sequence-end>
-                <tr>
-                    <td colspan="2"><hr size="1"><br><b>TOTAL NUMBER:&nbsp;</b><dtml-var record><br></td>
-                </tr>
-            </dtml-if>
-            </dtml-let>
-        </dtml-in>
+        </dtml-if>
+        </dtml-let>
+    </dtml-in>
 </table>
 <dtml-else>
     This operation is only allowed to Managers.

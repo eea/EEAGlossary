@@ -1,21 +1,34 @@
 <dtml-var manage_page_header>
+<dtml-var style_console_css>
 <dtml-var manage_tabs>
 <p>
 
-<table border=1>
-    <tr>
-        <th>Context/Subject code</th><th>Context/Subject name</th>
-    </tr>
-<dtml-in get_subjects_list>
-    <dtml-let record=sequence-item>
-    <tr>
-        <td>
-            <b>{<dtml-var "record['code']">}</b>
-        </td>
-        <td><dtml-var "record['name']"></td>
-    </tr>
-    </dtml-let>
-</dtml-in>
+<table width="80%" border="1" cellpadding="0" cellspacing="0">
+<tr><td>
+    <table width="100%" border="0" cellpadding="2" cellspacing="0">
+        <tr class="row-header">
+            <td class="cell-header">Context/Subject code</td>
+            <td class="cell-header">Context/Subject name</td>
+        </tr>
+    <dtml-in get_subjects_list>
+        <dtml-if sequence-odd>
+            <dtml-let record=sequence-item>
+            <tr class="row-even">
+                <td><b>{<dtml-var "record['code']">}</b></td>
+                <td><dtml-var "record['name']"></td>
+            </tr>
+            </dtml-let>
+        <dtml-else>
+            <dtml-let record=sequence-item>
+            <tr class="row-odd">
+                <td><b>{<dtml-var "record['code']">}</b></td>
+                <td><dtml-var "record['name']"></td>
+            </tr>
+            </dtml-let>
+        </dtml-if>
+    </dtml-in>
+    </table>
+</td></tr>
 </table>
 
 </p>

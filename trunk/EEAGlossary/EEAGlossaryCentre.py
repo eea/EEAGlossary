@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.57 2004/05/18 08:25:59 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.58 2004/05/19 08:00:17 finrocvs Exp $
 
 # python imports
 import string
@@ -548,7 +548,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         el_tot = 0
         el_pub_tot = 0
         el_syn_pub_tot = 0
-        for obj in self.get_all_from_catalog():
+        for obj in self.get_all_objects():
             el_syn_tot += 1
             if obj.meta_type == EEA_GLOSSARY_ELEMENT_METATYPE:
                 el_tot += 1
@@ -761,6 +761,14 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
             obj.emptyObject()
         if REQUEST is not None:
             REQUEST.RESPONSE.redirect('update_trans_html')
+
+    def style_console_css(self):
+        """ return the css file from EEAGlossaryEngine """
+        return self.getGlossaryEngine().style_console_css.read()
+
+    def style_presentation_css(self):
+        """ return the css file from EEAGlossaryEngine """
+        return self.getGlossaryEngine().style_presentation_css.read()
 
     def style_css(self):
         """ return the css file from EEAGlossaryEngine """

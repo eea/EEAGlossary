@@ -1,0 +1,322 @@
+<style>
+body
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 10px;
+}
+
+a
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 10px;
+}
+
+td
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 10px;
+}
+
+input
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 10px;
+}
+
+textarea
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 10px;
+}
+
+select
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 10px;
+}
+
+a.breadcrumbtrail
+{
+    font-weight: bold;
+    color: #000066;
+    text-decoration: underline;
+}
+
+a.breadcrumbtrail:hover
+{
+    font-weight: bold;
+    color: #000066;
+    text-decoration: underline;
+}
+
+.page-title
+{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.page-description
+{
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.cell-label
+{
+    font-weight: bold;
+}
+
+.row-odd
+{
+    background: #E6EBEF;
+}
+
+.row-even
+{
+    background: #FFFFFF;
+}
+
+.row-header
+{
+    background: #0198CD;
+    height: 20px;
+}
+
+.cell-header
+{
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.cell-nav
+{
+    background: #CCCCCC;
+}
+
+.cell-box
+{
+    background: #FFFFCC;
+}
+
+.cell-error-title
+{
+    font-size: 12px;
+    font-weight: bold;
+    color: #FF0000;
+}
+
+.cell-error
+{
+    color: #FF0000;
+}
+
+.cell-info-title
+{
+    font-size: 12px;
+    font-weight: bold;
+    color: #0000FF;
+}
+
+.cell-info
+{
+    color: #0000FF;
+}
+
+a.link-nav
+{
+    font-weight: bold;
+    color: #000000;
+    text-decoration: none;
+}
+
+a.link-nav:hover
+{
+    font-weight: bold;
+    color: #000000;
+    text-decoration: underline;
+}
+
+a.link-header
+{
+    font-weight: bold;
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+a.link-header:hover
+{
+    font-weight: bold;
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+.approved
+{
+    color: #0000FF;
+}
+
+.pending
+{
+    color: #FF0000;
+}
+
+a.link-header-approved
+{
+    font-weight: bold;
+    color: #0000FF;
+    text-decoration: underline;
+}
+
+a.link-header-approved:hover
+{
+    font-weight: bold;
+    color: #0000FF;
+    text-decoration: underline;
+}
+
+a.link-header-pending
+{
+    font-weight: bold;
+    color: #FF0000;
+    text-decoration: underline;
+}
+
+a.link-header-pending:hover
+{
+    font-weight: bold;
+    color: #FF0000;
+    text-decoration: underline;
+}
+
+.tabs-border
+{
+    background: #CCCCCC;
+}
+
+.tabs-cell-off
+{
+    background: #FFFFFF;
+}
+
+.tabs-cell-on
+{
+    background: #F0F0F0;
+}
+
+a.link-tabs
+{
+    color: #000000;
+    text-decoration: none;
+}
+
+a.link-tabs:hover
+{
+    color: #000000;
+    background: #F0F0F0;
+    text-decoration: none;
+}
+
+a.link-buttons
+{
+    color: #000000;
+    background: #F0F0F0;
+    text-decoration: none;
+}
+
+a.link-buttons:hover
+{
+    color: #000000;
+    background: #E0E0E0;
+    text-decoration: none;
+}
+
+.c-orange
+{
+    font-weight: bold;
+    color: #FD9B44;
+}
+
+a.link-link
+{
+    color: #333366;
+    text-decoration: underline;
+}
+
+a.link-link:hover
+{
+    color: #333366;
+    text-decoration: underline;
+}
+
+
+
+
+
+a.menulinkon
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-weight: bold;
+    font-size: 11px;
+    color: #333333;
+    text-decoration: none;
+}
+
+a.menulinkon:hover
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-weight: bold;
+    font-size: 11px;
+    color: #333333;
+    text-decoration: none;
+}
+
+a.menulinkoff
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-weight: bold;
+    font-size: 11px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+a.menulinkoff:hover
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-weight: bold;
+    font-size: 11px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.cellheader
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+    color: #000000;
+    background: #EEEE00;
+}
+
+.celleven
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+    color: #000000;
+    background: #FFFFFF;
+}
+
+.cellodd
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+    color: #000000;
+    background: #EEEEEE;
+}
+
+.cell
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+    color: #000000;
+    background: #FFFFFF;
+}
+</style>

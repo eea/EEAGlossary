@@ -1,18 +1,18 @@
 <dtml-var manage_page_header>
+<dtml-var style_console_css>
 <dtml-var manage_tabs>
-
-<h2>Glossary basic statistics</h2>
-<dtml-var get_terms_stats>
 
 <p>
 <dtml-if isManager>
-
-<dtml-let lst=get_terms_stats>
-    <br>Tot. numbers of English terms (Published): <b><dtml-var "lst[0]"></b>
-    <br>Tot. numbers of concepts (Published): <b><dtml-var "lst[1]"></b>
-    <br>Tot. numbers of English terms (Published and Unpublished): <b><dtml-var "lst[2]"></b>
-    <br>Tot. numbers of concepts (Published and Unpublished): <b><dtml-var "lst[3]"></b><br>
-</dtml-let>
+<table width="100%" border="0" cellpadding="2" cellspacing="0">
+    <tr class="row-header"><td class="cell-header">Glossary basic statistics</td></tr>
+    <dtml-let lst=get_terms_stats>
+        <tr class="row-even"><td>Tot. numbers of English terms (Published): <b><dtml-var "lst[0]"></b></td></tr>
+        <tr class="row-odd"><td>Tot. numbers of concepts (Published): <b><dtml-var "lst[1]"></b></td></tr>
+        <tr class="row-even"><td>Tot. numbers of English terms (Published and Unpublished): <b><dtml-var "lst[2]"></b></td></tr>
+        <tr class="row-odd"><td>Tot. numbers of concepts (Published and Unpublished): <b><dtml-var "lst[3]"></b><br></td></tr>
+    </dtml-let>
+</table>
 <dtml-else>
 This operation is only allowed to Managers.
 

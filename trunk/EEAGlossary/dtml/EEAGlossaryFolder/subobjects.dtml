@@ -1,10 +1,6 @@
 <dtml-var manage_page_header>
+<dtml-var style_console_css>
 <dtml-var manage_tabs>
-
-<p class="page-description">
-    The list below presents all the types of objects installed on this server.  
-    Every time you want to add instances of its objects inside folders, select them from the list below and press <b>Save changes</b>.
-</p>
 
 <dtml-if "REQUEST.has_key('save') and REQUEST['save']=='ok'">
     <div class="system-msg">
@@ -12,25 +8,37 @@
     </div>
 </dtml-if>
 
-<form method="post" action="manageSubobjects">
-<table border="0" cellspacing="2" cellpadding="2" width="100%">
-    <tr>
-        <td class="form-label" width="30%" valign="top">Select the kinds of things that can be added inside folders:</td>
-        
-        <td width="80%">
-            <select name="subobjects" size="10" multiple="true">
-                <dtml-in getMetaTypes>
-                <option value="<dtml-var sequence-item>" 
-                    <dtml-if "_['sequence-item'] in adt_meta_types">selected</dtml-if>><dtml-var sequence-item></option>
-                </dtml-in>
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td><input type="submit" name="submit" value="Save changes"></td>
-    </tr>
+<table width="60%" border="1" cellpadding="0" cellspacing="0">
+    <tr><td>
+        <table width="100%" border="0" cellpadding="2" cellspacing="0">
+            <tr class="row-header"><td td class="cell-header">
+                    The list below presents all the types of objects installed on this server.  
+                    Every time you want to add instances of its objects inside folders, select them from the list below and press <b>Save changes</b>.
+            </td></tr>
+            <tr><td>
+                <table border="0" cellspacing="2" cellpadding="2" width="100%">
+                <form method="post" action="manageSubobjects">
+                    <tr>
+                        <td width="30%" valign="top"><b>Select the kinds of things that can be added inside folders:</b></td>
+                        
+                        <td width="80%">
+                            <select name="subobjects" size="10" multiple="true">
+                                <dtml-in getMetaTypes>
+                                <option value="<dtml-var sequence-item>" 
+                                    <dtml-if "_['sequence-item'] in adt_meta_types">selected</dtml-if>><dtml-var sequence-item></option>
+                                </dtml-in>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td><input type="submit" name="submit" value="Save changes"></td>
+                    </tr>
+                </form>
+                </table>
+            </td></tr>
+        </table>
+    </td></tr>
 </table>
-</form>
 
 <dtml-var manage_page_footer>

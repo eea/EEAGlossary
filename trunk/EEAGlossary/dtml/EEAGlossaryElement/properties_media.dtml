@@ -1,16 +1,20 @@
-<form name="frmProperties" action="manageMediaProperties" method="post">
-    <table cellspacing=0 cellpadding=0 border=0>
-        <tr>
-            <td width="20%">Image url</td>
-            <td><input type="text" name="image_url" size="40" value="<dtml-var image_url>"></td>
-        </tr>
-        <tr>
-            <td>Flash url</td>
-            <td><input type="text" name="flash_url" size="40" value="<dtml-var flash_url>"></td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td><input type="submit" name="save" value=" Save changes "></td>
-        </tr>
-    </table>
-</form>
+<table border="1" cellspacing="0" cellpadding="0" width="90%">
+    <tr><td>
+        <table cellspacing="2" cellpadding="0" border="0">
+            <form name="frmProperties" action="manageMediaProperties" method="post">
+                <tr>
+                    <td width="20%"><b>Image url:</b<</td>
+                    <td><input type="text" name="image_url" size="40" value="<dtml-var image_url>"></td>
+                </tr>
+                <tr>
+                    <td><b>Flash url:</b></td>
+                    <td><input type="text" name="flash_url" size="40" value="<dtml-var flash_url>"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><input type="submit" name="save" value=" Save changes "></td>
+                </tr>
+            </form>
+        </table>
+    </td></tr>
+</table>

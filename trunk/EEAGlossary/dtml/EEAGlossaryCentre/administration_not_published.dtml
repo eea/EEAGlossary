@@ -1,18 +1,20 @@
 <dtml-var manage_page_header>
+<dtml-var style_console_css>
 <dtml-var manage_tabs>
 
-<h2>Not approved or disabled</h2>
 <p>
 <dtml-if isManager>
-<table width="100%">
-<dtml-in get_not_published>
+<table width="100%" border="0" cellpadding="2" cellspacing="0">
+    <tr class="row-header"><td class="cell-header" colspan="2">Not approved or disabled</td></tr>
 
-    <tr>
+<dtml-in get_not_published>
+<dtml-if sequence-odd>
+    <tr class="row-even">
         <td colspan="2">
             <b><dtml-unless approved>NOT </dtml-unless>APPROVED, <dtml-if disabled> DISABLED<dtml-else> ENABLED</dtml-if>:&nbsp;&nbsp;</b>
         </td>
     </tr>
-    <tr>
+    <tr class="row-even">
         <td width="40%"><li><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></li></td>
         <td width="*">
             &nbsp;<dtml-var bobobase_modification_time>&nbsp;
@@ -21,7 +23,22 @@
             </dtml-if>
         </td>
     </tr>
-
+<dtml-else>
+    <tr class="row-odd">
+        <td colspan="2">
+            <b><dtml-unless approved>NOT </dtml-unless>APPROVED, <dtml-if disabled> DISABLED<dtml-else> ENABLED</dtml-if>:&nbsp;&nbsp;</b>
+        </td>
+    </tr>
+    <tr class="row-odd">
+        <td width="40%"><li><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></li></td>
+        <td width="*">
+            &nbsp;<dtml-var bobobase_modification_time>&nbsp;
+            <dtml-if QA_needed>
+                <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
+            </dtml-if>
+        </td>
+    </tr>
+</dtml-if>
 </dtml-in>
 </table>
 <dtml-else>

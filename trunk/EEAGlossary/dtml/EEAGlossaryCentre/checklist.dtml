@@ -1,47 +1,56 @@
 <dtml-var manage_utf8_header>
+<dtml-var style_console_css>
 <dtml-var manage_tabs>
-
-
 
 <dtml-if "REQUEST.has_key('languagescheck')">
 
-    <span><dtml-var title></span>
-    <p>
-    <span>General Information</span><br>
-    <b>Glossary Link:</b><br>http://glossary.eea.eu.int/<br>
-    <b>Description:</b><br><dtml-var description><br>
-    <b>Publisher:</b><br>EEA (European Environment Agency)<br>
-    <b>Manager:</b><br>Tarja Porkka (mailto:Tarja.Porkka@eea.eu.int)<br>
-    </p>
+<table width="100%" border="1" cellpadding="0" cellspacing="0">
+<tr><td>
+    <table width="100%" border="0" cellpadding="2" cellspacing="0">
+        <tr class="row-header"><td class="cell-header"><span>General Information</span></td></tr>
+        <tr><td>
+        <b>Glossary Link:</b><br>http://glossary.eea.eu.int/<br>
+        <b>Description:</b><br><dtml-var description><br>
+        <b>Publisher:</b><br>EEA (European Environment Agency)<br>
+        <b>Manager:</b><br>Tarja Porkka (mailto:Tarja.Porkka@eea.eu.int)<br>
+        </td></tr>
+    </table>
+</td></tr>
+</table>
 
     <table width="100%">
-        <dtml-in folder_list_sorted>
-            <dtml-in element_list_sorted>
-                   <tr><td><dtml-var view_languages_html></td></tr>
-            </dtml-in>
+        <dtml-in get_all_elements>
+            <tr><td><dtml-var view_languages_html></td></tr>
         </dtml-in>
     </table>
 
 <dtml-else>
-
-    <h2><dtml-var title_or_id> - Check List Form</h2>
-
-    <dtml-if is_AuthenticatedUserRoles>
-        <p>
-        <form action="<dtml-var URL0>" method="post">
-            <select name="languagescheck:list" multiple size=8>
-                <dtml-in get_english_names>
-                    <option><dtml-var sequence-item html_quote></option>
-                </dtml-in>
-                <option>Definition</option>
-            </select>
-            <input type="submit" name="SUBMIT" value="Go to Check List">
-        </form>
-        </p>
-    <dtml-else>
-        <p>You're not allowed to check any terms.</p>
-        <p>Please login as a 'Quality Controller'.</p>
-    </dtml-if>
-
+    <table width="50%" border="1" cellpadding="0" cellspacing="0">
+        <tr><td>
+            <table width="100%" border="0" cellpadding="2" cellspacing="0">
+                <tr class="row-header">
+                    <td class="cell-header">&nbsp;&nbsp;&nbsp;'<dtml-var title_or_id>' - Check List Form</td>
+                </tr>
+            <dtml-if is_AuthenticatedUserRoles>
+                <tr><td>
+                    <form action="<dtml-var URL0>" method="post">
+                        <select name="languagescheck:list" multiple size=20>
+                            <dtml-in get_english_names>
+                                <option><dtml-var sequence-item html_quote></option>
+                            </dtml-in>
+                            <option>Definition</option>
+                        </select>
+                        <input type="submit" name="SUBMIT" value="Go to Check List">
+                    </form>
+                </td></tr>
+            <dtml-else>
+                <tr><td>
+                    <p>You're not allowed to check any terms.</p>
+                    <p>Please login as a 'Quality Controller'.</p>
+                </td></tr>
+            </dtml-if>
+            </table>
+        </td></tr>
+    </table>
 </dtml-if>
 <dtml-var manage_utf8_footer>
