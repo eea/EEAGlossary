@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryFolder.py,v 1.10 2004/05/07 15:57:23 finrocvs Exp $
+#$Id: EEAGlossaryFolder.py,v 1.11 2004/05/10 08:08:02 finrocvs Exp $
 
 # python imports
 import whrandom
@@ -81,18 +81,6 @@ class EEAGlossaryFolder(Folder, utils):
     manage_addGlossarySynonym_html = EEAGlossarySynonym.manage_addGlossarySynonym_html
     manage_addGlossarySynonym = EEAGlossarySynonym.manage_addGlossarySynonym
 
-    def get_object_list(self):
-        """return all id sorted objects from a folder"""
-        id_lst = []
-        obj_lst = []
-        for obj in self.objectValues([EEA_GLOSSARY_ELEMENT_METATYPE,EEA_GLOSSARY_SYNONYM_METATYPE]):
-            id_lst.append(obj.id)
-        id_lst.sort()
-        for term in id_lst:
-            ob = self._getOb(term)
-            obj_lst.append(ob)
-        return obj_lst
-
     ##########################
     #   META TYPES FUNCTIONS #
     ##########################
@@ -106,6 +94,30 @@ class EEAGlossaryFolder(Folder, utils):
         else:
             return self.meta_types
 
+    def get_object_list(self):
+        """return all id sorted objects from a folder"""
+        id_lst = []
+        obj_lst = []
+        for obj in self.objectValues([EEA_GLOSSARY_ELEMENT_METATYPE,EEA_GLOSSARY_SYNONYM_METATYPE]):
+            id_lst.append(obj.id)
+        id_lst.sort()
+        for term in id_lst:
+            ob = self._getOb(term)
+            obj_lst.append(ob)
+        return obj_lst
+
+    def random_element(self):
+        """Return a random 'EEA Glossary Element' """
+        elements=[]
+        for eobject in self.objectValues(EEA_GLOSSARY_ELEMENT_METATYPE):
+            if eobject.is_published:
+               elements.append(eobject)
+        if len(elements) > 0:
+            print whrandom.choice(elements)
+            return whrandom.choice(elements)
+        else:
+            return None
+
     def getMetaTypes(self):
         return [x['name'] for x in Products.meta_types]
 
@@ -115,6 +127,13 @@ class EEAGlossaryFolder(Folder, utils):
         self.adt_meta_types = subobjects
         self._p_changed = 1
         REQUEST.RESPONSE.redirect('manage_subobjects_html')
+
+    def manage_folder_properties(self, title='', description='', REQUEST=None):
+        print 'aa'
+        self.title=title
+        self.description=description
+        if REQUEST is not None:
+            REQUEST.RESPONSE.redirect('manage_properties_html?save=ok')
 
     #####################
     #   MANAGEMENT TABS #

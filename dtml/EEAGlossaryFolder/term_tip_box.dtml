@@ -1,20 +1,19 @@
-<dtml-comment>
-<dtml-with random_from_catalog>
+<dtml-with random_element>
     <dtml-if definition>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="B5DED6">
         <tr> 
           <td><img src="misc_/EEAGlossary/line.gif" width="100%" height="1"></td></tr>
             <tr> 
-          <td><table width="100%" border="0" cellspacing="2" cellpadding="2"><tr><td>
+          <td>
+              <table width="100%" border="0" cellspacing="2" cellpadding="2"><tr><td>
                  <p class=mainfont><b>Term example:</b>&nbsp;<a href="<dtml-var absolute_url>">&dtml-name;</a>&nbsp;<img src="misc_/EEAGlossary/new.gif"></p>
                  <p class=mainfont><b>Definition:</b>&nbsp;<dtml-var definition></p></td></tr>
               </table>
-         </td>
+          </td>
         </tr>
         <tr> 
           <td><img src="misc_/EEAGlossary/line.gif" width="100%" height="1"></td>
         </tr>
-     </table>
-     </dtml-if>
+    </table>
+    </dtml-if>
 </dtml-with>
-</dtml-comment>
