@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryFolder.py,v 1.15 2004/05/12 17:21:09 finrocvs Exp $
+#$Id: EEAGlossaryFolder.py,v 1.16 2004/05/13 12:42:15 finrocvs Exp $
 
 # python imports
 import whrandom
@@ -59,7 +59,7 @@ class EEAGlossaryFolder(Folder, utils):
                 {'label':'Properties',  'action':'manage_properties_html'},
                 {'label':'Subobjects',  'action':'manage_subobjects_html'},
                 {'label':'Undo',        'action':'manage_UndoForm'},
-                {'label':'Help',        'action':'manageHelpForm'},)
+                {'label':'Help',        'action':'folder_help_html'},)
                 )
 
     meta_types = (
@@ -136,5 +136,6 @@ class EEAGlossaryFolder(Folder, utils):
     term_tip_box_html = DTMLFile('dtml/EEAGlossaryFolder/term_tip_box', globals())
     manage_properties_html = DTMLFile('dtml/EEAGlossaryFolder/properties', globals())
     manage_subobjects_html = DTMLFile('dtml/EEAGlossaryFolder/subobjects', globals())
+    folder_help_html = DTMLFile("dtml/EEAGlossaryFolder/help", globals())
 
 InitializeClass(EEAGlossaryFolder)

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.41 2004/05/13 11:41:23 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.42 2004/05/13 12:42:15 finrocvs Exp $
 
 # python imports
 import string
@@ -71,7 +71,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
                 {'label':'XML/RDF',             'action':'glossary_terms_rdf'},
                 {'label':'All terms',           'action':'all_terms_html'},
                 {'label':'Management',          'action':'management_page_html'},
-                {'label':'Help',                'action':'manageHelp'},
+                {'label':'Help',                'action':'centre_help_html'},
                 {'label':'Undo',                'action':'manage_UndoForm'},)
                 )
 
@@ -545,9 +545,11 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     all_terms_html = DTMLFile('dtml/EEAGlossaryCentre/all_terms_view', globals())
     management_page_html = DTMLFile('dtml/EEAGlossaryCentre/administration', globals())
 
+    centre_help_html = DTMLFile("dtml/EEAGlossaryCentre/centre_help", globals())
     help_html = DTMLFile("dtml/EEAGlossaryCentre/help", globals())
     help_contact_html = DTMLFile("dtml/EEAGlossaryCentre/help_contact", globals())
 
     manage_utf8_header = DTMLFile('dtml/EEAGlossaryCentre/utf8_header', globals())
     manage_utf8_footer = DTMLFile('dtml/EEAGlossaryCentre/utf8_footer', globals())
+
 InitializeClass(EEAGlossaryCentre)

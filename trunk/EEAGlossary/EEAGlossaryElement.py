@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.40 2004/05/13 11:41:23 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.41 2004/05/13 12:42:15 finrocvs Exp $
 
 # python imports
 import string
@@ -91,7 +91,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         {'label':'Convert to Synonym',      'action':'synonym_html'},
         {'label':'History',                 'action':'history_html'},
         {'label':'Undo',                    'action':'manage_UndoForm'},
-        {'label':'Help',                    'action':'help_html'},)
+        {'label':'Help',                    'action':'element_help_html'},)
 
     security = ClassSecurityInfo()
 
@@ -381,6 +381,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     view_languages_html = DTMLFile("dtml/EEAGlossaryElement/view_languages", globals())
     view_box_html = DTMLFile("dtml/EEAGlossaryElement/view_box", globals())
 
+    element_help_html = DTMLFile("dtml/EEAGlossaryElement/help", globals())
 
     preview_html = DTMLFile("dtml/EEAGlossaryElement/preview", globals())
     custom_properties_html = DTMLFile("dtml/EEAGlossaryElement/custom_prop", globals())

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossarySynonym.py,v 1.18 2004/05/13 11:41:23 finrocvs Exp $
+#$Id: EEAGlossarySynonym.py,v 1.19 2004/05/13 12:42:15 finrocvs Exp $
 
 #python imports
 import string
@@ -56,7 +56,7 @@ class EEAGlossarySynonym(EEAGlossaryElement, utils):
         {'label':'Properties',                      'action':'manage_properties_html'},
         {'label':"View",                            'action':'preview_html'},
         {'label':'History',             'action':'history_html'},
-        {'label':'Help',                       'action':'help_html'},
+        {'label':'Help',                       'action':'synonym_help_html'},
         {'label':'Undo',                       'action':'manage_UndoForm'},
         {'label':'Synonym Properties',         'action':'synonym_properties_html'},)
 
@@ -110,5 +110,6 @@ class EEAGlossarySynonym(EEAGlossaryElement, utils):
     synonym_properties_html = DTMLFile("dtml/EEAGlossarySynonym/synonym_properties", globals())
     short_info_html = DTMLFile("dtml/EEAGlossarySynonym/short_info", globals())
     view_box_html = DTMLFile("dtml/EEAGlossarySynonym/view_box", globals())
+    synonym_help_html = DTMLFile("dtml/EEAGlossarySynonym/help", globals())
 
 InitializeClass(EEAGlossarySynonym)
