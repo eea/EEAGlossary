@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_export.py,v 1.2 2004/05/28 10:15:13 finrocvs Exp $
+#$Id: EEAGlossary_export.py,v 1.3 2004/05/28 10:53:13 finrocvs Exp $
 
 from DateTime import DateTime
 
@@ -62,32 +62,28 @@ class glossary_export:
         r_append('</xliff>')
         return results
 
-    def xliff_export(self, folders=[], language='', published=0, all_in_one=0, REQUEST=None):
+    def xliff_export(self, folder='/', language='', published=0, REQUEST=None):
         """ Exports the content of the EEAGlossary to an XLIFF file """
         results = []
         terms = []
         r_append = results.append   #alias for append function. For optimization purposes
         for folder in self.folder_list_sorted():
-            if folder.id in self.utConvertToList(folders):
-                if published:
-                    terms.extend(self.get_published('/%s' % folder.absolute_url(1)))
-                else:
-                    terms.extend(self.get_all_objects('/%s' % folder.absolute_url(1)))
-        if all_in_one:
-            results.extend(self.xliff_header(folders, language))
-            for term in terms:
-                #if language in self.get_unicode_langs():
-                #    translation = term.get_translation_by_language(language)
-                #else:
-                #    translation = self.display_unicode_langs(term.get_translation_by_language(language), charset=self.get_language_charset(language))
-                translation = term.get_translation_by_language(language)
-                r_append('<trans-unit id="%s">' % term.id)
-                r_append(' <source>%s</source>' % term.get_translation_by_language('English'))
-                r_append(' <target>%s</target>' % translation)
-                if term.definition:
-                    r_append(' <note>%s</note>' % term.definition)
-                r_append('</trans-unit>')
-            results.extend(self.xliff_footer())
-            return '\r\n'.join(results)
-        else:
-            pass
+            if published:
+                terms.extend(self.get_published('/%s' % folder))
+            else:
+                terms.extend(self.get_all_objects('/%s' % folder))
+        results.extend(self.xliff_header(folder, language))
+        for term in terms:
+            #if language in self.get_unicode_langs():
+            #    translation = term.get_translation_by_language(language)
+            #else:
+            #    translation = self.display_unicode_langs(term.get_translation_by_language(language), charset=self.get_language_charset(language))
+            translation = term.get_translation_by_language(language)
+            r_append('<trans-unit id="%s">' % term.id)
+            r_append(' <source>%s</source>' % term.get_translation_by_language('English'))
+            r_append(' <target>%s</target>' % translation)
+            if term.definition:
+                r_append(' <note>%s</note>' % term.definition)
+            r_append('</trans-unit>')
+        results.extend(self.xliff_footer())
+        return '\r\n'.join(results)
