@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.55 2004/05/17 16:24:58 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.56 2004/05/17 19:45:45 finrocvs Exp $
 
 # python imports
 import string
@@ -518,7 +518,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     def get_disabled(self):
         """.return the elements&synonyms not disabled """
         lst_disabled = []
-        append = lst_approved.append
+        append = lst_disabled.append
         for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
             if obj.disabled:
                 append(obj)

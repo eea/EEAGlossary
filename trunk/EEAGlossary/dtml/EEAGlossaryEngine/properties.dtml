@@ -3,7 +3,11 @@
 <dtml-var style_css>
 <dtml-var manage_tabs>
 
-Comments here
+<p class="form-help">
+The GlossaryEngine keeps settings that apply to every new instance of GlossaryCentres. 
+Once a centre is added, you will be able to change all of them except the contact information
+which is global for this Zope site.
+</p>
 <dtml-let pagetab="REQUEST.get('pagetab', '0')">
 
 <dtml-comment>

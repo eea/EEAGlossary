@@ -1,10 +1,11 @@
 <dtml-var manage_page_header>
-
 <dtml-var style_css>
 <dtml-var manage_tabs>
 
-adasdasdas asdsadasdas
-dasdasdasd asdasdasdas asdasdas dasdasdsadsadas dsada sdasdas asd asd asdas dasd
+<p class="form-help">
+Manage the various settings that apply for this GlossaryCentre.
+</p>
+
 <dtml-let pagetab="REQUEST.get('pagetab', '0')">
 
 <dtml-comment>

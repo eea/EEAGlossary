@@ -1,5 +1,8 @@
 <dtml-let record_trans="REQUEST.get('trans', '')" record_technic="REQUEST.get('technic', '')">
-
+<p class="form-help">
+Add/Edit/Delete contact information for people that administrate the EEAGlossary and for the 
+translators of terms.
+</p>
 <form name="frmActions" action="manageTechnicProperties" method="post">
 <table border="0" cellspacing="2" cellpadding="2" width="70%">
     <tr>
