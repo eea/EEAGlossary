@@ -19,7 +19,7 @@
                             </tr>
                             <tr>
                                 <td class="cellodd" valign="top"><b>Roles:&nbsp;</b></td>
-                                <td>
+                                <td class="celleven">
                                     <dtml-in getAuthenticatedUserRoles>
                                         <dtml-var sequence-item><dtml-if sequence-end>.<dtml-else>,&nbsp;</dtml-if>
                                     </dtml-in>
@@ -108,7 +108,7 @@
                 <tr><td>
                     <table width="100%" border="0" cellpadding="2" cellspacing="0">
                         <tr>
-                            <td colspan="2"><b>Note!</b>: Please use the following codes for contextual translations, e.g. when several translations terms are given.</td>
+                            <td colspan="2" class="celleven"><b>Note!</b>: Please use the following codes for contextual translations, e.g. when several translations terms are given.</td>
                         </tr>
                         <tr><td colspan="2">&nbsp;</td>
                         <tr class="row-header">
