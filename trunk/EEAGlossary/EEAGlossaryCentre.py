@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.72 2004/06/01 17:06:49 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.73 2004/06/02 09:57:32 finrocvs Exp $
 
 # python imports
 import string
@@ -644,10 +644,13 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
 
     def reindexCatalog(self, REQUEST=None):
         """ reindex the catalog """
-        indexes = self.cu_getIndexes()
-        for index in indexes:
-            self.cu_reindexCatalogIndex(index.id, REQUEST)
-        return 1
+        try:
+            indexes = self.cu_getIndexes()
+            for index in indexes:
+                self.cu_reindexCatalogIndex(index.id, REQUEST)
+            return 1
+        except:
+            return 0
 
     def buildGlossary(self, glossary_table, REQUEST=None):
         """ build glossary -- initial phase """
@@ -869,6 +872,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
     index_html = DTMLFile('dtml/EEAGlossaryCentre/index', globals())
 
     search_html = DTMLFile('dtml/EEAGlossaryCentre/search_box', globals())
+    search_help_html = DTMLFile('dtml/EEAGlossaryCentre/search_help', globals())
 
     not_approved_html = DTMLFile('dtml/EEAGlossaryCentre/administration_not_approved', globals())
     approved_html = DTMLFile('dtml/EEAGlossaryCentre/administration_approved', globals())
@@ -882,6 +886,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
 
     term_tip_box_html = DTMLFile('dtml/EEAGlossaryCentre/term_tip_box', globals())
     contexts_html = DTMLFile('dtml/EEAGlossaryCentre/contexts', globals())
+    contexts_view_html = DTMLFile('dtml/EEAGlossaryCentre/contexts_view', globals())
     check_list_html = DTMLFile('dtml/EEAGlossaryCentre/checklist', globals())
     change_pass_html = DTMLFile('dtml/EEAGlossaryCentre/changepassword', globals())
     glossary_terms_rdf = DTMLFile('dtml/EEAGlossaryCentre/glossary_rdf', globals())

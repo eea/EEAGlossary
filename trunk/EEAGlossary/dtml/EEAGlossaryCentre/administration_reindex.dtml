@@ -5,12 +5,12 @@
 <br>
 <dtml-if isManager>
     <dtml-if reindexCatalog>
-    Rendexing done!
+        <b><ul><li>Rendexing done!</li></ul></b>
     <dtml-else>
-    Reindexing failed!
+        <b><ul><li>Reindexing failed!</li></ul></b>
     </dtml-if>
 <dtml-else>
-    This operation is only allowed to Managers.
+    <b><ul><li>This operation is only allowed to Managers.</li></ul></b>
 </dtml-if>
 
 <dtml-var manage_page_footer>
