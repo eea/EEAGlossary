@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.79 2004/06/09 08:30:14 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.80 2004/06/16 13:12:04 finrocvs Exp $
 
 # python imports
 import string
@@ -598,7 +598,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                 append(obj)
         return lst_not_published
 
-    def get_published(self, path='/'):
+    def get_published(self, path=''):
         """.return the elements&synonyms published """
         lst_published = []
         append = lst_published.append
@@ -631,7 +631,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         results = self.cu_search_catalog([EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], query, size, language, definition)
         return (language, query, results)
 
-    def random_from_catalog(self, folder='/'):
+    def random_from_catalog(self, folder=''):
         """a random element from catalog """
         elements=[]
         append = elements.append
@@ -658,7 +658,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         """ Return all the folders, sorted"""
         return self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_FOLDER_METATYPE], sort_on='id', sort_order='')
 
-    def get_all_objects (self, path='/'):
+    def get_all_objects (self, path=''):
         """ return sorted objects by name """
         return self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order='', path=path)
         
