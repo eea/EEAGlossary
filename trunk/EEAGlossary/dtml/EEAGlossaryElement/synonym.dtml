@@ -11,7 +11,7 @@
   <td align="left" valign="top"><div>Synonym of (use CTRL for multiple selection)</div></td>
   <td align="left" valign="top">
     <select name="synonyms" size=10 multiple>
-        <dtml-in all_elements>
+        <dtml-in get_all_elements>
             <option  value="<dtml-var sequence-key>">
                 <dtml-var sequence-key size=40><dtml-unless sequence-item> NOT PUBLISHED</dtml-unless>
             </option>

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.38 2004/05/17 13:20:43 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.39 2004/05/18 08:25:59 finrocvs Exp $
 
 #Python imports
 import string
@@ -185,33 +185,38 @@ class catalog_utils:
         """ creates an id for the item to be added in catalog """
         return '/'.join(item.getPhysicalPath())
 
-    def __searchCatalog(self, catalog, criteria, path):
+    def __searchCatalog(self, criteria, path):
         """ search catalog """
+        catalog = self.getGlossaryCatalog()
         return catalog(criteria, path)
 
-    def __get_objects(self, catalog, brains):
+    def __get_objects(self, brains):
         """ given the brains return the objects """
+        catalog = self.getGlossaryCatalog()
         try:
             return map(catalog.getobject, map(getattr, brains, ('data_record_id_',)*len(brains)))
         except:
             return []
 
-    def cu_catalog_object(self, catalog, ob):
+    def cu_catalog_object(self, ob):
         """ catalog an object """
+        catalog = self.getGlossaryCatalog()
         try:
             catalog.catalog_object(ob, self.__build_catalog_path(ob))
         except:
             pass
 
-    def cu_uncatalog_object(self, catalog, ob):
+    def cu_uncatalog_object(self, ob):
         """ uncatalog an object """
+        catalog = self.getGlossaryCatalog()
         try:
             catalog.uncatalog_object(self.__build_catalog_path(ob))
         except:
             pass
 
-    def cu_recatalog_object(self, catalog, ob):
+    def cu_recatalog_object(self, ob):
         """ recatalog an object """
+        catalog = self.getGlossaryCatalog()
         try:
             ob_path = self.__build_catalog_path(ob)
             catalog.uncatalog_object(ob_path)
@@ -219,15 +224,17 @@ class catalog_utils:
         except:
             pass
 
-    def cu_getIndexes(self, catalog):
+    def cu_getIndexes(self):
         """ return a list with all ZCatalog indexes """
+        catalog = self.getGlossaryCatalog()
         return catalog.index_objects()
 
-    def cu_reindexCatalogIndex(self, catalog, name, REQUEST):
+    def cu_reindexCatalogIndex(self, name, REQUEST):
         """ reindex an index from ZCatalog """
+        catalog = self.getGlossaryCatalog()
         catalog.reindexIndex(name, REQUEST)
 
-    def cu_get_cataloged_objects(self, catalog, meta_type=None, approved=0, howmany=-1, sort_on='bobobase_modification_time', 
+    def cu_get_cataloged_objects(self, meta_type=None, approved=0, howmany=-1, sort_on='bobobase_modification_time', 
         sort_order='reverse', path='/'):
         """ return objects from catalog """
         results = []
@@ -240,14 +247,14 @@ class catalog_utils:
                 filter['sort_order'] = sort_order
         if meta_type:
             filter['meta_type'] = self.utConvertToList(meta_type)
-        results = self.__searchCatalog(catalog, filter, path)
+        results = self.__searchCatalog(filter, path)
         if howmany != -1:
             results = results[:howmany]
-        results = self.__get_objects(catalog, results)
+        results = self.__get_objects(results)
         return results
 
-    def cu_search_catalog(self, catalog, meta_type=None, query='', size=10000, language='English', definition=''):
+    def cu_search_catalog(self, meta_type=None, query='', size=10000, language='English', definition=''):
         """ search catalog """
         command= "catalog(meta_type=" + str(meta_type) + ", " + language + "='" + query + "', definition='" + definition + "')"
         results = eval(command)
-        return self.__get_objects(catalog, results)
+        return self.__get_objects(results)

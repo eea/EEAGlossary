@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryFolder.py,v 1.19 2004/05/17 08:54:19 finrocvs Exp $
+#$Id: EEAGlossaryFolder.py,v 1.20 2004/05/18 08:25:59 finrocvs Exp $
 
 # python imports
 import whrandom
@@ -29,12 +29,12 @@ import whrandom
 from Globals import DTMLFile, MessageDialog, InitializeClass
 from AccessControl import ClassSecurityInfo
 from OFS.Folder import Folder
-from Products.ZCatalog.CatalogAwareness import CatalogAware
 import Products
 
 # product imports
 import EEAGlossaryElement
 import EEAGlossarySynonym
+from EEAGlossary_utils import catalog_utils
 from EEAGlossary_utils import utils
 from EEAGlossary_constants import *
 
@@ -47,12 +47,13 @@ def manage_addGlossaryFolder(self, id, title='', description='', REQUEST=None):
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
-class EEAGlossaryFolder(Folder, utils):
+class EEAGlossaryFolder(Folder, utils, catalog_utils):
     """ EEAGlossaryFolder """
 
     meta_type = EEA_GLOSSARY_FOLDER_METATYPE
     product_name = EEA_GLOSSARY_PRODUCT_NAME
     icon = "misc_/EEAGlossary/folder.gif"
+    default_catalog = "EEA_GLOSSARY_CATALOG_NAME"
 
     manage_options = ((Folder.manage_options[0],) +
                 ({'label':'View',       'action':'preview_html'},
@@ -127,6 +128,16 @@ class EEAGlossaryFolder(Folder, utils):
         self.description=description
         if REQUEST is not None:
             REQUEST.RESPONSE.redirect('manage_properties_html?save=ok')
+
+    def manage_afterAdd(self, item, container):
+        """ this method is called, whenever _setObject in ObjectManager gets called """
+        Folder.inheritedAttribute('manage_afterAdd')(self, item, container)
+        self.cu_catalog_object(self)
+
+    def manage_beforeDelete(self, item, container):
+        """ this method is called, when the object is deleted """
+        Folder.inheritedAttribute('manage_beforeDelete')(self, item, container)
+        self.cu_uncatalog_object(self)
 
     #####################
     #   MANAGEMENT TABS #
