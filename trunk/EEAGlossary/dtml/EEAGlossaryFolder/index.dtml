@@ -4,14 +4,14 @@
 
     <dtml-with "PARENTS[1]">
         <a href="<dtml-var absolute_url>">
-            <img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/element.gif<dtml-else><dtml-var icon></dtml-if>" BORDER=0>
+            <img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/element.gif<dtml-else><dtml-var icon></dtml-if>" border=0>
             &nbsp;
         </a>
         <a href="<dtml-var absolute_url>">
             <dtml-var title_or_id>
         </a>
     </dtml-with>
-    / <img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/element.gif<dtml-else><dtml-var icon></dtml-if>" BORDER=0>&nbsp;
+    / <img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/element.gif<dtml-else><dtml-var icon></dtml-if>" border=0>&nbsp;
     <dtml-var title_or_id>
 
 </p>
@@ -58,7 +58,7 @@
 <dtml-in get_object_list>
     <dtml-if is_published>
         <dtml-if synonyms>
-            <img src="misc_/EEAGlossary/element.gif">&nbsp;<dtml-var name>&nbsp;<img src="misc_/EEAGlossary/new.gif">
+            <img src="misc_/EEAGlossary/element.gif" border=0>&nbsp;<dtml-var name>&nbsp;<img src="misc_/EEAGlossary/new.gif" border=0>
             <dtml-in synonyms size=1>
                 <dtml-if sequence-start>
                     (<small>See </small>
@@ -72,7 +72,7 @@
                 </dtml-if></dtml-comment>
             </dtml-in>
         <dtml-else>
-              <a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/element.gif">&nbsp;<dtml-var name>&nbsp;<img src="misc_/EEAGlossary/new.gif"></a>
+              <a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/element.gif" border=0>&nbsp;<dtml-var name>&nbsp;<img src="misc_/EEAGlossary/new.gif" border=0></a>
         </dtml-if>
     <br>
     </dtml-if>
