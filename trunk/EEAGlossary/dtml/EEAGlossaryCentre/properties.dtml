@@ -1,5 +1,25 @@
 <dtml-var manage_page_header>
+
+<dtml-var style_css>
 <dtml-var manage_tabs>
+
+adasdasdas asdsadasdas
+dasdasdasd asdasdasdas asdasdas dasdasdsadsadas dsada sdasdas asd asd asdas dasd
+<dtml-let pagetab="REQUEST.get('pagetab', '0')">
+
+<dtml-comment>
+    Main menu bar
+</dtml-comment>
+<hr noshade size="1">
+&nbsp;<a class="<dtml-if "pagetab=='0'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=0">Basic properties</a>
+&nbsp;|&nbsp;<a class="<dtml-if "pagetab=='1'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=1">Alpha List</a>
+&nbsp;|&nbsp;<a class="<dtml-if "pagetab=='2'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=2">Types List</a>
+&nbsp;|&nbsp;<a class="<dtml-if "pagetab=='3'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=3">Subjects List</a>
+&nbsp;|&nbsp;<a class="<dtml-if "pagetab=='4'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=4">Languages List</a>
+&nbsp;|&nbsp;<a class="<dtml-if "pagetab=='5'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=5">Search Languages</a>
+&nbsp;|&nbsp;<a class="<dtml-if "pagetab=='6'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=6">Hidden Fields</a>
+&nbsp;
+<hr noshade size="1">
 
 <dtml-if "REQUEST.has_key('save') and REQUEST['save']=='ok'">
 <div class="system-msg">
@@ -7,46 +27,22 @@ Saved changes. (<dtml-var ZopeTime>)
 </div>
 </dtml-if>
 
-<form name="frmProperties" action="manageProperties" method="post">
-<table cellspacing=0 cellpadding=0 border=1>
-    <tr>
-        <th>Title</th>
-        <td><input type="text" name="title" value="<dtml-var title>" size="35"></td>
-    </tr>
-    <tr>
-        <th>Description</th>
-        <td><textarea name="description" rows="5" cols="30"><dtml-var description></textarea></td>
-    </tr>
-        <th>Alpha List</th>
-        <td><textarea name="alpha_list" rows="5" cols="30"><dtml-var "utConvertListToLines(alpha_list)"></textarea></td>
-    </tr>
-    <tr>
-        <th>Types List</th>
-        <td><textarea name="types_list" rows="5" cols="30"><dtml-var "utConvertListToLines(types_list)"></textarea></td>
-    </tr>
-    <tr>
-        <th>Subjects List</th>
-        <td><textarea name="subjects_list" rows="5" cols="30"><dtml-var "utConvertListToLines(get_subjects_list())"></textarea></td>
-    </tr>
-    <tr>
-        <th>Languages List</th>
-        <td><textarea name="languages_list" rows="5" cols="30"><dtml-var "utConvertListToLines(languages_list)"></textarea></td>
-    </tr>
-    <tr>
-        <th>Search Languages</th>
-        <td><textarea name="search_langs" rows="5" cols="30"><dtml-var "utConvertListToLines(search_langs)"></textarea></td>
-    </tr>
-    <tr>
-        <th>Published</th>
-        <td><input type="checkbox" name="published" <dtml-if published>CHECKED</dtml-if>>
-    </tr>
-    <tr>
-        <th>Hidden Fields</th>
-        <td><textarea name="hidden_fields" rows="5" cols="30"><dtml-var "utConvertListToLines(hidden_fields)"></textarea></td>
-    </tr>
-    <tr>
-        <td colspan="2"><input type="submit" name="submit" value=" Save Changes ">
-    </tr>
-</table>
-</form>
+<dtml-if "pagetab=='0'">
+    <dtml-var prop_basic_html>
+<dtml-elif "pagetab=='1'">
+    <dtml-var prop_alpha_html>
+<dtml-elif "pagetab=='2'">
+    <dtml-var prop_types_html>
+<dtml-elif "pagetab=='3'">
+    <dtml-var prop_subjects_html>
+<dtml-elif "pagetab=='4'">
+    <dtml-var prop_languages_html>
+<dtml-elif "pagetab=='5'">
+    <dtml-var prop_search_html>
+<dtml-elif "pagetab=='6'">
+    <dtml-var prop_hidden_html>
+</dtml-if>
+
+</dtml-let>
+
 <dtml-var manage_page_footer>

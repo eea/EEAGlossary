@@ -1,0 +1,57 @@
+<style>
+a.menulinkon
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-weight: bold;
+    font-size: 11px;
+    color: #333333;
+    text-decoration: none;
+}
+a.menulinkon:hover
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-weight: bold;
+    font-size: 11px;
+    color: #333333;
+    text-decoration: none;
+}
+
+a.menulinkoff
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-weight: bold;
+    font-size: 11px;
+    color: #483D8b;
+    text-decoration: none;
+}
+a.menulinkoff:hover
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-weight: bold;
+    font-size: 11px;
+    color: #483D8b;
+    text-decoration: none;
+}
+.cellheader
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+    color: #000000;
+    background: #EEEE00;
+}
+.celleven
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+    color: #000000;
+    background: #FFFFFF;
+}
+.cellodd
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+    color: #000000;
+    background: #EEEEEE;
+}
+
+</style>

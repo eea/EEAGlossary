@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.14 2004/05/04 10:18:49 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.15 2004/05/04 13:32:26 finrocvs Exp $
 
 # python imports
 import string
@@ -37,8 +37,6 @@ from Products.ZCatalog.ZCatalog import manage_addZCatalog, manage_addZCatalogFor
 # product imports
 import EEAGlossaryFolder
 from EEAGlossary_utils import utils
-from parsers.languages_parser import languages_parser
-from parsers.subjects_parser import subjects_parser
 from EEAGlossary_constants import *
 
 manage_addGlossaryCentre_html = DTMLFile('dtml/EEAGlossaryCentre/add', globals())
@@ -47,9 +45,11 @@ def manage_addGlossaryCentre(self, id, title='', description='', REQUEST=None):
     """ Adds a new EEAGlossaryCentre object """
     ob = EEAGlossaryCentre(id, title, description)
     self._setObject(id, ob)
-    centre_obj = self._getOb(id)
-    centre_obj.load_subjects_list()
-    centre_obj.load_languages_list()
+    obj = self._getOb(id)
+    engine = obj.getGlossaryEngine()
+    obj.languages_list = engine.languages
+    obj.subjects_list = engine.subjects
+    obj._p_changed = 1
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
@@ -83,8 +83,8 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
         self.subjects_list = {}
         self.translations = []
         self.history = []
-        self.languages_list = []
-        self.search_langs = ''
+        self.languages_list = {}
+        self.search_langs = []
         self.published = 0
         self.hidden_fields = []
         self.alpha_list = string.uppercase + string.digits + 'other'
@@ -98,57 +98,169 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
     manage_addGlossaryFolder_html = EEAGlossaryFolder.manage_addGlossaryFolder_html
     manage_addGlossaryFolder = EEAGlossaryFolder.manage_addGlossaryFolder
 
-    def load_languages_list(self):
-        """loads languages & history properties defaults"""
-        from os.path import join
-        languages_obj = languages_parser()
-        content = self.utOpenFile(join(SOFTWARE_HOME, 'Products','EEAGlossary', 'config', 'languages.xml'))
-        languages_handler, error = languages_obj.parseContent(content)
-        for lang in languages_handler.languages:
-            self.languages_list.append(lang.english_name)
-            self.translations.append(lang.english_name)
-            self.history.append(lang.english_name)
-
-    def load_subjects_list (self):
-        """loads subjects properties defaults"""
-        from os.path import join
-        subjects_obj = subjects_parser()
-        content = self.utOpenFile(join(SOFTWARE_HOME, 'Products','EEAGlossary','config', 'subjects.xml'))
-        subjects_handler, error = subjects_obj.parseContent(content)
-        for code in subjects_handler.subjects:
-            self.subjects_list[code.code] = code.name
-
     def get_subjects_list (self):
         """gets subjects list in alphabetical order """
         subjects_values = self.subjects_list.values()
         subjects_values.sort()
         return subjects_values
 
+    def get_languages_list(self):
+        """ """
+        languages_values = self.languages_list.keys()
+        languages_values.sort()
+        return languages_values
+
     ##########################
     #   MANAGEMENT FUNCTIONS #
     ##########################
 
-    def manageProperties(self, title='', description='', alpha_list=[], types_list=[], subjects_list=[], 
-        languages_list=[], search_langs=[], published=0, hidden_fields=[], REQUEST=None):
-        """ manage properties for EEAGlossaryCentre """
+    def manageBasicProperties(self, title='', description='', published=0, REQUEST=None):
+        """ manage basic properties for EEAGlossaryCentre """
         self.title = title
         self.description = description
-        self.alpha_list = self.utConvertLinesToList(alpha_list)
-        self.types_list = self.utConvertLinesToList(types_list)
-        #self.subjects_list = self.utConvertLinesToList(subjects_list)
-        self.languages_list = self.utConvertLinesToList(languages_list)
-        self.search_langs = self.utConvertLinesToList(search_langs)
         self.published = published
-        self.hidden_fields = self.utConvertLinesToList(hidden_fields)
+        self._p_changed = 1
         if REQUEST is not None:
-            return REQUEST.RESPONSE.redirect('manage_properties_html?save=ok')
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=0&save=ok')
 
+    def manageSubjectsProperties(self, ids=[], old_code='', code='', name='', REQUEST=None):
+        """ manage subjects for EEAGlossaryCentre"""
+        if self.utAddObjectAction(REQUEST):
+            if string.strip(code) == '' or string.strip(name) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
+            else:
+                self.subjects_list[code] = name
+                self._p_changed = 1
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(code) == '' or string.strip(name) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
+            else:
+                del self.subjects_list[old_code]
+                self.subjects_list[code] = name
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
+            for subj in self.utConvertToList(ids):
+                del self.subjects_list[subj]
+            self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3&save=ok')
+
+    def manageLanguagesProperties(self, ids='', lang='', charset='', english_name='', old_english_name='', REQUEST=None):
+        """ manage languages for EEAGlossaryCentre """
+        if self.utAddObjectAction(REQUEST):
+            if string.strip(lang)=='' or string.strip(charset)=='' or string.strip(english_name)=='':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=4')
+            else:
+                self.languages_list[english_name] = (lang, charset)
+                self._p_changed = 1
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(lang)=='' or string.strip(charset)=='' or string.strip(english_name)=='':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=4')
+            else:
+                del self.languages_list[old_english_name]
+                self.languages_list[english_name] = (lang, charset)
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=4')
+            for english_name in self.utConvertToList(ids):
+                del self.languages_list[english_name]
+            self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=4&save=ok')
+
+    def manageSearchProperties(self, ids='', language='', old_language='', REQUEST=None):
+        """ maange the search languages for EEAGlossaryCentre """
+        if self.utAddObjectAction(REQUEST):
+            if string.strip(language) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=5')
+            else:
+                self.search_langs.append(language)
+                self._p_changed = 1
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(language) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=5')
+            else:
+                self.search_langs.remove(old_language)
+                self.search_langs.append(language)
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=5')
+            for language in self.utConvertToList(ids):
+                self.search_langs.remove(language)
+            self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=5&save=ok')
+
+    def manageTypesProperties(self, old_type='', new_type='', ids='', REQUEST=None):
+        """ manage the types properties for EEAGlossaryCentre """
+        if self.utAddObjectAction(REQUEST):
+            if string.strip(new_type) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2')
+            else:
+                self.types_list.append(new_type)
+                self._p_changed = 1
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(new_type) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2')
+            else:
+                self.types_list.remove(old_type)
+                self.types_list.append(new_type)
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2')
+            for type in self.utConvertToList(ids):
+                self.types_list.remove(type)
+            self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2&save=ok')
+
+    def manageHiddenProperties(self, old_field='', field='', ids='', REQUEST=None):
+        """ manage the hidden properties for EEAGlossaryCentre """
+        if self.utAddObjectAction(REQUEST):
+            if string.strip(field) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=6')
+            else:
+                self.hidden_fields.append(field)
+                self._p_changed = 1
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(field) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=6')
+            else:
+                self.hidden_fields.remove(old_field)
+                self.hidden_fields.append(field)
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=6')
+            for field in self.utConvertToList(ids):
+                self.hidden_fields.remove(field)
+            self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=6&save=ok')
+
+
+    def getGlossaryEngine(self):
+        """ """
+        return self.unrestrictedTraverse(EEA_GLOSSARY_ENGINE_NAME, None)
 
     #####################
     #   MANAGEMENT TABS #
     #####################
 
     manage_properties_html = DTMLFile('dtml/EEAGlossaryCentre/properties', globals())
+    prop_basic_html = DTMLFile('dtml/EEAGlossaryCentre/properties_basic', globals())
+    prop_alpha_html = DTMLFile('dtml/EEAGlossaryCentre/properties_alpha', globals())
+    prop_types_html = DTMLFile('dtml/EEAGlossaryCentre/properties_types', globals())
+    prop_subjects_html = DTMLFile('dtml/EEAGlossaryCentre/properties_subjects', globals())
+    prop_languages_html = DTMLFile('dtml/EEAGlossaryCentre/properties_languages', globals())
+    prop_search_html = DTMLFile('dtml/EEAGlossaryCentre/properties_search', globals())
+    prop_hidden_html = DTMLFile('dtml/EEAGlossaryCentre/properties_hidden', globals())
+
     preview_html = DTMLFile('dtml/EEAGlossaryCentre/preview', globals())
     contexts_html = DTMLFile('dtml/EEAGlossaryCentre/contexts', globals())
     check_list_html = DTMLFile('dtml/EEAGlossaryCentre/checklist', globals())

@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.14 2004/05/04 10:18:49 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.15 2004/05/04 13:32:26 finrocvs Exp $
 
 #Python imports
 
@@ -55,6 +55,27 @@ class utils:
                 if name==ut_subj:
                     ret[code]=name
         return ret
+
+    def utAddObjectAction(self, REQUEST=None):
+        """Check if adding an object"""
+        res = 0
+        if REQUEST:
+            res = REQUEST.has_key('add')
+        return res
+
+    def utUpdateObjectAction(self, REQUEST=None):
+        """Check if updating an object"""
+        res = 0
+        if REQUEST:
+            res = REQUEST.has_key('update')
+        return res
+
+    def utDeleteObjectAction(self, REQUEST=None):
+        """Check if deleting an object"""
+        res = 0
+        if REQUEST:
+            res = REQUEST.has_key('delete')
+        return res
 
     def utConvertToList(self, something):
         """Convert to list"""
