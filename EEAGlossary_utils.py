@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.13 2004/05/03 20:05:32 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.14 2004/05/04 10:18:49 finrocvs Exp $
 
 #Python imports
 
@@ -93,6 +93,15 @@ class utils:
             if term.count(" ") == len(term):
                 return 1
             return 0
+
+    def utListSubjects (self):
+        """loads subjects list if match"""
+        ret={}
+        for line1 in self.REQUEST.PARENTS[0].subjects_list.keys():
+            for line2 in self.subjects:
+                if line2==self.REQUEST.PARENTS[0].subjects_list[line1]:
+                    ret[line1]=line2
+        return ret
 
     def utOpenFile(self, path, mode='r'):
         file = open(path, mode)

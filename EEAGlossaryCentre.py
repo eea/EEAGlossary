@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.13 2004/05/03 20:07:49 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.14 2004/05/04 10:18:49 finrocvs Exp $
 
 # python imports
 import string
@@ -86,7 +86,7 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
         self.languages_list = []
         self.search_langs = ''
         self.published = 0
-        self.hidden_fields = ''
+        self.hidden_fields = []
         self.alpha_list = string.uppercase + string.digits + 'other'
         utils.__dict__['__init__'](self)
 
@@ -147,6 +147,7 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
     #####################
     #   MANAGEMENT TABS #
     #####################
+
     manage_properties_html = DTMLFile('dtml/EEAGlossaryCentre/properties', globals())
     preview_html = DTMLFile('dtml/EEAGlossaryCentre/preview', globals())
     contexts_html = DTMLFile('dtml/EEAGlossaryCentre/contexts', globals())
