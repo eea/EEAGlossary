@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.75 2004/06/07 14:33:59 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.76 2004/06/08 07:23:11 finrocvs Exp $
 
 # python imports
 import string
@@ -763,8 +763,8 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                 elem_ob = folder._getOb(self.ut_makeId(obj.entry), None)
                 if elem_ob is not None:
                     for k,v in obj.translations.items():
-                        elem_ob.set_translations_list(k, v.encode('utf-8'))
-                        elem_ob.set_history(k, v.encode('utf-8'))
+                        elem_ob.set_translations_list(k, v)
+                        elem_ob.set_history(k, v)
                     elem_ob.cu_recatalog_object(elem_ob)
                 else:
                     try:
@@ -791,8 +791,8 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                             #print buf2
                             #print buf3
                             #print buf3
-                            elem_ob.set_translations_list(k, v.encode('utf-8'))
-                            elem_ob.set_history(k, v.encode('utf-8'))
+                            elem_ob.set_translations_list(k, v)
+                            elem_ob.set_history(k, v)
                         elem_ob.cu_recatalog_object(elem_ob)
             obj.emptyObject()
         if REQUEST is not None:
