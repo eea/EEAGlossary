@@ -27,9 +27,45 @@
                             &nbsp;<img src="misc_/EEAGlossary/img_search_med.gif" border=0 alt="Search for a term">&nbsp;<span class="head1">Search for terms</span>
                         </p>
                         <p class=mainfont>
-                            <dtml-comment>
-                            <dtml-var search_box>
-                            </dtml-comment>
+                        <form action="searchGlossary" method="post" name="frmSearch">
+                        <table border=0 cellpadding=0 cellspacing=0 width="100%">
+                            <tr>
+                                <th>Term</th>
+                                <td align="left" valign="top">
+                                        <input type="text" name="query" size="40" value="">
+                                        <dtml-let src_langs="get_search_langs()">
+                                        <select 
+                                            <dtml-if "_.len(src_langs)<2">disabled
+                                            <dtml-else>type="text"
+                                            </dtml-if> name="language">
+                                        <dtml-in src_langs>
+                                            <option <dtml-if "_['sequence-item']=='English'">selected</dtml-if>><dtml-var sequence-item></option>
+                                        </dtml-in>
+                                        </select>&nbsp;
+                                        </dtml-let>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th >Definition</th>
+                                <td align="left" valign="top">
+                                        <input type="text" name="definition" size="40" value="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Show per page</th>
+                                <td align="left" valign="top">
+                                    <select type="text" name="size">
+                                        <option selected>10</option>
+                                        <option>20</option>
+                                        <option>50</option>
+                                        <option>100</option>
+                                    </select>&nbsp;
+                                    <input class="form-element" type="submit" name="SUBMIT" value="Find in Glossary">
+                                </td>
+                            </tr>
+                        </table>
+                        </form>
+                        <a href="search_help" target="_new">Search Help</a>
                         </p>
                     </td>
                 </tr>
