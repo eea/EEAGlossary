@@ -20,7 +20,9 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryEngine.py,v 1.5 2004/05/05 17:44:32 finrocvs Exp $
+#$Id: EEAGlossaryEngine.py,v 1.6 2004/05/05 20:23:21 finrocvs Exp $
+
+import string
 
 # Zope imports
 from Globals import DTMLFile, InitializeClass
@@ -42,7 +44,8 @@ class EEAGlossaryEngine(SimpleItem, utils):
     product_name = EEA_GLOSSARY_PRODUCT_NAME
     icon = 'misc_/EEAGlossary/engine.gif'
 
-    manage_options =({'label':'Help', 'action':'help_html'},)
+    manage_options =({'label':'Properties', 'action':'manage_properties_html'},
+                    {'label':'Help', 'action':'help_html'},)
 
     security = ClassSecurityInfo()
 
@@ -50,10 +53,13 @@ class EEAGlossaryEngine(SimpleItem, utils):
         """ constructor """
         self.id = EngineID
         self.languages = {}
-        #self.translations = {}
         self.subjects = {}
         self.roles = {}
         self.unicode_langs = []
+        self.list_types = []
+        self.trans_contact = {}
+        self.technic_contact = {}
+        #self.translations = {}
 
     def load_roles_list(self):
         """ """
@@ -90,6 +96,160 @@ class EEAGlossaryEngine(SimpleItem, utils):
             self.subjects[code.code] = code.name
         self._p_changed = 1
 
+    def get_languages(self):
+        """ """
+        langs = self.languages.keys()
+        langs.sort()
+        return langs
+
+    ##########################
+    #   MANAGEMENT FUNCTIONS #
+    ##########################
+
+    def manageTechnicProperties(self, ids=[], old_email='', email='', phone='', name='', REQUEST=None):
+        """ manage tecnical contacts for EEAGlossaryEngine"""
+        if self.utAddObjectAction(REQUEST):
+            if string.strip(email) == '' or string.strip(name) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=0')
+            else:
+                self.technic_contact[email] = (name, phone)
+                self._p_changed = 1
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(email) == '' or string.strip(name) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=0')
+            else:
+                del self.technic_contact[old_email]
+                self.technic_contact[email] = (name, phone)
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=0')
+            for email in self.utConvertToList(ids):
+                del self.technic_contact[email]
+            self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=0&save=ok')
+
+    def manageTranslatorProperties(self, ids=[], old_email='', email='', phone='', name='', REQUEST=None):
+        """ manage translator contacts for EEAGlossaryEngine"""
+        if self.utAddObjectAction(REQUEST):
+            if string.strip(email) == '' or string.strip(name) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=0')
+            else:
+                self.trans_contact[email] = (name, phone)
+                self._p_changed = 1
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(email) == '' or string.strip(name) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=0')
+            else:
+                del self.trans_contact[old_email]
+                self.trans_contact[email] = (name, phone)
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=0')
+            for email in self.utConvertToList(ids):
+                del self.trans_contact[email]
+            self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=0&save=ok')
+
+    def manageUnicodeProperties(self, ids='', language='', old_language='', REQUEST=None):
+        """ maange the unicode languages for EEAGlossaryEngine """
+        if self.utAddObjectAction(REQUEST):
+            if string.strip(language) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1')
+            else:
+                self.unicode_langs.append(language)
+                self._p_changed = 1
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(language) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1')
+            else:
+                self.unicode_langs.remove(old_language)
+                self.unicode_langs.append(language)
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1')
+            for language in self.utConvertToList(ids):
+                self.unicode_langs.remove(language)
+            self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1&save=ok')
+
+    def manageTypesProperties(self, old_type='', new_type='', ids='', REQUEST=None):
+        """ manage the types properties for EEAGlossaryEngine """
+        if self.utAddObjectAction(REQUEST):
+            if string.strip(new_type) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2')
+            else:
+                self.list_types.append(new_type)
+                self._p_changed = 1
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(new_type) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2')
+            else:
+                self.list_types.remove(old_type)
+                self.list_types.append(new_type)
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2')
+            for type in self.utConvertToList(ids):
+                self.list_types.remove(type)
+            self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2&save=ok')
+
+    def manageSubjectsProperties(self, ids=[], old_code='', code='', name='', REQUEST=None):
+        """ manage subjects for EEAGlossaryEngine"""
+        if self.utAddObjectAction(REQUEST):
+            if string.strip(code) == '' or string.strip(name) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
+            else:
+                self.subjects[code] = name
+                self._p_changed = 1
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(code) == '' or string.strip(name) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
+            else:
+                del self.subjects[old_code]
+                self.subjects[code] = name
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
+            for subj in self.utConvertToList(ids):
+                del self.subjects[subj]
+            self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3&save=ok')
+
+    def manageLanguagesProperties(self, ids='', lang='', charset='', english_name='', old_english_name='', REQUEST=None):
+        """ manage languages for EEAGlossaryEngine """
+        if self.utAddObjectAction(REQUEST):
+            if string.strip(lang)=='' or string.strip(charset)=='' or string.strip(english_name)=='':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=4')
+            else:
+                self.languages[english_name] = (lang, charset)
+                self._p_changed = 1
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(lang)=='' or string.strip(charset)=='' or string.strip(english_name)=='':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=4')
+            else:
+                del self.languages[old_english_name]
+                self.languages[english_name] = (lang, charset)
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=4')
+            for english_name in self.utConvertToList(ids):
+                del self.languages[english_name]
+            self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=4&save=ok')
+
     def manage_afterAdd(self, item, container):
         """ """
         SimpleItem.inheritedAttribute('manage_afterAdd')(self, item, container)
@@ -104,5 +264,12 @@ class EEAGlossaryEngine(SimpleItem, utils):
         root_obj._delRoles(self.roles.keys(), None)
 
     help_html = DTMLFile("dtml/EEAGlossaryEngine/help", globals())
+    manage_properties_html = DTMLFile("dtml/EEAGlossaryEngine/properties", globals())
+    unicode_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_unicode", globals())
+    types_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_types", globals())
+    languages_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_languages", globals())
+    subjects_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_subjects", globals())
+    contact_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_contact", globals())
 
+    style_css = DTMLFile('dtml/EEAGlossaryEngine/style', globals())
 InitializeClass(EEAGlossaryEngine)

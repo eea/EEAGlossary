@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.20 2004/05/05 17:44:32 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.21 2004/05/05 20:23:21 finrocvs Exp $
 
 # python imports
 import string
@@ -286,6 +286,10 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
         """ return the list of roles for authenticated user """
         return self.REQUEST.AUTHENTICATED_USER.getRoles()
 
+    def style_css(self):
+        """ return the css file from EEAGlossaryEngine """
+        return self.getGlossaryEngine().style_css.read()
+
     #####################
     #   MANAGEMENT TABS #
     #####################
@@ -307,10 +311,8 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
     all_terms_html = DTMLFile('dtml/EEAGlossaryCentre/allterms', globals())
     management_page_html = DTMLFile('dtml/EEAGlossaryCentre/administration', globals())
 
-    style_css = DTMLFile('dtml/EEAGlossaryCentre/style', globals())
     help_html = DTMLFile("dtml/EEAGlossaryCentre/help", globals())
     help_contact_html = DTMLFile("dtml/EEAGlossaryCentre/help_contact", globals())
-
 
     manage_utf8_header = DTMLFile('dtml/EEAGlossaryCentre/utf8_header', globals())
     manage_utf8_footer = DTMLFile('dtml/EEAGlossaryCentre/utf8_footer', globals())
