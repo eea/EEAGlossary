@@ -2,55 +2,74 @@
     <dtml-call "REQUEST.set('languagescheck',['English',])">
 </dtml-if>
 
-<table style="border: 1px solid #ddaaaa;" cellpadding="2" cellspacing="2" width="60%">
-    <tr>
-        <td colspan=100>Status:<b> <dtml-unless is_published>Not </dtml-unless>Published</b></td>
-    </tr>
-
-
-    <tr>
-        <td width="100%" colspan=100>
-        <a href="<dtml-var absolute_url>"><dtml-var name></a>&nbsp;
-        <dtml-if QA_needed>
-        <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
-        </dtml-if>
-        <dtml-var definition>
-        <dtml-if "'Definition' in languagescheck">
-            <dtml-var "toutf8(definition,'iso-8859-1')">
-        </dtml-if>
-        <br>
-        <dtml-if utIsSynonym>
-            <dtml-in synonyms size=1>
-                <dtml-if sequence-start>See </dtml-if>
-                <dtml-if "_.len(_['sequence-item'])>0">
-                    <dtml-let record=sequence-item obj="utGetElement(record)">
-                            <a href="<dtml-var "obj.absolute_url()">/manage_workspace"><dtml-var "obj.name"></a>.
-                    </dtml-let>
-                </dtml-if>
-            </dtml-in>
-        </dtml-if>
-        </td>
-    </tr>
-
-    <tr>
-        <td align="left" valign="top"><div><b>Language</b></div></td>
-        <td align="left" valign="top"><div><b>Translation</b></div></td>
-    </tr>
-
-    <dtml-in languagescheck sort=id>
-        <dtml-let langid=sequence-item role="'QC '+langid">
+<table border="1" cellpadding="0" cellspacing="0" width="60%">
+<tr><td>
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
-            <td align="left" valign="top" width="30%"><div><label for="cb-<dtml-var langid>"><dtml-var langid></label></div></td>
-            <td align="left" valign="top" width="70%">
-                <a href="<dtml-var absolute_url>/check_translation_html?lang_code=<dtml-var langid>" target="_new">
-                    <dtml-if "langid in get_unicode_langs()">
-                        <dtml-var "get_translation_by_language(langid)">
-                    <dtml-else>
-                        <dtml-var "toutf8(get_translation_by_language(langid),get_language_charset(langid))">
+            <td colspan=100>Status:<b> <dtml-unless is_published>Not </dtml-unless>Published</b></td>
+        </tr>
+
+
+        <tr>
+            <td width="100%" colspan=100>
+            <a href="<dtml-var absolute_url>"><dtml-var name></a>&nbsp;
+            <dtml-if QA_needed>
+            <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
+            </dtml-if>
+            <dtml-var definition>
+            <dtml-if "'Definition' in languagescheck">
+                <dtml-var "toutf8(definition,'iso-8859-1')">
+            </dtml-if>
+            <br>
+            <dtml-if utIsSynonym>
+                <dtml-in synonyms size=1>
+                    <dtml-if sequence-start>See </dtml-if>
+                    <dtml-if "_.len(_['sequence-item'])>0">
+                        <dtml-let record=sequence-item obj="utGetElement(record)">
+                                <a href="<dtml-var "obj.absolute_url()">/manage_workspace"><dtml-var "obj.name"></a>.
+                        </dtml-let>
                     </dtml-if>
-                </a><br>
+                </dtml-in>
+            </dtml-if>
             </td>
         </tr>
-        </dtml-let>
-    </dtml-in>
+
+        <tr class="row-header">
+            <td class="cell-header" align="left" valign="top"><div><b>Language</b></div></td>
+            <td class="cell-header" align="left" valign="top"><div><b>Translation</b></div></td>
+        </tr>
+
+        <dtml-in languagescheck sort=id>
+            <dtml-let langid=sequence-item role="'QC '+langid">
+            <dtml-if sequence-odd>
+                <tr class="row-even">
+                    <td align="left" valign="top" width="30%"><div><label for="cb-<dtml-var langid>"><dtml-var langid></label></div></td>
+                    <td align="left" valign="top" width="70%">
+                        <a href="<dtml-var absolute_url>/check_translation_html?lang_code=<dtml-var langid>" target="_new">
+                            <dtml-if "langid in get_unicode_langs()">
+                                <dtml-var "get_translation_by_language(langid)">
+                            <dtml-else>
+                                <dtml-var "toutf8(get_translation_by_language(langid),get_language_charset(langid))">
+                            </dtml-if>
+                        </a><br>
+                    </td>
+                </tr>
+            <dtml-else>
+                <tr class="row-odd">
+                    <td align="left" valign="top" width="30%"><div><label for="cb-<dtml-var langid>"><dtml-var langid></label></div></td>
+                    <td align="left" valign="top" width="70%">
+                        <a href="<dtml-var absolute_url>/check_translation_html?lang_code=<dtml-var langid>" target="_new">
+                            <dtml-if "langid in get_unicode_langs()">
+                                <dtml-var "get_translation_by_language(langid)">
+                            <dtml-else>
+                                <dtml-var "toutf8(get_translation_by_language(langid),get_language_charset(langid))">
+                            </dtml-if>
+                        </a><br>
+                    </td>
+                </tr>
+            </dtml-if>
+            </dtml-let>
+        </dtml-in>
+    </table>
+</td></tr>
 </table>

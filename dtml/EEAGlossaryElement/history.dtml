@@ -1,4 +1,5 @@
 <dtml-var manage_utf8_header>
+<dtml-var style_console_css>
 <dtml-var manage_tabs>
 
 <dtml-if "_.SecurityCheckPermission('View Glossary History',this())">
@@ -9,30 +10,46 @@
     The format is [translation] [date and time of modification] [user that made the changes].
     <br><br></p>
 
-    <table border=1 cellpadding=1 cellspacing=1 width="100%">
-    <dtml-in get_english_names>
-        <dtml-let lang_id="_['sequence-item']" history_records="get_history_by_language(lang_id)">
-        <dtml-if "check_allowed_translations(lang_id) and _.len(history_records)>0">
-            <tr>
-                <td colspan="3">History for <b><dtml-var lang_id></b></td>
-            </tr>
-            <dtml-in history_records>
-            <dtml-let record="_['sequence-item']">
-            <tr>
-                <td><dtml-if "lang_id in get_unicode_langs()">
-                        <dtml-var "record['trans']">
-                    <dtml-else>
-                        <dtml-var "display_unicode_langs(record['trans'], charset=get_language_charset(lang_id))">
-                    </dtml-if></td>
-                <td><dtml-var "record['time']"></td>
-                <td><dtml-var "record['user']"></td>
-            </tr>
+<table border="1" cellpadding="0" cellspacing="0" width="100%">
+    <tr><td>
+        <table border="0" cellpadding="2" cellspacing="0" width="100%">
+        <dtml-in get_english_names>
+            <dtml-let lang_id="_['sequence-item']" history_records="get_history_by_language(lang_id)">
+            <dtml-if "check_allowed_translations(lang_id) and _.len(history_records)>0">
+                <tr class="row-header">
+                    <td class="cell-header" colspan="3">History for <b><dtml-var lang_id></b></td>
+                </tr>
+                <dtml-in history_records>
+                <dtml-let record="_['sequence-item']">
+                <dtml-if sequence-odd>
+                <tr class="row-even">
+                    <td><dtml-if "lang_id in get_unicode_langs()">
+                            <dtml-var "record['trans']">
+                        <dtml-else>
+                            <dtml-var "display_unicode_langs(record['trans'], charset=get_language_charset(lang_id))">
+                        </dtml-if></td>
+                    <td><dtml-var "record['time']"></td>
+                    <td><dtml-var "record['user']"></td>
+                </tr>
+                <dtml-else>
+                <tr class="row-odd">
+                    <td><dtml-if "lang_id in get_unicode_langs()">
+                            <dtml-var "record['trans']">
+                        <dtml-else>
+                            <dtml-var "display_unicode_langs(record['trans'], charset=get_language_charset(lang_id))">
+                        </dtml-if></td>
+                    <td><dtml-var "record['time']"></td>
+                    <td><dtml-var "record['user']"></td>
+                </tr>
+                </dtml-if>
+                </dtml-let>
+                </dtml-in>
+            </dtml-if>
             </dtml-let>
-            </dtml-in>
-        </dtml-if>
-        </dtml-let>
-    </dtml-in>
-    </table>
+        </dtml-in>
+        </table>
+    </td></tr>
+</table>
 <dtml-else>
 <p class="form-help">
 <b>Sorry, access denied.</b><br><br>

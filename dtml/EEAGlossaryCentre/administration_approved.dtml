@@ -1,16 +1,19 @@
 <dtml-var manage_page_header>
+<dtml-var style_console_css>
 <dtml-var manage_tabs>
 
-<h2>List of Approved Terms</h2>
+
 <dtml-call "REQUEST.set('tottcount',0)">
 <dtml-call "REQUEST.set('totccount',0)">
+
 <dtml-call "REQUEST.set('tcount',0)">
 <dtml-call "REQUEST.set('ccount',0)">
-<p>
+
+<table width="100%" border="0" cellpadding="2" cellspacing="0">
+<tr class="row-header"><td class="cell-header" colspan="2">List of Approved Terms</td></tr>
 
 <dtml-if isManager>
-<table width="100%">
-<tr>
+<tr >
 <td width="40%"><b>Name</b></td>
 <td width="*">&nbsp;<b>Last modification</b></td>
 </tr>
@@ -20,17 +23,31 @@
 
         <dtml-if is_published>
             <dtml-call "REQUEST.set('tcount',tcount+1)">
-            <dtml-if "meta_type=='EEA Glossary Element'"><dtml-call "REQUEST.set('ccount',ccount+1)"></dtml-if>
-                <tr>
-                    <td width="40%"><li><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></li></td>
-                    <td width="*">
-                        &nbsp;<dtml-var bobobase_modification_time>&nbsp;
-                        <dtml-if QA_needed>
-                            <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
-                        </dtml-if>
-                    </td>
-                </tr>
-        </dtml-if>
+            <dtml-if "ut_test_even(tcount)">
+                <dtml-if "meta_type=='EEA Glossary Element'"><dtml-call "REQUEST.set('ccount',ccount+1)"></dtml-if>
+                    <tr class="row-even">
+                        <td width="40%"><li><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></li></td>
+                        <td width="*">
+                            &nbsp;<dtml-var bobobase_modification_time>&nbsp;
+                            <dtml-if QA_needed>
+                                <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
+                            </dtml-if>
+                        </td>
+                    </tr>
+                </dtml-if>
+            </dtml-if>
+            <dtml-unless "ut_test_even(tcount)">
+                <dtml-if "meta_type=='EEA Glossary Element'"><dtml-call "REQUEST.set('ccount',ccount+1)"></dtml-if>
+                    <tr class="row-odd">
+                        <td width="40%"><li><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></li></td>
+                        <td width="*">
+                            &nbsp;<dtml-var bobobase_modification_time>&nbsp;
+                            <dtml-if QA_needed>
+                                <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
+                            </dtml-if>
+                        </td>
+                    </tr>
+            </dtml-unless>
     </dtml-in>
     <tr>
     <td colspan="2">
@@ -44,7 +61,5 @@
 <dtml-else>
     This operation is only allowed to Managers.
 </dtml-if>
-
-</p>
 
 <dtml-var manage_page_footer>

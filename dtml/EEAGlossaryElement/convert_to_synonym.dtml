@@ -1,11 +1,27 @@
+<dtml-var style_console_css>
 
-<dtml-unless "REQUEST.has_key('syn')">
-    WARNING: No synonyms links submitted! Remember to enter synonyms manually after convertion.<br>
-</dtml-unless>
+<table width="50%" border="1" cellpadding="0" cellspacing="0">
+    <tr><td>
+        <table width="100%" border="0" cellpadding="2" cellspacing="0">
+            <tr class="row-header"><td class="cell-header">
+                <dtml-unless "REQUEST.has_key('syn')">
+                    WARNING: No synonyms links submitted! Remember to enter synonyms manually after convertion.<br>
+                </dtml-unless>
+            </td></tr>
 
-DELETING ORIGINAL TERM<br>
+            <tr><td class="row-odd">
+                <b>DELETING ORIGINAL TERM<br></b>
+            </td></tr>
 
-ADDING SYNONYM<br>
+            <tr><td class="row-odd">
+               <b>ADDING SYNONYM</b><br>
+            </td></tr>
 
-<dtml-call reindex_object>
-<p>"<dtml-var id>"&nbsp;converted as Synonym! <br> Go to the converted <a href="<dtml-var absolute_url>/manage_workspace">Synonym</a></p>
+            <tr><td>
+                <br>
+                <dtml-call reindex_object>
+                <b>"<dtml-var id>"&nbsp;converted as Synonym! <br> Go to the converted <a href="<dtml-var absolute_url>/manage_workspace">Synonym</a><b>
+            </td></tr>
+        </table>
+    </td></tr>
+</table>

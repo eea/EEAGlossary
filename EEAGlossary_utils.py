@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.39 2004/05/18 08:25:59 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.40 2004/05/19 08:00:17 finrocvs Exp $
 
 #Python imports
 import string
@@ -36,6 +36,10 @@ class utils:
 
     def __init__(self):
         pass
+
+    def ut_test_even(self, p_number):
+        """ return true if even """
+        return not(p_number%2)
 
     def ut_makeId(self, p_name):
         """ generate the ID """

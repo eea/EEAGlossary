@@ -1,5 +1,5 @@
 <dtml-var manage_page_header>
-<dtml-var style_css>
+<dtml-var style_console_css>
 <dtml-var manage_tabs>
 
 <p class="form-help">
@@ -8,21 +8,20 @@ Change the properties of the glossary term from the tabs bellow.
 
 <dtml-let pagetab="REQUEST.get('pagetab', '0')">
 
-<dtml-comment>
-    Main menu bar
-</dtml-comment>
-<div class="system-msg">
-&nbsp;<a class="<dtml-if "pagetab=='0'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=0">Basic properties</a>
-&nbsp;|&nbsp;<a class="<dtml-if "pagetab=='1'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=1">Media</a>
-&nbsp;|&nbsp;<a class="<dtml-if "pagetab=='2'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=2">Actions</a>
-&nbsp;
-</div>
-
 <dtml-if "REQUEST.has_key('save') and REQUEST['save']=='ok'">
 <div class="system-msg">
 Saved changes. (<dtml-var ZopeTime>)
 </div>
 </dtml-if>
+
+<table width="90%" border="1" cellpadding="0" cellspacing="0" bordercolor="#333333">
+    <tr class="row-header"><td height="20px" class="cell-header">
+        &nbsp;<a class="<dtml-if "pagetab=='0'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=0">Basic properties</a>
+        &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='1'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=1">Media</a>
+        &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='2'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=2">Actions</a>
+        &nbsp;
+    </td></tr>
+</table>
 
 <dtml-if "pagetab=='0'">
     <dtml-var basic_html>

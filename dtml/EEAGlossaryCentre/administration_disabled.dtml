@@ -1,18 +1,22 @@
 <dtml-var manage_page_header>
+<dtml-var style_console_css>
 <dtml-var manage_tabs>
 
-<h2>List of disabled terms</h2>
-<p>
 <dtml-if isManager>
 
-<table width="100%">
+<table width="100%" border="0" cellpadding="2" cellspacing="0">
+    <tr class="row-header">
+        <td class="cell-header" colspan="2">List of disabled terms</td>
+    </tr>
+
     <tr>
         <td width="40%"><b>Name</b></td>
         <td width="60%">&nbsp;<b>Last modification</b></td>
     </tr>
 
 <dtml-in get_disabled>
-    <tr>
+    <dtml-if sequence-odd>
+    <tr class="row-even">
         <td width="40%"><li><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></li></td>
         <td width="*">
             &nbsp;<dtml-var bobobase_modification_time>&nbsp;
@@ -21,12 +25,22 @@
             </dtml-if>
         </td>
     </tr>
+    <dtml-else>
+    <tr class="row-odd">
+        <td width="40%"><li><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></li></td>
+        <td width="*">
+            &nbsp;<dtml-var bobobase_modification_time>&nbsp;
+            <dtml-if QA_needed>
+                <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
+            </dtml-if>
+        </td>
+    </tr>
+    </dtml-if>
 </dtml-in>
 </table>
 
 <dtml-else>
 This operation is only allowed to Managers.
 </dtml-if>
-</p>
 
 <dtml-var manage_page_footer>

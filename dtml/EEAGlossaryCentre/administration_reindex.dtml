@@ -1,6 +1,8 @@
 <dtml-var manage_page_header>
+<dtml-var style_console_css>
 <dtml-var manage_tabs>
 
+<br>
 <dtml-if isManager>
     <dtml-if reindexCatalog>
     Rendexing done!

@@ -1,20 +1,17 @@
 <dtml-var manage_page_header>
+<dtml-var style_console_css>
 <dtml-var manage_tabs>
 
-<b>Synonym:</b><br><br>
+<br>
 The definiton and definition source cannot be changed. You have to go to the GlossaryElement this term is synonym of.<br><br>
 
-
-<p>
-The original english term is:<br><b><dtml-var name>&nbsp;</b><br><br>
+<b>The original english term is:<br></b><dtml-var name><br><br>
 <dtml-in utGetSynonyms>
-    <dtml-if sequence-start>For definition and other properties see:<br></dtml-if>
+    <dtml-if sequence-start><b>For definition and other properties see:</b><br></dtml-if>
     <dtml-if "_.len(_['sequence-item'].name)>1">
-        <a href="<dtml-var absolute_url>/manage_workspace"><dtml-var title_or_id></a><br>
+        <a href="<dtml-var absolute_url>/manage_workspace"><dtml-var title_or_id></a><br><br>
     </dtml-if>
 </dtml-in>
-</p>
-
 
 <dtml-if "REQUEST.has_key('save') and REQUEST['save']=='ok'">
 <div class="system-msg">
@@ -22,43 +19,40 @@ Saved changes. (<dtml-var ZopeTime>)
 </div>
 </dtml-if>
 
-<dtml-if "'Manager' in _.SecurityGetUser().getRoles() or 'GlossaryManager' in _.SecurityGetUser().getRoles()">
-    <p><b>You can only change the following properties for a synonym.</b></p>
-<form action="manageSynonymOtherProperties" method="post">
-<table>
-<tr>
-  <td align="left" valign="top" width="16"></td>
-  <td align="left" valign="top"><div class="form-label"><label for="cb-name">name</label></div></td>
-  <td align="left" valign="top"><input type="text" name="name:string" size="35" value="<dtml-var name>"></td>
-  <td align="left" valign="top"><div class="list-item">string</div></td>
-</tr>
+<dtml-if isManager>
 
-<tr>
-  <td align="left" valign="top" width="16"></td>
-  <td align="left" valign="top"><div class="form-label"><label for="cb-disabled">disabled</label></div></td>
-  <td align="left" valign="top"><input type="checkbox" name="disabled:boolean" size="35" <dtml-if disabled>CHECKED</dtml-if>></td>
-  <td align="left" valign="top"><div class="list-item">boolean</div></td>
-</tr>
+<table width="50%" border="1" cellpadding="0" cellspacing="0">
+    <tr><td>
+        <table width="100%" border="0" cellpadding="2" cellspacing="0">
+            <form action="manageSynonymOtherProperties" method="post">
+                <tr class="row-header"><td class="cell-header" colspan="2">You can only change the following properties for a synonym.</td></tr>
 
-<tr>
-  <td align="left" valign="top" width="16"></td>
-  <td align="left" valign="top"><div class="form-label"><label for="cb-approved">approved</label></div></td>
-  <td align="left" valign="top"><input type="checkbox" name="approved" size="35" <dtml-if approved>CHECKED</dtml-if>></td>
-  <td align="left" valign="top"><div class="list-item">boolean</div></td>
-</tr>
+                <tr>
+                  <td width="20%" align="left" valign="top"><label for="cb-name"><b>Name:</b></label></td>
+                  <td width="*" align="left" valign="top"><input type="text" name="name:string" size="35" value="<dtml-var name>"></td>
+                </tr>
 
-<tr>
-  <td colspan="2">&nbsp;</td>
-  <td align="left" valign="top">
-    <div class="form-element">
-    <input name="DestinationURL" type="hidden" class="form-element" value="manage_properties" />
-    <input type="submit" class="form-element" value="Save Changes" />
-  </td>
-  <td>&nbsp;</td>
-</tr>
+                <tr>
+                  <td width="20%" align="left" valign="top"><label for="cb-disabled"><b>Disabled:</b></label></td>
+                  <td width="*" align="left" valign="top"><input type="checkbox" name="disabled:boolean" size="35" <dtml-if disabled>CHECKED</dtml-if>></td>
+                </tr>
+
+                <tr>
+                  <td width="20%" align="left" valign="top"><label for="cb-approved"><b>Approved:</b></label></td>
+                  <td width="*" align="left" valign="top"><input type="checkbox" name="approved" size="35" <dtml-if approved>CHECKED</dtml-if>></td>
+                </tr>
+
+                <tr>
+                  <td width="20%" ></td>
+                  <td width="*" align="left" valign="top">
+                    <input name="DestinationURL" type="hidden" value="manage_properties" />
+                    <input type="submit" value="Save Changes" />
+                  </td>
+                </tr>
+            </form>
+        </table>
+    </td></tr>
 </table>
-</form>
-
 </dtml-if>
 
 <dtml-var manage_page_footer>

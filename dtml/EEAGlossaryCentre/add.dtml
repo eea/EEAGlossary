@@ -1,41 +1,37 @@
-<html>
+<link rel="stylesheet" type="text/css" href="/manage_page_style.css">
 
-<head>
-    <title>Add EEAGlossaryCentre</title>
-    <link rel="stylesheet" type="text/css" href="/manage_page_style.css">
-</head>
+<table width="40%" cellpadding="0" cellspacing="0" border="1">
+    <tr><td>
+        <table width="100%" cellpadding="2" cellspacing="0" border="0">
+            <tr bgcolor="#0198CD">
+                <td align="center" valign="top"><div class="form-title">&nbsp; Add EEAGlossary Centre &nbsp;</div></td>
+            </tr>
 
-<body>
-<table cellspacing="0" cellpadding="0" border="1">
-    <tr>
-        <td>&nbsp; Add EEAGlossaryCentre &nbsp;</b>
-        </td>
-    </tr>
-    <tr>
-        <td align=center>
-        <form action="manage_addGlossaryCentre">
-            <table>
-                <tr>
-                    <th>Id:</th>
-                    <td><input type="text" name="id"></td>
-                </tr>
-                <tr>
-                    <th>Title:</th>
-                    <td><input type="text" name="title"></td>
-                </tr>
-                <tr>
-                    <th>Description:</th>
-                    <td><input type="text" name="description"></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input type="submit" value="Add Centre"></td>
-                </tr>
-            </table>
-        </form>
-        </td>
-    </tr>
+
+            <tr>
+                <td align="center">
+                    <table cellspacing="0" cellpadding="2" border="0">
+                    <form action="manage_addGlossaryCentre">
+                        <tr>
+                            <td align="left" valign="top"><div class="form-label">Id:</div></td>
+                            <td align="left" valign="top"><input type="text" name="id"></td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top"><div class="form-label">Title:</div></td>
+                            <td align="left" valign="top"><input type="text" name="title"></td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top"><div class="form-label">Description:</div></td>
+                            <td align="left" valign="top"><input type="text" name="description"></td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top"></td>
+                            <td align="left" valign="top"><div class="form-element"><input lass="form-element" type="submit" value="Add Centre"></div></td>
+                        </tr>
+                    </form>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td></tr>
 </table>
-</body>
-
-</html>
-

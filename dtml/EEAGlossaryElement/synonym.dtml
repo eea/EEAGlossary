@@ -1,30 +1,37 @@
 <dtml-var manage_page_header>
+<dtml-var style_console_css>
 <dtml-var manage_tabs>
 
-<h2>Convert "<dtml-var id>" to Synonym:</h2>
+<table width="70%" border="1" cellpadding="0" cellspacing="0">
+    <tr><td>
+        <table width="100%" border="0" cellpadding="2" cellspacing="0">
+            <tr class="row-header"><td class="cell-header">Convert "<dtml-var id>" to Synonym:</td></tr>
 
+            <tr><td>
+                <table cellpadding="2" cellspacing="0" width="100%" border="0">
+                <form action="convert_element" method="post">
+                <tr>
+                  <td align="left" valign="top"><b>Synonym of (use CTRL for multiple selection)</b></td>
+                  <td align="left" valign="top">
+                    <select name="synonyms" size=10 multiple>
+                        <dtml-in all_elements>
+                            <option  value="<dtml-var sequence-key>">
+                                <dtml-var sequence-key size=40><dtml-unless sequence-item> NOT PUBLISHED</dtml-unless>
+                            </option>
+                        </dtml-in>
+                    </select>
+                  </td>
+                </tr>
 
-<form action="convert_element" method="post">
-<table cellpadding="2" cellspacing="0" width="100%" border="0">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><input type="submit" name="SUBMIT" value="Save and Convert"></td>
+                </tr>
+                </form>
+                </table>
+            </td></tr>
+        </table>
+    </td></tr>
 
-<tr>
-  <td align="left" valign="top"><div>Synonym of (use CTRL for multiple selection)</div></td>
-  <td align="left" valign="top">
-    <select name="synonyms" size=10 multiple>
-        <dtml-in get_all_elements>
-            <option  value="<dtml-var sequence-key>">
-                <dtml-var sequence-key size=40><dtml-unless sequence-item> NOT PUBLISHED</dtml-unless>
-            </option>
-        </dtml-in>
-    </select>
-  </td>
-</tr>
-
-<tr>
-    <td>&nbsp;</td>
-    <td><input type="submit" name="SUBMIT" value="Save and Convert"></td>
-</tr>
 </table>
-</form>
-
 <dtml-var manage_page_footer>

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryNews.py,v 1.6 2004/05/17 12:16:56 finrocvs Exp $
+#$Id: EEAGlossaryNews.py,v 1.7 2004/05/19 08:00:17 finrocvs Exp $
 
 # Zope imports
 from Globals import DTMLFile, MessageDialog, InitializeClass
@@ -29,6 +29,7 @@ from OFS.SimpleItem import SimpleItem
 
 # product imports
 from EEAGlossary_constants import *
+import EEAGlossaryCentre
 
 manage_addGlossaryNews_html = DTMLFile('dtml/EEAGlossaryNews/add_news', globals())
 
@@ -72,6 +73,9 @@ class EEAGlossaryNews(SimpleItem):
         if REQUEST is not None:
             REQUEST.RESPONSE.redirect('manage_properties_html?save=ok')
 
+    #############
+    #   Forms   #
+    #############
     manage_properties_html = DTMLFile("dtml/EEAGlossaryNews/properties", globals())
     index_html = DTMLFile("dtml/EEAGlossaryNews/index", globals())
 

@@ -5,23 +5,25 @@
     <dtml-call "REQUEST.set('lang_code','Nothing')">
 </dtml-if>
 
-<p class="form-help">
-    <b>Welcome</b> to the management tool of <b>EEA glossary database.</b><br>
+<br>
+<table width="100%" border="0" cellpadding="2" cellspacing="0">
+    <tr class="row-header"><td class="cell-header"><b>Welcome</b> to the management tool of <b>EEA glossary database.</b><br></td></tr>
+</table>
 <br>
 
-<table border=1 width="100%">
+<table border="0" width="100%">
 <tr>
     <td width="30%">
-        <table cellpadding="1" cellspacing="1" border=1 width="100%">
-            <tr>
-                <td colspan="2"><b>User Info</b><br></td>
+        <table cellpadding="1" cellspacing="0" border=1 width="100%">
+            <tr class="row-header">
+                <td class="cell-header" colspan="2"><b>User Info</b><br></td>
             </tr>
             <tr>
-                <td>User :&nbsp;</td>
+                <td class="row-odd"><b>User :&nbsp;</b></td>
                 <td><b><dtml-var getAuthenticatedUser></b><br></td>
             </tr>
             <tr>
-                <td>Roles:&nbsp;</td>
+                <td class="row-odd"><b>Roles:&nbsp;</b></td>
                 <td>
                     <dtml-in getAuthenticatedUserRoles>
                         <b><dtml-var sequence-item></b><dtml-if sequence-end>.<dtml-else>,&nbsp;</dtml-if>
@@ -31,9 +33,9 @@
         </table>
 
         <form action="&dtml-URL;" method="get">
-        <table cellpadding="1" cellspacing="1" border=1 width="100%">
+        <table cellpadding="1" cellspacing="0" border="1" width="100%">
             <tr>
-                <td colspan="2">You have the permission to check and change the following languages. Pick the language to check.</td>
+                <td class="row-odd" colspan="2">You have the permission to check and change the following languages. Pick the language to check.</td>
             </tr>
             <tr>
                 <td><select name="lang_code">
@@ -55,11 +57,11 @@
         <dtml-if "lang_code != 'Nothing'">
             <dtml-if "check_allowed_translations(lang_code)">
                 <form action="manageTranslations" method="post">
-                <table cellspacing="1" cellpadding="2" border="1" width="100%">
-                    <tr><td align="left" valign="top">Language</td>
+                <table cellspacing="0" cellpadding="1" border="1" width="100%">
+                    <tr><td class="row-odd" align="left" valign="top"><b>Language</b></td>
                         <td align="left" valign="top"><dtml-var lang_code></td>
                     </tr>
-                        <td align="left" valign="top">Translation</td>
+                        <td class="row-odd" align="left" valign="top"><b>Translation</b></td>
                         <dtml-let result="get_translation_by_language(lang_code)">
                         <td align="left" valign="top">
                             <input type="text" name="translation" size="36" 
@@ -80,42 +82,53 @@
             <b>Chosen language to check: Nothing</b>
         </dtml-if>
         <p>
-        <table border=1 width="100%">
+        <table cellspacing="0" cellpadding="1" border="1" width="100%">
             <tr>
-                <td><dtml-var definition_html></td>
+                <td class="row-odd"><dtml-var definition_html></td>
              </tr>
         </table>
         </p>
     </td>
     <td width="*" valign="top">
-        <table border=1 width="100%">
-            <tr>
-                <td><b>Support/Contact Info</b></td>
+        <table cellpadding="1" cellspacing="0" border="1" width="100%">
+            <tr class="row-header">
+                <td class="cell-header"><b>Support/Contact Info</b></td>
             </tr>
             <tr>
                 <td><dtml-var help_contact_html></td>
             </tr>
             <tr>
-                <td>In order to <b>change your password</b> click <a href="/EEAGlossary/changePassForm">here</a></td>
+                <td class="row-odd">In order to <b>change your password</b> click <a href="/EEAGlossary/changePassForm">here</a></td>
             </tr>
         </table>
-        <table border=1 width="100%">
-            <tr>
-                <td colspan="2"><b>Note!</b>: Please use the following codes for contextual translations, e.g. when several translations terms are given.</td>
-            </tr>
-            <tr><td colspan="2">&nbsp;</td>
-            <tr>
-                <td>Context/Subject code</td>
-                <td>Context/Subject name</td>
-            </tr>
-            <dtml-in get_subjects>
-            <dtml-let record="_['sequence-item']">
-            <tr>
-                <td><b>{<dtml-var "record['code']">}</b></td>
-                <td><dtml-var "record['name']"></td>
-            </tr>
-            </dtml-let>
-            </dtml-in>
+        <table width="100%" border="1" cellpadding="0" cellspacing="0">
+            <tr><td>
+                <table width="100%" border="0" cellpadding="2" cellspacing="0">
+                    <tr>
+                        <td colspan="2"><b>Note!</b>: Please use the following codes for contextual translations, e.g. when several translations terms are given.</td>
+                    </tr>
+                    <tr><td colspan="2">&nbsp;</td>
+                    <tr class="row-header">
+                        <td class="cell-header">Context/Subject code</td>
+                        <td class="cell-header">Context/Subject name</td>
+                    </tr>
+                    <dtml-in get_subjects>
+                    <dtml-let record="_['sequence-item']">
+                        <dtml-if sequence-odd>
+                        <tr>
+                            <td class="row-even"><b>{<dtml-var "record['code']">}</b></td>
+                            <td class="row-even"><dtml-var "record['name']"></td>
+                        </tr>
+                        <dtml-else>
+                        <tr>
+                            <td class="row-odd"><b>{<dtml-var "record['code']">}</b></td>
+                            <td class="row-odd"><dtml-var "record['name']"></td>
+                        </tr>
+                        </dtml-if>
+                    </dtml-let>
+                    </dtml-in>
+                </table>
+            </td></tr>
         </table>
     </td>
 </tr>

@@ -1,47 +1,44 @@
-<html>
-<head>
-    <title>Add EEAGlossaryNews</title>
-    <link rel="stylesheet" type="text/css" href="/manage_page_style.css">
-</head>
+<link rel="stylesheet" type="text/css" href="/manage_page_style.css">
 
-<body>
+<table cellspacing="0" cellpadding="0" border="1" width="60%">
+    <tr><td>
+        <table cellspacing="0" cellpadding="2" border="0" width="100%">
+            <tr bgcolor="#0198CD">
+                <td><div class="form-title" align="center">&nbsp; Add EEAGlossary News</div></td>
+            </tr>
 
-<table cellspacing="0" cellpadding="0" border="1">
-    <tr>
-        <td class="form-title">&nbsp; Add EEAGlossaryNews &nbsp;</b></td>
-    </tr>
-    <tr>
-        <td>
-            <form action="manage_addGlossaryNews">
-            <table>
-                <tr>
-                    <th>Id:</th>
-                    <td><input type="text" name="id:string"></td>
-                </tr>
-                <tr>
-                    <th>Title:</th>
-                    <td><input type="text" name="title:string"></td>
-                </tr>
-                <tr>
-                    <th>News Date:</th>
-                    <td><input type="text" name="news_date:string"></td>
-                </tr>
-                <tr>
-                    <th>Description:</th>
-                    <td><textarea name="description:string" rows="6" cols="35"></textarea></td>
-                </tr>
-                <tr>
-                    <th>Glossary:</th>
-                    <td><input type="text" name="glossary:string"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" value="Add News"></td>
-                </tr>
-            </table>
-            </form>
-        </td>
-    </tr>
+            <tr>
+                <td align="center">
+                    <table>
+                    <form action="manage_addGlossaryNews">
+                        <tr>
+                            <td><b>Id:</b></td>
+                            <td><input type="text" name="id:string"></td>
+                        </tr>
+                        <tr>
+                            <td><div class="form-label">Title:</div></td>
+                            <td><input type="text" name="title:string"></td>
+                        </tr>
+                        <tr>
+                            <td><div class="form-label">News Date:</div></td>
+                            <td><input type="text" name="news_date:string"></td>
+                        </tr>
+                        <tr>
+                            <td><div class="form-label">Description:</div></td>
+                            <td><textarea name="description:string" rows="6" cols="35"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><div class="form-label">Glossary:</div></td>
+                            <td><input type="text" name="glossary:string"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><div class="form-element"><input type="submit" value="Add News"></div></td>
+                        </tr>
+                    </form>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td></tr>
 </table>
-</body>
-</html>
