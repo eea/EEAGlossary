@@ -10,7 +10,7 @@
         <dtml-if is_image_url>
             <tr>
                 <td valign="top" width="100%">
-                    <img src="<dtml-var image_url>" class="img-normal">
+                    <img src="<dtml-var image_url>" class="img-normal" alt="">
                 </td>
             </tr>
         </dtml-if>
@@ -72,7 +72,7 @@
                     <table class="table-normal" border="0">
                         <tr>
                             <td width="5%">
-                                <img src="misc_/EEAGlossary/img_search_small.gif" class="img-normal">
+                                <img src="misc_/EEAGlossary/img_search_small.gif" class="img-normal" alt="">
                             </td>
                             <td>
                                 Search for "<b><dtml-var name></b>" in:

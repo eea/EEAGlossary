@@ -1,23 +1,31 @@
 <dtml-let rnd_element="random_from_catalog('/'+absolute_url(1))">
 <dtml-if rnd_element>
 <dtml-with rnd_element>
-    <table class="table-background" cellspacing="0" cellpadding="0">
+    <table class="table-tips" cellspacing="0" cellpadding="0">
         <tr> 
-          <td><img src="misc_/EEAGlossary/line.gif" class="img-line"></td></tr>
-            <tr> 
-          <td>
-              <table class="table-normal" cellspacing="2" cellpadding="2"><tr><td>
-                 <p><b>Term example:</b>&nbsp;<a href="<dtml-var absolute_url>">&dtml-name;</a>&nbsp;
-                 <dtml-if QA_needed>
-                    <img src="misc_/EEAGlossary/new.gif" class="img-normal" alt="New glossary entry">
-                 </dtml-if>
-                 </p>
-                 <p><b>Definition:</b>&nbsp;<dtml-var definition></p></td></tr>
+            <td><img src="misc_/EEAGlossary/line.gif" class="img-line" alt=""></td>
+        </tr>
+        <tr> 
+            <td>
+              <table class="table-normal" cellspacing="2" cellpadding="2">
+                  <tr>
+                    <td>
+                        <b>Term example:</b>&nbsp;<a href="<dtml-var absolute_url>">&dtml-name;</a>&nbsp;
+                        <dtml-if QA_needed>
+                            <img src="misc_/EEAGlossary/new.gif" class="img-normal" alt="New glossary entry">
+                        </dtml-if>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>  
+                        <b>Definition:</b>&nbsp;<dtml-var definition>
+                    </td>
+                 </tr>
               </table>
           </td>
         </tr>
         <tr> 
-          <td><img src="misc_/EEAGlossary/line.gif" class="img-line"></td>
+          <td><img src="misc_/EEAGlossary/line.gif" class="img-line" alt=""></td>
         </tr>
     </table>
 </dtml-with>

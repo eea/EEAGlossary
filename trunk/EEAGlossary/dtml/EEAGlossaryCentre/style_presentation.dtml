@@ -1,4 +1,5 @@
 <style>
+
 body
 {
     font-family: Verdana, Arial, Helvetica;
@@ -11,116 +12,27 @@ td
     font-size: 12px;
 }
 
-a.menulinkon
+select
+{
+    background:#FFFFFF;
+    font-family: Verdana, Arial, Helvetica; 
+    font-size: 10px; 
+}
+
+input
 {
     font-family: Verdana, Arial, Helvetica;
-    font-weight: bold;
-    font-size: 12px;
-    color: #333333;
-    text-decoration: none;
-}
-
-a.menulinkon:hover
-{
-    font-family: Verdana, Arial, Helvetica;
-    font-weight: bold;
-    font-size: 12px;
-    color: #333333;
-    text-decoration: none;
-}
-
-a.menulinkoff
-{
-    font-family: Verdana, Arial, Helvetica;
-    font-weight: bold;
-    font-size: 12px;
-    color: #FFFFFF;
-    text-decoration: none;
-}
-
-a.menulinkoff:hover
-{
-    font-family: Verdana, Arial, Helvetica;
-    font-weight: bold;
-    font-size: 12px;
-    color: #FFFFFF;
-    text-decoration: none;
-}
-
-.table-background
-{
-    background: #B5DED6;
-    width:100%;
-    border:0px solid;
-}
-
-.table-normal
-{
-    border:0px solid;
-    width:100%;
-}
-
-.table-border
-{
-    border:1px solid;
-    width:90%;
-}
-
-.img-line
-{
-    border:0px solid;
-    height:1px;
-    width:100%;
-}
-
-.img-normal
-{
-    border:0px solid;
-}
-
-.header-element
-{
-    background: #808080;
-    color: #FFFFFF;
-    vertical-align:top;
-}
-
-.header-language
-{
-    background: #808080;
-    color: #FFFFFF;
-}
-
-.input-search
-{
     background-color:#FFFFFF;
     color:#000000;
     size:40;
 }
 
-.button-search
+.button
 {
     font-family: Verdana, Arial, Helvetica;
     color:#000000;
     background:#CCCCCC;
 }
-}
-
-.attention-color
-{
-    color: #FF0000;
-}
-
-.row-header1
-{
-    background: #B5DED6;
-    height: 20px;
-}
-
-.cell-header1
-{
-    font-weight: bold;
-    color: #000000;
 
 .row-header
 {
@@ -149,4 +61,92 @@ a.menulinkoff:hover
     color: #000000;
     background: #EEEEEE;
 }
+
+.table-context
+{
+    border:1px solid;
+    width:90%;
+}
+
+.table-tips
+{
+    background: #B5DED6;
+    width:100%;
+    border:0px solid;
+}
+
+.table-folder
+{
+    background: #B5DED6;
+    width:100%;
+    border:0px solid;
+}
+
+.table-search
+{
+    background: #B5DED6;
+    width:100%;
+    border:0px solid;
+}
+
+.table-search-help
+{
+    border:1px solid;
+    width:90%;
+}
+
+.table-normal
+{
+    border:0px solid;
+    width:100%;
+}
+
+.header-element
+{
+    background: #808080;
+    color: #FFFFFF;
+    vertical-align:top;
+}
+
+.search-row-header
+{
+    background: #B5DED6;
+    height: 20px;
+}
+
+.search-cell-header
+{
+    font-weight: bold;
+    color: #000000;
+}
+
+.context-row-header
+{
+    background: #B5DED6;
+    height: 20px;
+}
+
+.context-cell-header
+{
+    font-weight: bold;
+    color: #000000;
+}
+
+.img-line
+{
+    border:0px solid;
+    height:1px;
+    width:100%;
+}
+
+.img-normal
+{
+    border:0px solid;
+}
+
+.attention-color
+{
+    color: #FF0000;
+}
+
 </style>

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: tmx_parser.py,v 1.3 2004/06/07 14:33:59 finrocvs Exp $
+#$Id: tmx_parser.py,v 1.4 2004/06/08 11:34:34 finrocvs Exp $
 
 from xml.sax.handler import ContentHandler
 from xml.sax import *
@@ -127,7 +127,10 @@ class tmx_parser:
         # Tell the parser to use our handler
         parser.setContentHandler(chandler)
         # Don't load the DTD from the Internet
-        parser.setFeature(handler.feature_external_ges, 0)
+        try:
+            parser.setFeature(handler.feature_external_ges, 0)
+        except:
+            pass
         inputsrc = InputSource()
 
         if type(file) is StringType:

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: xliff_parser.py,v 1.5 2004/06/07 14:33:59 finrocvs Exp $
+#$Id: xliff_parser.py,v 1.6 2004/06/08 11:34:34 finrocvs Exp $
 
 from xml.sax.handler import ContentHandler
 from xml.sax import *
@@ -138,7 +138,7 @@ class xliff_parser:
         # Tell the parser to use our handler
         parser.setContentHandler(chandler)
         # Don't load the DTD from the Internet
-        parser.setFeature(handler.feature_external_ges, 0)
+        #parser.setFeature(handler.feature_external_ges, 0)
         inpsrc = InputSource()
         inpsrc.setByteStream(StringIO(xml_string))
         try:
@@ -154,7 +154,10 @@ class xliff_parser:
         # Tell the parser to use our handler
         parser.setContentHandler(chandler)
         # Don't load the DTD from the Internet
-        parser.setFeature(handler.feature_external_ges, 0)
+        try:
+            parser.setFeature(handler.feature_external_ges, 0)
+        except:
+            pass
         inputsrc = InputSource()
 
         try:
