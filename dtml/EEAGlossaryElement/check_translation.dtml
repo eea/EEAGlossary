@@ -7,7 +7,7 @@
 <p class="form-help"><b>Welcome</b> to the management tool of <b>EEA glossary database.</b></p>
 <table border="0" width="100%" cellpadding="0" cellspacing="3">
 <tr>
-    <td width="30%">
+    <td width="30%" valign="top">
         <table cellpadding="0" cellspacing="0" border="1" width="100%">
             <tr>
                 <td>
@@ -21,7 +21,7 @@
                         </tr>
                         <tr>
                             <td class="cellodd" valign="top"><b>Roles:&nbsp;</b></td>
-                            <td>
+                            <td class="celleven">
                                 <dtml-in getAuthenticatedUserRoles>
                                     <dtml-var sequence-item><dtml-if sequence-end>.<dtml-else>,&nbsp;</dtml-if>
                                 </dtml-in>
@@ -67,11 +67,11 @@
                     <table cellspacing="0" cellpadding="3" border="0" width="100%">
                     <form action="manageTranslations" method="post">
                         <tr><td class="cellodd" align="left" valign="top"><b>Language</b></td>
-                            <td align="left" valign="top"><dtml-var lang_code></td>
+                            <td align="left" valign="top" class="celleven"><dtml-var lang_code></td>
                         </tr>
                             <td class="cellodd" align="left" valign="top"><b>Translation</b></td>
                             <dtml-let result="get_translation_by_language(lang_code)">
-                            <td align="left" valign="top">
+                            <td align="left" valign="top" class="celleven">
                                 <input type="text" name="translation" size="36" 
                                     value="<dtml-if "lang_code in get_unicode_langs()"><dtml-var result><dtml-else><dtml-var "display_unicode_langs(result, charset=get_language_charset(lang_code))"></dtml-if>"</td>
                             </td>
@@ -87,7 +87,7 @@
                     </table>
                 </dtml-if>
             <dtml-else>
-                <b>Chosen language to check: Nothing</b>
+                <b class="celleven">Chosen language to check: Nothing</b>
             </dtml-if>
                 </td>
             </tr>
@@ -123,7 +123,7 @@
             <tr><td>
                 <table width="100%" border="0" cellpadding="2" cellspacing="0">
                     <tr>
-                        <td colspan="2"><b>Note!</b>: Please use the following codes for contextual translations, e.g. when several translations terms are given.</td>
+                        <td colspan="2" class="celleven"><b>Note!</b>: Please use the following codes for contextual translations, e.g. when several translations terms are given.</td>
                     </tr>
                     <tr><td colspan="2">&nbsp;</td>
                     <tr class="row-header">

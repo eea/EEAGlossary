@@ -1,5 +1,5 @@
 <dtml-var style_console_css>
-<table><tr><td>
+<table><tr><td class="celleven">
 If you have any technical problems please contact:
 <dtml-in "get_contact_persons().items()">
     <li><b>&nbsp;<dtml-var "_['sequence-item'][0]"></b> on <a href="mailto:<dtml-var sequence-key>"><dtml-var sequence-key></a>
