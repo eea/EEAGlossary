@@ -3,7 +3,7 @@
 
 <p>
     <dtml-with "PARENTS[1]">
-        <a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/element.gif" class="img-normal" alt=""><dtml-var title_or_id></a>
+        <a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/folder.gif" class="img-normal" alt=""><dtml-var title_or_id></a>
     </dtml-with>
 
     &nbsp;/&nbsp;
