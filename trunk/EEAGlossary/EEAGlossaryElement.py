@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.29 2004/05/06 17:35:53 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.30 2004/05/07 13:43:28 finrocvs Exp $
 
 # python imports
 import string
@@ -62,9 +62,7 @@ manage_addGlossaryElement_html = DTMLFile('dtml/EEAGlossaryElement/add', globals
 def manage_addGlossaryElement(self, id, name='', el_type='', source='', subjects=[], el_context='', comment='', 
     used_for_1='', used_for_2='',definition='', definition_source_url='', long_definition='', disabled=0, 
     approved=1, QA_needed=0, image_url='', flash_url='', links=[], actions=[], translations={}, REQUEST=None):
-
     """ Adds a new EEAGlossaryElement object """
-
     ob = EEAGlossaryElement(id, name, el_type, source, subjects, el_context, comment, used_for_1, used_for_2, 
             definition, definition_source_url, long_definition, disabled, approved, QA_needed, 
             image_url, flash_url, links, actions, translations)
@@ -111,10 +109,7 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
             definition, definition_source_url, long_definition, disabled, approved, QA_needed)
 
     def is_published (self):
-        if self.approved and not self.disabled:
-            return 1
-        else:
-            return 0
+        return (self.approved and not self.disabled)
 
     def is_image_url (self):
         return not (self.utIsEmptyString(self.image_url) or 'image_url' in self.get_hidden_list())

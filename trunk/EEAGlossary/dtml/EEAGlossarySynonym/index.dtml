@@ -2,7 +2,7 @@
 
 <p class=title2>
     <dtml-with "PARENTS[1]">
-        <a href="&dtml-absolute_url;">
+        <a href="<dtml-var absolute_url>">
             <img src="<dtml-if "getId() in _.string.split(URL,'/')">
                             misc_/EEAGlossary/element.gif
                         <dtml-else>

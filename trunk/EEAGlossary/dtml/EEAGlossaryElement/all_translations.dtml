@@ -30,8 +30,7 @@
 <table cellpadding="1" cellspacing="1" border=1 width="100%">
     <tr class="list-header">
         <td width="35%" align="left" valign="top"><div class="form-label"><b>Language</b></div></td>
-        <td width="45%" align="left" valign="top"><div class="form-label"><b>Translation</b></div></td>
-        <td width="20%" align="left" valign="top"><div class="form-label"><b>Type</b></div></td>
+        <td width="65%" align="left" valign="top"><div class="form-label"><b>Translation</b></div></td>
     </tr>
 
     <dtml-in get_translations_list>
@@ -46,7 +45,6 @@
                       <dtml-var "display_unicode_langs(record['translation'],get_language_charset(record['language']))"><br>
                    </dtml-if>
                 </td>
-                <td align="left" valign="top"><div class="list-item">text</div></td>
             </tr>
         </dtml-let>
     </dtml-let>
