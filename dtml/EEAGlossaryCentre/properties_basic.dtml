@@ -1,25 +1,20 @@
-<dtml-if "REQUEST.has_key('save') and REQUEST['save']=='ok'">
-<div class="system-msg">
-Saved changes. (<dtml-var ZopeTime>)
-</div>
-</dtml-if>
-
-<form name="frmProperties" action="manageBasicProperties" method="post">
-<table cellspacing=0 cellpadding=0 border=0>
+<form name="frmBasicProperties" action="manageBasicProperties" method="post">
+<table cellspacing=0 cellpadding=0 border=0 width="100%">
     <tr>
-        <th>Title</th>
-        <td><input type="text" name="title" value="<dtml-var title>" size="35"></td>
+        <td align="left" width="20%"><b>Title</b></td>
+        <td class="cell"><input type="text" name="title" value="<dtml-var title>" size="50"></td>
     </tr>
     <tr>
-        <th>Description</th>
-        <td><textarea name="description" rows="5" cols="30"><dtml-var description></textarea></td>
+        <td align="left"><b>Description</b></td>
+        <td class="cell"><textarea name="description" rows="5" cols="40"><dtml-var description></textarea></td>
     </tr>
     <tr>
-        <th>Published</th>
-        <td><input type="checkbox" name="published" <dtml-if published>CHECKED</dtml-if>>
+        <td align="left"><b>Published</b></td>
+        <td class="cell"><input type="checkbox" name="published" <dtml-if published>CHECKED</dtml-if>>
     </tr>
     <tr>
-        <td colspan="2"><input type="submit" name="submit" value=" Save Changes ">
+        <td>&nbsp;</td>
+        <td align="left"><input type="submit" name="save" value=" Save Changes ">
     </tr>
 </table>
 </form>
