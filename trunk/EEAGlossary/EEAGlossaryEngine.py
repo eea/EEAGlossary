@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryEngine.py,v 1.9 2004/05/11 11:38:36 finrocvs Exp $
+#$Id: EEAGlossaryEngine.py,v 1.10 2004/05/13 15:01:56 finrocvs Exp $
 
 import string
 
@@ -44,8 +44,7 @@ class EEAGlossaryEngine(SimpleItem, utils):
     product_name = EEA_GLOSSARY_PRODUCT_NAME
     icon = 'misc_/EEAGlossary/engine.gif'
 
-    manage_options =({'label':'Properties', 'action':'manage_properties_html'},
-                    {'label':'Help', 'action':'help_html'},)
+    manage_options =({'label':'Properties', 'action':'manage_properties_html'},)
 
     security = ClassSecurityInfo()
 
@@ -379,7 +378,6 @@ class EEAGlossaryEngine(SimpleItem, utils):
     ##########
     # FORMS  #
     ##########
-    help_html = DTMLFile("dtml/EEAGlossaryEngine/help", globals())
     manage_properties_html = DTMLFile("dtml/EEAGlossaryEngine/properties", globals())
     unicode_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_unicode", globals())
     types_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_types", globals())
