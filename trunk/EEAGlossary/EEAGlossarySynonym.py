@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossarySynonym.py,v 1.22 2004/06/24 08:11:03 finrocvs Exp $
+#$Id: EEAGlossarySynonym.py,v 1.23 2004/10/01 08:12:50 finrocvs Exp $
 
 #python imports
 import string
@@ -66,7 +66,7 @@ class EEAGlossarySynonym(EEAGlossaryElement, utils):
         """ constructor """
         self.id = id
         self.synonyms = self.utConvertToList(synonyms)
-        EEAGlossaryElement.__dict__['__init__'](self, id, '', '', '', [], '', '', '', '', '', 
+        EEAGlossaryElement.__dict__['__init__'](self, id, '', '', '', [], '', '', '', '', '', '', '', 
             '', '', 0, 0, 0, '', '', [], [], {}, [])
 
     def checksynonym(self, p_synonym):

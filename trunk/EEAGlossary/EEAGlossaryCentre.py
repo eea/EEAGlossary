@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.83 2004/06/24 16:00:19 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.84 2004/10/01 08:12:50 finrocvs Exp $
 
 # python imports
 import string
@@ -749,8 +749,8 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                 if string.upper(col) == EEA_TINYTABLE_ENTRY:
                     col_info = eval("item.%s" % col)
                     #Replace danish characters to the old ones.
-                    #entry = string.replace(col_info,'�,'ae')
-                    #entry = string.replace(entry,'�,'aa')
+                    #entry = string.replace(col_info,'?,'ae')
+                    #entry = string.replace(entry,'?,'aa')
                     #entry = string.replace(entry,'','oe')
                     obj.entry = col_info
                     if obj.entry != '':
@@ -767,6 +767,14 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                     obj.definition = eval("item.%s" % col)
                 elif string.upper(col) == EEA_TINYTABLE_DEFINITION_SOURCE:
                     obj.definition_source = eval("item.%s" % col)
+                elif string.upper(col) == EEA_TINYTABLE_DEFINITION_SOURCE_PUBL:
+                    obj.definition_source_publ = eval("item.%s" % col)
+                elif string.upper(col) == EEA_TINYTABLE_DEFINITION_SOURCE_PUBL_YEAR:
+                    obj.definition_source_publ_year = eval("item.%s" % col)
+                elif string.upper(col) == EEA_TINYTABLE_DEFINITION_SOURCE_ORG:
+                    obj.definition_source_org = eval("item.%s" % col)
+                elif string.upper(col) == EEA_TINYTABLE_DEFINITION_SOURCE_ORG_FULLNAME:
+                    obj.definition_source_org_fullname = eval("item.%s" % col)
                 elif string.upper(col) == EEA_TINYTABLE_LONGDEFINITION:
                     obj.long_definition = eval("item.%s" % col)
                 elif string.upper(col) == EEA_TINYTABLE_ACRONYM:
@@ -786,11 +794,15 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                 elif string.upper(col) == EEA_TINYTABLE_COMMENT:
                     obj.comment = eval("item.%s" % col)
             if obj.entry != '':
-                elem_ob = folder._getOb(self.ut_makeId(obj.entry), None)
+                elem_id = self.ut_makeId(obj.entry)
+                elem_ob = folder._getOb(elem_id, None)
                 if elem_ob is None:
                     try:
-                        folder.manage_addGlossaryElement(obj.entry, obj.entry_type, obj.source, [], obj.context, obj.comment, obj.used_for_1, 
-                            obj.used_for_2, obj.definition, 'dataservice, http://dataservice.eea.eu.int', obj.long_definition, 0, 1, 0, '', '', [], [], {})
+                        folder.manage_addGlossaryElement(obj.entry, obj.entry_type, obj.source, [], obj.context, obj.comment, 
+                            obj.definition, obj.definition_source_publ, obj.definition_source_publ_year, obj.definition_source, 
+                            obj.definition_source_org, obj.definition_source_org_fullname, 
+                            obj.long_definition, 0, 1, 0, '', '', [], [], {}, [])
+                        elem_ob = folder._getOb(elem_id)
                     except Exception, error:
                         print error
                 else:
@@ -800,16 +812,44 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                         elem_ob.source = obj.source
                         elem_ob.el_context = obj.context
                         elem_ob.comment = obj.comment
-                        elem_ob.used_for_1 = obj.used_for_1
-                        elem_ob.used_for_2  =  obj.used_for_2
                         elem_ob.definition = obj.definition
-                        elem_ob.definition_source_url = 'dataservice, http://dataservice.eea.eu.int'
+                        elem_ob.definition_source_publ = obj.definition_source_publ
+                        elem_ob.definition_source_publ_year = obj.definition_source_publ_year
+                        elem_ob.definition_source_url = obj.definition_source
+                        elem_ob.definition_source_org = obj.definition_source_org
+                        elem_ob.definition_source_org_fullname = obj.definition_source_org_fullname
                         elem_ob.cu_recatalog_object(elem_ob)
                     except:
                         pass
+                if obj.used_for_1:
+                    self.create_synonim(obj.used_for_1, elem_ob.absolute_url(1))
+                if obj.used_for_2:
+                    self.create_synonim(obj.used_for_2, elem_ob.absolute_url(1))
+                if obj.acronym:
+                    self.create_synonim(obj.acronym, elem_ob.absolute_url(1))
             obj.emptyObject()
         if REQUEST is not None:
             REQUEST.RESPONSE.redirect('build_glossary_html')
+
+    def create_synonim(self, id, term_url):
+        """ create a synonim given an id """
+        folder_id = string.upper(id[:1])
+        folder = self.unrestrictedTraverse(folder_id, None)
+        if folder is None:
+            try:
+                self.manage_addGlossaryFolder(folder_id)
+                folder = self._getOb(folder_id)
+            except Exception, error:
+                print error
+        elem_ob = folder._getOb(self.ut_makeId(id), None)
+        if elem_ob is None:
+            try:
+                folder.manage_addGlossarySynonym(self.ut_makeId(id), term_url)
+            except Exception, error:
+                print error
+        else:
+            #nothing yet for this momment
+            pass
 
     def updateGlossary(self, glossary_table, REQUEST=None):
         """ update the glossary translations """
@@ -827,8 +867,8 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                 if string.upper(col) == EEA_TINYTABLE_ENTRY or cap_col == 'English' or low_col == 'en':
                     col_info = eval("item.%s" % col)
                     #Replace danish characters to the old ones.
-                    #entry = string.replace(col_info,'�,'ae')
-                    #entry = string.replace(entry,'�,'aa')
+                    #entry = string.replace(col_info,'?,'ae')
+                    #entry = string.replace(entry,'?,'aa')
                     #entry = string.replace(entry,'','oe')
                     obj.entry = col_info
                     if obj.entry != '':
