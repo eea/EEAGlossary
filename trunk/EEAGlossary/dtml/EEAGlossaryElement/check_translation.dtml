@@ -50,7 +50,7 @@
         </form>
         <dtml-if "lang_code != 'Nothing'">
             <dtml-if "check_allowed_translations(lang_code)">
-                <form action="saveTranslations" method="post">
+                <form action="manageTranslations" method="post">
                 <table cellspacing="1" cellpadding="2" border="1" width="100%">
                     <tr><td align="left" valign="top">Language</td>
                         <td align="left" valign="top"><dtml-var lang_code></td>
@@ -59,8 +59,7 @@
                         <dtml-let result="get_translation_by_language(lang_code)">
                         <td align="left" valign="top">
                             <input type="text" name="translation" size="36" 
-                                value="<dtml-if "result in get_unicode_langs()"><dtml-var result>
-                                       <dtml-else><dtml-var "display_unicode_langs(result)"></dtml-if>"</td>
+                                value="<dtml-if "lang_code in get_unicode_langs()"><dtml-var result><dtml-else><dtml-var "display_unicode_langs(result, charset=get_language_charset(lang_code))"></dtml-if>"</td>
                         </td>
                         </dtml-let>
                     </tr>

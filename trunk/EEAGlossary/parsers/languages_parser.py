@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: languages_parser.py,v 1.1 2004/05/03 20:05:32 finrocvs Exp $
+#$Id: languages_parser.py,v 1.2 2004/05/10 15:37:01 finrocvs Exp $
 
 from xml.sax.handler import ContentHandler
 from xml.sax import *
@@ -27,11 +27,12 @@ from cStringIO import StringIO
 
 class languages_struct:
     """ """
-    def __init__(self, lang, charset, english_name):
+    def __init__(self, lang, charset, english_name, unicode):
         """ """
         self.lang = lang
         self.charset = charset
         self.english_name = english_name
+        self.unicode = unicode
 
 class languages_handler(ContentHandler):
     """ """
@@ -43,7 +44,7 @@ class languages_handler(ContentHandler):
     def startElement(self, name, attrs):
         """ """
         if name == 'language':
-            self.languages.append(languages_struct(attrs['lang'], attrs['charset'], attrs['englishname']))
+            self.languages.append(languages_struct(attrs['lang'].encode('latin-1'), attrs['charset'].encode('latin-1'), attrs['englishname'].encode('latin-1'), attrs['unicode'].encode('latin-1')))
 
     def endElement(self, name):
         """ """
