@@ -10,12 +10,12 @@
 <tr>
   <td align="left" valign="top"><div class="form-optional">Synonym of (use CTRL for multiple selection)</div></td>
   <td align="left" valign="top">
-    <select name="synonyms" size=10 MULTIPLE><dtml-comment>
-        <dtml-in "GlossaryCatalog(meta_type='GlossaryElement')" sort=name,id> 
-            <dtml-with "getObject()">
-                <option  value="<dtml-var id>"><dtml-var English size=40><dtml-unless isPublished> NOT PUBLISHED</dtml-unless></option>
-            </dtml-with>
-        </dtml-in></dtml-comment>
+    <select name="synonyms" size=10 multiple>
+        <dtml-in all_elements>
+            <option  value="<dtml-var sequence-key>">
+                <dtml-var sequence-key size=40><dtml-unless sequence-item> NOT PUBLISHED</dtml-unless>
+            </option>
+        </dtml-in>
     </select>
   </td>
 </tr>

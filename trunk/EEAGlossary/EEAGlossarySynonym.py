@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossarySynonym.py,v 1.14 2004/05/10 17:42:14 finrocvs Exp $
+#$Id: EEAGlossarySynonym.py,v 1.15 2004/05/11 11:36:35 finrocvs Exp $
 
 #python imports
 import string
@@ -78,6 +78,7 @@ class EEAGlossarySynonym(EEAGlossaryElement, utils):
         for obj in cat_obj:
             if obj.name in self.synonyms:
                 results.append(obj)
+        print results
         return results
 
     #####################

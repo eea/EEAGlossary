@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.32 2004/05/10 15:37:01 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.33 2004/05/11 11:36:35 finrocvs Exp $
 
 # python imports
 import string
@@ -109,7 +109,21 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
             definition, definition_source_url, long_definition, disabled, approved, QA_needed)
 
     def is_published (self):
-        return (self.approved and not self.disabled)
+        return (self.approved and (not self.disabled))
+
+    def all_elements (self):
+        """ return sorted elements by name """
+        my_el=[]
+        name_lst=[]
+        my_el = self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, sort_on='id', sort_order='')
+        for ob in my_el:
+            if ob.approved and (not ob.disabled):
+                name_lst.append((ob.name,1))
+            else:
+                name_lst.append((ob.name,0))
+        name_lst.sort(self.utCompare)
+        print name_lst
+        return name_lst
 
     def is_image_url (self):
         return not (self.utIsEmptyString(self.image_url) or 'image_url' in self.get_hidden_list())
