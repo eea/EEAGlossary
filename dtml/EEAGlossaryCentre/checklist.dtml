@@ -3,22 +3,22 @@
 <dtml-var manage_tabs>
 
 <h2><dtml-var title_or_id> - Check List Form</h2>
-<dtml-comment>
-<dtml-if "'Quality Controller' in _.SecurityGetUser().getRoles()">
-<p>
-<form action="all_terms" method="post">
-<select name="languagescheck:list" multiple size=8>
-<dtml-in languages_list><option><dtml-var sequence-item html_quote></option>
-</dtml-in>
-<option>Definition</option>
-</select>
- <input class="form-element" type="submit" name="SUBMIT" value="Go to Check List">
-</form>
-</p>
+
+<dtml-if is_AuthenticatedUserRoles>
+    <p>
+    <form action="all_terms_html" method="post">
+        <select name="languagescheck:list" multiple size=8>
+            <dtml-in get_english_names>
+                <option><dtml-var sequence-item html_quote></option>
+            </dtml-in>
+            <option>Definition</option>
+        </select>
+        <input class="form-element" type="submit" name="SUBMIT" value="Go to Check List">
+    </form>
+    </p>
 <dtml-else>
-<p><font color=red>You're not allowed to check any terms.</font>
-</p>
-<p>Please Login</p>
+    <p><font color=red>You're not allowed to check any terms.</font></p>
+    <p>Please login as a 'Quality Controller'.</p>
 </dtml-if>
-</dtml-comment>
+
 <dtml-var manage_utf8_footer>
