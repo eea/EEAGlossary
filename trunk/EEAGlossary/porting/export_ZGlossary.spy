@@ -131,19 +131,11 @@ def exportGlossaryElement(p_item):
 #
 ###    l_temp += ' Estonian="%s"' % utXmlEncode(p_item.Estonian, 'utf-8', 0)
 #
-    l_temp += ' Finnish="%s"' % utXmlEncode(p_item.Finnish, 'iso-8859-1', 0)
-##    l_temp += ' Finnish="%s"' % utXmlEncode(p_item.Finnish, 'utf-8', 0)
-##    l_temp += ' Finnish="%s"' % p_item.Finnish
-##    l_temp += ' Finnish="%s"' % to_utf8(p_item.Finnish, 'iso-8859-1')
-##    l_temp += ' Finnish="%s"' % (unicode(p_item.Finnish, 'iso-8859-1')).encode('utf-8')
+###    l_temp += ' Finnish="%s"' % utXmlEncode(p_item.Finnish, 'iso-8859-1', 0)
 #
-##    l_temp += ' French="%s"' % to_utf8(p_item.French, 'iso-8859-1')
-##    l_temp += ' French="%s"' % (unicode(p_item.French, 'iso-8859-1')).encode('utf-8')
-##    l_temp += ' French="%s"' % p_item.French
+###    l_temp += ' French="%s"' % utXmlEncode(p_item.French, 'iso-8859-1', 0)
 #
-##    l_temp += ' German="%s"' % to_utf8(p_item.German, 'iso-8859-1')
-##    l_temp += ' German="%s"' % (unicode(p_item.German, 'iso-8859-1')).encode('utf-8')
-##    l_temp += ' German="%s"' % p_item.German
+###    l_temp += ' German="%s"' % utXmlEncode(p_item.German, 'iso-8859-1', 0)
 #
 #    if p_item.id in ['bottom-up_approach', 'polluter_pays_principle', 'top-down_approach', 'user-pays_principle']:
 #        l_temp += ' Greek="%s"' % 'TO BE COMPLETED ...'
@@ -154,11 +146,7 @@ def exportGlossaryElement(p_item):
 #
 ###    l_temp += ' Hungarian="%s"' % utXmlEncode(p_item.Hungarian, 'utf-8', 0)
 #
-##    l_temp += ' Icelandic="%s"' % to_utf8(p_item.Icelandic, 'iso-8859-1')
-##    l_temp += ' Icelandic="%s"' % utXmlEncode(p_item.Icelandic, 'utf-8', 0)
-##    l_temp += ' Icelandic="%s"' % to_utf8(p_item.Icelandic, 'iso-8859-1')
-##    l_temp += ' Icelandic="%s"' % (unicode(p_item.Icelandic, 'iso-8859-1')).encode('utf-8')
-##    l_temp += ' Icelandic="%s"' % p_item.Icelandic
+###    l_temp += ' Icelandic="%s"' % utXmlEncode(p_item.Icelandic, 'iso-8859-1', 0)
 #
 ###    l_temp += ' Italian="%s"' % utXmlEncode(p_item.Italian, 'iso-8859-1', 0)
 #
@@ -263,10 +251,26 @@ def utEncodeHtml(p_string):
     l_tmp = l_tmp.replace('&euml;', 'ë')
     l_tmp = l_tmp.replace('&auml;', 'ä')
     l_tmp = l_tmp.replace('&ouml;', 'ö')
-    l_tmp = l_tmp.replace('&ugrave;', 'ù')
-    l_tmp = l_tmp.replace('&ugrave;', 'ù')
-    l_tmp = l_tmp.replace('&ugrave;', 'ù')
-    l_tmp = l_tmp.replace('&ugrave;', 'ù')
+    l_tmp = l_tmp.replace('&egrave;', 'è')
+    l_tmp = l_tmp.replace('&eacute;', 'é')
+    l_tmp = l_tmp.replace('&ecirc;', 'ê')
+    l_tmp = l_tmp.replace('&uuml;', 'ü')
+    l_tmp = l_tmp.replace('&Ouml;', 'Ö')
+    l_tmp = l_tmp.replace('&eth;', 'ð')
+    l_tmp = l_tmp.replace('&uacute;', 'ú')
+    l_tmp = l_tmp.replace('&iacute;', 'í')
+    l_tmp = l_tmp.replace('&aacute;', 'á')
+    l_tmp = l_tmp.replace('&oacute;', 'ó')
+    l_tmp = l_tmp.replace('&thorn;', 'þ')
+    l_tmp = l_tmp.replace('&yacute;', 'ý')
+    l_tmp = l_tmp.replace('&ugrave;', 'aaaaaaaaa')
+    l_tmp = l_tmp.replace('&ugrave;', 'aaaaaaaaa')
+    l_tmp = l_tmp.replace('&ugrave;', 'aaaaaaaaa')
+    l_tmp = l_tmp.replace('&ugrave;', 'aaaaaaaaa')
+    l_tmp = l_tmp.replace('&ugrave;', 'aaaaaaaaa')
+    l_tmp = l_tmp.replace('&ugrave;', 'aaaaaaaaa')
+    l_tmp = l_tmp.replace('&ugrave;', 'aaaaaaaaa')
+    l_tmp = l_tmp.replace('&ugrave;', 'aaaaaaaaa')
 
     return l_tmp
 
