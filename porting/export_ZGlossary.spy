@@ -195,14 +195,19 @@ def exportGlossaryElement(p_item):
 ##    l_temp += ' Norwegian="%s"' % unicode(utHtmlEncode(p_item.Norwegian, 0), 'iso-8859-1').encode('utf-8')
 #    l_temp += ' Norwegian="%s"' % p_item.Norwegian
 #
-##    l_temp += ' Polish="%s"' % to_utf8(p_item.Polish, 'iso-8859-2') # - X
+#    l_temp += ' Polish="%s"' % utHtmlEncode(p_item.Polish, 0) # - D
+##    l_temp += ' Polish="%s"' % to_utf8(p_item.Polish, 'iso-8859-2')
 ##    l_temp += ' Polish="%s"' % (unicode(p_item.Polish, 'iso-8859-2')).encode('utf-8')
-##    l_temp += ' Polish="%s"' % unicode(utHtmlEncode(p_item.Polish, 0), 'iso-8859-2').encode('utf-8')
-    l_temp += ' Polish="%s"' % utHtmlEncode(p_item.Polish, 0)
 #
+##    l_temp += ' Portuguese="%s"' % utHtmlEncode(p_item.Portuguese, 0) # - X
 ##    l_temp += ' Portuguese="%s"' % to_utf8(p_item.Portuguese, 'iso-8859-1')
+##    l_temp += ' Portuguese="%s"' % (unicode(p_item.Portuguese, 'iso-8859-1')).encode('utf-8')
+##    l_temp += ' Portuguese="%s"' % p_item.Portuguese
 #
+#    l_temp += ' Romanian="%s"' % utXmlEncode(p_item.Romanian, 'utf-8', 0) # - D
+##    l_temp += ' Romanian="%s"' % utHtmlEncode(p_item.Romanian, 0)
 ##    l_temp += ' Romanian="%s"' % to_utf8(p_item.Romanian, 'iso-8859-2')
+##    l_temp += ' Romanian="%s"' % (unicode(p_item.Romanian, 'iso-8859-2')).encode('utf-8')
 #
 #    l_temp += ' Russian="%s"' % utHtmlEncode(p_item.Russian) # - E D
 ##    l_temp += ' Russian="%s"' % to_utf8(p_item.Russian, 'iso-8859-5')
@@ -210,15 +215,25 @@ def exportGlossaryElement(p_item):
 #    l_temp += ' Serbian="%s"' % utHtmlEncode(p_item.Serbian) # - E D
 ##    l_temp += ' Serbian="%s"' % to_utf8(p_item.Serbian, 'iso-8859-5')
 #
+#    l_temp += ' Slovak="%s"' % utHtmlEncode(p_item.Slovak, 0) # - D
 ##    l_temp += ' Slovak="%s"' % to_utf8(p_item.Slovak, 'iso-8859-2')
+##    l_temp += ' Slovak="%s"' % (unicode(p_item.Slovak, 'iso-8859-2')).encode('utf-8')
 #
+##    l_temp += ' Slovenian="%s"' % p_item.Slovenian # - X
 ##    l_temp += ' Slovenian="%s"' % to_utf8(p_item.Slovenian, 'iso-8859-2')
+##    l_temp += ' Slovenian="%s"' % (unicode(p_item.Slovenian, 'iso-8859-2')).encode('utf-8')
 #
+##    l_temp += ' Spanish="%s"' % p_item.Spanish # - X
 ##    l_temp += ' Spanish="%s"' % to_utf8(p_item.Spanish, 'iso-8859-1')
+##    l_temp += ' Spanish="%s"' % (unicode(p_item.Spanish, 'iso-8859-1')).encode('utf-8')
 #
+#    l_temp += ' Swedish="%s"' % p_item.Swedish # - X
 ##    l_temp += ' Swedish="%s"' % to_utf8(p_item.Swedish, 'iso-8859-1')
+##    l_temp += ' Swedish="%s"' % (unicode(p_item.Swedish, 'iso-8859-1')).encode('utf-8')
 #
+    l_temp += ' Turkish="%s"' % utXmlEncode(p_item.Turkish, 'utf-8', 0) # - X
 ##    l_temp += ' Turkish="%s"' % to_utf8(p_item.Turkish, 'iso-8859-9')
+##    l_temp += ' Turkish="%s"' % (unicode(p_item.Turkish, 'iso-8859-9')).encode('utf-8')
 
 
     #elements end
