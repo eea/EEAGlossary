@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryEngine.py,v 1.4 2004/05/05 17:14:08 finrocvs Exp $
+#$Id: EEAGlossaryEngine.py,v 1.5 2004/05/05 17:44:32 finrocvs Exp $
 
 # Zope imports
 from Globals import DTMLFile, InitializeClass
@@ -93,7 +93,7 @@ class EEAGlossaryEngine(SimpleItem, utils):
     def manage_afterAdd(self, item, container):
         """ """
         SimpleItem.inheritedAttribute('manage_afterAdd')(self, item, container)
-        #item.load_roles_list()
+        item.load_roles_list()
         item.load_languages_list()
         item.load_subjects_list()
 
