@@ -1,0 +1,26 @@
+<dtml-var standard_html_header>
+
+<p class=title2><dtml-comment>
+    <dtml-with "PARENTS[1]">
+        <a href="&dtml-absolute_url;">
+            <img src="<dtml-if "getId() in _.string.split(URL,'/')">/images/OpenBook.gif<dtml-else><dtml-var icon></dtml-if>" border=0>
+            &nbsp;<dtml-var title_or_id>
+        </a>
+    </dtml-with>
+    &nbsp;/&nbsp;
+    <img src="
+                <dtml-if "getId() in _.string.split(URL,'/')">
+                    /images/OpenBook.gif
+                <dtml-else>
+                    <dtml-var icon>
+                </dtml-if>
+             " border=0></dtml-comment>
+    <dtml-var name><dtml-var id>&nbsp;<img src="misc_/EEAGlossary/synonym.gif" bprder=0>
+    
+</p>
+
+<dtml-comment>
+<dtml-var main_content>
+</dtml-comment>
+
+<dtml-var standard_html_footer>
