@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.64 2004/05/28 10:53:13 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.65 2004/05/28 12:29:29 finrocvs Exp $
 
 # python imports
 import string
@@ -548,7 +548,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         lst_published = []
         append = lst_published.append
         for obj in self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order='', path=path):
-            if (obj.approved or not obj.disabled):
+            if (obj.approved and not obj.disabled):
                 append(obj)
         return lst_published
         

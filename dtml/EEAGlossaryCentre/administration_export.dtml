@@ -24,7 +24,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Including the not published&nbsp;<input type="checkbox" name="published" value="1"></td>
+                    <td>Including the not published&nbsp;<input type="checkbox" name="published:boolean" value="1"></td>
                 </tr>
                 <tr>
                     <td><input type="submit" value="Export"></td>
@@ -45,7 +45,7 @@
             <table border=0 cellpadding=2 cellspacing=0 width="100%">
             <form action="tmx_export" method="post" name="frmTMXExport">
                 <tr>
-                    <td>Including the not published&nbsp;<input type="checkbox" name="published" value="1"></td>
+                    <td>Including the not published&nbsp;<input type="checkbox" name="published:boolean" value="1"></td>
                 </tr>
                 <tr>
                     <td><input type="submit" value="Export"></td>
