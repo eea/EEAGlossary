@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.26 2004/05/06 14:26:15 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.27 2004/05/06 15:04:54 finrocvs Exp $
 
 # python imports
 import string
@@ -59,7 +59,7 @@ class ElementBasic:
 
 manage_addGlossaryElement_html = DTMLFile('dtml/EEAGlossaryElement/add', globals())
 
-def manage_addGlossaryElement(self, id, name='', el_type='', source='', subjects={}, el_context='', comment='', 
+def manage_addGlossaryElement(self, id, name='', el_type='', source='', subjects=[], el_context='', comment='', 
     used_for_1='', used_for_2='',definition='', definition_source_url='', long_definition='', disabled=0, 
     approved=1, QA_needed=0, image_url='', flash_url='', links=[], actions=[], translations={}, REQUEST=None):
 
@@ -71,6 +71,7 @@ def manage_addGlossaryElement(self, id, name='', el_type='', source='', subjects
     self._setObject(id, ob)
     element_obj = self._getOb(id)
     element_obj.load_translations_list()
+    element_obj.subjects = self.get_subject_by_codes(subjects)
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
@@ -106,7 +107,7 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
         self.translations = []
         self.all_langs_list= {}
         self.history={}
-        ElementBasic.__dict__['__init__'](self, name, el_type, source, subjects, el_context, comment, used_for_1, used_for_2, 
+        ElementBasic.__dict__['__init__'](self, name, el_type, source, [], el_context, comment, used_for_1, used_for_2, 
             definition, definition_source_url, long_definition, disabled, approved, QA_needed)
 
     def is_published (self):
@@ -135,6 +136,7 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
 
     def code_in_subjects(self, code):
         """ check if code is in the list """
+        print type(self.subjects)
         for subj_info in self.subjects:
             if subj_info['code'] == code:
                 return 1
