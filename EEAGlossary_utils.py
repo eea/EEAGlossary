@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.48 2004/06/07 11:27:47 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.49 2004/06/16 13:12:04 finrocvs Exp $
 
 #Python imports
 import string
@@ -303,7 +303,7 @@ class catalog_utils:
         catalog.reindexIndex(name, REQUEST)
 
     def cu_get_cataloged_objects(self, meta_type=None, approved=0, howmany=-1, sort_on='bobobase_modification_time', 
-        sort_order='reverse', path='/'):
+        sort_order='reverse', path=''):
         """ return objects from catalog """
         results = []
         filter = {}
