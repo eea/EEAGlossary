@@ -690,20 +690,6 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         return [published_terms, published_concepts, not_disabled_terms, not_disabled_concepts]
 
 
-        el_syn_tot = 0
-        el_tot = 0
-        el_pub_tot = 0
-        el_syn_pub_tot = 0
-        for obj in self.get_all_objects():
-            el_syn_tot += 1
-            if obj.meta_type == EEA_GLOSSARY_ELEMENT_METATYPE:
-                el_tot += 1
-            if obj.is_published():
-                el_syn_pub_tot += 1
-                if obj.meta_type == EEA_GLOSSARY_ELEMENT_METATYPE:
-                    el_pub_tot += 1
-        return [el_syn_tot, el_tot, el_syn_pub_tot, el_pub_tot]
-
     ######################################
     # GLOSSARY FUNCTIONALITIES FUNCTIONS #
     ######################################
