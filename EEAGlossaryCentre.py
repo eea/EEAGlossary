@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.66 2004/05/28 13:33:01 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.67 2004/05/28 13:48:37 finrocvs Exp $
 
 # python imports
 import string
@@ -576,26 +576,17 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         results = self.cu_search_catalog([EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], query, size, language, definition)
         return (language, query, results)
 
-    def random_from_catalog(self, p_meta_type=''):
+    def random_from_catalog(self, folder='/'):
         """a random element from catalog """
         elements=[]
         append = elements.append
-        if p_meta_type=='centre':
-            for obj in self.cu_get_cataloged_objects(meta_type=EEA_GLOSSARY_ELEMENT_METATYPE):
-                if obj.is_published:
-                    append(obj)
-            if len(elements) > 0:
-                return whrandom.choice(elements)
-            else:
-                return None
+        for obj in self.cu_get_cataloged_objects(meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, path=folder):
+            if obj.is_published and obj.definition:
+                append(obj)
+        if len(elements) > 0:
+            return whrandom.choice(elements)
         else:
-            for obj in self.cu_get_cataloged_objects(meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, path='/%s' % self.absolute_url(1)):
-                if obj.is_published:
-                    append(obj)
-            if len(elements) > 0:
-                return whrandom.choice(elements)
-            else:
-                 return None
+            return None
 
     def change_pass_action(self,REQUEST=None):
         """Change Password for current Zope user"""

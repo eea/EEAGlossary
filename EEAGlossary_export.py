@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_export.py,v 1.8 2004/05/28 13:33:01 finrocvs Exp $
+#$Id: EEAGlossary_export.py,v 1.9 2004/05/28 13:48:37 finrocvs Exp $
 
 from DateTime import DateTime
 from types import UnicodeType
@@ -46,7 +46,7 @@ class glossary_export:
         else:
             folders = string.split(folders, '/')[-1]
         self.REQUEST.RESPONSE.setHeader('Content-Type', 'application/data; charset=UTF-8')
-        self.REQUEST.RESPONSE.setHeader('Content-Disposition', 'attachment; filename="%s_%s_%s.xml"' % (self.id, folders, language))
+        self.REQUEST.RESPONSE.setHeader('Content-Disposition', 'attachment; filename="%s_%s_%s.xliff"' % (self.id, folders, language))
         r_append('<?xml version="1.0" encoding="UTF-8"?>')
         r_append('<!DOCTYPE xliff SYSTEM "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">')
         r_append(u'<!-- XLIFF Format Copyright \xa9 OASIS Open 2001-2003 -->')
@@ -149,13 +149,13 @@ class glossary_export:
         r_append('<!DOCTYPE tmx SYSTEM "http://www.lisa.org/tmx/tmx14.dtd">')
         r_append('<tmx version="1.4">')
         r_append('<header')
-        r_append('creationtool="EEAGlossary"')
-        r_append('creationtoolversion="1.x"')
-        r_append('datatype="plaintext"')
-        r_append('segtype="paragraph"')
-        r_append('adminlang="English"')
-        r_append('srclang="English"')
-        r_append('o-encoding="utf-8"')
+        r_append(' creationtool="EEAGlossary"')
+        r_append(' creationtoolversion="1.x"')
+        r_append(' datatype="plaintext"')
+        r_append(' segtype="paragraph"')
+        r_append(' adminlang="English"')
+        r_append(' srclang="English"')
+        r_append(' o-encoding="utf-8"')
 
         r.append('>')
         r.append('</header>')
@@ -170,3 +170,6 @@ class glossary_export:
         r_append('</body>')
         r_append('</tmx>')
         return r
+
+    def xliff_import(self):
+        pass
