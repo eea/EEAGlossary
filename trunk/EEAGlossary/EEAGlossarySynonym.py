@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossarySynonym.py,v 1.11 2004/05/06 10:16:41 finrocvs Exp $
+#$Id: EEAGlossarySynonym.py,v 1.12 2004/05/06 14:17:35 finrocvs Exp $
 
 #python imports
 import string
@@ -35,6 +35,7 @@ from EEAGlossary_utils import utils
 from EEAGlossary_constants import *
 
 manage_addGlossarySynonym_html = DTMLFile('dtml/EEAGlossarySynonym/add', globals())
+
 def manage_addGlossarySynonym(self, id, synonyms=[], REQUEST=None):
     """ Adds a new EEAGlossaryElementSynonym object """
     ob = EEAGlossarySynonym(id, synonyms)

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.24 2004/05/05 17:38:20 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.25 2004/05/06 14:17:35 finrocvs Exp $
 
 # python imports
 import string
@@ -86,12 +86,12 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
         {'label':'All Translations',        'action':'all_translations_html'},
         {'label':'Check Translation',       'action':'check_translation_html'},
         {'label':'Properties',              'action':'manage_properties_html'},
-        {'label':"View [OK]",                    'action':'preview_html'},
+        {'label':"View",                    'action':'preview_html'},
         #{'label':'My props',                'action':'custom_properties_html'},
         {'label':'Convert to Synonym',      'action':'synonym_html'},
         {'label':'History',                 'action':'history_html'},
-        {'label':'Undo [OK]',                    'action':'manage_UndoForm'},
-        {'label':'Help [OK]',                    'action':'help_html'},)
+        {'label':'Undo',                    'action':'manage_UndoForm'},
+        {'label':'Help',                    'action':'help_html'},)
 
     security = ClassSecurityInfo()
 
@@ -167,6 +167,20 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
             return self.utToUTF8(language, self.get_language_charset(language))
         else:
             return self.utToUTF8(language, charset)
+
+    def convert_element(self, synonyms=[], REQUEST=None):
+        """convert element to synonym"""
+        synid = self.id
+        ob=self.aq_parent
+        ob.manage_delObjects(synid)
+        ob.manage_addGlossarySynonym(synid, synonyms)
+        if synonyms == []:
+            if REQUEST is not None:
+                return REQUEST.RESPONSE.redirect('convert_to_synonym_html?syn=0')
+        else:
+            if REQUEST is not None:
+                return REQUEST.RESPONSE.redirect('convert_to_synonym_html')
+
 
     #####################
     #   MANAGEMENT TABS #
@@ -260,6 +274,7 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
     preview_html = DTMLFile("dtml/EEAGlossaryElement/preview", globals())
     custom_properties_html = DTMLFile("dtml/EEAGlossaryElement/custom_prop", globals())
     synonym_html = DTMLFile("dtml/EEAGlossaryElement/synonym", globals())
+    convert_to_synonym_html = DTMLFile("dtml/EEAGlossaryElement/convert_to_synonym", globals())
     history_html = DTMLFile("dtml/EEAGlossaryElement/history", globals())
     index_html = DTMLFile("dtml/EEAGlossaryElement/index", globals())
     main_content_html = DTMLFile("dtml/EEAGlossaryElement/main_content", globals())
