@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.42 2004/05/25 08:36:41 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.43 2004/05/28 10:53:13 finrocvs Exp $
 
 #Python imports
 import string
@@ -189,10 +189,10 @@ class catalog_utils:
         """ creates an id for the item to be added in catalog """
         return '/'.join(item.getPhysicalPath())
 
-    def __searchCatalog(self, criteria, path):
+    def __searchCatalog(self, criteria):
         """ search catalog """
         catalog = self.getGlossaryCatalog()
-        return catalog(criteria, path)
+        return catalog(criteria)
 
     def __get_objects(self, brains):
         """ given the brains return the objects """
@@ -243,6 +243,7 @@ class catalog_utils:
         """ return objects from catalog """
         results = []
         filter = {}
+        filter['path'] = path
         if approved == 1:
             filter['approved'] = 1
         if sort_on != '':
@@ -251,12 +252,12 @@ class catalog_utils:
                 filter['sort_order'] = sort_order
         if meta_type:
             filter['meta_type'] = self.utConvertToList(meta_type)
-        results = self.__searchCatalog(filter, path)
+        results = self.__searchCatalog(filter)
         if howmany != -1:
             results = results[:howmany]
         results = self.__get_objects(results)
         return results
-
+        
     def cu_search_catalog(self, meta_type=None, query='', size=10000, language='English', definition=''):
         """ search catalog """
         catalog = self.getGlossaryCatalog()

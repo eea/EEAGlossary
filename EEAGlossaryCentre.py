@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.63 2004/05/28 10:15:13 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.64 2004/05/28 10:53:13 finrocvs Exp $
 
 # python imports
 import string
@@ -543,15 +543,15 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                 append(obj)
         return lst_not_published
 
-    def get_published(self):
+    def get_published(self, path='/'):
         """.return the elements&synonyms published """
         lst_published = []
         append = lst_published.append
-        for obj in self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
+        for obj in self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order='', path=path):
             if (obj.approved or not obj.disabled):
                 append(obj)
         return lst_published
-
+        
     def get_terms_stats(self):
         """.return the stats for all elements&synonyms"""
         el_syn_tot = 0
@@ -612,10 +612,10 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         """ Return all the folders, sorted"""
         return self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_FOLDER_METATYPE], sort_on='id', sort_order='')
 
-    def get_all_objects (self):
+    def get_all_objects (self, path='/'):
         """ return sorted objects by name """
-        return self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order='')
-
+        return self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order='', path=path)
+        
     def get_all_elements(self):
         """ return sorted objects by name """
         return self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE,], sort_on='id', sort_order='')
