@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.37 2004/05/12 08:42:18 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.38 2004/05/12 17:21:09 finrocvs Exp $
 
 # python imports
 import string
@@ -33,7 +33,7 @@ from OFS.SimpleItem import SimpleItem
 # product imports
 from EEAGlossary_utils import utils
 from EEAGlossary_utils import catalog_utils
-
+from toutf8 import toUTF8
 from EEAGlossary_constants import *
 
 class ElementBasic:
@@ -41,7 +41,7 @@ class ElementBasic:
 
     def __init__(self, name, el_type, source, subjects, el_context, comment, used_for_1, used_for_2, 
             definition, definition_source_url, long_definition, disabled, approved, QA_needed):
-        """ constructor"""
+        """ constructor """
 
         self.name = name
         self.el_type = el_type
@@ -107,6 +107,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
             definition, definition_source_url, long_definition, disabled, approved, QA_needed)
 
     def is_published (self):
+        """."""
         return (self.approved and (not self.disabled))
 
     def all_elements (self):
@@ -123,12 +124,15 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         return name_lst
 
     def is_image_url (self):
+        """."""
         return not (self.utIsEmptyString(self.image_url) or 'image_url' in self.get_hidden_list())
 
     def is_long_definition (self):
+        """."""
         return not (self.utIsEmptyString(self.long_definition) or 'long_definition' in self.get_hidden_list())
 
     def is_definition_source(self):
+        """."""
         return not (self.utIsEmptyString(self.definition_source_url) or 'definition_source_url' in self.get_hidden_list())
 
     ############################
@@ -187,7 +191,10 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
 
     def get_translation_by_language(self, language):
         """ get translation by language """
-        return getattr(self, language)
+        try:
+            return getattr(self, language)
+        except:
+            return ''
 
     def check_if_no_translations(self):
         """ check if translations['translation'] != '':"""

@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.27 2004/05/11 11:36:35 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.28 2004/05/12 17:21:09 finrocvs Exp $
 
 #Python imports
 import string
@@ -35,8 +35,34 @@ class utils:
     def __init__(self):
         pass
 
-    def utIsSynonym(self):
+    def element_list_sorted(self):
+        """Return all 'EEA Glossary Element' from a Centre root"""
+        lista=self.objectItems([EEA_GLOSSARY_SYNONYM_METATYPE, EEA_GLOSSARY_ELEMENT_METATYPE])
+        lista.sort()
+        return lista
+
+    def utGetSynonyms(self):
+        """ return elements found in synonyms """
+        results = []
+        cat_obj = self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE)
+        for obj in cat_obj:
+            if obj.name in self.synonyms:
+                results.append(obj)
+        return results
+
+    def utGetAbsoluteURL(self):
         """."""
+        return self.absolute_url
+
+    def utGetElement(self,p_name):
+        """ return an element from catalog """
+        cat_obj = self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE)
+        for obj in cat_obj:
+            if obj.name == p_name:
+                return obj
+
+    def utIsSynonym(self):
+        """ check if the object is a synonym"""
         return self.meta_type==EEA_GLOSSARY_SYNONYM_METATYPE
 
     def utCompare(self, x, y):

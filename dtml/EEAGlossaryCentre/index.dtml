@@ -5,7 +5,9 @@
 </p>
 
 <div align=center>
-    <dtml-var folder_list>
+    <dtml-in folder_list_sorted>
+        &nbsp;<a href="<dtml-var absolute_url>"><dtml-var id></a>&nbsp;|
+    </dtml-in>
     <br><hr>
 </div>
 
@@ -102,9 +104,9 @@
 </table>
 
 <br>
-<dtml-in elements_from_catalog>
+<dtml-in element_list_sorted>
     <dtml-unless disabled>
-        <a href="<dtml-var absolute_url>"><IMG SRC="<dtml-var icon>" BORDER=0>&nbsp;<dtml-var name></a>
+        <a href="<dtml-var absolute_url>"><IMG SRC="misc_/EEAGlossary/element.gif" BORDER=0>&nbsp;<dtml-var name></a>
         <br>
     </dtml-unless>
 </dtml-in>

@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: toutf8.py,v 1.1 2004/05/10 15:37:01 finrocvs Exp $
+#$Id: toutf8.py,v 1.2 2004/05/12 17:21:09 finrocvs Exp $
 
 #Python imports
 
@@ -86,7 +86,7 @@ class toUTF8:
         ]
 
     def toutf8(self, s, charset):
-        "transfer to Unicode"
+        """transfer to Unicode"""
         strlist = list(s)
         res = ""
         if (charset == 'iso-8859-7'):

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossarySynonym.py,v 1.16 2004/05/11 13:58:38 finrocvs Exp $
+#$Id: EEAGlossarySynonym.py,v 1.17 2004/05/12 17:21:09 finrocvs Exp $
 
 #python imports
 import string
@@ -69,19 +69,9 @@ class EEAGlossarySynonym(EEAGlossaryElement, utils):
         EEAGlossaryElement.__dict__['__init__'](self, id, '', '', '', [], '', '', '', '', '', 
             '', '', 0, 0, 0, '', '', [], [], {})
 
-    def get_synonyms(self):
-        """."""
-        results = []
-        cat_obj = self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE)
-        for obj in cat_obj:
-            if obj.name in self.synonyms:
-                results.append(obj)
-        return results
-
     #####################
     #   MANAGEMENT TABS #
     #####################
-
     def manageSynonymProperties(self, old_synonym='', new_synonym='', ids='', REQUEST=None):
         """ manage the synonym properties for EEAGlossarySynonym """
         if self.utAddObjectAction(REQUEST):

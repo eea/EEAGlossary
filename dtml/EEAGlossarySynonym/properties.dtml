@@ -7,7 +7,7 @@ The definiton and definition source cannot be changed. You have to go to the Glo
 
 <p>
 The original english term is:<br><b><dtml-var name>&nbsp;</b><br><br>
-<dtml-in get_synonyms>
+<dtml-in utGetSynonyms>
     <dtml-if sequence-start>For definition and other properties see:<br></dtml-if>
     <dtml-if "_.len(_['sequence-item'].name)>1">
         <a href="<dtml-var absolute_url>/manage_workspace"><dtml-var title_or_id></a><br>
