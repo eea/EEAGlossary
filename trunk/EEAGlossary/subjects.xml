@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <subjects>
-    <subjects code="ADMLEG" name ="ADMINISTRATION AND LEGISLATION"/>
-    <subjects code="AGRARE" name ="AGRICULTURE AND RURAL AREAS"/>
-    <subjects code="AIRCHA" name ="AIR AND CLIMATE CHANGE"/>
-    <subjects code="CHEHEA" name ="CHEMICALS AND HEALTH"/>
-    <subjects code="DATINF" name ="DATA MANAGEMENT AND INFORMATION"/>
-    <subjects code="ECOREP" name ="ECONOMICS AND CORPORATE REPORTING"/>
-    <subjects code="EIO" name ="EIONET"/>
-    <subjects code="ENE" name ="ENERGY"/>
-    <subjects code="ENVIND" name ="ENVIRONMENTAL INDICATORS"/>
-    <subjects code="GEN" name ="GENERAL"/>
-    <subjects code="IMPASS" name ="IMPACT ASSESSMENT"/>
-    <subjects code="ENVINS" name ="ENVIRONMENTAL INSTRUMENTS"/>
-    <subjects code="INTASS" name ="INTEGRATED TOOLS AND METHODOLOGIES FOR ASSESSMENT"/>
-    <subjects code="LANUSE" name ="LAND COVER AND LAND USE"/>
-    <subjects code="MARENV" name ="MARINE AND COASTAL ENVIRONMENT"/>
-    <subjects code="NATHAZ" name ="NATURAL AND TECHNOLOGICAL HAZARDS"/>
-    <subjects code="NATBIO" name ="NATURE AND BIODIVERSITY"/>
-    <subjects code="NOI" name ="NOISE"/>
-    <subjects code="SCEANA" name ="SCENARIOS AND PROSPECTIVE ANALYSIS"/>
-    <subjects code="SOI" name ="SOIL"/>
-    <subjects code="TOU" name ="TOURISM"/>
-    <subjects code="TRA" name ="TRANSPORT"/>
-    <subjects code="URBENV" name ="URBAN ENVIRONMENT"/>
-    <subjects code="WAS" name ="WASTE"/>
-    <subjects code="WAT" name ="WATER"/>
+    <subject code="ADMLEG" name="ADMINISTRATION AND LEGISLATION"/>
+    <subject code="AGRARE" name="AGRICULTURE AND RURAL AREAS"/>
+    <subject code="AIRCHA" name="AIR AND CLIMATE CHANGE"/>
+    <subject code="CHEHEA" name="CHEMICALS AND HEALTH"/>
+    <subject code="DATINF" name="DATA MANAGEMENT AND INFORMATION"/>
+    <subject code="ECOREP" name="ECONOMICS AND CORPORATE REPORTING"/>
+    <subject code="EIO" name="EIONET"/>
+    <subject code="ENE" name="ENERGY"/>
+    <subject code="ENVIND" name="ENVIRONMENTAL INDICATORS"/>
+    <subject code="GEN" name="GENERAL"/>
+    <subject code="IMPASS" name="IMPACT ASSESSMENT"/>
+    <subject code="ENVINS" name="ENVIRONMENTAL INSTRUMENTS"/>
+    <subject code="INTASS" name="INTEGRATED TOOLS AND METHODOLOGIES FOR ASSESSMENT"/>
+    <subject code="LANUSE" name="LAND COVER AND LAND USE"/>
+    <subject code="MARENV" name="MARINE AND COASTAL ENVIRONMENT"/>
+    <subject code="NATHAZ" name="NATURAL AND TECHNOLOGICAL HAZARDS"/>
+    <subject code="NATBIO" name="NATURE AND BIODIVERSITY"/>
+    <subject code="NOI" name="NOISE"/>
+    <subject code="SCEANA" name="SCENARIOS AND PROSPECTIVE ANALYSIS"/>
+    <subject code="SOI" name="SOIL"/>
+    <subject code="TOU" name="TOURISM"/>
+    <subject code="TRA" name="TRANSPORT"/>
+    <subject code="URBENV" name="URBAN ENVIRONMENT"/>
+    <subject code="WAS" name="WASTE"/>
+    <subject code="WAT" name="WATER"/>
 </subjects>

@@ -17,7 +17,7 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossaryCentre.py,v 1.7 2004/05/03 13:44:54 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.8 2004/05/03 13:57:40 finrocvs Exp $
 
 # python imports
 import string
@@ -99,9 +99,8 @@ class EEAGlossaryCentre(Folder, CatalogAware):
         for lang in languages_handler.languages:
             self.translations = english_name
             self.history = english_name
-            print self.translations
 
-    def LoadSubjectsList (self):
+    def load_subjects_list (self):
         """loads languages & history properties defaults"""
         from os.path import join
         subjects_obj = subjects_parser()
@@ -109,10 +108,8 @@ class EEAGlossaryCentre(Folder, CatalogAware):
         content = file.read()
         file.close()
         subjects_handler, error = subjects_obj.parseContent(content)
-        print 'hhh' + str(error)
         for code in subjects_handler.subjects:
-            self.subjects = name
-            print self.subjects
+            self.subjects_list = code.name
 
     def changePass(self, REQUEST=None):
         """."""

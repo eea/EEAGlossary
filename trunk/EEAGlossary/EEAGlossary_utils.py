@@ -15,7 +15,7 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossary_utils.py,v 1.8 2004/05/03 13:44:54 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.9 2004/05/03 13:57:40 finrocvs Exp $
 
 #Python imports
 from xml.sax.handler import ContentHandler
@@ -207,9 +207,9 @@ class languages_parser:
 
 class subjects_struct:
     """ """
-    def __init__(self, code1, name):
+    def __init__(self, code, name):
         """ """
-        self.code1 = code1
+        self.code = code
         self.name = name
 
 class subjects_handler(ContentHandler):
@@ -221,7 +221,7 @@ class subjects_handler(ContentHandler):
 
     def startElement(self, name, attrs):
         """ """
-        if name == 'subjects':
+        if name == 'subject':
             self.subjects.append(subjects_struct(attrs['code'], attrs['name']))
 
     def endElement(self, name):
