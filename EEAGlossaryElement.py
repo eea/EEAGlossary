@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.46 2004/05/17 13:20:42 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.47 2004/05/17 14:08:40 finrocvs Exp $
 
 # python imports
 import string
@@ -270,6 +270,8 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         self.long_definition = long_definition
         self.QA_needed = QA_needed
         self._p_changed = 1
+        catalog = self.getGlossaryCatalog()
+        self.cu_recatalog_object(catalog, self)
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=0&save=ok')
 
