@@ -56,21 +56,12 @@
                                                     <img src="misc_/EEAGlossary/new.gif" class="img-normal" alt="New glossary entry">
                                                 </dtml-if>
                                                 <dtml-in synonyms size=1>
-                        <dtml-in utGetSynonyms>
-                            <dtml-if sequence-start>(<small>See </small></dtml-if>
-                            <dtml-if "_.len(_['sequence-item'].name)>1">
-                                <a href="<dtml-var absolute_url>/manage_workspace"><dtml-var title_or_id></a>)
-                            </dtml-if>
-                        </dtml-in>
-                                                    <dtml-comment>
-                                                    <dtml-if "_.len(_['sequence-item'])>1">
-                                                        <dtml-in "GlossaryCatalog(id=_['sequence-item'])">
-                                                            <dtml-with "getObject()">
-                                                                <a href="&dtml-absolute_url;"><dtml-var name_or_id></a>)
-                                                            </dtml-with>
-                                                        </dtml-in>
-                                                    </dtml-if>
-                                                    </dtml-comment>
+                                                    <dtml-in utGetSynonyms>
+                                                        <dtml-if sequence-start>(<small>See </small></dtml-if>
+                                                        <dtml-if "_.len(_['sequence-item'].name)>1">
+                                                            <a href="<dtml-var absolute_url>"><dtml-var title_or_id></a>)
+                                                        </dtml-if>
+                                                    </dtml-in>
                                                 </dtml-in>
                                             <dtml-else>
                                                 <a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/element.gif" class="img-normal" alt="">&nbsp;<dtml-var name>&nbsp;</a>
