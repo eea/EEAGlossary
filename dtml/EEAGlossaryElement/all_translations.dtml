@@ -2,7 +2,9 @@
 
 <dtml-var manage_tabs>
 <dtml-comment>
-<table style="border: 1px solid #ddaaaa;" cellpadding="2" cellspacing="2" ><tr><td width="400" align=left valign=top>
+<table style="border: 1px solid #ddaaaa;" cellpadding="2" cellspacing="2" >
+<tr>
+    <td width="400" align=left valign=top>
     <p class="form-help">
     <b>Welcome</b> to the management tool of <b>EEA glossary database.</b><br>
     <br>
@@ -49,16 +51,17 @@
     </tr>
 </table>
 
-</td>
-<td  style="border: 1px dashed #ddaaaa;" cellpadding="2" cellspacing="2" class="form-help" align=left valign=top>
-<p><b>Support/Contact Info</b></p>
-<dtml-var contact_help>
-<hr>
-<dtml-var short_info>
-<hr>
-<dtml-var contexts_table_only>
-</td></tr>
-</table>
+    </td>
 
-<dtml-var manage_utf8_footer>
+    <td  style="border: 1px dashed #ddaaaa;" cellpadding="2" cellspacing="2" class="form-help" align=left valign=top>
+    <p><b>Support/Contact Info</b></p>
+    <dtml-var contact_help>
+    <hr>
+    <dtml-var short_info>
+    <hr>
+    <dtml-var contexts_table_only>
+    </td>
+</tr>
+</table>
 </dtml-comment>
+<dtml-var manage_utf8_footer>
