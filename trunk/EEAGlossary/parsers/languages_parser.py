@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: languages_parser.py,v 1.4 2004/05/17 08:54:19 finrocvs Exp $
+#$Id$
 
 from xml.sax.handler import ContentHandler
 from xml.sax import *

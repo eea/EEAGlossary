@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: tmx_parser.py,v 1.4 2004/06/08 11:34:34 finrocvs Exp $
+#$Id$
 
 from xml.sax.handler import ContentHandler
 from xml.sax import *
@@ -150,4 +150,4 @@ class tmx_parser:
             parser.parse(inputsrc)
             return chandler
         except:
-            return None        
+            return None
