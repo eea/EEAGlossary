@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.30 2004/05/10 15:23:25 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.31 2004/05/10 15:24:02 finrocvs Exp $
 
 # python imports
 import string
@@ -110,7 +110,6 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils):
             else:
                 return None
         else:
-            print 'else'
             for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, path=self.absolute_url):
                 if obj.is_published:
                     elements.append(obj)
