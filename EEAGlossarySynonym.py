@@ -17,7 +17,7 @@
 #
 # Contributor(s):
 # Anton Cupcea, Finsiel Romania
-
+#$Id: EEAGlossarySynonym.py,v 1.2 2004/05/03 09:03:42 finrocvs Exp $
 
 # Zope imports
 from Globals import DTMLFile, MessageDialog, InitializeClass

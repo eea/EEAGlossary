@@ -17,6 +17,7 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
+#$Id: __init__.py,v 1.2 2004/05/03 09:03:42 finrocvs Exp $
 
 import EEAGlossaryCentre
 import EEAGlossaryNews

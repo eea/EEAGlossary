@@ -16,9 +16,8 @@
 # Rights Reserved.
 #
 # Contributor(s):
-# Anton Cupcea, Finsiel Romania
 # Alex Ghica, Finsiel Romania
-
+#$Id: EEAGlossaryElement.py,v 1.2 2004/05/03 09:03:42 finrocvs Exp $
 
 # python imports
 import string
