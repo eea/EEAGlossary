@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.30 2004/05/13 10:42:55 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.31 2004/05/13 11:05:00 finrocvs Exp $
 
 #Python imports
 import string
@@ -226,4 +226,4 @@ class catalog_utils:
         """ """
         command= "catalog(meta_type=" + str(meta_type) + ", " + language + "='" + query + "', definition='" + definition + "')"
         results = eval(command)
-        results = self.__get_objects(catalog, results)
+        return self.__get_objects(catalog, results)
