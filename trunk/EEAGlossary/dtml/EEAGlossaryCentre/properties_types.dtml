@@ -7,7 +7,7 @@
         <td class="cellheader"><b>Type</b></td>
         <td class="cellheader">&nbsp;</td>
     </tr>
-    <dtml-in types_list>
+    <dtml-in get_types_list>
     <dtml-if sequence-odd>
         <dtml-call "REQUEST.set('cellclass', 'cellodd')">
     <dtml-else>

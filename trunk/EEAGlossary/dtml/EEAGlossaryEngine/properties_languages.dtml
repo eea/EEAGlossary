@@ -9,29 +9,31 @@
         <td class="cellheader"><b>Code</b></td>
         <td class="cellheader">&nbsp;</td>
     </tr>
-    <dtml-in "languages.items()">
+    <dtml-in get_languages_list>
     <dtml-if sequence-odd>
         <dtml-call "REQUEST.set('cellclass', 'cellodd')">
     <dtml-else>
         <dtml-call "REQUEST.set('cellclass', 'celleven')">
     </dtml-if>
-    <dtml-if "record_code == _['sequence-key']">
+    <dtml-let lang_info="_['sequence-item']">
+    <dtml-if "record_code == lang_info['lang']">
     <tr>
-        <td class="<dtml-var cellclass>" width="1%"><input type="hidden" name="old_english_name" value="<dtml-var sequence-key html_quote>"></td>
-        <td class="<dtml-var cellclass>"><input type="text" name="english_name" size="30" value="<dtml-var sequence-key html_quote>"></td>
-        <td class="<dtml-var cellclass>"><input type="text" name="charset" size="30" value="<dtml-var "_['sequence-item'][1]" html_quote>"></td>
-        <td class="<dtml-var cellclass>"><input type="text" name="lang" size="50" value="<dtml-var "_['sequence-item'][0]" html_quote>"></td>
+        <td class="<dtml-var cellclass>" width="1%"><input type="hidden" name="old_lang" value="<dtml-var "lang_info['lang']" html_quote>"></td>
+        <td class="<dtml-var cellclass>"><input type="text" name="english_name" size="30" value="<dtml-var "lang_info['english_name']" html_quote>"></td>
+        <td class="<dtml-var cellclass>"><input type="text" name="charset" size="30" value="<dtml-var "lang_info['charset']" html_quote>"></td>
+        <td class="<dtml-var cellclass>"><input type="text" name="lang" size="50" value="<dtml-var "lang_info['lang']" html_quote>"></td>
         <td class="<dtml-var cellclass>"><input type="submit" name="update" value="Update"></td>
     </tr>
     <dtml-else>
     <tr>
-        <td class="<dtml-var cellclass>" width="1%"><input type="checkbox" name="ids" value="<dtml-var sequence-key html_quote>"></td>
-        <td class="<dtml-var cellclass>"><a class="itemlink" href="manage_properties_html?pagetab=4&amp;code=<dtml-var sequence-key url_quote>"><dtml-var sequence-key html_quote></a></td>
-        <td class="<dtml-var cellclass>"><dtml-var "_['sequence-item'][1]" html_quote></td>
-        <td class="<dtml-var cellclass>"><dtml-var "_['sequence-item'][0]" html_quote></td>
+        <td class="<dtml-var cellclass>" width="1%"><input type="checkbox" name="ids" value="<dtml-var "lang_info['lang']" html_quote>"></td>
+        <td class="<dtml-var cellclass>"><a class="itemlink" href="manage_properties_html?pagetab=4&amp;code=<dtml-var "lang_info['lang']" url_quote>"><dtml-var "lang_info['english_name']" html_quote></a></td>
+        <td class="<dtml-var cellclass>"><dtml-var "lang_info['charset']" html_quote></td>
+        <td class="<dtml-var cellclass>"><dtml-var "lang_info['lang']" html_quote></td>
         <td class="<dtml-var cellclass>">&nbsp;</td>
     </tr>
     </dtml-if>
+    </dtml-let>
     <dtml-else>
         <tr>
             <td>&nbsp;</td>

@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.18 2004/05/05 13:44:35 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.19 2004/05/06 14:26:15 finrocvs Exp $
 
 #Python imports
 
@@ -33,34 +33,6 @@ class utils:
 
     def __init__(self):
         pass
-
-    types_list = ['term', 'abbreviation', 'phrase', 'symbol']
-
-#    def utLoadSubjects (self):
-#        """loads subjects list"""
-#        ret=[]
-#        for line in self.subjects_list:
-#            if line != '':
-#                code, name = string.split(line,',')
-#                ret.append(name)
-#        return ret
-
-    def utListSubjects (self):
-        """loads element subjects list if match"""
-        ret = []
-        keys_list = []
-        ord_dict = []
-        alph_list = self.subjects
-        alph_list.sort()
-        for a in self.REQUEST.PARENTS[0].subjects_list.keys():
-            keys_list.append(a)
-        keys_list.sort()
-        for b in keys_list:
-            ord_dict.append((b,self.REQUEST.PARENTS[0].subjects_list[b]))
-        for x,y in ord_dict:
-            if y in alph_list:
-                ret.append((x,y))
-        return ret
 
     def utAddObjectAction(self, REQUEST=None):
         """Check if adding an object"""
@@ -89,6 +61,11 @@ class utils:
         if type(something) is type(''):
             ret = [something]
         return ret
+
+    def utSortList(self, list):
+        """ sort a list """
+        list.sort()
+        return list
 
     def utConvertLinesToList(self, value):
         """Takes a value from a textarea control and returns a list of values"""
@@ -217,3 +194,10 @@ class utils:
                     else:
                         res = res + ch
         return res
+
+    def utSortListOfDictionariesByKey(self, p_list, p_key, p_order=0):
+        """ Sort a list of dictionary by key """
+        if p_order==0:   #ascending
+            p_list.sort(lambda x, y, param=p_key: cmp(x[param], y[param]))
+        else:           #desceding
+            p_list.sort(lambda x, y, param=p_key: cmp(y[param], x[param]))

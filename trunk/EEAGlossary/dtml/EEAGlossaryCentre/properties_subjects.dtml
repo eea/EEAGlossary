@@ -1,34 +1,36 @@
 <dtml-let record_code="REQUEST.get('code', '')">
 
 <form name="frmSubjects" action="manageSubjectsProperties" method="post">
-<table border="0" cellspacing="2" cellpadding="2" width="100%">
+<table border="0" cellspacing="2" cellpadding="2" width="70%">
     <tr>
         <td class="cellheader" width="1%">&nbsp;</td>
         <td class="cellheader"><b>Code</b></td>
         <td class="cellheader"><b>Name</b></td>
         <td class="cellheader">&nbsp;</td>
     </tr>
-    <dtml-in "subjects_list.items()">
+    <dtml-in get_subjects_list>
     <dtml-if sequence-odd>
         <dtml-call "REQUEST.set('cellclass', 'cellodd')">
     <dtml-else>
         <dtml-call "REQUEST.set('cellclass', 'celleven')">
     </dtml-if>
-    <dtml-if "record_code == _['sequence-key']">
+    <dtml-let subj_info="_['sequence-item']">
+    <dtml-if "record_code == subj_info['code']">
     <tr>
-        <td class="<dtml-var cellclass>" width="1%"><input type="hidden" name="old_code" value="<dtml-var sequence-key html_quote>"></td>
-        <td class="<dtml-var cellclass>"><input type="text" name="code" size="30" value="<dtml-var sequence-key html_quote>"></td>
-        <td class="<dtml-var cellclass>"><input type="text" name="name" size="50" value="<dtml-var sequence-item html_quote>"></td>
+        <td class="<dtml-var cellclass>" width="1%"><input type="hidden" name="old_code" value="<dtml-var "subj_info['code']" html_quote>"></td>
+        <td class="<dtml-var cellclass>"><input type="text" name="code" size="30" value="<dtml-var "subj_info['code']" html_quote>"></td>
+        <td class="<dtml-var cellclass>"><input type="text" name="name" size="50" value="<dtml-var "subj_info['name']" html_quote>"></td>
         <td class="<dtml-var cellclass>"><input type="submit" name="update" value="Update"></td>
     </tr>
     <dtml-else>
     <tr>
-        <td class="<dtml-var cellclass>" width="1%"><input type="checkbox" name="ids" value="<dtml-var sequence-key html_quote>"></td>
-        <td class="<dtml-var cellclass>"><a class="itemlink" href="manage_properties_html?pagetab=3&amp;code=<dtml-var sequence-key url_quote>"><dtml-var sequence-key html_quote></a></td>
-        <td class="<dtml-var cellclass>"><dtml-var sequence-item html_quote></td>
+        <td class="<dtml-var cellclass>" width="1%"><input type="checkbox" name="ids" value="<dtml-var "subj_info['code']" html_quote>"></td>
+        <td class="<dtml-var cellclass>"><a class="itemlink" href="manage_properties_html?pagetab=3&amp;code=<dtml-var "subj_info['code']" url_quote>"><dtml-var "subj_info['code']" html_quote></a></td>
+        <td class="<dtml-var cellclass>"><dtml-var "subj_info['name']" html_quote></td>
         <td class="<dtml-var cellclass>">&nbsp;</td>
     </tr>
     </dtml-if>
+    </dtml-let>
     <dtml-else>
         <tr>
             <td>&nbsp;</td>

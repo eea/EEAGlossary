@@ -82,7 +82,7 @@
 
         <td align="left" valign="top">
            <select name="el_type">
-               <dtml-in "types_list">  
+               <dtml-in get_types_list>  
                    <div class="form-text">
                    <OPTION VALUE="<dtml-var sequence-item>"><dtml-var sequence-item></OPTION>
                    </div>
@@ -233,9 +233,11 @@
         <td align="left" valign="top">
             <select size=10 multiple name="subjects">
                     <dtml-in get_subjects_list>
+                        <dtml-let record="_['sequence-item']">
                         <div class="form-text">
-                        <OPTION VALUE="<dtml-var sequence-item>"><dtml-var sequence-item></OPTION>
+                        <option value="<dtml-var "record['code']">"><dtml-var "record['name']"></option>
                         </div>
+                        </dtml-let>
                     </dtml-in>
             </select>
         </td>

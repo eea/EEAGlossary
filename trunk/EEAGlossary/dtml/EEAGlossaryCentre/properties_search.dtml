@@ -7,7 +7,7 @@
         <td class="cellheader"><b>Language</b></td>
         <td class="cellheader">&nbsp;</td>
     </tr>
-    <dtml-in "search_langs">
+    <dtml-in get_search_langs>
     <dtml-if sequence-odd>
         <dtml-call "REQUEST.set('cellclass', 'cellodd')">
     <dtml-else>
@@ -18,7 +18,7 @@
         <td class="<dtml-var cellclass>" width="1%"><input type="hidden" name="old_language" value="<dtml-var sequence-item html_quote>"></td>
         <td class="<dtml-var cellclass>"><select name="language">
             <dtml-let old_language="_['sequence-item']">
-            <dtml-in get_languages_list>
+            <dtml-in get_english_names>
                 <option name="<dtml-var sequence-item>" <dtml-if "_['sequence-item']==old_language">selected</dtml-if>><dtml-var sequence-item html_quote></option>
             </dtml-in>
             </dtml-let>
@@ -41,7 +41,7 @@
     <tr>
         <td class="cell" width="1%">&nbsp;</td>
         <td class="cell"><select name="language">
-            <dtml-in get_languages_list>
+            <dtml-in get_english_names>
                 <option name="<dtml-var sequence-item>"><dtml-var sequence-item html_quote></option>
             </dtml-in></select>
         </td>
