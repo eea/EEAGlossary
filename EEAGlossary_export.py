@@ -238,7 +238,7 @@ class glossary_export:
     ##########################
 
     def old_product_import(self, file, REQUEST=None):
-        """ Imports a XML (old product format) file """
+        """ Imports from XML (old product format) """
 
         from types import UnicodeType, StringType
         import string
@@ -254,6 +254,57 @@ class glossary_export:
             return MessageDialog(title = 'Parse error',
              message = 'Unable to parse file' ,  action = 'manage_main',)
 
-        print chandler.folders
-        return ''
+        l_content = chandler.content
 
+        for l_item in l_content:
+            if l_item.glossary_type == 'folder':
+                try:
+                    self.manage_addGlossaryFolder(l_item.id, l_item.title, l_item.description)
+                except Exception, error:
+                    print error
+
+        for l_item in l_content:
+            if l_item.glossary_type == 'element':
+                l_parent_folder = self.unrestrictedTraverse(l_item.id_folder, None)
+                try:
+                    l_parent_folder.manage_addGlossaryElement(
+                                l_item.translations['English'],
+                                l_item.type,
+                                l_item.source,
+                                l_item.subjects,
+                                l_item.context,
+                                l_item.comment,
+                                l_item.definition,
+                                'dataservice, http://dataservice.eea.eu.int',
+                                l_item.definition_source_year,
+                                l_item.definition_source_url,
+                                l_item.definition_source_org,
+                                l_item.definition_source_org_full_name,
+                                l_item.long_definition,
+                                l_item.disabled,
+                                l_item.approved,
+                                l_item.QA_needed,
+                                '', #image_url
+                                '', #flash_url
+                                [], #links
+                                [], #actions
+                                {}, #translations
+                                [], #synonym
+                                l_item.id)
+
+                    #translations
+                    elem_ob = l_parent_folder._getOb(l_item.id, None)
+                    for lang,trans in l_item.translations.items():
+                        elem_ob.set_translations_list(lang, trans)
+                        elem_ob.set_history(lang, trans)
+                    elem_ob.cu_recatalog_object(elem_ob)
+
+                    #catalog object
+                    elem_ob.cu_recatalog_object(elem_ob)
+                except Exception, error:
+                    print error
+
+            elif l_item.glossary_type == 'synonym':
+                pass
+        print 'gata'
+        return ''
