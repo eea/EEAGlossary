@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.52 2004/06/08 15:07:32 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.53 2004/06/24 08:11:03 finrocvs Exp $
 
 # python imports
 import string
@@ -58,13 +58,13 @@ manage_addGlossaryElement_html = DTMLFile('dtml/EEAGlossaryElement/add', globals
 
 def manage_addGlossaryElement(self, name='', el_type='', source='', subjects=[], el_context='', comment='', 
     used_for_1='', used_for_2='',definition='', definition_source_url='', long_definition='', disabled=0, 
-    approved=1, QA_needed=0, image_url='', flash_url='', links=[], actions=[], translations={}, REQUEST=None):
+    approved=1, QA_needed=0, image_url='', flash_url='', links=[], actions=[], translations={}, synonym=[], REQUEST=None):
     """ adds a new EEAGlossaryElement object """
     #remove the spaces from name
     id = self.ut_makeId(name)
     ob = EEAGlossaryElement(id, name, el_type, source, subjects, el_context, comment, used_for_1, used_for_2, 
             definition, definition_source_url, long_definition, disabled, approved, QA_needed, 
-            image_url, flash_url, links, actions, translations)
+            image_url, flash_url, links, actions, translations, synonym)
     self._setObject(id, ob)
     element_obj = self._getOb(id)
     element_obj.subjects = self.get_subject_by_codes(subjects)
@@ -95,7 +95,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     security = ClassSecurityInfo()
 
     def __init__(self, id, name, el_type, source, subjects, el_context, comment, used_for_1, used_for_2, definition, 
-        definition_source_url, long_definition, disabled, approved, QA_needed,  image_url, flash_url, links, actions, translations):
+        definition_source_url, long_definition, disabled, approved, QA_needed,  image_url, flash_url, links, actions, translations, synonym):
         """ constructor """
         self.id = id
         self.image_url = image_url
@@ -108,6 +108,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         self.disabled = disabled
         self.approved = approved
         self.QA_needed = QA_needed
+        self.synonym = synonym
         ElementBasic.__dict__['__init__'](self, name, el_type, source, el_context, comment, used_for_1, used_for_2, 
             definition, definition_source_url, long_definition)
 
@@ -126,6 +127,10 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     def is_definition_source(self):
         """ test if the current element has a definition source """
         return not (self.utIsEmptyString(self.definition_source_url) or 'definition_source_url' in self.get_hidden_list())
+
+    def is_duplicate(self, p_id):
+        """test if is the same element"""
+        return p_id == self.id
 
     ############################
     #     SUBJECTS FUNCTIONS   #
@@ -212,9 +217,11 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     def convert_element(self, synonyms=[], REQUEST=None):
         """convert element to synonym """
         synid = self.id
+        synau = self.absolute_url(1)
         ob=self.aq_parent
         ob.manage_delObjects(synid)
         ob.manage_addGlossarySynonym(synid, synonyms)
+        ob.utElementSynAdd([],synau)
         if synonyms == []:
             if REQUEST is not None:
                 return REQUEST.RESPONSE.redirect('convert_to_synonym_html?syn=0')
@@ -351,6 +358,10 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
 
     def manage_beforeDelete(self, item, container):
         """ this method is called, when the object is deleted """
+        if self.meta_type == EEA_GLOSSARY_ELEMENT_METATYPE:
+            self.utSynonymElDel()
+        else:
+            self.utElementSynDel()
         SimpleItem.inheritedAttribute('manage_beforeDelete')(self, item, container)
         self.cu_uncatalog_object(self)
 

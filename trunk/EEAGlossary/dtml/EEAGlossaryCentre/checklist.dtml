@@ -2,6 +2,7 @@
 <dtml-var style_console_css>
 <dtml-var manage_tabs>
 
+<br>
 <dtml-if "REQUEST.has_key('languagescheck')">
 
     <table width="100%" border="1" cellpadding="0" cellspacing="0">

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossarySynonym.py,v 1.21 2004/05/17 08:54:19 finrocvs Exp $
+#$Id: EEAGlossarySynonym.py,v 1.22 2004/06/24 08:11:03 finrocvs Exp $
 
 #python imports
 import string
@@ -67,31 +67,27 @@ class EEAGlossarySynonym(EEAGlossaryElement, utils):
         self.id = id
         self.synonyms = self.utConvertToList(synonyms)
         EEAGlossaryElement.__dict__['__init__'](self, id, '', '', '', [], '', '', '', '', '', 
-            '', '', 0, 0, 0, '', '', [], [], {})
+            '', '', 0, 0, 0, '', '', [], [], {}, [])
+
+    def checksynonym(self, p_synonym):
+        """."""
+        if len(self.synonyms) != 0:
+            elem = self.unrestrictedTraverse(self.synonyms[0], None)
+            if p_synonym == elem:
+                return 1
+        return 0
 
     #####################
     #   MANAGEMENT TABS #
     #####################
-    def manageSynonymProperties(self, old_synonym='', new_synonym='', ids='', REQUEST=None):
+    def manageSynonymProperties(self, new_synonym='', REQUEST=None):
         """ manage the synonym properties for EEAGlossarySynonym """
-        if self.utAddObjectAction(REQUEST):
-            if string.strip(new_synonym) == '':
-                return REQUEST.RESPONSE.redirect('synonym_properties_html')
-            else:
-                self.synonyms.append(new_synonym)
-                self._p_changed = 1
-        elif self.utUpdateObjectAction(REQUEST):
-            if string.strip(new_synonym) == '':
-                return REQUEST.RESPONSE.redirect('synonym_properties_html')
-            else:
-                self.synonyms.remove(old_synonym)
-                self.synonyms.append(new_synonym)
-                self._p_changed = 1
-        elif self.utDeleteObjectAction(REQUEST):
-            if not ids or len(ids) == 0:
-                return REQUEST.RESPONSE.redirect('synonym_properties_html')
-            for synonym in self.utConvertToList(ids):
-                self.synonyms.remove(synonym)
+        if string.strip(new_synonym) == '':
+            return REQUEST.RESPONSE.redirect('synonym_properties_html')
+        else:
+            l_old_synonym = self.synonyms
+            self.synonyms = [new_synonym]
+            self.utElementSynAdd(l_old_synonym,'')
             self._p_changed = 1
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('synonym_properties_html')

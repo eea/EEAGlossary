@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.49 2004/06/16 13:12:04 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.50 2004/06/24 08:11:03 finrocvs Exp $
 
 #Python imports
 import string
@@ -64,7 +64,7 @@ class utils:
                 156:  339, # latin small ligature oe
                 158:  382, # latin small letter z with caron
                 159:  376} # latin capital letter y with diaeresis
-        
+
     def ut_test_even(self, p_number):
         """ return true if even """
         return not(p_number%2)
@@ -90,12 +90,17 @@ class utils:
 
     def utGetSynonyms(self):
         """ return elements found in synonyms """
-        results = []
-        cat_obj = self.cu_get_cataloged_objects(meta_type=EEA_GLOSSARY_ELEMENT_METATYPE)
-        for obj in cat_obj:
-            if obj.name in self.synonyms:
-                results.append(obj)
+        results=[]
+        if len(self.synonyms) != 0:
+            results.append(self.unrestrictedTraverse(self.synonyms[0], None))
         return results
+
+#        results = []
+#        cat_obj = self.cu_get_cataloged_objects(meta_type=EEA_GLOSSARY_ELEMENT_METATYPE)
+#        for obj in cat_obj:
+#            if obj.name in self.synonyms:
+#                results.append(obj)
+#        return results
 
     def utGetElement(self,p_name):
         """ return an element from catalog """
@@ -112,9 +117,9 @@ class utils:
         """ check if the object is a element """
         return self.meta_type==EEA_GLOSSARY_ELEMENT_METATYPE
 
-    def utCompare(self, x, y):
-        """ compare two strings """
-        return cmp(string.lower(x[0]), string.lower(y[0]))
+#    def utCompare(self, x, y):
+#        """ compare two strings """
+#        return cmp(string.lower(x[0].name), string.lower(y[0].name))
 
     def utAddObjectAction(self, REQUEST=None):
         """ check if adding an object """
@@ -241,7 +246,45 @@ class utils:
             if ord(term[i]) in self.win_cp1252.keys():
                 term=term[0:i] + "&#" + str(self.win_cp1252[ord(term[i])]) + ";" + term[i+1:]
         return term      
-                
+
+    ######################
+    #   Synonym Linking  #
+    ######################
+
+    def utElementSynAdd(self, p_old_id, p_syn_au):
+        """for convert or when change synonyms property"""
+        if len(p_syn_au) != 0:
+            syn = self.unrestrictedTraverse(p_syn_au, None)
+            elem = self.unrestrictedTraverse(syn.synonyms[0])
+            elem.synonym.append(syn.absolute_url(1))
+        else:
+            elem = self.unrestrictedTraverse(self.synonyms[0], None)
+            elem.synonym.append(self.absolute_url(1))
+        elem._p_changed = 1
+        if len(p_old_id) != 0:
+            elem_old = self.unrestrictedTraverse(p_old_id[0], None)
+            elem_old.synonym.remove(self.absolute_url(1))
+            elem_old._p_changed = 1
+
+    def utElementSynDel(self):
+        """for deleting a synonym"""
+        if self.synonyms != []:
+            elem = self.unrestrictedTraverse(self.synonyms[0], None)
+            elem.synonym.remove(self.absolute_url(1))
+
+#    def utSynonymElRename(self):
+#        """."""
+#        for l_syn_id in self.synonym:
+#            syn = self._getOb(l_syn_id)
+#            syn.synonym = [self.name]
+
+    def utSynonymElDel(self):
+        """for deleting an element"""
+        for l_syn_id in self.synonym:
+            syn = self.unrestrictedTraverse(l_syn_id, None)
+            syn.synonyms = []
+
+
 class catalog_utils:
 
     def __init__(self):
@@ -328,3 +371,5 @@ class catalog_utils:
         command= "catalog(meta_type=" + str(meta_type) + ", " + language + "='" + query + "', definition='" + definition + "')"
         results = eval(command)
         return self.__get_objects(results)
+
+
