@@ -1,11 +1,25 @@
-###########
-# imports #
-###########
+## Script (Python) "export ZGlossary product"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=glossary_center_id
+##title=ZGlossary export
+
+# imports
 import base64
 
-################
-# default data #
-################
+#get the HTML request and response objects.
+request = container.REQUEST
+RESPONSE =  request.RESPONSE
+
+#set content type
+RESPONSE.setHeader('content-type', 'text/xml')
+
+#####################
+# load default data #
+#####################
 messages = []
 messages.append("""<?xml version="1.0" encoding="utf-8"?>\n<export>""")
 
