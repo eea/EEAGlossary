@@ -1,14 +1,15 @@
-<dtml-var style_css>
 <dtml-var style_console_css>
 <dtml-var manage_tabs>
 
-<br>
+<p class="form-help">
+Change the synonyms propertie of this synonym.
+</p>
 
 <dtml-let record_code="REQUEST.get('code', '')">
 
-<table border="1" cellspacing="0" cellpadding="0" width="90%">
+<table border="1" cellspacing="0" cellpadding="2" width="70%">
     <tr><td>
-        <table border="0" cellspacing="0" cellpadding="1" width="100%">
+        <table border="0" cellspacing="0" cellpadding="3" width="100%">
         <form name="frmSynonym" action="manageSynonymProperties" method="post">
             <tr class="row-header">
                 <td class="cell-header" width="1%">&nbsp;</td>
@@ -48,8 +49,8 @@
             </tr>
             </dtml-if>
             <tr>
-                <td width="1%">&nbsp;</td>
-                <td colspan="4"><input type="submit" name="delete" value="Delete"></td>
+                <td class="cell" width="1%">&nbsp;</td>
+                <td class="cell" colspan="4"><input type="submit" name="delete" value="Delete"></td>
             </tr>
         </form>
         </table>

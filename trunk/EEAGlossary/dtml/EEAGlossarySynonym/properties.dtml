@@ -21,9 +21,9 @@ Saved changes. (<dtml-var ZopeTime>)
 
 <dtml-if isManager>
 
-<table width="50%" border="1" cellpadding="0" cellspacing="0">
+<table width="50%" border="1" cellpadding="2" cellspacing="0">
     <tr><td>
-        <table width="100%" border="0" cellpadding="2" cellspacing="0">
+        <table width="100%" border="0" cellpadding="3" cellspacing="0">
             <form action="manageSynonymOtherProperties" method="post">
                 <tr class="row-header"><td class="cell-header" colspan="2">You can only change the following properties for a synonym.</td></tr>
 

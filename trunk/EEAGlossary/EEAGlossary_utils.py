@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.40 2004/05/19 08:00:17 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.41 2004/05/19 12:42:55 finrocvs Exp $
 
 #Python imports
 import string
@@ -57,7 +57,7 @@ class utils:
     def utGetSynonyms(self):
         """ return elements found in synonyms """
         results = []
-        cat_obj = self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE)
+        cat_obj = self.cu_get_cataloged_objects(meta_type=EEA_GLOSSARY_ELEMENT_METATYPE)
         for obj in cat_obj:
             if obj.name in self.synonyms:
                 results.append(obj)
@@ -65,7 +65,7 @@ class utils:
 
     def utGetElement(self,p_name):
         """ return an element from catalog """
-        cat_obj = self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE)
+        cat_obj = self.cu_get_cataloged_objects(meta_type=EEA_GLOSSARY_ELEMENT_METATYPE)
         for obj in cat_obj:
             if obj.name == p_name:
                 return obj
