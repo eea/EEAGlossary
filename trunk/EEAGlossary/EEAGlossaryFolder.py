@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryFolder.py,v 1.7 2004/05/03 18:39:13 finrocvs Exp $
+#$Id: EEAGlossaryFolder.py,v 1.8 2004/05/05 13:44:35 finrocvs Exp $
 
 # Zope imports
 from Globals import DTMLFile, MessageDialog, InitializeClass
@@ -31,6 +31,7 @@ import Products
 
 # product imports
 import EEAGlossaryElement
+import EEAGlossarySynonym
 from EEAGlossary_utils import utils
 from EEAGlossary_constants import *
 
@@ -66,6 +67,8 @@ class EEAGlossaryFolder(Folder, utils):
 
     manage_addGlossaryElement_html = EEAGlossaryElement.manage_addGlossaryElement_html
     manage_addGlossaryElement = EEAGlossaryElement.manage_addGlossaryElement
+    manage_addGlossarySynonym_html = EEAGlossarySynonym.manage_addGlossarySynonym_html
+    manage_addGlossarySynonym = EEAGlossarySynonym.manage_addGlossarySynonym
 
     def __init__(self, id, title, description):
         """ constructor """

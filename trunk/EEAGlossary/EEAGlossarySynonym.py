@@ -20,54 +20,93 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossarySynonym.py,v 1.4 2004/05/03 18:39:13 finrocvs Exp $
+#$Id: EEAGlossarySynonym.py,v 1.5 2004/05/05 13:44:35 finrocvs Exp $
+
+#python imports
+import string
 
 # Zope imports
 from Globals import DTMLFile, MessageDialog, InitializeClass
 from AccessControl import ClassSecurityInfo
 from OFS.SimpleItem import SimpleItem
-#from Products.ZCatalog.CatalogAwareness import CatalogAware
+from Products.ZCatalog.CatalogAwareness import CatalogAware
 
 # product imports
-from constants import *
-import GlossaryElement
+import EEAGlossaryCentre
+import EEAGlossaryElement
+from EEAGlossary_utils import utils
+from EEAGlossary_constants import *
 
-manage_addEEAGlossarySynonymForm = DTMLFile('dtml/EEAGlossarySynonym_add', globals())
+manage_addGlossarySynonym_html = DTMLFile('dtml/EEAGlossarySynonym/add', globals())
 
-def manage_addEEAGlossarySynonym (self, id, title, description, REQUEST=None):
+def manage_addGlossarySynonym(self, id, synonyms=[], REQUEST=None):
     """ Adds a new EEAGlossaryElementSynonym object """
-    ob = EEAGlossarySynonym(id, title, description)
+    ob = EEAGlossarySynonym(id, synonyms)
     self._setObject(id, ob)
+    obj = self._getOb(id)
+    obj._p_changed = 1
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
-
-
-class EEAGlossarySynonym(SimpleItem):
+class EEAGlossarySynonym(SimpleItem, CatalogAware, utils):
     """ EEAGlossaryFolder """
 
     meta_type = EEA_GLOSSARY_SYNONYM_METATYPE
-    product_name = 'EEAGlosary'
+    product_name = EEA_GLOSSARY_PRODUCT_NAME
+    icon = 'misc_/EEAGlossary/synonym.gif'
+    default_catalog = GLOSSARY_CATALOG_NAME
 
-    manage_options =(
-                (Folder.manage_options[0],) +
-                ({'label':'All translations', 'action':'viewTranslations'}),
-                #(Folder.manage_options[1],) +
-                ({'label':'View',                        'action':'index_html'},) +
-                (Folder.manage_options[2],) +
-                (Folder.manage_options[5],) + (
-                {'label':'Help',                        'action':'manageHelp'},)
-                )
+    manage_options = (
+        {'label':'All Translations',        'action':'view_translations_html'},
+        {'label':'Check Translation',       'action':'check_translation_html'},
+        {'label':'Properties',              'action':'manage_properties_html'},
+        {'label':"View",                    'action':'preview_html'},
+        {'label':'History',      'action':'history_html'},
+        {'label':'Help [OK]',                 'action':'help_html'},
+        {'label':'Undo [OK]',                    'action':'manage_UndoForm'},
+        {'label':'Synonym Properties [OK]',                    'action':'synonym_properties_html'},)
 
     security = ClassSecurityInfo()
 
-    def __init__(self, id, title, description):
+    def __init__(self, id, synonyms):
         """ constructor """
         self.id = id
-        self.title = title
-        self.description = description
+        self.synonyms = synonyms
 
+    #####################
+    #   MANAGEMENT TABS #
+    #####################
 
-    index_html = DTMLFile("dtml/EEAGlossaryFolder_index", globals())
+    def manageSynonymProperties(self, old_synonym='', new_synonym='', ids='', REQUEST=None):
+        """ manage the synonym properties for EEAGlossarySynonym """
+        if self.utAddObjectAction(REQUEST):
+            if string.strip(new_synonym) == '':
+                return REQUEST.RESPONSE.redirect('synonym_properties_html')
+            else:
+                self.synonyms.append(new_synonym)
+                self._p_changed = 1
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(new_synonym) == '':
+                return REQUEST.RESPONSE.redirect('synonym_properties_html')
+            else:
+                self.synonyms.remove(old_synonym)
+                self.synonyms.append(new_synonym)
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('synonym_properties_html')
+            for synonym in self.utConvertToList(ids):
+                self.synonyms.remove(synonym)
+            self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('synonym_properties_html')
 
-InitializeClass(EEAGlossaryFolder)
+    view_translations_html = DTMLFile("dtml/EEAGlossarySynonym/view_translations", globals())
+    check_translation_html = DTMLFile("dtml/EEAGlossarySynonym/check_translation", globals())
+    manage_properties_html = DTMLFile("dtml/EEAGlossarySynonym/properties", globals())
+    preview_html = DTMLFile("dtml/EEAGlossarySynonym/preview", globals())
+    history_html = DTMLFile("dtml/EEAGlossarySynonym/history", globals())
+    help_html = DTMLFile("dtml/EEAGlossarySynonym/help", globals())
+    synonym_properties_html = DTMLFile("dtml/EEAGlossarySynonym/synonym_properties", globals())
+
+InitializeClass(EEAGlossarySynonym)

@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.17 2004/05/05 10:24:52 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.18 2004/05/05 13:44:35 finrocvs Exp $
 
 #Python imports
 
@@ -60,7 +60,6 @@ class utils:
         for x,y in ord_dict:
             if y in alph_list:
                 ret.append((x,y))
-        print ret
         return ret
 
     def utAddObjectAction(self, REQUEST=None):
