@@ -33,16 +33,16 @@
         <td width="65%" align="left" valign="top"><div class="form-label"><b>Translation</b></div></td>
     </tr>
 
-    <dtml-in get_translations_list>
-    <dtml-let record="_['sequence-item']">
-        <dtml-let record=sequence-item role="'QC '+record['language']">
+    <dtml-in get_english_names>
+    <dtml-let language="_['sequence-item']" translation="get_translation_by_language(language)">
+        <dtml-let record=sequence-item role="'QC '+record">
             <tr>
-                <td align="left" valign="top"><div class="form-label"><label for="cb-<dtml-var "record['language']">"><dtml-var "record['language']"></label></div></td>
+                <td align="left" valign="top"><div class="form-label"><label for="cb-<dtml-var language>"><dtml-var language></label></div></td>
                 <td align="left" valign="top">
-                    <dtml-if "record['language'] in get_unicode_langs()">
-                       <dtml-var "record['translation']">
+                    <dtml-if "language in get_unicode_langs()">
+                       <dtml-var translation>
                    <dtml-else>
-                      <dtml-var "display_unicode_langs(record['translation'],get_language_charset(record['language']))"><br>
+                      <dtml-var "display_unicode_langs(translation,get_language_charset(language))"><br>
                    </dtml-if>
                 </td>
             </tr>

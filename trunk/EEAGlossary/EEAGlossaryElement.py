@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.33 2004/05/11 11:36:35 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.34 2004/05/11 11:38:36 finrocvs Exp $
 
 # python imports
 import string
@@ -68,8 +68,6 @@ def manage_addGlossaryElement(self, id, name='', el_type='', source='', subjects
             definition, definition_source_url, long_definition, disabled, approved, QA_needed, 
             image_url, flash_url, links, actions, translations)
     self._setObject(id, ob)
-    element_obj = self._getOb(id)
-    element_obj.load_translations_list()
     element_obj.subjects = self.get_subject_by_codes(subjects)
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
@@ -102,7 +100,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         self.flash_url = flash_url
         self.links = links
         self.actions = actions
-        self.translations = []
+#        self.translations = {}
         self.all_langs_list= {}
         self.history=[]
         ElementBasic.__dict__['__init__'](self, name, el_type, source, [], el_context, comment, used_for_1, used_for_2, 
@@ -190,47 +188,38 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
 
     def get_translation_by_language(self, language):
         """ get translation by language """
-        for trans_info in self.get_translations_list():
-            if trans_info['language'] == language:
-                return trans_info['translation']
-
-    def get_translations_list(self):
-        """ get the languages """
-        self.utSortListOfDictionariesByKey(self.translations, 'language')
-        return self.translations
+        return getattr(self, language)
 
     def check_if_no_translations(self):
         """ check if translations['translation'] != '':"""
-        for trans_info in self.get_translations_list():
-            if trans_info['translation']!='':
+        for lang in self.get_english_names():
+            if getattr(self, lang) != '':
                 return 1
         return 0
 
     def set_translations_list(self, language, translation):
         """ set the languages """
-        self.translations.append({'language':language, 'translation':translation})
+        setattr(self, language, translation)
 
-    def remove_translation_from_list(self, language):
-        """ remove a language from list """
-        for lang_info in self.translations:
-            if lang_info['language'] == language:
-                self.translations.remove(lang_info)
-
+#    def remove_translation_from_list(self, language):
+#        """ remove a language from list """
+#        for lang_info in self.translations:
+#            if lang_info['language'] == language:
+#                self.translations.remove(lang_info)
+#
     def del_translation_by_language(self, language):
         """ remove a translation from list """
-        for lang_info in self.translations:
-            if lang_info['language'] == language:
-                lang_info['translation'] = ''
+        setattr(self, language, '')
 
-    def del_translation_by_translation(self, translation):
-        """ remove a translation from list """
-        for lang_info in self.translations:
-            if lang_info['translation'] == translation:
-                lang_info['translation'] = ''
+#    def del_translation_by_translation(self, translation):
+#        """ remove a translation from list """
+#        for lang_info in self.translations:
+#            if lang_info['translation'] == translation:
+#                lang_info['translation'] = ''
 
     def load_translations_list (self):
         for lang in self.get_english_names():
-            self.set_translations_list(lang, '')
+            setattr(self, lang, '')
 
     def convert_element(self, synonyms=[], REQUEST=None):
         """convert element to synonym"""
@@ -250,10 +239,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         if not lang_code:
             return 
         if self.check_allowed_translations(lang_code):
-            #charset = self.get_language_charset(lang_code)
-            #encode_translation = self.display_unicode_langs(translation, charset)
-            self.set_history(lang_code, translation)
-            self.remove_translation_from_list(lang_code)
+            #self.set_history(lang_code, translation)
             self.set_translations_list(lang_code, translation)
             self._p_changed = 1
             if REQUEST is not None:
@@ -366,6 +352,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     def manage_afterAdd(self, item, container):
         """ This method is called, whenever _setObject in ObjectManager gets called."""
         SimpleItem.inheritedAttribute('manage_afterAdd')(self, item, container)
+        item.load_translations_list()
         self.cu_catalog_object(self.getGlossaryCatalog(), self)
 
     def manage_beforeDelete(self, item, container):
