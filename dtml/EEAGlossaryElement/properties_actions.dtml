@@ -1,0 +1,96 @@
+<dtml-let record_action="REQUEST.get('action', '')" record_link="REQUEST.get('link', '')">
+
+<form name="frmActions" action="manageActionsProperties" method="post">
+<table border="0" cellspacing="2" cellpadding="2" width="70%">
+    <tr>
+        <td class="cellheader" width="1%">&nbsp;</td>
+        <td class="cellheader"><b>Actions</b></td>
+        <td class="cellheader">&nbsp;</td>
+    </tr>
+    <dtml-in actions>
+    <dtml-if sequence-odd>
+        <dtml-call "REQUEST.set('cellclass', 'cellodd')">
+    <dtml-else>
+        <dtml-call "REQUEST.set('cellclass', 'celleven')">
+    </dtml-if>
+    <dtml-if "record_action == _['sequence-item']">
+    <tr>
+        <td class="<dtml-var cellclass>" width="1%"><input type="hidden" name="old_action" value="<dtml-var sequence-item html_quote>"></td>
+        <td class="<dtml-var cellclass>"><input type="text" name="action" size="30" value="<dtml-var sequence-item html_quote>"></td>
+        <td class="<dtml-var cellclass>"><input type="submit" name="update" value="Update"></td>
+    </tr>
+    <dtml-else>
+    <tr>
+        <td class="<dtml-var cellclass>" width="1%"><input type="checkbox" name="ids" value="<dtml-var sequence-item html_quote>"></td>
+        <td class="<dtml-var cellclass>"><a class="itemlink" href="manage_properties_html?pagetab=2&amp;action=<dtml-var sequence-item url_quote>"><dtml-var sequence-item html_quote></a></td>
+        <td class="<dtml-var cellclass>">&nbsp;</td>
+    </tr>
+    </dtml-if>
+    <dtml-else>
+        <tr>
+            <td>&nbsp;</td>
+            <td colspan="2"><b>No actions</b></td>
+        </tr>
+    </dtml-in>
+    <dtml-if "record_action==''">
+    <tr>
+        <td class="cell" width="1%">&nbsp;</td>
+        <td class="cell"><input type="text" name="action" size="30" value=""></td>
+        <td class="cell"><input type="submit" name="add" value="Add"></td>
+    </tr>
+    </dtml-if>
+    <tr>
+        <td width="1%">&nbsp;</td>
+        <td colspan="4"><input type="submit" name="delete" value="Delete"></td>
+    </tr>
+</table>
+</form>
+<br>
+<br>
+<form name="frmLinks" action="manageLinksProperties" method="post">
+<table border="0" cellspacing="2" cellpadding="2" width="70%">
+    <tr>
+        <td class="cellheader" width="1%">&nbsp;</td>
+        <td class="cellheader"><b>Links</b></td>
+        <td class="cellheader">&nbsp;</td>
+    </tr>
+    <dtml-in links>
+    <dtml-if sequence-odd>
+        <dtml-call "REQUEST.set('cellclass', 'cellodd')">
+    <dtml-else>
+        <dtml-call "REQUEST.set('cellclass', 'celleven')">
+    </dtml-if>
+    <dtml-if "record_link == _['sequence-item']">
+    <tr>
+        <td class="<dtml-var cellclass>" width="1%"><input type="hidden" name="old_link" value="<dtml-var sequence-item html_quote>"></td>
+        <td class="<dtml-var cellclass>"><input type="text" name="link" size="30" value="<dtml-var sequence-item html_quote>"></td>
+        <td class="<dtml-var cellclass>"><input type="submit" name="update" value="Update"></td>
+    </tr>
+    <dtml-else>
+    <tr>
+        <td class="<dtml-var cellclass>" width="1%"><input type="checkbox" name="ids" value="<dtml-var sequence-item html_quote>"></td>
+        <td class="<dtml-var cellclass>"><a class="itemlink" href="manage_properties_html?pagetab=2&amp;link=<dtml-var sequence-item url_quote>"><dtml-var sequence-item html_quote></a></td>
+        <td class="<dtml-var cellclass>">&nbsp;</td>
+    </tr>
+    </dtml-if>
+    <dtml-else>
+        <tr>
+            <td>&nbsp;</td>
+            <td colspan="2"><b>No links</b></td>
+        </tr>
+    </dtml-in>
+    <dtml-if "record_link==''">
+    <tr>
+        <td class="cell" width="1%">&nbsp;</td>
+        <td class="cell"><input type="text" name="link" size="30" value=""></td>
+        <td class="cell"><input type="submit" name="add" value="Add"></td>
+    </tr>
+    </dtml-if>
+    <tr>
+        <td width="1%">&nbsp;</td>
+        <td colspan="4"><input type="submit" name="delete" value="Delete"></td>
+    </tr>
+</table>
+</form>
+
+</dtml-let>

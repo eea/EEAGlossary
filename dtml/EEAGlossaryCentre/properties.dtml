@@ -10,7 +10,7 @@ dasdasdasd asdasdasdas asdasdas dasdasdsadsadas dsada sdasdas asd asd asdas dasd
 <dtml-comment>
     Main menu bar
 </dtml-comment>
-<hr noshade size="1">
+<div class="system-msg">
 &nbsp;<a class="<dtml-if "pagetab=='0'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=0">Basic properties</a>
 &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='1'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=1">Alpha List</a>
 &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='2'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=2">Types List</a>
@@ -19,7 +19,7 @@ dasdasdasd asdasdasdas asdasdas dasdasdsadsadas dsada sdasdas asd asd asdas dasd
 &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='5'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=5">Search Languages</a>
 &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='6'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=6">Hidden Fields</a>
 &nbsp;
-<hr noshade size="1">
+</div>
 
 <dtml-if "REQUEST.has_key('save') and REQUEST['save']=='ok'">
 <div class="system-msg">
