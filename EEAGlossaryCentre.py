@@ -17,7 +17,7 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossaryCentre.py,v 1.6 2004/05/03 13:19:48 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.7 2004/05/03 13:44:54 finrocvs Exp $
 
 # python imports
 import string
@@ -37,6 +37,7 @@ import EEAGlossaryElement
 from EEAGlossary_utils import languages_parser
 #import EEAGlossaryElementSynonym
 from EEAGlossary_constants import *
+from EEAGlossary_utils import *
 
 manage_addEEAGlossaryCentreForm = DTMLFile('dtml/EEAGlossaryCentre_add', globals())
 
@@ -99,22 +100,19 @@ class EEAGlossaryCentre(Folder, CatalogAware):
             self.translations = english_name
             self.history = english_name
             print self.translations
-            print self.history
 
     def LoadSubjectsList (self):
         """loads languages & history properties defaults"""
         from os.path import join
+        subjects_obj = subjects_parser()
         file = open(join(SOFTWARE_HOME, 'Products','EEAGlossary','subjects.xml'), 'r')
         content = file.read()
         file.close()
-        languages_handler, error = forms_parser.parseContent(content)
+        subjects_handler, error = subjects_obj.parseContent(content)
+        print 'hhh' + str(error)
         for code in subjects_handler.subjects:
             self.subjects = name
-            print code
-#            self.translations = english_name
-#            self.history = english_name
-#            print self.translations
-#            print self.history
+            print self.subjects
 
     def changePass(self, REQUEST=None):
         """."""
