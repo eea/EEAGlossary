@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.12 2004/05/04 13:24:44 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.13 2004/05/04 13:34:25 finrocvs Exp $
 
 # python imports
 import string
@@ -137,9 +137,7 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
             return 0
 
     def load_translations_list (self):
-        print 'Trans: DEF'
         for lang in self.REQUEST.PARENTS[0].languages_list.keys():
-            print 'Trans: LOAD'
             self.translations[lang] = ''
 
     #####################
