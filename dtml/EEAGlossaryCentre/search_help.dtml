@@ -1,0 +1,74 @@
+<dtml-var style_console_css>
+
+<table width="90%" border="1" cellpadding="2" cellspacing="0">
+    <tr><td>
+        <table width="100%" border="0" cellpadding="3" cellspacing="0">
+            <tr class="row-header">
+                <td class="cell-header">Examples of search queries</td>
+            </tr>
+
+            <tr class="cellodd">
+                <td><b>water</b><br></td>
+            </tr>
+            <tr class="celleven">
+                <td><li>searches for terms indexed under water.</li></td>
+            </tr>
+
+            <tr class="cellodd">
+                <td><b>water use</b></td>
+            </tr>
+            <tr class="celleven">
+                <td><li>searches for terms indexed under water or use.</li></td>
+            </tr>
+
+            <tr class="cellodd">
+                <td><b>water*</b></td>
+            </tr>
+            <tr class="celleven">
+                <td><li>searches for terms indexed under any term starting with "water".</li></td>
+            </tr>
+
+            <tr class="cellodd">
+                <td><b>"water use"</b></td>
+            </tr>
+            <tr class="celleven">
+                <td><li>searches for exact phrase "water use".</li></td>
+            </tr>
+
+            <tr class="cellodd">
+                <td><b>water and use</b></td>
+            </tr>
+            <tr class="celleven">
+                <td><li>searches for terms indexed under water and use.</li></td>
+            </tr>
+
+            <tr class="cellodd">
+                <td><b>water and not use</b></td>
+            </tr>
+            <tr class="celleven">
+                <td><li>searches for terms indexed under water but not use.</li></td>
+            </tr>
+
+            <tr class="cellodd">
+                <td><b>w*er</b></td>
+            </tr>
+            <tr class="celleven">
+                <td><li>searches for terms indexed under any term starting with "w" and ending with "er".</li></td>
+            </tr>
+
+            <tr class="cellodd">
+                <td><b>w?er</b></td>
+            </tr>
+            <tr class="celleven">
+                <td><li>searches for terms indexed under any term with any character between "w" and "er".</li></td>
+            </tr>
+
+            <tr class="cellodd">
+                <td><b>And more ...</b></td>
+            </tr>
+            <tr class="celleven">
+                <td><li>You can also combine the above search methods to create more specific search queries.</li></td>
+            </tr>
+        </table>
+    </td></tr>
+</table>

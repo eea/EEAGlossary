@@ -62,4 +62,32 @@ a.menulinkoff:hover
 {
     color: #FF0000;
 }
+
+.row-header
+{
+    background: #0198CD;
+    height: 20px;
+}
+
+.cell-header
+{
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.celleven
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 12px;
+    color: #000000;
+    background: #FFFFFF;
+}
+
+.cellodd
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 12px;
+    color: #000000;
+    background: #EEEEEE;
+}
 </style>
