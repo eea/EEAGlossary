@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.43 2004/05/14 12:57:16 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.44 2004/05/17 07:42:25 finrocvs Exp $
 
 # python imports
 import string
@@ -37,7 +37,7 @@ from toutf8 import toUTF8
 from EEAGlossary_constants import *
 
 class ElementBasic:
-    """ define the basic properties for EEAGlossaryElement"""
+    """ define the basic properties for EEAGlossaryElement """
 
     def __init__(self, name, el_type, source, el_context, comment, used_for_1, used_for_2, 
             definition, definition_source_url, long_definition):
@@ -59,7 +59,7 @@ manage_addGlossaryElement_html = DTMLFile('dtml/EEAGlossaryElement/add', globals
 def manage_addGlossaryElement(self, name='', el_type='', source='', subjects=[], el_context='', comment='', 
     used_for_1='', used_for_2='',definition='', definition_source_url='', long_definition='', disabled=0, 
     approved=1, QA_needed=0, image_url='', flash_url='', links=[], actions=[], translations={}, REQUEST=None):
-    """ Adds a new EEAGlossaryElement object """
+    """ adds a new EEAGlossaryElement object """
     #remove the spaces from name
     id = self.ut_makeId(name)
     ob = EEAGlossaryElement(id, name, el_type, source, subjects, el_context, comment, used_for_1, used_for_2, 
@@ -109,7 +109,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
             definition, definition_source_url, long_definition)
 
     def is_published (self):
-        """."""
+        """ test if current element is published """
         return (self.approved and (not self.disabled))
 
     def all_elements (self):
@@ -126,15 +126,15 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         return name_lst
 
     def is_image_url (self):
-        """."""
+        """ test if the current element has an image URL """
         return not (self.utIsEmptyString(self.image_url) or 'image_url' in self.get_hidden_list())
 
     def is_long_definition (self):
-        """."""
+        """ test if the current element has a long definition """
         return not (self.utIsEmptyString(self.long_definition) or 'long_definition' in self.get_hidden_list())
 
     def is_definition_source(self):
-        """."""
+        """ test if the current element has a definition source """
         return not (self.utIsEmptyString(self.definition_source_url) or 'definition_source_url' in self.get_hidden_list())
 
     ############################
@@ -186,7 +186,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     #  TRANSLATIONS FUNCTIONS  #
     ############################
     def check_allowed_translations(self, language):
-        """ check if the authenticated user has the permission to change the translation"""
+        """ check if the authenticated user has the permission to change the translation """
         role = EEA_GLOSSARY_ROLES_PREFIX + language
         if (role in self.getAuthenticatedUserRoles()) or self.REQUEST.AUTHENTICATED_USER.has_role(role, self):
             return 1
@@ -200,7 +200,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
             return ''
 
     def check_if_no_translations(self):
-        """ check if translations['translation'] != '':"""
+        """ check if translations['translation'] != '': """
         for lang in self.get_english_names():
             if getattr(self, lang) != '':
                 return 1
@@ -227,11 +227,12 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
 #                lang_info['translation'] = ''
 
     def load_translations_list (self):
+        """ load languages """
         for lang in self.get_english_names():
             setattr(self, lang, '')
 
     def convert_element(self, synonyms=[], REQUEST=None):
-        """convert element to synonym"""
+        """convert element to synonym """
         synid = self.id
         ob=self.aq_parent
         ob.manage_delObjects(synid)
@@ -244,7 +245,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
                 return REQUEST.RESPONSE.redirect('convert_to_synonym_html')
 
     def manageTranslations(self, lang_code='', translation='', REQUEST=None):
-        """ save translation for a language"""
+        """ save translation for a language """
         if not lang_code:
             return 
         if self.check_allowed_translations(lang_code):
@@ -291,12 +292,15 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     #  LINKS PROPERTIES   #
     #######################
     def get_links(self):
+        """ return links """
         return self.links
 
     def set_link(self, value):
+        """ set a link """
         self.links.append(value)
 
     def del_link(self, value):
+        """ delete a link """
         self.links.remove(value)
 
     def manageLinksProperties(self, old_link='', link='', ids='', REQUEST=None):
@@ -327,12 +331,15 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     #  ACTIONS PROPERTIES #
     #######################
     def get_actions(self):
+        """ return actions """
         return self.actions
 
     def set_action(self, value):
+        """ set an action """
         self.actions.append(value)
 
     def del_action(self, value):
+        """ delete an action """
         self.actions.remove(value)
 
     def manageActionsProperties(self, old_action='', action='', ids='', REQUEST=None):
@@ -360,14 +367,14 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2&save=ok')
 
     def manage_afterAdd(self, item, container):
-        """ This method is called, whenever _setObject in ObjectManager gets called."""
+        """ this method is called, whenever _setObject in ObjectManager gets called """
         SimpleItem.inheritedAttribute('manage_afterAdd')(self, item, container)
         item.load_translations_list()
         item.set_translations_list('English', item.name)
         self.cu_catalog_object(self.getGlossaryCatalog(), self)
 
     def manage_beforeDelete(self, item, container):
-        """ This method is called, when the object is deleted. """
+        """ this method is called, when the object is deleted """
         SimpleItem.inheritedAttribute('manage_beforeDelete')(self, item, container)
         self.cu_uncatalog_object(self.getGlossaryCatalog(), self)
 

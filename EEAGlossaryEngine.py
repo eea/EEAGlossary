@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryEngine.py,v 1.10 2004/05/13 15:01:56 finrocvs Exp $
+#$Id: EEAGlossaryEngine.py,v 1.11 2004/05/17 07:42:25 finrocvs Exp $
 
 import string
 
@@ -61,7 +61,7 @@ class EEAGlossaryEngine(SimpleItem, utils):
         self.technic_contact = {}
 
     def load_roles_list(self):
-        """ """
+        """ load the role list  """
         from os.path import join
         roles_obj = roles_parser()
         root_obj = self.utGetROOT()
@@ -74,7 +74,7 @@ class EEAGlossaryEngine(SimpleItem, utils):
         self._p_changed = 1
 
     def load_languages_list(self):
-        """loads languages & history properties defaults"""
+        """ loads languages & history properties defaults """
 
         from os.path import join
         languages_obj = languages_parser()
@@ -90,7 +90,7 @@ class EEAGlossaryEngine(SimpleItem, utils):
         self._p_changed = 1
 
     def load_subjects_list (self):
-        """loads subjects properties defaults"""
+        """ loads subjects properties defaults """
         from os.path import join
         subjects_obj = subjects_parser()
         content = self.utOpenFile(join(SOFTWARE_HOME, 'Products','EEAGlossary','config', 'subjects.xml'))
@@ -103,12 +103,15 @@ class EEAGlossaryEngine(SimpleItem, utils):
     # TYPES  FUNCTIONS   #
     ######################
     def get_types_list(self):
+        """ return types_list """
         return self.__types_list
 
     def set_types_list(self, value):
+        """ add to type_list """
         self.__types_list.append(value)
 
     def del_types_list(self, value):
+        """ remove from types_list """
         self.__types_list.remove(value)
 
     def manageTypesProperties(self, old_type='', new_type='', ids='', REQUEST=None):
@@ -139,12 +142,15 @@ class EEAGlossaryEngine(SimpleItem, utils):
     # UNICODE FUNCTIONS  #
     ######################
     def get_unicode_langs(self):
+        """ return unicode_langs """
         return self.__unicode_langs
 
     def set_unicode_langs(self, value):
+        """ add to unicode_langs """
         self.__unicode_langs.append(value)
 
     def del_unicode_langs(self, value):
+        """ delete from unicode_langs """
         self.__unicode_langs.remove(value)
 
     def manageUnicodeProperties(self, ids='', language='', old_language='', REQUEST=None):
@@ -175,12 +181,15 @@ class EEAGlossaryEngine(SimpleItem, utils):
     # SEARCHABLE FUNCTIONS  #
     #########################
     def get_searchable_langs(self):
+        """ return search_langs """
         return self.__search_langs
 
     def set_searchable_langs(self, value):
+        """ add to search_langs """
         self.__search_langs.append(value)
 
     def del_searchable_langs(self, value):
+        """ delete from search_langs """
         self.__search_langs.remove(value)
 
     def manageSearchableProperties(self, ids='', language='', old_language='', REQUEST=None):
@@ -284,7 +293,7 @@ class EEAGlossaryEngine(SimpleItem, utils):
                 self.__subjects_list.remove(subj_info)
 
     def manageSubjectsProperties(self, ids=[], old_code='', code='', name='', REQUEST=None):
-        """ manage subjects for EEAGlossaryEngine"""
+        """ manage subjects for EEAGlossaryEngine """
         if self.utAddObjectAction(REQUEST):
             if string.strip(code) == '' or string.strip(name) == '':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
@@ -311,7 +320,7 @@ class EEAGlossaryEngine(SimpleItem, utils):
     #   CONTACT  FUNCTIONS   #
     ##########################
     def manageTechnicProperties(self, ids=[], old_email='', email='', phone='', name='', REQUEST=None):
-        """ manage tecnical contacts for EEAGlossaryEngine"""
+        """ manage tecnical contacts for EEAGlossaryEngine """
         if self.utAddObjectAction(REQUEST):
             if string.strip(email) == '' or string.strip(name) == '':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=0')
@@ -335,7 +344,7 @@ class EEAGlossaryEngine(SimpleItem, utils):
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=0&save=ok')
 
     def manageTranslatorProperties(self, ids=[], old_email='', email='', phone='', name='', REQUEST=None):
-        """ manage translator contacts for EEAGlossaryEngine"""
+        """ manage translator contacts for EEAGlossaryEngine """
         if self.utAddObjectAction(REQUEST):
             if string.strip(email) == '' or string.strip(name) == '':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=0')
@@ -363,21 +372,21 @@ class EEAGlossaryEngine(SimpleItem, utils):
     #  MANAGEMENT FUNCTIONS  #
     ##########################
     def manage_afterAdd(self, item, container):
-        """ """
+        """ manage the add """
         SimpleItem.inheritedAttribute('manage_afterAdd')(self, item, container)
         item.load_roles_list()
         item.load_languages_list()
         item.load_subjects_list()
 
     def manage_beforeDelete(self, item, container):
-        """ This method is called, when the object is deleted. """
+        """ this method is called, when the object is deleted. """
         SimpleItem.inheritedAttribute('manage_beforeDelete')(self, item, container)
         root_obj = self.utGetROOT()
         root_obj._delRoles(self.__roles.keys(), None)
 
-    ##########
-    # FORMS  #
-    ##########
+    ###########
+    #  FORMS  #
+    ###########
     manage_properties_html = DTMLFile("dtml/EEAGlossaryEngine/properties", globals())
     unicode_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_unicode", globals())
     types_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_types", globals())

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryFolder.py,v 1.17 2004/05/13 20:51:07 finrocvs Exp $
+#$Id: EEAGlossaryFolder.py,v 1.18 2004/05/17 07:42:25 finrocvs Exp $
 
 # python imports
 import whrandom
@@ -41,7 +41,7 @@ from EEAGlossary_constants import *
 manage_addGlossaryFolder_html = DTMLFile('dtml/EEAGlossaryFolder/add', globals())
 
 def manage_addGlossaryFolder(self, id, title='', description='', REQUEST=None):
-    """ Adds a new EEAGlossaryFolder object """
+    """ adds a new EEAGlossaryFolder object """
     ob = EEAGlossaryFolder(id, title, description)
     self._setObject(id, ob)
     if REQUEST is not None:
@@ -86,7 +86,7 @@ class EEAGlossaryFolder(Folder, utils):
     #   OTHER FUNCTIONS #
     ##########################
     def get_object_list(self):
-        """return all id sorted objects from a folder"""
+        """ return all id sorted objects from a folder """
         id_lst = []
         obj_lst = []
         for obj in self.objectValues([EEA_GLOSSARY_ELEMENT_METATYPE,EEA_GLOSSARY_SYNONYM_METATYPE]):
@@ -111,18 +111,18 @@ class EEAGlossaryFolder(Folder, utils):
             return self.meta_types
 
     def getMetaTypes(self):
-        """."""
+        """ return meta_types list  """
         return [x['name'] for x in Products.meta_types]
 
     def manageSubobjects(self, REQUEST=None):
-        """ Update the additional meta types for all objects """
+        """ update the additional meta types for all objects """
         subobjects = self.utConvertToList(REQUEST.get('subobjects', ''))
         self.adt_meta_types = subobjects
         self._p_changed = 1
         REQUEST.RESPONSE.redirect('manage_subobjects_html?save=ok')
 
     def manage_folder_properties(self, title='', description='', REQUEST=None):
-        """folder properties"""
+        """ folder properties """
         self.title=title
         self.description=description
         if REQUEST is not None:
