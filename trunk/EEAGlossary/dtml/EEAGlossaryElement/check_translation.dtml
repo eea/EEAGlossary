@@ -14,15 +14,19 @@
     <td width="30%">
         <table cellpadding="1" cellspacing="1" border=1 width="100%">
             <tr>
-                <td colspan="2" align="left">User Info</td>
+                <td colspan="2"><b>User Info</b><br></td>
             </tr>
             <tr>
-                <td>User :</td>
-                <td><dtml-var getAuthenticatedUser></td>
+                <td>User :&nbsp;</td>
+                <td><b><dtml-var getAuthenticatedUser></b><br></td>
             </tr>
             <tr>
-                <td valign="top">Roles :</td>
-                <td><dtml-in getAuthenticatedUserRoles><dtml-var sequence-item><br></dtml-in></td>
+                <td>Roles:&nbsp;</td>
+                <td>
+                    <dtml-in getAuthenticatedUserRoles>
+                        <b><dtml-var sequence-item></b><dtml-if sequence-end>.<dtml-else>,&nbsp;</dtml-if>
+                    </dtml-in>
+                </td>
             </tr>
         </table>
 

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossarySynonym.py,v 1.15 2004/05/11 11:36:35 finrocvs Exp $
+#$Id: EEAGlossarySynonym.py,v 1.16 2004/05/11 13:58:38 finrocvs Exp $
 
 #python imports
 import string
@@ -40,8 +40,6 @@ def manage_addGlossarySynonym(self, id, synonyms=[], REQUEST=None):
     """ Adds a new EEAGlossaryElementSynonym object """
     ob = EEAGlossarySynonym(id, synonyms)
     self._setObject(id, ob)
-    obj = self._getOb(id)
-    obj._p_changed = 1
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
@@ -67,7 +65,7 @@ class EEAGlossarySynonym(EEAGlossaryElement, utils):
     def __init__(self, id, synonyms):
         """ constructor """
         self.id = id
-        self.synonyms = synonyms
+        self.synonyms = self.utConvertToList(synonyms)
         EEAGlossaryElement.__dict__['__init__'](self, id, '', '', '', [], '', '', '', '', '', 
             '', '', 0, 0, 0, '', '', [], [], {})
 
@@ -78,7 +76,6 @@ class EEAGlossarySynonym(EEAGlossaryElement, utils):
         for obj in cat_obj:
             if obj.name in self.synonyms:
                 results.append(obj)
-        print results
         return results
 
     #####################
