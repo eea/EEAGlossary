@@ -245,6 +245,8 @@ class glossary_export:
         from xml.sax import make_parser, handler, InputSource
         from cStringIO import StringIO
 
+        synonym_list = []
+
         parser = old_product_parser()
 
         #parse the xml information
@@ -257,16 +259,17 @@ class glossary_export:
         l_content = chandler.content
 
         for l_item in l_content:
+            
             if l_item.glossary_type == 'folder':
                 try:
                     self.manage_addGlossaryFolder(l_item.id, l_item.title, l_item.description)
-                except Exception, error:
-                    print error
+                except:
+                    print 'folder error: %s' % l_item.id
 
-        for l_item in l_content:
-            if l_item.glossary_type == 'element':
+            elif l_item.glossary_type == 'element':
                 l_parent_folder = self.unrestrictedTraverse(l_item.id_folder, None)
                 try:
+                    #creates element object with base properties
                     l_parent_folder.manage_addGlossaryElement(
                                 l_item.translations['English'],
                                 l_item.type,
@@ -297,13 +300,33 @@ class glossary_export:
                     for lang,trans in l_item.translations.items():
                         elem_ob.set_translations_list(lang, trans)
                         elem_ob.set_history(lang, trans)
-                    elem_ob.cu_recatalog_object(elem_ob)
 
                     #catalog object
                     elem_ob.cu_recatalog_object(elem_ob)
-                except Exception, error:
-                    print error
-
+                except:
+                    print 'elem error: %s' % l_item.id
             elif l_item.glossary_type == 'synonym':
-                pass
+                synonym_list.append(l_item)
+
+        for l_item in synonym_list:
+            if l_item.glossary_type == 'synonym':
+                l_parent_folder = self.unrestrictedTraverse(l_item.id_folder, None)
+                try:
+                    #synonyms base properties
+                    l_parent_folder.manage_addGlossarySynonym(
+                                l_item.id,
+                                [])
+
+                    #synonym relations
+                    synonym_ob = l_parent_folder._getOb(l_item.id, None)
+                    if string.strip(l_item.synonyms) != '':
+                        synonym_ob.manageSynonymProperties(l_item.synonyms)
+
+                    #synonyms other properties
+                    synonym_ob.manageSynonymOtherProperties(
+                                l_item.name,
+                                l_item.disabled,
+                                l_item.approved)
+                except:
+                    print 'synonym error: %s' % l_item.id
         print 'done'

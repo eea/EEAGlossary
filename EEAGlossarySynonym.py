@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossarySynonym.py,v 1.23 2004/10/01 08:12:50 finrocvs Exp $
+#$Id$
 
 #python imports
 import string
