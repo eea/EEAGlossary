@@ -1,0 +1,28 @@
+<dtml-call "RESPONSE.setHeader('content-type', 'text/xml')">
+<?xml version="1.0" encoding="UTF-8" ?>
+<rdf:RDF
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:eeag="http://glossary.eea.eu.int/ns/1.0/">
+
+<dtml-comment>Insert only those terms with definition not empty.</dtml-comment>
+<dtml-in get_all_elements>
+   <dtml-if "definition!='' and not disabled">
+       <rdf:Description rdf:about="&dtml-absolute_url;">
+       <eeag:term>&dtml-name;</eeag:term>
+       <eeag:termtranslations>
+            <dtml-in get_english_names>
+            <dtml-let langid="_['sequence-item']" translation="get_translation_by_language(langid)">
+            <eeag:&dtml-langid;><dtml-if "langid in get_unicode_langs()"><dtml-var translation><dtml-else><dtml-var "display_unicode_langs(translation, charset=get_language_charset(langid))"></dtml-if></eeag:&dtml-langid;>
+            </dtml-let>
+            </dtml-in>
+       </eeag:termtranslations>
+       <dc:identifier><dtml-var absolute_url></dc:identifier>
+       <dc:description><dtml-var definition missing></dc:description>
+       <dtml-if "not utIsEmptyString(definition_source_url)">
+       <dc:source><dtml-var definition_source_url></dc:source>
+       </dtml-if>
+       </rdf:Description>
+   </dtml-if>
+</dtml-in>
+</rdf:RDF>
