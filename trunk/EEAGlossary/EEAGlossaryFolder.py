@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryFolder.py,v 1.16 2004/05/13 12:42:15 finrocvs Exp $
+#$Id: EEAGlossaryFolder.py,v 1.17 2004/05/13 20:51:07 finrocvs Exp $
 
 # python imports
 import whrandom
@@ -40,7 +40,7 @@ from EEAGlossary_constants import *
 
 manage_addGlossaryFolder_html = DTMLFile('dtml/EEAGlossaryFolder/add', globals())
 
-def manage_addGlossaryFolder(self, id, title, description, REQUEST=None):
+def manage_addGlossaryFolder(self, id, title='', description='', REQUEST=None):
     """ Adds a new EEAGlossaryFolder object """
     ob = EEAGlossaryFolder(id, title, description)
     self._setObject(id, ob)

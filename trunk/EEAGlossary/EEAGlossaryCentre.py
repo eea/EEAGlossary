@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.47 2004/05/13 16:41:00 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.48 2004/05/13 20:51:07 finrocvs Exp $
 
 # python imports
 import string
@@ -93,12 +93,12 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         utils.__dict__['__init__'](self)
         toUTF8.__dict__['__init__'](self)
 
-    def all_meta_types(self):
-        """ Supported meta_types """
-        meta_types = [{'name': EEA_GLOSSARY_FOLDER_METATYPE, 'action': 'manage_addGlossaryFolder_html'},]
-        return meta_types
-
-    manage_addGlossaryFolder_html = EEAGlossaryFolder.manage_addGlossaryFolder_html
+#    def all_meta_types(self):
+#        """ Supported meta_types """
+#        meta_types = [{'name': EEA_GLOSSARY_FOLDER_METATYPE, 'action': 'manage_addGlossaryFolder_html'},]
+#        return meta_types
+#
+#    manage_addGlossaryFolder_html = EEAGlossaryFolder.manage_addGlossaryFolder_html
     manage_addGlossaryFolder = EEAGlossaryFolder.manage_addGlossaryFolder
 
 
@@ -178,6 +178,10 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     def canManageGlossary(self):
         """ test if the user can manage the glossary"""
         return ('Manager' in self.getAuthenticatedUserRoles()) or ('GlossaryManager' in self.getAuthenticatedUserRoles())
+
+    def isManager(self):
+        """test if the user has manager role """
+        return 'Manager' in self.getAuthenticatedUserRoles()
 
     def style_css(self):
         """ return the css file from EEAGlossaryEngine """
@@ -517,9 +521,51 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
 
     def get_all_elements(self):
         """ return sorted objects by name """
-        print self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE,], sort_on='id', sort_order='')
         return self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE,], sort_on='id', sort_order='')
 
+    def reindexCatalog(self, REQUEST=None):
+        """ reindex the catalog """
+        catalog = self.getGlossaryCatalog()
+        indexes = self.cu_getIndexes(catalog)
+        for index in indexes:
+            self.cu_reindexCatalogIndex(catalog, index.id, REQUEST)
+        return 1
+
+    def getElementsProperties(self):
+        """ for user friendly iterface purpose only"""
+        dic = {'name':'name', 'el_type':'type', 'source':'source', 'el_context':'context', 'comment':'comment',
+            'used_for_1':'used_for_1', 'used_for_2':'used_for_2','definition_source_url':'definition_source_url',
+            'definition':'definition', 'long_definition':'long_definition', 'disabled':'disabled'}
+        return dic
+
+    def buildGlossary(self, glossary, elements=[], REQUEST=None):
+        """ build glossary -- initial phase """
+        elements = self.utConvertToList(elements)
+        
+#        tiny = self.unrestrictedTraverse(glossary_table, None)
+#        transtab = string.maketrans('/ ','__')
+#        #Replace danish characters to the old ones.
+#        for item in tiny.getRows():
+#            entry = string.replace(item.entry,'æ','ae')
+#            entry = string.replace(entry,'å','aa')
+#            entry = string.replace(entry,'ø','oe')
+#            id = string.translate(entry,transtab,'?&!;()<=>*#[]{}')
+#            #Set default values to empty string.
+#            folder_id = string.upper(id[:1])
+#            folder = self.unrestrictedTraverse(folder_id, None)
+#            if folder is None:
+#                try:
+#                    self.manage_addGlossaryFolder(folder_id)
+#                    folder = self._getOb(folder_id)
+#                except Exception, error:
+#                    print error
+#            try:
+#                folder.manage_addGlossaryElement(item.entry, '', '', [], '', '', item.USEFOR1, 
+#                    item.USEFOR2, item.definition, 'dataservice, http://dataservice.eea.eu.int', '', 0, 0, 0, '', '', [], [], {})
+#            except Exception, error:
+#                print error
+        if REQUEST is not None:
+            REQUEST.RESPONSE.redirect('build_glossary_html')
 
     #####################
     #   MANAGEMENT TABS #
@@ -546,6 +592,8 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     all_terms_html = DTMLFile('dtml/EEAGlossaryCentre/all_terms_view', globals())
     management_page_html = DTMLFile('dtml/EEAGlossaryCentre/administration', globals())
 
+    reindex_html = DTMLFile('dtml/EEAGlossaryCentre/administration_reindex', globals())
+    build_glossary_html = DTMLFile('dtml/EEAGlossaryCentre/administration_build', globals())
     centre_help_html = DTMLFile("dtml/EEAGlossaryCentre/centre_help", globals())
     help_html = DTMLFile("dtml/EEAGlossaryCentre/help", globals())
     help_contact_html = DTMLFile("dtml/EEAGlossaryCentre/help_contact", globals())

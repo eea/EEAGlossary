@@ -2,8 +2,8 @@
 <dtml-var manage_tabs>
 
 <h2>EEA multilingual environmental glossary Management page</h2>
-<p><li><a href="reindex_all_terms">Reindex all terms (Restricted to Manager only)</a></li></p>
-<p><li><a href="build_glossary">Build Glossary/Change definitions - bulk mode, initial phase (Restricted to Manager only)</a></li></p>
+<p><li><a href="reindex_html">Reindex all terms (Restricted to Manager only)</a></li></p>
+<p><li><a href="build_glossary_html">Build Glossary/Change definitions - bulk mode, initial phase (Restricted to Manager only)</a></li></p>
 <p><li><a href="translations_manupdate_form">Update translations/subjects - bulk mode (Restricted to Manager only)</a></li></p>
 <p><li><a href="updateGlossaryDefs">Update terms' definitions (Restricted to Manager only)</a></li></p>
 <p><li><a href="notApprovedTerms">Show not approved (waiting for quality assurance)</a></li></p>
