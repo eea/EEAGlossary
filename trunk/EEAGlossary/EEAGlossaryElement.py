@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.38 2004/05/12 17:21:09 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.39 2004/05/13 10:42:55 finrocvs Exp $
 
 # python imports
 import string
@@ -60,10 +60,12 @@ class ElementBasic:
 
 manage_addGlossaryElement_html = DTMLFile('dtml/EEAGlossaryElement/add', globals())
 
-def manage_addGlossaryElement(self, id, name='', el_type='', source='', subjects=[], el_context='', comment='', 
+def manage_addGlossaryElement(self, name='', el_type='', source='', subjects=[], el_context='', comment='', 
     used_for_1='', used_for_2='',definition='', definition_source_url='', long_definition='', disabled=0, 
     approved=1, QA_needed=0, image_url='', flash_url='', links=[], actions=[], translations={}, REQUEST=None):
     """ Adds a new EEAGlossaryElement object """
+    #remove the spaces from name
+    id = self.ut_makeId(name)
     ob = EEAGlossaryElement(id, name, el_type, source, subjects, el_context, comment, used_for_1, used_for_2, 
             definition, definition_source_url, long_definition, disabled, approved, QA_needed, 
             image_url, flash_url, links, actions, translations)

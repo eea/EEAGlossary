@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.38 2004/05/13 08:37:24 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.39 2004/05/13 10:42:55 finrocvs Exp $
 
 # python imports
 import string
@@ -505,11 +505,9 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     def searchGlossary(self, query='', size=10000, language='English', definition='*', REQUEST=None):
         """ """
         catalog = self.getGlossaryCatalog()
-        command = []
-        command.append("catalog(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], ")
-        command.append(language+"='"+query+"', definition='"+definition+"')")
-        command = ''.join(command)
-        print eval(command)
+        results = self.cu_search_catalog(catalog, [EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], query, size, language, definition)
+        return (language, term, results)
+
 
 
     #####################

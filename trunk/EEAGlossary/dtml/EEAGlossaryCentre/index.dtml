@@ -29,7 +29,7 @@
                             &nbsp;<img src="misc_/EEAGlossary/img_search_med.gif" border=0 alt="Search for a term">&nbsp;<span class="head1">Search for terms</span>
                         </p>
                         <p class=mainfont>
-                        <form action="searchGlossary" method="post" name="frmSearch">
+                        <form action="search_html" method="post" name="frmSearch">
                         <table border=0 cellpadding=0 cellspacing=0 width="100%">
                             <tr>
                                 <th>Term</th>
