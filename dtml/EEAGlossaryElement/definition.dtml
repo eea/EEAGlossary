@@ -1,7 +1,7 @@
-<p class="form-help">
+<p>
 The original english term is:<br><b><dtml-var name>&nbsp;</b><br><br>
 <dtml-if definition>
     <b>Definition</b>:<br>
-        <i><dtml-var "display_unicode_langs(definition,charset='iso-8859-1')"></i>
+    <i><dtml-var "display_unicode_langs(definition,charset='iso-8859-1')"></i>
 </dtml-if>
 </p>

@@ -8,7 +8,7 @@
 <table cellpadding="2" cellspacing="0" width="100%" border="0">
 
 <tr>
-  <td align="left" valign="top"><div class="form-optional">Synonym of (use CTRL for multiple selection)</div></td>
+  <td align="left" valign="top"><div>Synonym of (use CTRL for multiple selection)</div></td>
   <td align="left" valign="top">
     <select name="synonyms" size=10 multiple>
         <dtml-in all_elements>
@@ -22,7 +22,7 @@
 
 <tr>
     <td>&nbsp;</td>
-    <td><input class="form-element" type="submit" name="SUBMIT" value="Save and Convert"></td>
+    <td><input type="submit" name="SUBMIT" value="Save and Convert"></td>
 </tr>
 </table>
 </form>

@@ -1,6 +1,6 @@
 <dtml-var standard_html_header>
 
-<p class=title2>
+<p>
 
     <dtml-with "PARENTS[1]">
         <a href="<dtml-var absolute_url>">
@@ -31,8 +31,8 @@
                         <table width="100%" border="0" cellspacing="2" cellpadding="2">
                             <tr>
                                 <td>
-                                    <p class=head0>Description</p>
-                                    <p class=mainfont>Here you see the list of terms found in <b><dtml-var title_or_id></b>-folder. Click
+                                    <p>Description</p>
+                                    <p>Here you see the list of terms found in <b><dtml-var title_or_id></b>-folder. Click
                                     on the term to see the details like definition, translations etc..</p>
                                 </td>
                             </tr>

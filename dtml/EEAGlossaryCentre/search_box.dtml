@@ -1,6 +1,6 @@
 <dtml-var standard_html_header>
 
-<p class="title2">Search Results for</p>
+<p>Search Results for</p>
 <dtml-let query="REQUEST.get('query', '')" size="REQUEST.get('size', '')" language="REQUEST.get('language','')" definition="REQUEST.get('definition', '')"
         results="searchGlossary(query, size, language, definition)" lang="results[0]" term="results[1]" res="results[2]"> 
 

@@ -32,15 +32,15 @@
         </td>
     </tr>
 
-    <tr class="list-header">
-        <td align="left" valign="top"><div class="form-label"><b>Language</b></div></td>
-        <td align="left" valign="top"><div class="form-label"><b>Translation</b></div></td>
+    <tr>
+        <td align="left" valign="top"><div><b>Language</b></div></td>
+        <td align="left" valign="top"><div><b>Translation</b></div></td>
     </tr>
 
     <dtml-in languagescheck sort=id>
         <dtml-let langid=sequence-item role="'QC '+langid">
         <tr>
-            <td align="left" valign="top" width="30%"><div class="form-label"><label for="cb-<dtml-var langid>"><dtml-var langid></label></div></td>
+            <td align="left" valign="top" width="30%"><div><label for="cb-<dtml-var langid>"><dtml-var langid></label></div></td>
             <td align="left" valign="top" width="70%">
                 <a href="<dtml-var absolute_url>/check_translation_html?lang_code=<dtml-var langid>" target="_new">
                     <dtml-if "langid in get_unicode_langs()">

@@ -1,6 +1,6 @@
 <dtml-var standard_html_header>
 
-<p class=title2>
+<p>
     <dtml-with "PARENTS[1]">
         <a href="<dtml-var absolute_url>">
             <img src="<dtml-if "getId() in _.string.split(URL,'/')">
