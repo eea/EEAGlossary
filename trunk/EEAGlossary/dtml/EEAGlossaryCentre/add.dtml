@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <title>Add EEAGlossaryCentre</title>
+    <link rel="stylesheet" type="text/css" href="/manage_page_style.css">
+</head>
+
+<body>
+<table cellspacing="0" cellpadding="0" border="1">
+    <tr>
+        <td class="form-title">&nbsp; Add EEAGlossaryCentre &nbsp;</b>
+        </td>
+    </tr>
+    <tr>
+        <td align=center>
+        <form action="manage_addGlossaryCentre">
+            <table>
+                <tr>
+                    <th>Id:</th>
+                    <td><input type="text" name="id"></td>
+                </tr>
+                <tr>
+                    <th>Title:</th>
+                    <td><input type="text" name="title"></td>
+                </tr>
+                <tr>
+                    <th>Description:</th>
+                    <td><input type="text" name="description"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Add Centre"></td>
+                </tr>
+            </table>
+        </form>
+        </td>
+    </tr>
+</table>
+</body>
+
+</html>
+

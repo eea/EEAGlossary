@@ -17,7 +17,9 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: __init__.py,v 1.2 2004/05/03 09:03:42 finrocvs Exp $
+# Cornel Nitu, Finsiel Romania
+#
+#$Id: __init__.py,v 1.3 2004/05/03 18:39:13 finrocvs Exp $
 
 import EEAGlossaryCentre
 import EEAGlossaryNews
@@ -29,8 +31,8 @@ def initialize(context):
     # Folder for the Glossary
     context.registerClass(
         EEAGlossaryCentre.EEAGlossaryCentre,
-        constructors=(EEAGlossaryCentre.manage_addEEAGlossaryCentreForm,
-                       EEAGlossaryCentre.manage_addEEAGlossaryCentre),
+        constructors=(EEAGlossaryCentre.manage_addGlossaryCentre_html,
+                       EEAGlossaryCentre.manage_addGlossaryCentre),
         icon='www/glossary.gif',
         )
 
@@ -46,14 +48,11 @@ def initialize(context):
     context.registerHelpTitle('Zope Help')
 
 misc_ = {
-    'OpenBook.gif':ImageFile('www/OpenBook.gif', globals()),
+    'element.gif':ImageFile('www/element.gif', globals()),
     'folder.gif':ImageFile('www/folder.gif', globals()),
 #alec
     'line.gif':ImageFile('www/line.gif', globals()),
     'img_search_med.gif':ImageFile('www/img_search_med.gif', globals()),
     'img_search_small.gif':ImageFile('www/img_search_small.gif', globals()),
     'new.gif':ImageFile('www/new.gif', globals())
-#/alec
-#    "glossary.gif":     ImageFile("www/glossary.gif", globals()),
-#    "glossarynews.gif":     ImageFile("www/glossarynews.gif", globals()),
 }

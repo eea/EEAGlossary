@@ -15,7 +15,10 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossary_utils.py,v 1.11 2004/05/03 15:38:16 finrocvs Exp $
+# Cornel Nitu, Finsiel Romania
+#
+#
+#$Id: EEAGlossary_utils.py,v 1.12 2004/05/03 18:39:13 finrocvs Exp $
 
 #Python imports
 from xml.sax.handler import ContentHandler
@@ -28,7 +31,7 @@ import string
 from Products.PythonScripts.standard import url_quote
 
 #constants
-class Utils:
+class utils:
 
     def __init__(self):
         pass
@@ -62,6 +65,26 @@ class Utils:
             ret = [something]
         return ret
 
+    def utConvertLinesToList(self, value):
+        """Takes a value from a textarea control and returns a list of values"""
+        if type(value) == type([]):
+            return value
+        if value == '':
+            return []
+        else:
+            values = []
+            for v in string.split(value , '\r\n'):
+                if v != '':
+                    values.append(v)
+        return values
+
+    def utConvertListToLines(self, values):
+        """Takes a list of values and returns a value for a textarea control"""
+        if len(values) == 0:
+            return ''
+        else:
+            return string.join(values, '\r\n')
+            
     def utUrlEncode(self, p_string):
         """Encode a string using url_encode"""
         return url_quote(p_string)
@@ -72,6 +95,12 @@ class Utils:
             if term.count(" ") == len(term):
                 return 1
             return 0
+
+    def utOpenFile(self, path, mode='r'):
+        file = open(path, mode)
+        content = file.read()
+        file.close()
+        return content
 
     def utToUTF8(self,s='',charset=''):
         ##
