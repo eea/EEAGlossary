@@ -1,7 +1,6 @@
 <dtml-var style_presentation_css>
 
-<dtml-with "random_from_catalog('centre')">
-    <dtml-if definition>
+<dtml-with random_from_catalog>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-background">
         <tr>
           <td><img src="misc_/EEAGlossary/line.gif" width="100%" height="1"></td>
@@ -24,5 +23,4 @@
           <td><img src="misc_/EEAGlossary/line.gif" width="100%" height="1"></td>
         </tr>
      </table>
-     </dtml-if>
 </dtml-with>
