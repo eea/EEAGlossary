@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryEngine.py,v 1.16 2004/05/26 13:35:02 finrocvs Exp $
+#$Id: EEAGlossaryEngine.py,v 1.17 2004/05/27 06:41:35 finrocvs Exp $
 
 import string
 
@@ -105,11 +105,13 @@ class EEAGlossaryEngine(SimpleItem, utils):
     ######################
     def get_types_list(self):
         """ return types_list """
+        self.__types_list.sort()
         return self.__types_list
 
     def set_types_list(self, value):
         """ add to type_list """
-        self.__types_list.append(value)
+        if not value in self.__types_list:
+            self.__types_list.append(value)
 
     def del_types_list(self, value):
         """ remove from types_list """
@@ -144,11 +146,13 @@ class EEAGlossaryEngine(SimpleItem, utils):
     ######################
     def get_unicode_langs(self):
         """ return unicode_langs """
+        self.__unicode_langs.sort()
         return self.__unicode_langs
 
     def set_unicode_langs(self, value):
         """ add to unicode_langs """
-        self.__unicode_langs.append(value)
+        if not value in self.__unicode_langs:
+            self.__unicode_langs.append(value)
 
     def del_unicode_langs(self, value):
         """ delete from unicode_langs """
@@ -183,11 +187,13 @@ class EEAGlossaryEngine(SimpleItem, utils):
     #########################
     def get_searchable_langs(self):
         """ return search_langs """
+        self.__search_langs.sort()
         return self.__search_langs
 
     def set_searchable_langs(self, value):
         """ add to search_langs """
-        self.__search_langs.append(value)
+        if not value in self.__search_langs:
+            self.__search_langs.append(value)
 
     def del_searchable_langs(self, value):
         """ delete from search_langs """
