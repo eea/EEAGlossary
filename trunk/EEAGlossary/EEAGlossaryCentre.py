@@ -18,7 +18,7 @@
 # Contributor(s):
 # Anton Cupcea, Finsiel Romania
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossaryCentre.py,v 1.2 2004/05/03 09:03:42 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.3 2004/05/03 11:36:22 finrocvs Exp $
 
 # python imports
 import string
@@ -42,17 +42,11 @@ import EEAGlossaryElement
 #import EEAGlossaryElementSynonym
 
 
-
-#constants
-ALPHA_LIST = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-                        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'other']
-
 manage_addEEAGlossaryCentreForm = DTMLFile('dtml/EEAGlossaryCentre_add', globals())
 
-def manage_addEEAGlossaryCentre(self, id, description='', title='', types_list=[], subjects_list=[], languages_list=[],
-                    search_langs='', published='', hidden_fields='', REQUEST=None):
+def manage_addEEAGlossaryCentre(self, id, title='', description='', REQUEST=None):
     """ Adds a new EEAGlossaryCentre object """
-    ob = EEAGlossaryCentre(id, title, description, types_list, subjects_list, languages_list, search_langs, published, hidden_fields)
+    ob = EEAGlossaryCentre(id, title, description)
     self._setObject(id, ob)
 
     if REQUEST is not None:
@@ -65,52 +59,6 @@ class EEAGlossaryCentre(Folder, CatalogAware):
 
     meta_type='EEA Glossary Centre'
     product_name = 'EEAGlosary'
-    security = ClassSecurityInfo()
-
-    _properties = (
-        {'id':'title', 'type':'string', 'mode':'w'},
-        {'id':'description', 'type':'text', 'mode':'w'},
-        {'id':'alpha_list', 'type':'lines', 'value':ALPHA_LIST, 'mode':'w'},
-        {'id':'types_list', 'type':'lines', 'mode':'w'},
-        {'id':'subjects_list', 'type':'lines',  'mode':'w'},
-        {'id':'languages_list', 'type':'lines',  'mode':'w'},
-        {'id':'search_langs', 'type':'lines',  'mode':'w'},
-        {'id':'published', 'type':'boolean',  'mode':'w'},
-        {'id':'hidden_fields', 'type':'lines',  'mode':'w'}
-        )
-
-    def __init__(self, id, title, description, types_list, subjects_list, languages_list, search_langs, published, hidden_fields):
-        """ constructor """
-        self.id = id
-        self.title = title
-        self.description = description
-        self.types_list = types_list
-        self.subjects_list = subjects_list
-        self.languages_list = languages_list
-        self.search_langs = search_langs
-        self.published = published
-        self.hidden_fields = hidden_fields
-        self.alpha_list = ALPHA_LIST
-        #self.
-
-    def all_meta_types(self):
-        """ Supported meta_types """
-        y = [  {'name': 'EEAGlossaryFolder', 'action': 'manage_addEEAGlossaryFolderForm'},
-            {'name': 'EEAGlossaryElement', 'action':'manage_addEEAGlossaryElementForm'},
-            {'name': 'EEAGlossarySynonym', 'action':'manage_addEEAGlossarySynonymForm'},
-            {'name': 'EEAGlossaryCatalog', 'action':'manage_addZCatalogForm'}
-         ]
-        return y
-
-    manage_addZCatalogForm = manage_addZCatalogForm
-    manage_addZCatalog = manage_addZCatalog
-
-    manage_addEEAGlossaryFolderForm = EEAGlossaryFolder.manage_addEEAGlossaryFolderForm
-    manage_addEEAGlossaryFolder = EEAGlossaryFolder.manage_addEEAGlossaryFolder
-    manage_addEEAGlossaryElementForm = EEAGlossaryElement.manage_addEEAGlossaryElementForm
-    manage_addEEAGlossaryElement = EEAGlossaryElement.manage_addEEAGlossaryElement
-    #manage_addEEAGlossaryElementSynonymForm = EEAGlossaryElement.manage_addEEAGlossaryElementSynonymForm
-    #manage_addEEAGlossaryElementSynonym = EEAGlossaryElement.manage_addEEAGlossaryElementSynonym
 
     manage_options =(
                 (Folder.manage_options[0],) +
@@ -130,6 +78,56 @@ class EEAGlossaryCentre(Folder, CatalogAware):
 #alec                {'label':'Undo[OK]',            'action':'manage_UndoForm'},)
                 )
 
+    security = ClassSecurityInfo()
+
+    def __init__(self, id, title, description):
+        """ constructor """
+        self.id = id
+        self.title = title
+        self.description = description
+        self.types_list = []
+        self.subjects_list = []
+        self.languages_list = languages_list
+        self.search_langs = ''
+        self.published = 0
+        self.hidden_fields = ''
+        self.alpha_list = string.ascii_uppercase + string.digits + 'other'
+        #self.
+
+    def all_meta_types(self):
+        """ Supported meta_types """
+        meta_types = [  {'name': 'EEAGlossaryFolder', 'action': 'manage_addEEAGlossaryFolderForm'},
+            {'name': 'EEAGlossaryElement', 'action':'manage_addEEAGlossaryElementForm'},
+            {'name': 'EEAGlossarySynonym', 'action':'manage_addEEAGlossarySynonymForm'},
+            {'name': 'EEAGlossaryCatalog', 'action':'manage_addZCatalogForm'}
+         ]
+        return meta_types
+
+    manage_addZCatalogForm = manage_addZCatalogForm
+    manage_addZCatalog = manage_addZCatalog
+
+    manage_addEEAGlossaryFolderForm = EEAGlossaryFolder.manage_addEEAGlossaryFolderForm
+    manage_addEEAGlossaryFolder = EEAGlossaryFolder.manage_addEEAGlossaryFolder
+
+    manage_addEEAGlossaryElementForm = EEAGlossaryElement.manage_addEEAGlossaryElementForm
+    manage_addEEAGlossaryElement = EEAGlossaryElement.manage_addEEAGlossaryElement
+
+    #manage_addEEAGlossaryElementSynonymForm = EEAGlossaryElement.manage_addEEAGlossaryElementSynonymForm
+    #manage_addEEAGlossaryElementSynonym = EEAGlossaryElement.manage_addEEAGlossaryElementSynonym
+
+
+    def loadINI (self):
+        """loads languages & history properties defaults"""
+        from os.path import join
+        file = open(join(SOFTWARE_HOME, 'Products','EEAGlossary','languages.xml'), 'r')
+        content = file.read()
+        file.close()
+        languages_handler, error = forms_parser.parseContent(content)
+        for lang in languages_handler.languages:
+            self.translations = english_name
+            self.history = english_name
+            print self.translations
+            print self.history
 
     def changePass(self, REQUEST=None):
         """."""
