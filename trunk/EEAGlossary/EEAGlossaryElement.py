@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.13 2004/05/04 13:34:25 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.14 2004/05/04 15:07:53 finrocvs Exp $
 
 # python imports
 import string
@@ -39,7 +39,7 @@ from EEAGlossary_constants import *
 class ElementBasic:
     """ define the basic properties for EEAGlossaryElement"""
 
-    def __init__(self, name, type, source, subjects, context, comment, used_for_1, used_for_2, 
+    def __init__(self, name, type, source, subjects, el_context, comment, used_for_1, used_for_2, 
             definition, definition_source_url, long_definition, disabled, approved, QA_needed):
         """ constructor"""
 
@@ -47,7 +47,7 @@ class ElementBasic:
         self.type = type
         self.source = source
         self.subjects = subjects
-        self.context = context
+        self.el_context = el_context
         self.comment = comment
         self.used_for_1 = used_for_1
         self.used_for_2 = used_for_2
@@ -60,13 +60,13 @@ class ElementBasic:
 
 manage_addGlossaryElement_html = DTMLFile('dtml/EEAGlossaryElement/add', globals())
 
-def manage_addGlossaryElement(self, id, name='', type='', source='', subjects=[], context='', comment='', 
+def manage_addGlossaryElement(self, id, name='', type='', source='', subjects=[], el_context='', comment='', 
     used_for_1='', used_for_2='',definition='', definition_source_url='', long_definition='', disabled=0, 
     approved=1, QA_needed=0, image_url='', flash_url='', links=[], actions=[], translations={}, REQUEST=None):
 
     """ Adds a new EEAGlossaryElement object """
 
-    ob = EEAGlossaryElement(id, name, type, source, subjects, context, comment, used_for_1, used_for_2, 
+    ob = EEAGlossaryElement(id, name, type, source, subjects, el_context, comment, used_for_1, used_for_2, 
             definition, definition_source_url, long_definition, disabled, approved, QA_needed, 
             image_url, flash_url, links, actions, translations)
     self._setObject(id, ob)
@@ -98,7 +98,7 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
 
     security = ClassSecurityInfo()
 
-    def __init__(self, id, name, type, source, subjects, context, comment, used_for_1, used_for_2, definition, 
+    def __init__(self, id, name, type, source, subjects, el_context, comment, used_for_1, used_for_2, definition, 
         definition_source_url, long_definition, disabled, approved, QA_needed,  image_url, flash_url, links, actions, translations):
         """ constructor """
         self.id = id
@@ -106,10 +106,10 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
         self.flash_url = flash_url
         self.links = links
         self.actions = actions
-        self.translations = translations
+        self.translations = {}
         self.all_langs_list= {}
         self.history={}
-        ElementBasic.__dict__['__init__'](self, name, type, source, subjects, context, comment, used_for_1, used_for_2, 
+        ElementBasic.__dict__['__init__'](self, name, type, source, subjects, el_context, comment, used_for_1, used_for_2, 
             definition, definition_source_url, long_definition, disabled, approved, QA_needed)
 
     def is_published (self):
@@ -131,7 +131,7 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
             return 0
 
     def is_defintion_source (self):
-        if not self.utIsEmptyString(self.definition_source_url) and (not 'definition_source' in self.REQUEST.PARENTS[2].hidden_fields):
+        if not self.utIsEmptyString(self.definition_source_url) and (not 'definition_source_url' in self.REQUEST.PARENTS[2].hidden_fields):
             return 1
         else:
             return 0
