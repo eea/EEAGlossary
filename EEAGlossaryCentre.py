@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.51 2004/05/17 08:54:19 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.52 2004/05/17 11:24:46 finrocvs Exp $
 
 # python imports
 import string
@@ -32,7 +32,6 @@ from AccessControl import ClassSecurityInfo
 from OFS.Folder import Folder
 import AccessControl.User
 from Products.ZCatalog.ZCatalog import ZCatalog
-from Products.ZCTextIndex.ZCTextIndex import manage_addLexicon
 import Products
 
 # product imports
@@ -614,29 +613,31 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         """ build glossary -- initial phase """
         tiny = self.unrestrictedTraverse(glossary_table, None)
         transtab = string.maketrans('/ ','__')
-        for item in tiny.getRows():
-            if item.entry!= '':
-                #Replace danish characters to the old ones.
-                entry = string.replace(item.entry,'æ','ae')
-                entry = string.replace(entry,'å','aa')
-                entry = string.replace(entry,'ø','oe')
-                id = string.translate(item.entry,transtab,'?&!;()<=>*#[]{}')
-                #Set default values to empty string.
-                folder_id = string.upper(id[:1])
-                folder = self.unrestrictedTraverse(folder_id, None)
-                if folder is None:
-                    try:
-                        self.manage_addGlossaryFolder(folder_id)
-                        folder = self._getOb(folder_id)
-                    except Exception, error:
-                        print error
-                try:
-                    folder.manage_addGlossaryElement(item.entry, '', '', [], '', '', item.USEFOR1, 
-                        item.USEFOR2, item.definition, 'dataservice, http://dataservice.eea.eu.int', '', 0, 0, 0, '', '', [], [], {})
-                except Exception, error:
-                    print error
-        if REQUEST is not None:
-            REQUEST.RESPONSE.redirect('build_glossary_html')
+        for col in string.split(tiny.cols_text(), ' '):
+            print col
+#        for col in string.split(tiny.cols_text(), ' '):
+#            if string.lower(col) = 'entry':
+#                #Replace danish characters to the old ones.
+#                entry = string.replace(col,'æ','ae')
+#                entry = string.replace(entry,'å','aa')
+#                entry = string.replace(entry,'ø','oe')
+#                id = string.translate(entry,transtab,'?&!;()<=>*#[]{}')
+#                #Set default values to empty string.
+#                folder_id = string.upper(id[:1])
+#                folder = self.unrestrictedTraverse(folder_id, None)
+#                if folder is None:
+#                    try:
+#                        self.manage_addGlossaryFolder(folder_id)
+#                        folder = self._getOb(folder_id)
+#                    except Exception, error:
+#                        print error
+#                try:
+#                    folder.manage_addGlossaryElement(item.entry, '', '', [], '', '', item.USEFOR1, 
+#                        item.USEFOR2, item.definition, 'dataservice, http://dataservice.eea.eu.int', '', 0, 0, 0, '', '', [], [], {})
+#                except Exception, error:
+#                    print error
+#        if REQUEST is not None:
+#            REQUEST.RESPONSE.redirect('build_glossary_html')
 
     #### TO BE FINISHED
     def updateGlossary(self, glossary_table, REQUEST=None):
