@@ -3,7 +3,7 @@
 
 <p>
     <dtml-with "PARENTS[1]">
-        <a href="<dtml-var absolute_url>"><img src="<dtml-if "getId() in _.string.split(URL,'/')">misc_/EEAGlossary/element.gif<dtml-else>misc_/EEAGlossary/synonym.gif</dtml-if>" class="img-normal"><dtml-var title_or_id></a>
+        <a href="<dtml-var absolute_url>"><img src="<dtml-if "getId() in _.string.split(URL,'/')">misc_/EEAGlossary/element.gif<dtml-else>misc_/EEAGlossary/synonym.gif</dtml-if>" class="img-normal" alt=""><dtml-var title_or_id></a>
     </dtml-with>
     &nbsp;/&nbsp;
     <img src="<dtml-if "getId() in _.string.split(URL,'/')">
@@ -11,7 +11,7 @@
               <dtml-else>
                   misc_/EEAGlossary/synonym.gif
               </dtml-if>
-             " class="img-normal">
+             " class="img-normal" alt="">
     <dtml-var name>&nbsp;
     <dtml-if QA_needed>
         <img src="misc_/EEAGlossary/new.gif" class="img-normal" alt="New glossary entry">

@@ -4,11 +4,11 @@
     </tr>
 
     <tr>
-        <td width="100%" valign="top" bgcolor="#808080" colspan="2"><b>Translations of "<dtml-var name>":</b></td>
+        <td valign="top" colspan="2" class="header-element"><b>Translations of "<dtml-var name>":</b></td>
     </tr>
 
     <tr>
-        <td bgcolor="#808080">English:</td>
+        <td class="header-element">English:</td>
         <td><dtml-var name></td>
     </tr>
 </table>

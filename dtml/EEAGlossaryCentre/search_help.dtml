@@ -2,11 +2,11 @@
 <dtml-var style_presentation_css>
 
 <body>
-<table class="table-border" cellpadding="2" cellspacing="0">
+<table class="table-search-help" cellpadding="2" cellspacing="0">
     <tr><td>
         <table class="table-normal" cellpadding="3" cellspacing="0">
-            <tr class="row-header1">
-                <td class="cell-header1">Examples of search queries:</td>
+            <tr class="search-row-header">
+                <td class="search-cell-header">Examples of search queries:</td>
             </tr>
 
             <tr class="cellodd">
