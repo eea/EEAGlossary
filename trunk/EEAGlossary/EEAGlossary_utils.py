@@ -15,6 +15,7 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
+#$Id: EEAGlossary_utils.py,v 1.2 2004/05/03 09:03:42 finrocvs Exp $
 
 #Python imports
 import string
