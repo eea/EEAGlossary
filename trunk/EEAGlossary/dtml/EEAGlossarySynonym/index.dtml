@@ -19,7 +19,10 @@
                   misc_/EEAGlossary/synonym.gif
               </dtml-if>
              " border=0>
-    <dtml-var name>&nbsp;<img src="misc_/EEAGlossary/new.gif" border=0>
+    <dtml-var name>&nbsp;
+    <dtml-if QA_needed>
+        <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
+    </dtml-if>
 </p>
 
 <dtml-var main_content_html>
