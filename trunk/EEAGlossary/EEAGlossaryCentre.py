@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.37 2004/05/12 17:21:09 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.38 2004/05/13 08:37:24 finrocvs Exp $
 
 # python imports
 import string
@@ -243,6 +243,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     def get_subjects_list(self):
         """ get the languages """
         self.utSortListOfDictionariesByKey(self.subjects_list, 'code')
+        print self.subjects_list
         return self.subjects_list
 
     def set_subjects_list(self, code, name):
@@ -511,7 +512,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         print eval(command)
 
 
-   #####################
+    #####################
     #   MANAGEMENT TABS #
     #####################
     manage_properties_html = DTMLFile('dtml/EEAGlossaryCentre/properties', globals())

@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.28 2004/05/12 17:21:09 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.29 2004/05/13 08:37:24 finrocvs Exp $
 
 #Python imports
 import string
@@ -49,10 +49,6 @@ class utils:
             if obj.name in self.synonyms:
                 results.append(obj)
         return results
-
-    def utGetAbsoluteURL(self):
-        """."""
-        return self.absolute_url
 
     def utGetElement(self,p_name):
         """ return an element from catalog """

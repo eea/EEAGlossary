@@ -11,7 +11,7 @@
 <b>Manager:</b><br>Tarja Porkka (mailto:Tarja.Porkka@eea.eu.int)<br>
 </p>
 
-<table width="60%">
+<table width="100%">
 <dtml-comment>#################################
 Insert only those terms with definition not empty.
 #################################</dtml-comment>
