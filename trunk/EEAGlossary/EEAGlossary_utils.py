@@ -15,7 +15,7 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossary_utils.py,v 1.10 2004/05/03 15:09:56 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.11 2004/05/03 15:38:16 finrocvs Exp $
 
 #Python imports
 from xml.sax.handler import ContentHandler
@@ -182,7 +182,7 @@ class languages_handler(ContentHandler):
     def startElement(self, name, attrs):
         """ """
         if name == 'language':
-            self.language.append(language_struct(attrs['lang'], attrs['charset'], attrs['english_name']))
+            self.languages.append(languages_struct(attrs['lang'], attrs['charset'], attrs['englishname']))
 
     def endElement(self, name):
         """ """
@@ -193,7 +193,7 @@ class languages_parser:
 
     def parseContent(self, content):
         """ """
-        handler = language_handler()
+        handler = languages_handler()
         parser = make_parser()
         parser.setContentHandler(handler)
         inpsrc = InputSource()
