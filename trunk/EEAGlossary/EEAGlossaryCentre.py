@@ -17,7 +17,7 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossaryCentre.py,v 1.5 2004/05/03 12:56:58 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.6 2004/05/03 13:19:48 finrocvs Exp $
 
 # python imports
 import string
@@ -34,6 +34,7 @@ from Products.ZCatalog.ZCatalog import manage_addZCatalog, manage_addZCatalogFor
 #product imports
 import EEAGlossaryFolder
 import EEAGlossaryElement
+from EEAGlossary_utils import languages_parser
 #import EEAGlossaryElementSynonym
 from EEAGlossary_constants import *
 
@@ -78,29 +79,14 @@ class EEAGlossaryCentre(Folder, CatalogAware):
         self.published = 0
         self.hidden_fields = ''
         self.alpha_list = string.uppercase + string.digits + 'other'
-        #self.
 
     def all_meta_types(self):
         """ Supported meta_types """
-        meta_types = [  {'name': 'EEAGlossaryFolder', 'action': 'manage_addEEAGlossaryFolderForm'},
-            {'name': 'EEAGlossaryElement', 'action':'manage_addEEAGlossaryElementForm'},
-            {'name': 'EEAGlossarySynonym', 'action':'manage_addEEAGlossarySynonymForm'},
-            {'name': 'EEAGlossaryCatalog', 'action':'manage_addZCatalogForm'}
-         ]
+        meta_types = [{'name': EEA_GLOSSARY_FOLDER_METATYPE, 'action': 'manage_addGlossaryFolder_html'},]
         return meta_types
 
-    manage_addZCatalogForm = manage_addZCatalogForm
-    manage_addZCatalog = manage_addZCatalog
-
-    manage_addEEAGlossaryFolderForm = EEAGlossaryFolder.manage_addEEAGlossaryFolderForm
-    manage_addEEAGlossaryFolder = EEAGlossaryFolder.manage_addEEAGlossaryFolder
-
-    manage_addEEAGlossaryElementForm = EEAGlossaryElement.manage_addEEAGlossaryElementForm
-    manage_addEEAGlossaryElement = EEAGlossaryElement.manage_addEEAGlossaryElement
-
-    #manage_addEEAGlossaryElementSynonymForm = EEAGlossaryElement.manage_addEEAGlossaryElementSynonymForm
-    #manage_addEEAGlossaryElementSynonym = EEAGlossaryElement.manage_addEEAGlossaryElementSynonym
-
+    manage_addGlossaryFolder_html = EEAGlossaryFolder.manage_addGlossaryFolder_html
+    manage_addGlossaryFolder = EEAGlossaryFolder.manage_addGlossaryFolder
 
     def loadINI (self):
         """loads languages & history properties defaults"""
@@ -108,7 +94,7 @@ class EEAGlossaryCentre(Folder, CatalogAware):
         file = open(join(SOFTWARE_HOME, 'Products','EEAGlossary','languages.xml'), 'r')
         content = file.read()
         file.close()
-        languages_handler, error = forms_parser.parseContent(content)
+        languages_handler, error = languages_parser.parseContent(content)
         for lang in languages_handler.languages:
             self.translations = english_name
             self.history = english_name

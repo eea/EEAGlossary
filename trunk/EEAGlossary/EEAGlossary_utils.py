@@ -15,7 +15,7 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossary_utils.py,v 1.5 2004/05/03 12:56:58 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.6 2004/05/03 13:19:48 finrocvs Exp $
 
 #Python imports
 from xml.sax.handler import ContentHandler
@@ -54,6 +54,13 @@ class Utils:
 #                if name==mysub:
 #                    ret[code]=name
 #        return ret
+
+    def utConvertToList(self, something):
+        """Convert to list"""
+        ret = something
+        if type(something) is type(''):
+            ret = [something]
+        return ret
 
     def utUrlEncode(self, p_string):
         """Encode a string using url_encode"""
@@ -181,7 +188,7 @@ class languages_handler(ContentHandler):
         """ """
         pass
 
-class ini_languages_parser:
+class languages_parser:
     """ """
 
     def __init__(self):

@@ -17,7 +17,7 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossaryElement.py,v 1.5 2004/05/03 12:19:22 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.6 2004/05/03 13:19:48 finrocvs Exp $
 
 # python imports
 import string
@@ -54,11 +54,11 @@ class ElementBasic:
         self.long_definition = long_definition
         self.QA_needed = QA_needed  #?????
 
-manage_addEEAGlossaryElementForm = DTMLFile('dtml/EEAGlossaryElement_add', globals())
-
-def manage_addEEAGlossaryElement (self, id, name='', type='', source='', subjects=[], context='', comment='', used_for_1='', used_for_2='',
+manage_addGlossaryElement_html = DTMLFile('dtml/EEAGlossaryElement_add', globals())
+def manage_addGlossaryElement(self, id, name='', type='', source='', subjects=[], context='', comment='', used_for_1='', used_for_2='',
     definition='', definition_source_url='', long_definition='', disabled=0, approved=0, QA_needed=0, image_url='', flash_url='', links=[], actions=[], REQUEST=None):
     """ Adds a new EEAGlossaryElement object """
+
     ob = EEAGlossaryElement(id, name, type, source, subjects, context, comment, used_for_1, used_for_2, definition, 
         definition_source_url, long_definition, disabled, approved, QA_needed, image_url, flash_url, links, actions)
     self._setObject(id, ob)

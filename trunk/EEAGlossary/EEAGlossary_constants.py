@@ -17,12 +17,13 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossary_constants.py,v 1.1 2004/05/03 12:19:22 finrocvs Exp $
+#$Id: EEAGlossary_constants.py,v 1.2 2004/05/03 13:19:48 finrocvs Exp $
 
 #META TYPES
 EEA_GLOSSARY_FOLDER_METATYPE = "EEA Glossary Folder"
 EEA_GLOSSARY_ELEMENT_METATYPE = "EEA Glossary Element"
 EEA_GLOSSARY_CENTRE_METATYPE = "EEA Glossary Centre"
 EEA_GLOSSARY_SYNONYM_METATYPE = "EEA Glossary Synonym"
+EEA_GLOSSARY_PRODUCT_NAME = "EEAGlossary"
 
 
