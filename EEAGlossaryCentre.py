@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.45 2004/05/13 14:44:24 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.46 2004/05/13 16:36:57 finrocvs Exp $
 
 # python imports
 import string
@@ -101,56 +101,6 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     manage_addGlossaryFolder_html = EEAGlossaryFolder.manage_addGlossaryFolder_html
     manage_addGlossaryFolder = EEAGlossaryFolder.manage_addGlossaryFolder
 
-    def random_from_catalog(self, p_meta_type=''):
-        """a random element"""
-        elements=[]
-        catalog = self.getGlossaryCatalog()
-        if p_meta_type=='centre':
-            for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE):
-                if obj.is_published:
-                    elements.append(obj)
-            if len(elements) > 0:
-                return whrandom.choice(elements)
-            else:
-                return None
-        else:
-            for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, path=self.absolute_url):
-                if obj.is_published:
-                    elements.append(obj)
-            if len(elements) > 0:
-                return whrandom.choice(elements)
-            else:
-                 return None
-
-    def elements_from_catalog(self):
-        return self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, sort_on='')
-
-    def change_pass_action(self,REQUEST=None):
-        """Change Password for current Zope user"""
-        domains = REQUEST.AUTHENTICATED_USER.getDomains()
-        roles = REQUEST.AUTHENTICATED_USER.getRoles()
-        name = REQUEST.AUTHENTICATED_USER.getUserName()
-        password = REQUEST.new_password
-        confirm = REQUEST.new_password_confirm
-        self.acl_users._changeUser(name,password,confirm,roles,domains,REQUEST=None)
-        if REQUEST is not None:
-            REQUEST.RESPONSE.redirect('change_pass_html?save=ok')
-
-    def folder_list_sorted(self):
-        """ Return all 'EEA Glossary Folder' from a Centre """
-        fld_lst = self.objectItems(EEA_GLOSSARY_FOLDER_METATYPE)
-        fld_lst.sort()
-        return fld_lst
-
-    def all_objects (self):
-        """ return sorted objects by name """
-        return self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order='')
-
-    def get_all_elements(self):
-        """ return sorted objects by name """
-        print self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE,], sort_on='id', sort_order='')
-        return self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE,], sort_on='id', sort_order='')
-
     #####################
     # LOAD PROPERTIES   #
     #####################
@@ -224,6 +174,9 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         """ test if Quality Controller in roles"""
         return 'Quality Controller' in self.getAuthenticatedUserRoles()
 
+    def canManageGlossary(self):
+        """ test if the user can manage the glossary"""
+        return ('Manager' in self.getAuthenticatedUserRoles()) or ('GlossaryManager' in self.getAuthenticatedUserRoles())
 
     def style_css(self):
         """ return the css file from EEAGlossaryEngine """
@@ -516,6 +469,55 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         results = self.cu_search_catalog(catalog, [EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], query, size, language, definition)
         return (language, query, results)
 
+    def random_from_catalog(self, p_meta_type=''):
+        """a random element"""
+        elements=[]
+        catalog = self.getGlossaryCatalog()
+        if p_meta_type=='centre':
+            for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE):
+                if obj.is_published:
+                    elements.append(obj)
+            if len(elements) > 0:
+                return whrandom.choice(elements)
+            else:
+                return None
+        else:
+            for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, path=self.absolute_url):
+                if obj.is_published:
+                    elements.append(obj)
+            if len(elements) > 0:
+                return whrandom.choice(elements)
+            else:
+                 return None
+
+    def elements_from_catalog(self):
+        return self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, sort_on='')
+
+    def change_pass_action(self,REQUEST=None):
+        """Change Password for current Zope user"""
+        domains = REQUEST.AUTHENTICATED_USER.getDomains()
+        roles = REQUEST.AUTHENTICATED_USER.getRoles()
+        name = REQUEST.AUTHENTICATED_USER.getUserName()
+        password = REQUEST.new_password
+        confirm = REQUEST.new_password_confirm
+        self.acl_users._changeUser(name,password,confirm,roles,domains,REQUEST=None)
+        if REQUEST is not None:
+            REQUEST.RESPONSE.redirect('change_pass_html?save=ok')
+
+    def folder_list_sorted(self):
+        """ Return all 'EEA Glossary Folder' from a Centre """
+        fld_lst = self.objectItems(EEA_GLOSSARY_FOLDER_METATYPE)
+        fld_lst.sort()
+        return fld_lst
+
+    def all_objects (self):
+        """ return sorted objects by name """
+        return self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order='')
+
+    def get_all_elements(self):
+        """ return sorted objects by name """
+        print self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE,], sort_on='id', sort_order='')
+        return self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE,], sort_on='id', sort_order='')
 
 
     #####################
