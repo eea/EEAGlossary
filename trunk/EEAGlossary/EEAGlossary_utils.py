@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.35 2004/05/14 11:52:43 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.36 2004/05/17 07:42:25 finrocvs Exp $
 
 #Python imports
 import string
@@ -36,14 +36,14 @@ class utils:
         pass
 
     def ut_makeId(self, p_name):
-        """ """
+        """ generate the ID """
         transtab=string.maketrans('/ +@','____')
         p_name = unicode(p_name, 'latin-1')
         p_name = string.lower(p_name.encode('ascii', 'replace'))
         return string.translate(p_name,transtab,'?&!;()<=>*#[]{}^~:|\/???$?%?')
 
     def element_list_sorted(self):
-        """Return all 'EEA Glossary Element' from a Centre root"""
+        """ return all 'EEA Glossary Element' from a Centre root """
         lista=self.objectItems([EEA_GLOSSARY_SYNONYM_METATYPE, EEA_GLOSSARY_ELEMENT_METATYPE])
         lista.sort()
         return lista
@@ -65,40 +65,40 @@ class utils:
                 return obj
 
     def utIsSynonym(self):
-        """ check if the object is a synonym"""
+        """ check if the object is a synonym """
         return self.meta_type==EEA_GLOSSARY_SYNONYM_METATYPE
 
     def utIsElement(self):
-        """ check if the object is a element"""
+        """ check if the object is a element """
         return self.meta_type==EEA_GLOSSARY_ELEMENT_METATYPE
 
     def utCompare(self, x, y):
-        """."""
+        """ compare two strings """
         return cmp(string.lower(x[0]), string.lower(y[0]))
 
     def utAddObjectAction(self, REQUEST=None):
-        """Check if adding an object"""
+        """ check if adding an object """
         res = 0
         if REQUEST:
             res = REQUEST.has_key('add')
         return res
 
     def utUpdateObjectAction(self, REQUEST=None):
-        """Check if updating an object"""
+        """ check if updating an object """
         res = 0
         if REQUEST:
             res = REQUEST.has_key('update')
         return res
 
     def utDeleteObjectAction(self, REQUEST=None):
-        """Check if deleting an object"""
+        """ check if deleting an object """
         res = 0
         if REQUEST:
             res = REQUEST.has_key('delete')
         return res
 
     def utConvertToList(self, something):
-        """Convert to list"""
+        """ convert to list """
         ret = something
         if type(something) is type(''):
             ret = [something]
@@ -110,7 +110,7 @@ class utils:
         return list
 
     def utConvertLinesToList(self, value):
-        """Takes a value from a textarea control and returns a list of values"""
+        """ takes a value from a textarea control and returns a list of values """
         if type(value) == type([]):
             return value
         if value == '':
@@ -123,14 +123,14 @@ class utils:
         return values
 
     def utConvertListToLines(self, values):
-        """Takes a list of values and returns a value for a textarea control"""
+        """ takes a list of values and returns a value for a textarea control """
         if len(values) == 0:
             return ''
         else:
             return string.join(values, '\r\n')
             
     def utUrlEncode(self, p_string):
-        """Encode a string using url_encode"""
+        """ encode a string using url_encode """
         return url_quote(p_string)
 
     def utISOFormat(self):
@@ -139,7 +139,7 @@ class utils:
         return time.strftime("%Y-%m-%d %H:%M:%S")
 
     def utIsEmptyString(self, term='',REQUEST=None):
-        """return true if a string contains only white characters"""
+        """ return true if a string contains only white characters """
         if term and len(term)>0:
             if term.count(" ") == len(term):
                 return 1
@@ -147,29 +147,31 @@ class utils:
         return 1
 
     def utGetROOT(self):
-        """ get the ROOT object"""
+        """ get the ROOT object """
         return self.unrestrictedTraverse(('',))
 
     def utGetObject(self, url):
-        """ get an object given the url"""
+        """ get an object given the url """
         return self.unrestrictedTraverse(url, None)
 
     def utOpenFile(self, path, mode='r'):
+        """ read from a file """
         file = open(path, mode)
         content = file.read()
         file.close()
         return content
 
     def utSortListOfDictionariesByKey(self, p_list, p_key, p_order=0):
-        """ Sort a list of dictionary by key """
+        """ sort a list of dictionary by key """
         if p_order==0:   #ascending
             p_list.sort(lambda x, y, param=p_key: cmp(x[param], y[param]))
-        else:           #desceding
+        else:            #desceding
             p_list.sort(lambda x, y, param=p_key: cmp(y[param], x[param]))
 
     def utUtf8Encode(self, p_value):
-            """ Encode a iven value to utf-8 """
-            return unicode(str(p_value), 'latin-1').encode('utf8')
+        """ encode a iven value to utf-8 """
+        return unicode(str(p_value), 'latin-1').encode('utf8')
+
 
 class catalog_utils:
 
@@ -178,15 +180,15 @@ class catalog_utils:
         pass
 
     def __build_catalog_path(self, item):
-        """Creates an id for the item to be added in catalog"""
+        """ creates an id for the item to be added in catalog """
         return '/'.join(item.getPhysicalPath())
 
     def __searchCatalog(self, catalog, criteria, path):
-        """Search catalog"""
+        """ search catalog """
         return catalog(criteria, path)
 
     def __get_objects(self, catalog, brains):
-        """ given the brains return the objects"""
+        """ given the brains return the objects """
         try:
             return map(catalog.getobject, map(getattr, brains, ('data_record_id_',)*len(brains)))
         except:
@@ -217,14 +219,15 @@ class catalog_utils:
             pass
 
     def cu_getIndexes(self, catalog):
-        """Return a list with all ZCatalog indexes"""
+        """ return a list with all ZCatalog indexes """
         return catalog.index_objects()
 
     def cu_reindexCatalogIndex(self, catalog, name, REQUEST):
-        """Reindex an index from ZCatalog"""
+        """ reindex an index from ZCatalog """
         catalog.reindexIndex(name, REQUEST)
 
     def cu_get_cataloged_objects(self, catalog, meta_type=None, approved=0, howmany=-1, sort_on='bobobase_modification_time', 
+        """ return objects from catalog """
         sort_order='reverse', path='/'):
         results = []
         filter = {}
@@ -243,7 +246,7 @@ class catalog_utils:
         return results
 
     def cu_search_catalog(self, catalog, meta_type=None, query='', size=10000, language='English', definition=''):
-        """ """
+        """ search catalog """
         command= "catalog(meta_type=" + str(meta_type) + ", " + language + "='" + query + "', definition='" + definition + "')"
         results = eval(command)
         return self.__get_objects(catalog, results)
