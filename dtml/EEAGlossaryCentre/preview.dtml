@@ -1,3 +1,4 @@
+<dtml-var manage_page_header>
 <table width="100%" bgcolor=white>
     <tr>
         <td><dtml-var manage_tabs></td>
@@ -5,3 +6,4 @@
 </table>
 
 <dtml-var index_html>
+<dtml-var manage_page_footer>

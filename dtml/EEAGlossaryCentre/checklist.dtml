@@ -4,19 +4,19 @@
 
 <dtml-if "REQUEST.has_key('languagescheck')">
 
-<table width="100%" border="1" cellpadding="0" cellspacing="0">
-<tr><td>
-    <table width="100%" border="0" cellpadding="2" cellspacing="0">
-        <tr class="row-header"><td class="cell-header"><span>General Information</span></td></tr>
-        <tr><td>
-        <b>Glossary Link:</b><br>http://glossary.eea.eu.int/<br>
-        <b>Description:</b><br><dtml-var description><br>
-        <b>Publisher:</b><br>EEA (European Environment Agency)<br>
-        <b>Manager:</b><br>Tarja Porkka (mailto:Tarja.Porkka@eea.eu.int)<br>
-        </td></tr>
+    <table width="100%" border="1" cellpadding="0" cellspacing="0">
+    <tr><td>
+        <table width="100%" border="0" cellpadding="2" cellspacing="0">
+            <tr class="row-header"><td class="cell-header"><span>General Information</span></td></tr>
+            <tr><td>
+            <b>Glossary Link:</b><br>http://glossary.eea.eu.int/<br>
+            <b>Description:</b><br><dtml-var description><br>
+            <b>Publisher:</b><br>EEA (European Environment Agency)<br>
+            <b>Manager:</b><br>Tarja Porkka (mailto:Tarja.Porkka@eea.eu.int)<br>
+            </td></tr>
+        </table>
+    </td></tr>
     </table>
-</td></tr>
-</table>
 
     <table width="100%">
         <dtml-in get_all_elements>
@@ -33,15 +33,25 @@
                 </tr>
             <dtml-if is_AuthenticatedUserRoles>
                 <tr><td>
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
                     <form action="<dtml-var URL0>" method="post">
-                        <select name="languagescheck:list" multiple size=20>
-                            <dtml-in get_english_names>
-                                <option><dtml-var sequence-item html_quote></option>
-                            </dtml-in>
-                            <option>Definition</option>
-                        </select>
-                        <input type="submit" name="SUBMIT" value="Go to Check List">
+                        <tr>
+                            <td rowspan="2" width="30%">
+                                <select name="languagescheck:list" multiple size=20>
+                                    <dtml-in get_english_names>
+                                        <option><dtml-var sequence-item html_quote></option>
+                                    </dtml-in>
+                                </select>
+                            </td>
+                            <td valign="top">Including defition&nbsp;<input type="checkbox" name="definition:boolean" value="1" checked></td>
+                        </tr>
+                        <tr>
+                            <td valign="bottom">
+                                <input type="submit" name="SUBMIT" value="Go to Check List">
+                            </td>
+                        </tr>
                     </form>
+                    </table>
                 </td></tr>
             <dtml-else>
                 <tr><td>

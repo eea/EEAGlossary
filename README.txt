@@ -32,7 +32,7 @@ Support
 Installation
 
   Installation of EEAGlossary is the same as for any other Zope product. You
-  just need to to untar the package into the Products directory of your
+  just need to untar the package into the Products directory of your
   Zope installation. Consult the Zope documentation if you need further
   information.
 
@@ -52,12 +52,28 @@ Installation
   After installing both the EEAGlossary and TinyTablePlus products, restart
   Zope.  Open the Zope management interface in a web browser (e.g. go to
   http://your-zope-server/manage) and click on the GlossaryEngine if you
-  want to change the initial configuration.
+  want to change the initial configuration. There you will find a menu from
+  where you can set the "Contact info", "Unicode languages", "Subjects",
+  "Languages" and "Searchable languages". From "Contact info" you can add the
+  "Technic contacts" and "Translation contacts" witch will appear on your
+  Glossary help. "Contact info" and "Unicode languages" cand only be set from
+  here, you'll not find them in your Glossary Centre properties sheet.
+  Once inserted al this data, every centre you create will take as default
+  this values from the GlossaryEngine.
 
   Now select the 'EEA Glossary Centre' option from the pull-down menu
   labeled 'Select type to add...' and create a new centre by entering an
-  id,a title and a description.  That's it. Your glossary should now be
-  ready to be filled.
+  id,a title and a description. After creation, each centre has this views:
+  "Content", "Properties", "View", "Contexts reference", "Check list",
+  "Change password", "XML/RDF", "Export", "Import", "Management", "Help"
+  and "Undo". On "Properties" you will find a menu similar to one found
+  on engine except for the "Hidden fields" entry. From "Hidden fields" you
+  can set a list of element properties that you dont want to be displayed
+  on your presentation. From "Import" and "Export" views you can import/export
+  terms and their tranlsations from/in XLIFF (XML Localization Interchange File Format )
+  and TMX (Translation Memory eXchange) formats.
+
+  That's it. Your glossary should now be ready to be filled.
 
   If the 'GlossaryEngine' is not present in the root, then something went
   wrong with the package installation.  Make sure that the EEAGlossary

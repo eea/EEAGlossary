@@ -1,10 +1,11 @@
 <dtml-var standard_html_header>
+<dtml-var style_presentation_css>
 
 <p>Search Results for</p>
 <dtml-let query="REQUEST.get('query', '')" size="REQUEST.get('size', '')" language="REQUEST.get('language','')" definition="REQUEST.get('definition', '')"
         results="searchGlossary(query, size, language, definition)" lang="results[0]" term="results[1]" res="results[2]"> 
 
-<table border=1 cellpadding=1 cellspacing=1 width="100%">
+<table class="table-border" cellpadding="1" cellspacing="1">
     <tr>
         <td align=left>Query Term</td>
         <td align=left><dtml-var term><dtml-comment>
@@ -31,7 +32,7 @@
     <dtml-if is_published>
      <dtml-let translation="get_translation_by_language(language)">
     <tr>
-        <td colspan="2"><img src="misc_/EEAGlossary/element.gif" border=0>&nbsp;
+        <td colspan="2"><img src="misc_/EEAGlossary/element.gif" class="img-normal">&nbsp;
             <a href="<dtml-var absolute_url>">
                 <dtml-var translation>
                 <dtml-comment>

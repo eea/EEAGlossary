@@ -3,12 +3,12 @@
 
 <p>
 
-<table width="80%" border="1" cellpadding="3" cellspacing="0">
+<table class="table-border" cellpadding="3" cellspacing="0">
 <tr><td>
-    <table width="100%" border="0" cellpadding="2" cellspacing="0">
-        <tr class="row-header">
-            <td class="cell-header">Context/Subject code</td>
-            <td class="cell-header">Context/Subject name</td>
+    <table class="table-normal" cellpadding="2" cellspacing="0">
+        <tr class="row-header1">
+            <td class="cell-header1">Context/Subject code</td>
+            <td class="cell-header1">Context/Subject name</td>
         </tr>
     <dtml-in get_subjects_list>
         <dtml-if sequence-odd>

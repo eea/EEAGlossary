@@ -2,7 +2,7 @@
 <dtml-var style_presentation_css>
 
 <p>
-    <IMG SRC="<dtml-var icon>" BORDER=0>&nbsp;<dtml-var title_or_id>
+    <img src="<dtml-var icon>" class="img-normal">&nbsp;<dtml-var title_or_id>
 </p>
 
 <div align=center>
@@ -14,30 +14,32 @@
 
 <br>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-background">
+<table cellspacing="0" cellpadding="0" class="table-background">
     <tr>
-        <td><img src="misc_/EEAGlossary/line.gif" width="100%" height="1"></td>
+        <td><img src="misc_/EEAGlossary/line.gif" class="img-line"></td>
     </tr>
 
     <tr>
         <td>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <table class="table-normal" cellspacing="0" cellpadding="0">
                 <tr>
                     <td>
                         <p>
-                            &nbsp;<img src="misc_/EEAGlossary/img_search_med.gif" border=0 alt="Search for a term">&nbsp;<span><b>Search for terms</b></span>
+                            &nbsp;<img src="misc_/EEAGlossary/img_search_med.gif" class="img-normal" alt="Search for a term">&nbsp;<span><b>Search for terms</b></span>
                         </p>
                         <p>
                         <form action="search_html" method="post" name="frmSearch">
-                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <table class="table-normal" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td width="15%"><b>Term:</b></td>
                                 <td align="left" valign="top"  width="*">
-                                        <input type="text" name="query" size="40" value="">
+                                        <input type="text" class="input-search" name="query" value="">
                                         <dtml-let src_langs="get_search_langs()">
                                         <select 
-                                            <dtml-if "_.len(src_langs)<2">disabled
-                                            <dtml-else>type="text"
+                                            <dtml-if "_.len(src_langs)<2">
+                                                disabled
+                                            <dtml-else>
+                                                type="text"
                                             </dtml-if> name="language">
                                         <dtml-in src_langs>
                                             <option <dtml-if "_['sequence-item']=='English'">selected</dtml-if>><dtml-var sequence-item></option>
@@ -49,7 +51,7 @@
                             <tr>
                                 <td><b>Definition:</b></td>
                                 <td align="left" valign="top">
-                                        <input type="text" name="definition" size="40" value="">
+                                        <input type="text" class="input-search" name="definition" value="">
                                 </td>
                             </tr>
                             <tr>
@@ -61,12 +63,12 @@
                                         <option>50</option>
                                         <option>100</option>
                                     </select>&nbsp;
-                                    <input type="submit" name="SUBMIT" value="Find in Glossary">
+                                    <input class="button-search" type="submit" name="SUBMIT" value="Find in Glossary">
                                 </td>
                             </tr>
                         </table>
                         </form>
-                        <a href="search_help_html" target="_new">Search Help</a>
+                        <a href="search_help_html" target="_new"><b>Search Help<b></a>
                         </p>
                     </td>
                 </tr>
@@ -75,13 +77,13 @@
     </tr>
 
     <tr>
-        <td><img src="misc_/EEAGlossary/line.gif" width="100%" height="1"></td>
+        <td><img src="misc_/EEAGlossary/line.gif" class="img-line"></td>
     </tr>
 </table>
 
 <br>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table class="table-normal" cellspacing="0" cellpadding="0">
     <tr>
         <td width="25%"></td>
 
@@ -96,7 +98,7 @@
 <br>
 <dtml-in element_list_sorted>
     <dtml-unless disabled>
-        <a href="<dtml-var absolute_url>"><IMG SRC="misc_/EEAGlossary/element.gif" BORDER=0>&nbsp;<dtml-var name></a>
+        <a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/element.gif" class="img-normal">&nbsp;<dtml-var name></a>
         <br>
     </dtml-unless>
 </dtml-in>
