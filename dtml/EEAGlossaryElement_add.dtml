@@ -1,0 +1,263 @@
+<HTML>
+    <HEAD>
+        <TITLE>Add EEAGlossaryElement</TITLE>
+        <link rel="stylesheet" type="text/css" href="/manage_page_style.css">
+    </HEAD>
+
+    <BODY BGCOLOR="#FFFFFF" LINK="#000099" VLINK="#555555">
+
+    <br>
+
+    <table cellspacing="0" cellpadding="2" border="0">
+    <tr class="location-bar">
+    <div class="form-title">
+      Add EEAGlossaryElement</div></tr>
+    <form action="manage_addEEAGlossaryElement">
+    <p class="form-help">
+
+    </p>
+
+    <tr class="list-header">
+        <td align="left" valign="top">
+            <div class="form-label">
+            Name
+            </div>
+        </td>
+
+        <td align="left" valign="top">
+            <div class="form-label">
+            Value
+            </div>
+        </td>
+
+        <td align="left" valign="top">
+            <div class="form-label">
+          Type
+          </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="left" valign="top">
+            <div class="form-label">
+            <label for="cb-id">id</label>
+            </div>
+        </td>
+
+        <td>
+            <input type=text name="id:string" size="35" value="">
+        </td>
+
+        <td align="left" valign="top">
+            <div class="list-item">
+            string
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="left" valign="top">
+            <div class="form-label">
+            <label for="cb-name">Term name</label>
+            </div>
+        </td>
+
+        <td align="left" valign="top">
+            <input type="text" name="name:string" size="35" value="">
+        </td>
+
+        <td align="left" valign="top">
+            <div class="list-item">
+            string
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="left" valign="top">
+            <div class="form-label">
+            <label for="cb-type">type</label>
+            </div>
+        </td>
+
+        <td align="left" valign="top">
+           <select name="MyType">
+               <dtml-in "types_list">  
+                   <div class="form-text">
+                   <OPTION VALUE="<dtml-var sequence-item>"><dtml-var sequence-item></OPTION>
+                   </div>
+               </dtml-in>
+           </select>
+        </td>
+
+        <td align="left" valign="top">
+           <div class="list-item">
+           selection
+           </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="left" valign="top">
+            <div class="form-label">
+            <label for="cb-source">source</label>
+            </div>
+        </td>
+
+        <td align="left" valign="top">
+            <input type="text" name="source:string" size="35" value="">
+        </td>
+
+        <td align="left" valign="top">
+            <div class="list-item">
+            string
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="left" valign="top">
+            <div class="form-label">
+            <label for="cb-context">context</label>
+            </div>
+        </td>
+
+        <td align="left" valign="top">
+            <input type="text" name="MyContext:string" size="35" value="">
+        </td>
+
+        <td align="left" valign="top">
+            <div class="list-item">
+            string
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="left" valign="top">
+            <div class="form-label">
+            <label for="cb-comment">comment</label>
+            </div>
+        </td>
+
+        <td align="left" valign="top">
+            <textarea name="comment:text" rows="6" cols="35"></textarea>
+        </td>
+
+        <td align="left" valign="top">
+            <div class="list-item">
+            text
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="left" valign="top">
+            <div class="form-label">
+            <label for="cb-used_for_1">used_for_1</label>
+            </div>
+        </td>
+
+        <td align="left" valign="top">
+            <input type="text" name="used_for_1:string" size="35" value="">
+        </td>
+
+        <td align="left" valign="top">
+            <div class="list-item">
+            string
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="left" valign="top">
+            <div class="form-label">
+            <label for="cb-used_for_2">used_for_2</label>
+            </div>
+        </td>
+
+        <td align="left" valign="top">
+            <input type="text" name="used_for_2:string" size="35" value="">
+        </td>
+
+        <td align="left" valign="top">
+            <div class="list-item">
+            string
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="left" valign="top">
+            <div class="form-label">
+            <label for="cb-definition">definition</label>
+            </div>
+        </td>
+
+        <td align="left" valign="top">
+            <textarea name="definition:text" rows="6" cols="35"></textarea>
+        </td>
+
+        <td align="left" valign="top">
+            <div class="list-item">
+            text
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="left" valign="top">
+            <div class="form-label">
+            <label for="cb-definition_source">definition_source</label>
+            </div>
+        </td>
+
+        <td align="left" valign="top">
+            <input type="text" name="definition_source:string" size="35" value="">
+        </td>
+
+        <td align="left" valign="top">
+            <div class="list-item">
+            string
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="left" valign="top">
+            <div class="form-label">
+            <label for="cb-subjects">subjects</label>
+            </div>
+        </td>
+
+        <td align="left" valign="top">
+            <select size=10 multiple name="subjects">
+                <dtml-in LoadSubjects>
+                    <div class="form-text">
+                    <OPTION VALUE="<dtml-var sequence-item>"><dtml-var sequence-item></OPTION>
+                    </div>
+                </dtml-in>
+            </select>
+        </td>
+
+        <td align="left" valign="top">
+            <div class="list-item">
+            multiple selection
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+        </td>
+
+        <td>
+            <input type=submit value=" Add ">
+        </td>
+    </tr>
+
+    </table>
+    </form>
+
+    </body>
+</html> 

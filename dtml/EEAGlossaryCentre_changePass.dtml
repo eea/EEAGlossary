@@ -1,0 +1,47 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="style_css">
+</head>
+
+<dtml-var manage_page_header>
+<dtml-var manage_tabs>
+<br>
+
+<table cellspacing="0" cellpadding="0" border="1">
+    <tr>
+        <td bordercolor="#CCCCCC" bgcolor="#CCCCCC">
+            <h2>&nbsp;Change password for user: <font color="#244c65"> <dtml-var expr="AUTHENTICATED_USER.getUserName()"></font>&nbsp;</h2>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="TD_Child">
+            &nbsp;
+        </td>
+    </tr>
+
+    <tr>
+        <td align=center class="TD_Child1">
+            <form action="changePassAction" method="POST">
+
+                <table>
+                    <tr>
+                        <td align=left><b>New Password :</b></td>
+                        <td><input type="password" name="new_password"></td>
+                    </tr>
+
+                    <tr>
+                        <td align=left><b>Confirm Password :</b></td>
+                        <td><input type="password" name="new_password_confirm"></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" align=center><input class="Input_Font" type="submit" value="Change">
+                    </tr>
+                </table>
+
+            </form>
+        </td>
+    </tr>
+</table>
+
+<dtml-var manage_page_footer> 

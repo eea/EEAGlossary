@@ -1,0 +1,241 @@
+<dtml-if isPublished>
+
+    <table border="0" width="501" cellpadding="2">
+        <tr>
+            <td colspan=3  vallign="top" width="100%" valign="top" bgcolor="#808080">
+                <b><font color="#FFFFFF">Definition (english only)</font></b>
+            </td>
+        </tr>
+
+        <dtml-if isImageURL>
+            <tr>
+                <td colspan=3 vallign="top" width="100%" valign="top" bordercolor="#000000" bgcolor="#FFFFFF" >
+                    <img src="<dtml-var ImageURL>">
+                </td>
+            </tr>
+        </dtml-if>
+
+        <tr>
+            <td colspan=3 vallign="top" width="100%" valign="top" bordercolor="#000000" bgcolor="#FFFFFF" >
+                <dtml-var "toutf8(definition,'iso-8859-1')">
+            </td>
+        </tr>
+
+        <dtml-if isLong_Definition>
+                <tr>
+                    <td colspan=3  vallign="top" width="100%" valign="top" bgcolor="#808080">
+                        <b><font color="#FFFFFF">Long definition (english only)</font></b>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan=3 vallign="top" width="100%" valign="top" bordercolor="#000000" bgcolor="#FFFFFF">
+                        <dtml-var "toutf8(long_definition,'iso-8859-1')">
+                    </td>
+                </tr>
+        </dtml-if>
+
+        <dtml-if isDefintion_Source>
+            <tr>
+                <td width="100%" valign="top" bgcolor="#808080" colspan="3">
+                    <b><font color="#FFFFFF">Definition source</font></b>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="100%" valign="top" bgcolor="#FFFFFF" colspan="3">
+                    <dtml-var definition_source>
+                </td>
+            </tr>
+        </dtml-if>
+
+        <dtml-if "not ('Actions' in PARENTS[2].hidden_fields)">
+            <tr>
+                <td width="100%" valign="top" bgcolor="#808080" colspan="3">
+                    <b><font color="#FFFFFF">Additional info, actions and links</font></b>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="100%" valign="top" bgcolor="#FFFFFF" colspan="3">
+                    <dtml-if "_.len(Links)>0 and _.len(Links[0])>0">
+                        <dtml-in Links>
+                            <li>&nbsp;
+                                <a href="&dtml-sequence-item;">
+                                    <dtml-var "Actions[_['sequence-index']]">
+                                </a>
+                            </li>
+                        </dtml-in>
+                    </dtml-if>
+                    <br>
+                    <dtml-if "_.string.find(URL,'EEAGlossary_Complete')<0">
+                        <table>
+                            <tr>
+                                <td>
+                                    <img src="misc_/EEAGlossary/img_search_small.gif" BORDER=0>
+                                </td>
+                                <td>
+                                    Search for "<b><dtml-var name></b>" in:
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    &nbsp;
+                                </td>
+                                <td>
+                                    <a href="http://www.google.com/custom?q=<dtml-in "_.string.split(name)"><dtml-var "MyUrlEncode(_['sequence-item'])">+</dtml-in>&as=Google+Search&domains=eea.eu.int%3Beionet.eu.int&sitesearch=eea.eu.int&cof=GIMP%3A%23FF9900%3BT%3A%23000000%3BALC%3A%23006666%3BL%3Ahttp%3A%2F%2Fwww.eea.eu.int%2Fimages%2Feeabanner%3BGFNT%3A%23808080%3BLC%3A%23003366%3BBGC%3A%23FFFFFF%3BAH%3Aleft%3BVLC%3A%23993300%3BGL%3A0%3BS%3Ahttp%3A%2F%2Fwww.eea.eu.int&config=&restrict=&exclude=&page=">
+                                        <b><i>entire EEA website</i></b>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    &nbsp;
+                                </td>
+                                <td>
+                                    <a href="http://www.google.com/custom?q=<dtml-in "_.string.split(name)"><dtml-var "MyUrlEncode(_['sequence-item'])">+</dtml-in>&as=Google+Search&domains=eea.eu.int%3Breports.eea.eu.int%3Bthemes.eea.eu.int%3Borg.eea.eu.int%3Bdataservice.eea.eu.int%3Beionet.eu.int%3Bewindows.eu.org&sitesearch=reports.eea.eu.int&cof=GIMP%3A%23FF9900%3BT%3A%23000000%3BALC%3A%23006666%3BL%3Ahttp%3A%2F%2Fwww.eea.eu.int%2Fimages%2Feeabanner%3BGFNT%3A%23808080%3BLC%3A%23003366%3BBGC%3A%23FFFFFF%3BAH%3Aleft%3BVLC%3A%23993300%3BGL%3A0%3BS%3Ahttp%3A%2F%2Fwww.eea.eu.int&config=&restrict=&exclude=&page=">
+                                        <b><i>EEA reports</i></b>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    &nbsp;
+                                </td>
+                                <td>
+                                    <a href="http://www.google.com/custom?q=<dtml-in "_.string.split(name)"><dtml-var "MyUrlEncode(_['sequence-item'])">+</dtml-in>&as=Google+Search&domains=eea.eu.int%3Breports.eea.eu.int%3Bthemes.eea.eu.int%3Borg.eea.eu.int%3Bdataservice.eea.eu.int%3Beionet.eu.int%3Bewindows.eu.org&sitesearch=eionet.eu.int&cof=GIMP%3A%23FF9900%3BT%3A%23000000%3BALC%3A%23006666%3BL%3Ahttp%3A%2F%2Fwww.eea.eu.int%2Fimages%2Feeabanner%3BGFNT%3A%23808080%3BLC%3A%23003366%3BBGC%3A%23FFFFFF%3BAH%3Aleft%3BVLC%3A%23993300%3BGL%3A0%3BS%3Ahttp%3A%2F%2Fwww.eea.eu.int&config=&restrict=&exclude=&page=">
+                                        <b><i>EIONET</i></b>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </dtml-if>
+                </td>
+            </tr>
+        </dtml-if>
+
+        <dtml-if "(not 'Translations' in PARENTS[2].hidden_fields)">
+            <tr>
+                <td colspan=3 width="100%" valign="top" bgcolor="#808080">
+                    <b><font color="#FFFFFF">Translations of "&dtml-name;":</font></b>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b><font color=maroon>!!! Lista Completa de Traduceri - neimplementata deocamdata !!!</font></b>
+                </td>
+            </tr>
+
+<dtml-comment>
+#Alec
+            <dtml-in "propertysheets.Translations.propertyIds()" sort=id>
+                <dtml-let langid=sequence-item>
+                    <dtml-in "langcharsets(englishname=langid)">
+                        <dtml-if "_.len(_[langid])>0 or _[langid]!=''">
+                            <tr>
+                                <td bgcolor="#808080">
+                                    <font color="#FFFFFF"><dtml-var langid>:</font>
+                                </td>
+
+                                <td>
+                                    <dtml-if "langid in unicode_langs">
+                                        <dtml-var "_[langid]">
+                                    <dtml-else>
+                                        <dtml-var "toutf8(_[langid],charset)">
+                                    </dtml-if>
+                                </td>
+                            </tr>
+                        </dtml-if>
+                    </dtml-in>
+                </dtml-let>
+            </dtml-in>    #/Alec 
+            </dtml-comment>
+        </dtml-if>
+
+        <dtml-if "PARENTS[0].subjects">
+            <tr>
+                <td width="100%" valign="top" bgcolor="#808080" colspan="3">
+                    <b><font color="#FFFFFF">Contexts / Subjects</font></b>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="100%" valign="top" bgcolor="#FFFFFF" colspan="3">
+                    <dtml-let alec=ListSubjects>
+                    <dtml-in "alec.keys()">
+                        <b><dtml-var sequence-item></b>: <dtml-var "alec[_['sequence-item']]">
+                        <br>
+                    </dtml-in>
+                    </dtml-let>
+                    <br>
+                    Words between "{" in translations are used as short names for contexts (or subjects). These codes are used when there is no exact equivalence between the source and the target language. In this case several translations are supplied and tagged with a context code.
+                    <a href="contexts_table">See all context/subject codes</a>.<p>&nbsp;
+                </td>
+            </tr>
+        </dtml-if>
+
+
+
+
+
+
+<dtml-comment>
+
+          <td width="34%" valign="top" bgcolor="#808080">
+             <b><font color="#FFFFFF">Comment</font></b></td>
+        </tr>
+        <tr>
+          
+          <td width="34%" valign="top" bgcolor="#FFFFFF">
+            <dtml-var comment><p>&nbsp;</td>
+         </tr>
+            <tr>
+          <td width="33%" valign="top" bgcolor="#808080">
+           <b><font color="#FFFFFF">Source</font></b></td>
+          <td width="33%" valign="top" bgcolor="#808080">
+            <b><font color="#FFFFFF">Used for 1</font></b></td>
+          <td width="34%" valign="top" bgcolor="#808080">
+            <b><font color="#FFFFFF">Used for 2</font></b></td>
+        </tr>
+        <tr>
+          <td width="33%" valign="top" bgcolor="#FFFFFF">
+            <dtml-var source>
+          <p>&nbsp;</td>
+          <td width="33%" valign="top" bgcolor="#FFFFFF">
+              <dtml-var used_for_1>
+           <p>&nbsp;</td>
+          <td width="34%" valign="top" bgcolor="#FFFFFF">
+               <dtml-var used_for_2>
+            <p>&nbsp;</td>
+        </tr>
+        <tr>
+          <td width="33%" valign="top" bgcolor="#808080">
+            <b><font color="#FFFFFF">Subjects</font></b></td>
+          <td width="67%" valign="top" bgcolor="#808080" colspan="2">
+        <b><font color="#FFFFFF"></font></b></td>
+        </tr>
+        <tr>
+          <td width="33%" valign="top" bgcolor="#FFFFFF">
+              &nbsp;</td>
+          <td width="33%" valign="top" bgcolor="#FFFFFF">
+              &nbsp;</td>
+          <td width="34%" valign="top" bgcolor="#FFFFFF">
+              &nbsp;</td>
+        </tr>
+
+</dtml-comment>
+
+
+
+
+
+
+
+    </table>
+<dtml-else>
+    <b>Sorry, this term is not published.</b>
+</dtml-if>
+
