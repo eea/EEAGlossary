@@ -1,4 +1,3 @@
-comment here<br>
 <form name="frmProperties" action="manageBasicProperties" method="post">
     <table cellspacing=0 cellpadding=0 border=0>
         <tr>

@@ -1,4 +1,7 @@
 <dtml-let record_code="REQUEST.get('code', '')">
+<p class="form-help">
+Manage the list of languages used in searching glossary terms.
+</p>
 
 <form name="frmSearch" action="manageSearchProperties" method="post">
 <table border="0" cellspacing="2" cellpadding="2" width="100%">

@@ -1,4 +1,8 @@
 <dtml-let record_code="REQUEST.get('code', '')">
+<p class="form-help">
+Use this form to manage the list of properties of the glossary terms that will be hidden
+on the default view of the terms.
+</p>
 
 <form name="frmHidden" action="manageHiddenProperties" method="post">
 <table border="0" cellspacing="2" cellpadding="2" width="100%">

@@ -1,4 +1,8 @@
 <dtml-let record_code="REQUEST.get('code', '')">
+<p class="form-help">
+Add/Edit/Delete from the list of topics that can be used as keywords for the glossary terms.
+They are identified by the acronym since the description of the subjects can be changed.
+</p>
 
 <form name="frmSubjects" action="manageSubjectsProperties" method="post">
 <table border="0" cellspacing="2" cellpadding="2" width="70%">

@@ -2,7 +2,10 @@
 <dtml-var style_css>
 <dtml-var manage_tabs>
 
-Some comments here
+<p class="form-help">
+Change the properties of the glossary term from the tabs bellow.
+</p>
+
 <dtml-let pagetab="REQUEST.get('pagetab', '0')">
 
 <dtml-comment>

@@ -1,4 +1,8 @@
 <dtml-let record_code="REQUEST.get('code', '')">
+<p class="form-help">
+Manage the list of languages for which the translation of terms is displayed in unicode, instead of 
+using the encoding of the language.
+</p>
 
 <form name="frmSearch" action="manageUnicodeProperties" method="post">
 <table border="0" cellspacing="2" cellpadding="2" width="70%">

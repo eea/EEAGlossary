@@ -1,4 +1,9 @@
 <dtml-let record_code="REQUEST.get('code', '')">
+<p class="form-help">
+Manage the list of possible languages in which glossary terms can be translated.
+Specify for every language the encoding used to display terms translations. See also
+the <em>Unicode languages</em> tab.
+</p>
 
 <form name="frmLanguages" action="manageLanguagesProperties" method="post">
 <table border="0" cellspacing="2" cellpadding="2" width="70%">
