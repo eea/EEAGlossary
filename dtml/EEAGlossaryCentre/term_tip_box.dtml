@@ -1,10 +1,12 @@
+<dtml-var style_presentation_css>
+
 <dtml-with "random_from_catalog('centre')">
     <dtml-if definition>
-    <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="B5DED6">
-        <tr> 
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-background">
+        <tr>
           <td><img src="misc_/EEAGlossary/line.gif" width="100%" height="1"></td>
         </tr>
-        <tr> 
+        <tr>
           <td>
               <table width="100%" border="0" cellspacing="2" cellpadding="2">
               <tr><td>
@@ -18,7 +20,7 @@
               </table>
           </td>
         </tr>
-        <tr> 
+        <tr>
           <td><img src="misc_/EEAGlossary/line.gif" width="100%" height="1"></td>
         </tr>
      </table>

@@ -1,0 +1,65 @@
+<style>
+body
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 12px;
+}
+
+td
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 12px;
+}
+
+a.menulinkon
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-weight: bold;
+    font-size: 12px;
+    color: #333333;
+    text-decoration: none;
+}
+
+a.menulinkon:hover
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-weight: bold;
+    font-size: 12px;
+    color: #333333;
+    text-decoration: none;
+}
+
+a.menulinkoff
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-weight: bold;
+    font-size: 12px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+a.menulinkoff:hover
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-weight: bold;
+    font-size: 12px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.table-background
+{
+    background: #B5DED6;
+}
+
+.header-element
+{
+    background: #808080;
+    color: #FFFFFF;
+}
+
+.attention-color
+{
+    color: #FF0000;
+}
+</style>
