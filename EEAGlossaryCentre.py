@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.44 2004/05/13 14:25:19 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.45 2004/05/13 14:44:24 finrocvs Exp $
 
 # python imports
 import string
@@ -69,7 +69,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
                 {'label':'Check list',          'action':'check_list_html'},
                 {'label':'Change Password',     'action':'change_pass_html'},
                 {'label':'XML/RDF',             'action':'glossary_terms_rdf'},
-                {'label':'All terms',           'action':'all_terms_html'},
+                {'label':'All terms',           'action':'all_terms_view_html'},
                 {'label':'Management',          'action':'management_page_html'},
                 {'label':'Help',                'action':'centre_help_html'},
                 {'label':'Undo',                'action':'manage_UndoForm'},)

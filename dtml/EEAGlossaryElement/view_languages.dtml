@@ -11,7 +11,9 @@
     <tr>
         <td width="100%" colspan=100>
         <a href="<dtml-var absolute_url>"><dtml-var name></a>&nbsp;
-        <img src="misc_/EEAGlossary/new.gif" border=0>
+        <dtml-if QA_needed>
+        <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
+        </dtml-if>
         <dtml-var definition>
         <dtml-if "'Definition' in languagescheck">
             <dtml-var "toutf8(definition,'iso-8859-1')">

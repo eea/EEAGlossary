@@ -7,7 +7,11 @@
         <tr> 
           <td>
               <table width="100%" border="0" cellspacing="2" cellpadding="2"><tr><td>
-                 <p class=mainfont><b>Term example:</b>&nbsp;<a href="<dtml-var absolute_url>"><dtml-var name></a>&nbsp;<img src="misc_/EEAGlossary/new.gif"></p>
+                 <p class=mainfont><b>Term example:</b>&nbsp;<a href="<dtml-var absolute_url>"><dtml-var name></a>&nbsp;
+                 <dtml-if QA_needed>
+                    <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
+                 </dtml-if>
+                 </p>
                  <p class=mainfont><b>Definition:</b>&nbsp;<dtml-var definition></p></td></tr>
               </table>
           </td>
