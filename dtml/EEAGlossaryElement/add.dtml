@@ -40,7 +40,7 @@
     <tr>
         <td align="left" valign="top">
             <div class="form-label">
-            <label for="cb-id">id</label>
+            <label for="cb-id">id:</label>
             </div>
         </td>
 
@@ -58,7 +58,7 @@
     <tr>
         <td align="left" valign="top">
             <div class="form-label">
-            <label for="cb-name">Term name</label>
+            <label for="cb-name">Term name:</label>
             </div>
         </td>
 
@@ -76,7 +76,7 @@
     <tr>
         <td align="left" valign="top">
             <div class="form-label">
-            <label for="cb-type">type</label>
+            <label for="cb-type">type:</label>
             </div>
         </td>
 
@@ -100,7 +100,7 @@
     <tr>
         <td align="left" valign="top">
             <div class="form-label">
-            <label for="cb-source">source</label>
+            <label for="cb-source">source:</label>
             </div>
         </td>
 
@@ -118,7 +118,7 @@
     <tr>
         <td align="left" valign="top">
             <div class="form-label">
-            <label for="cb-context">context</label>
+            <label for="cb-context">context:</label>
             </div>
         </td>
 
@@ -136,7 +136,7 @@
     <tr>
         <td align="left" valign="top">
             <div class="form-label">
-            <label for="cb-comment">comment</label>
+            <label for="cb-comment">comment:</label>
             </div>
         </td>
 
@@ -154,7 +154,7 @@
     <tr>
         <td align="left" valign="top">
             <div class="form-label">
-            <label for="cb-used_for_1">used_for_1</label>
+            <label for="cb-used_for_1">used_for_1:</label>
             </div>
         </td>
 
@@ -172,7 +172,7 @@
     <tr>
         <td align="left" valign="top">
             <div class="form-label">
-            <label for="cb-used_for_2">used_for_2</label>
+            <label for="cb-used_for_2">used_for_2:</label>
             </div>
         </td>
 
@@ -190,7 +190,7 @@
     <tr>
         <td align="left" valign="top">
             <div class="form-label">
-            <label for="cb-definition">definition</label>
+            <label for="cb-definition">definition:</label>
             </div>
         </td>
 
@@ -208,7 +208,7 @@
     <tr>
         <td align="left" valign="top">
             <div class="form-label">
-            <label for="cb-definition_source">definition_source</label>
+            <label for="cb-definition_source">definition_source:</label>
             </div>
         </td>
 
@@ -226,7 +226,7 @@
     <tr>
         <td align="left" valign="top">
             <div class="form-label">
-            <label for="cb-subjects">subjects</label>
+            <label for="cb-subjects">subjects:</label>
             </div>
         </td>
 
