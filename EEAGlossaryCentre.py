@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.32 2004/05/10 15:37:01 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.33 2004/05/10 17:42:14 finrocvs Exp $
 
 # python imports
 import string
@@ -102,7 +102,6 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     def random_from_catalog(self, p_meta_type=''):
         """a random element"""
         elements=[]
-        #l_type=self.utGetType()
         catalog = self.getGlossaryCatalog()
         if p_meta_type=='centre':
             for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE):
@@ -515,7 +514,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     check_list_html = DTMLFile('dtml/EEAGlossaryCentre/checklist', globals())
     change_pass_html = DTMLFile('dtml/EEAGlossaryCentre/changepassword', globals())
     glossary_terms_rdf = ''
-    all_terms_html = DTMLFile('dtml/EEAGlossaryCentre/allterms', globals())
+    all_terms_html = DTMLFile('dtml/EEAGlossaryCentre/all_terms', globals())
     management_page_html = DTMLFile('dtml/EEAGlossaryCentre/administration', globals())
 
     help_html = DTMLFile("dtml/EEAGlossaryCentre/help", globals())

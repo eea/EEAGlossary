@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossarySynonym.py,v 1.13 2004/05/10 09:38:07 finrocvs Exp $
+#$Id: EEAGlossarySynonym.py,v 1.14 2004/05/10 17:42:14 finrocvs Exp $
 
 #python imports
 import string
@@ -71,6 +71,15 @@ class EEAGlossarySynonym(EEAGlossaryElement, utils):
         EEAGlossaryElement.__dict__['__init__'](self, id, '', '', '', [], '', '', '', '', '', 
             '', '', 0, 0, 0, '', '', [], [], {})
 
+    def get_synonyms(self):
+        """."""
+        results = []
+        cat_obj = self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE)
+        for obj in cat_obj:
+            if obj.name in self.synonyms:
+                results.append(obj)
+        return results
+
     #####################
     #   MANAGEMENT TABS #
     #####################
@@ -111,5 +120,6 @@ class EEAGlossarySynonym(EEAGlossaryElement, utils):
     index_html = DTMLFile("dtml/EEAGlossarySynonym/index", globals())
     main_content_html = DTMLFile("dtml/EEAGlossarySynonym/main_content", globals())
     synonym_properties_html = DTMLFile("dtml/EEAGlossarySynonym/synonym_properties", globals())
+    short_info_html = DTMLFile("dtml/EEAGlossarySynonym/short_info", globals())
 
 InitializeClass(EEAGlossarySynonym)

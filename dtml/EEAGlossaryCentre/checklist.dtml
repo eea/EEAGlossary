@@ -2,7 +2,8 @@
 
 <dtml-var manage_tabs>
 
-<h2><dtml-var title_or_id> - <dtml-var document_title></h2>
+<h2><dtml-var title_or_id> - Check List Form</h2>
+<dtml-comment>
 <dtml-if "'Quality Controller' in _.SecurityGetUser().getRoles()">
 <p>
 <form action="all_terms" method="post">
@@ -19,5 +20,5 @@
 </p>
 <p>Please Login</p>
 </dtml-if>
-
+</dtml-comment>
 <dtml-var manage_utf8_footer>

@@ -4,9 +4,17 @@
 <b>Synonym:</b><br><br>
 The definiton and definition source cannot be changed. You have to go to the GlossaryElement this term is synonym of.<br><br>
 
-<dtml-comment>
-<p><dtml-var short_info></p>
-</dtml-comment>
+
+<p>
+The original english term is:<br><b><dtml-var name>&nbsp;</b><br><br>
+<dtml-in get_synonyms>
+    <dtml-if sequence-start>For definition and other properties see:<br></dtml-if>
+    <dtml-if "_.len(_['sequence-item'].name)>1">
+        <a href="<dtml-var absolute_url>/manage_workspace"><dtml-var title_or_id></a><br>
+    </dtml-if>
+</dtml-in>
+</p>
+
 
 <dtml-if "REQUEST.has_key('save') and REQUEST['save']=='ok'">
 <div class="system-msg">
