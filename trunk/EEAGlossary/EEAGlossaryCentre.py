@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.15 2004/05/04 13:32:26 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.16 2004/05/04 13:52:07 finrocvs Exp $
 
 # python imports
 import string
@@ -87,7 +87,7 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
         self.search_langs = []
         self.published = 0
         self.hidden_fields = []
-        self.alpha_list = string.uppercase + string.digits + 'other'
+        self.alpha_list = list(string.uppercase + string.digits)
         utils.__dict__['__init__'](self)
 
     def all_meta_types(self):
@@ -243,6 +243,29 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=6&save=ok')
 
+    def manageAlphaProperties(self, old_alpha='', alpha='', ids='', REQUEST=None):
+        """ manage the hidden properties for EEAGlossaryCentre """
+        if self.utAddObjectAction(REQUEST):
+            if string.strip(alpha) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1')
+            else:
+                self.alpha_list.append(alpha)
+                self._p_changed = 1
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(alpha) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1')
+            else:
+                self.alpha_list.remove(old_alpha)
+                self.alpha_list.append(alpha)
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1')
+            for alpha in self.utConvertToList(ids):
+                self.alpha_list.remove(alpha)
+            self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1&save=ok')
 
     def getGlossaryEngine(self):
         """ """

@@ -1,6 +1,6 @@
 <dtml-let record_code="REQUEST.get('code', '')">
 
-<form name="frmSubjects" action="manageTypesProperties" method="post">
+<form name="frmTypes" action="manageTypesProperties" method="post">
 <table border="0" cellspacing="2" cellpadding="2" width="100%">
     <tr>
         <td class="cellheader" width="1%">&nbsp;</td>
