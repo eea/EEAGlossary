@@ -58,14 +58,14 @@
             </tr>
             <tr>
                 <td width="100%" valign="top">
-                    <p>
+                    <ul>
                     <dtml-in get_subjects>
                         <dtml-let record="_['sequence-item']">
                             <b><dtml-var "record['code']"></b>: <dtml-var "record['name']">
                             <br>
                         </dtml-let>
                     </dtml-in>
-                    </p>
+                    </ul>
                 </td>
             </tr>
         </dtml-if>

@@ -23,29 +23,29 @@
 
 <dtml-else>
 
-    <fieldset><legend>Select properties to view:</legend>
+    <fieldset><legend><b>Select properties to view:</b></legend>
 
         <table width="100%">
             <form action="<dtml-var URL0>" method="post">
                 <tr>
-                    <td valign="top" width="50%">Including image URL&nbsp;<input type="checkbox" name="at_image_url:boolean" value="1"></td>
-                    <td valign="top" width="50%">Including flash URL&nbsp;<input type="checkbox" name="at_flash_url:boolean" value="1"></td>
+                    <td valign="top" width="50%"><input type="checkbox" name="at_name:boolean" value="1" checked>Including name&nbsp;</td>
+                    <td valign="top" width="50%"><input type="checkbox" name="at_definition:boolean" value="1">Including definition&nbsp;</td>
                 </tr>
                 <tr>
-                    <td valign="top" width="50%">Including subjects&nbsp;<input type="checkbox" name="at_subjects:boolean" value="1"></td>
-                    <td valign="top" width="50%">Including status&nbsp;<input type="checkbox" name="at_status:boolean" value="1"></td>
+                    <td valign="top" width="50%"><input type="checkbox" name="at_source:boolean" value="1">Including source&nbsp;</td>
+                    <td valign="top" width="50%"><input type="checkbox" name="at_definition_source_url:boolean" value="1">Including definition source URL&nbsp;</td>
                 </tr>
                 <tr>
-                    <td valign="top" width="50%">Including name&nbsp;<input type="checkbox" name="at_name:boolean" value="1" checked></td>
-                    <td valign="top" width="50%">Including source&nbsp;<input type="checkbox" name="at_source:boolean" value="1"></td>
+                    <td valign="top" width="50%"><input type="checkbox" name="at_subjects:boolean" value="1">Including subjects&nbsp;</td>
+                    <td valign="top" width="50%"><input type="checkbox" name="at_status:boolean" value="1">Including status&nbsp;</td>
                 </tr>
                 <tr>
-                    <td valign="top" width="50%">Including definition&nbsp;<input type="checkbox" name="at_definition:boolean" value="1"></td>
-                    <td valign="top" width="50%">Including definition source URL&nbsp;<input type="checkbox" name="at_definition_source_url:boolean" value="1"></td>
+                    <td valign="top" width="50%"><input type="checkbox" name="at_long_definiton:boolean" value="1">Including long definiton&nbsp;</td>
+                    <td valign="top" width="50%"><input type="checkbox" name="at_translations:boolean" value="1">Including translations&nbsp;</td>
                 </tr>
                 <tr>
-                    <td valign="top" width="50%">Including long definiton&nbsp;<input type="checkbox" name="at_long_definiton:boolean" value="1"></td>
-                    <td valign="top" width="50%">Including translations&nbsp;<input type="checkbox" name="at_translations:boolean" value="1"></td>
+                    <td valign="top" width="50%"><input type="checkbox" name="at_image_url:boolean" value="1">Including image URL&nbsp;</td>
+                    <td valign="top" width="50%"><input type="checkbox" name="at_flash_url:boolean" value="1">Including flash URL&nbsp;</td>
                 </tr>
                 <tr>
                     <td valign="bottom"><input type="submit" name="SUBMIT" value="View all terms"></td>

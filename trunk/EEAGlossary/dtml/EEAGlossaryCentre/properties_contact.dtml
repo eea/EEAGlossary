@@ -1,0 +1,121 @@
+<dtml-let record_trans="REQUEST.get('trans', '')" record_technic="REQUEST.get('technic', '')">
+<p class="form-help">
+Add/Edit/Delete contact information for people that administrate the EEAGlossary and for the 
+translators of terms. Name and email are mandatory fields.
+</p>
+<table border="0" cellspacing="0" cellpadding="0" width="90%">
+    <tr><td>
+        <fieldset><legend><b>Technic contacts</b></legend>
+        <table border="0" cellspacing="0" cellpadding="3" width="100%">
+        <form name="frmActions" action="manageTechnicProperties" method="post">
+            <tr class="row-header">
+                <td class="cell-header" width="1%">&nbsp;</td>
+                <td class="cell-header"><b>Name</b></td>
+                <td class="cell-header"><b>Email</b></td>
+                <td class="cell-header"><b>Phone</b></td>
+                <td class="cell-header">&nbsp;</td>
+            </tr>
+            <dtml-in "contact_technic.items()">
+            <dtml-if sequence-odd>
+                <dtml-call "REQUEST.set('cellclass', 'cellodd')">
+            <dtml-else>
+                <dtml-call "REQUEST.set('cellclass', 'celleven')">
+            </dtml-if>
+            <dtml-if "record_technic == _['sequence-key']">
+            <tr>
+                <td class="<dtml-var cellclass>" width="1%"><input type="hidden" name="old_email" value="<dtml-var sequence-key html_quote>"></td>
+                <td class="<dtml-var cellclass>"><input type="text" name="name" size="40" value="<dtml-var "_['sequence-item'][0]" html_quote>"></td>
+                <td class="<dtml-var cellclass>"><input type="text" name="email" size="30" value="<dtml-var sequence-key html_quote>"></td>
+                <td class="<dtml-var cellclass>"><input type="text" name="phone" size="30" value="<dtml-var "_['sequence-item'][1]" html_quote>"></td>
+                <td class="<dtml-var cellclass>"><input type="submit" name="update" value="Update"></td>
+            </tr>
+            <dtml-else>
+            <tr>
+                <td class="<dtml-var cellclass>" width="1%"><input type="checkbox" name="ids" value="<dtml-var sequence-key html_quote>"></td>
+                <td class="<dtml-var cellclass>"><a class="itemlink" href="manage_properties_html?pagetab=0&amp;technic=<dtml-var sequence-key url_quote>"><dtml-var "_['sequence-item'][0]" html_quote></a></td>
+                <td class="<dtml-var cellclass>"><dtml-var sequence-key html_quote></td>
+                <td class="<dtml-var cellclass>"><dtml-var "_['sequence-item'][1]" html_quote></td>
+                <td class="<dtml-var cellclass>">&nbsp;</td>
+            </tr>
+            </dtml-if>
+            <dtml-else>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="2"><b>No technical contacts</b></td>
+                </tr>
+            </dtml-in>
+            <dtml-if "record_technic==''">
+            <tr>
+                <td class="cell" width="1%">&nbsp;</td>
+                <td class="cell"><input type="text" name="name" size="40" value=""></td>
+                <td class="cell"><input type="text" name="email" size="30" value=""></td>
+                <td class="cell"><input type="text" name="phone" size="30" value=""></td>
+                <td class="cell"><input type="submit" name="add" value="Add"></td>
+            </tr>
+            </dtml-if>
+            <tr>
+                <td class="cell" width="1%">&nbsp;</td>
+                <td class="cell" colspan="4"><input type="submit" name="delete" value="Delete"></td>
+            </tr>
+        </form>
+        </table>
+        </fieldset>
+        <br>
+        <fieldset><legend><b>Translation contacts</b></legend>
+        <table border="0" cellspacing="0" cellpadding="3" width="100%">
+        <form name="frmActions" action="manageTranslatorProperties" method="post">
+            <tr class="row-header">
+                <td class="cell-header" width="1%">&nbsp;</td>
+                <td class="cell-header"><b>Name</b></td>
+                <td class="cell-header"><b>Email</b></td>
+                <td class="cell-header"><b>Phone</b></td>
+                <td class="cell-header">&nbsp;</td>
+            </tr>
+            <dtml-in "contact_trans.items()">
+            <dtml-if sequence-odd>
+                <dtml-call "REQUEST.set('cellclass', 'cellodd')">
+            <dtml-else>
+                <dtml-call "REQUEST.set('cellclass', 'celleven')">
+            </dtml-if>
+            <dtml-if "record_trans == _['sequence-key']">
+            <tr>
+                <td class="<dtml-var cellclass>" width="1%"><input type="hidden" name="old_email" value="<dtml-var sequence-key html_quote>"></td>
+                <td class="<dtml-var cellclass>"><input type="text" name="name" size="40" value="<dtml-var "_['sequence-item'][0]" html_quote>"></td>
+                <td class="<dtml-var cellclass>"><input type="text" name="email" size="30" value="<dtml-var sequence-key html_quote>"></td>
+                <td class="<dtml-var cellclass>"><input type="text" name="phone" size="30" value="<dtml-var "_['sequence-item'][1]" html_quote>"></td>
+                <td class="<dtml-var cellclass>"><input type="submit" name="update" value="Update"></td>
+            </tr>
+            <dtml-else>
+            <tr>
+                <td class="<dtml-var cellclass>" width="1%"><input type="checkbox" name="ids" value="<dtml-var sequence-key html_quote>"></td>
+                <td class="<dtml-var cellclass>"><a class="itemlink" href="manage_properties_html?pagetab=0&amp;trans=<dtml-var sequence-key url_quote>"><dtml-var "_['sequence-item'][0]" html_quote></a></td>
+                <td class="<dtml-var cellclass>"><dtml-var sequence-key html_quote></td>
+                <td class="<dtml-var cellclass>"><dtml-var "_['sequence-item'][1]" html_quote></td>
+                <td class="<dtml-var cellclass>">&nbsp;</td>
+            </tr>
+            </dtml-if>
+            <dtml-else>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="2"><b>No translator contacts</b></td>
+                </tr>
+            </dtml-in>
+            <dtml-if "record_trans==''">
+            <tr>
+                <td class="cell" width="1%">&nbsp;</td>
+                <td class="cell"><input type="text" name="name" size="40" value=""></td>
+                <td class="cell"><input type="text" name="email" size="30" value=""></td>
+                <td class="cell"><input type="text" name="phone" size="30" value=""></td>
+                <td class="cell"><input type="submit" name="add" value="Add"></td>
+            </tr>
+            </dtml-if>
+            <tr>
+                <td class="cell" width="1%">&nbsp;</td>
+                <td class="cell" colspan="4"><input type="submit" name="delete" value="Delete"></td>
+            </tr>
+        </form>
+        </table>
+        </fieldset>
+    </td></tr>
+</table>
+</dtml-let>

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.81 2004/06/24 08:11:03 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.82 2004/06/24 15:58:21 finrocvs Exp $
 
 # python imports
 import string
@@ -91,7 +91,6 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                 {'label':'Check list',          'action':'check_list_html'},
                 {'label':'Change Password',     'action':'change_pass_html'},
                 {'label':'XML/RDF',             'action':'glossary_terms_rdf'},
-                {'label':'All terms',           'action':'all_terms_view_html'},
                 {'label':'Export',              'action':'export_html'},
                 {'label':'Import',              'action':'import_html'},
                 {'label':'Management',          'action':'management_page_html'},
@@ -114,6 +113,8 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         self.published = 0
         self.hidden_fields = []
         self.alpha_list = list(string.uppercase + string.digits)
+        self.contact_trans = {}
+        self.contact_technic = {}
         utils.__dict__['__init__'](self)
         toUTF8.__dict__['__init__'](self)
         glossary_export.__dict__['__init__'](self)
@@ -188,6 +189,8 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         self.subjects_list = copy(engine.get_subjects_list())
         self.types_list = copy(engine.get_types_list())
         self.search_langs = copy(engine.get_searchable_langs())
+        self.contact_trans = copy(engine.get_translation_persons())
+        self.contact_technic = copy(engine.get_contact_persons())
 
     ######################
     # TEST PERMISSIONS   #
@@ -232,13 +235,68 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=0&save=ok')
 
+    ##########################
+    #   CONTACT  FUNCTIONS   #
+    ##########################
+
     def get_contact_persons(self):
         """ return the technic persons list"""
-        return self.getGlossaryEngine().technic_contact
+        print 'La afisare: %s' % self.contact_technic
+        return self.contact_technic
 
     def get_translation_persons(self):
         """ return the translation persons list"""
-        return self.getGlossaryEngine().trans_contact
+        return self.contact_trans
+
+    def manageTechnicProperties(self, ids=[], old_email='', email='', phone='', name='', REQUEST=None):
+        """ manage tecnical contacts for EEAGlossaryEngine """
+        if self.utAddObjectAction(REQUEST):
+            print 'Date vechi: %s' % self.contact_technic
+            if string.strip(email) == '' or string.strip(name) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=7')
+            else:
+                self.contact_technic[email] = (name, phone)
+                self._p_changed = 1
+                print 'Date noi: %s' % self.contact_technic
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(email) == '' or string.strip(name) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=7')
+            else:
+                del self.contact_technic[old_email]
+                self.contact_technic[email] = (name, phone)
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=7')
+            for email in self.utConvertToList(ids):
+                del self.contact_technic[email]
+            self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=7&save=ok')
+
+    def manageTranslatorProperties(self, ids=[], old_email='', email='', phone='', name='', REQUEST=None):
+        """ manage translator contacts for EEAGlossaryEngine """
+        if self.utAddObjectAction(REQUEST):
+            if string.strip(email) == '' or string.strip(name) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=7')
+            else:
+                self.contact_trans[email] = (name, phone)
+                self._p_changed = 1
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(email) == '' or string.strip(name) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=7')
+            else:
+                del self.contact_trans[old_email]
+                self.contact_trans[email] = (name, phone)
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=7')
+            for email in self.utConvertToList(ids):
+                del self.contact_trans[email]
+            self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=7&save=ok')
 
     ##########################
     #   SUBJECTS FUNCTIONS   #
@@ -908,6 +966,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
     prop_languages_html = DTMLFile('dtml/EEAGlossaryCentre/properties_languages', globals())
     prop_search_html = DTMLFile('dtml/EEAGlossaryCentre/properties_search', globals())
     prop_hidden_html = DTMLFile('dtml/EEAGlossaryCentre/properties_hidden', globals())
+    prop_contact_html = DTMLFile("dtml/EEAGlossaryCentre/properties_contact", globals())
 
     preview_html = DTMLFile('dtml/EEAGlossaryCentre/preview', globals())
     index_html = DTMLFile('dtml/EEAGlossaryCentre/index', globals())
