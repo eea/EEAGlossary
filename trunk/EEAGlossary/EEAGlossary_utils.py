@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.45 2004/06/01 13:12:54 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.46 2004/06/01 15:27:36 finrocvs Exp $
 
 #Python imports
 import string
@@ -201,7 +201,14 @@ class utils:
         """ """
         import sys
         return str(error) + ' at line ' + str(sys.exc_info()[2].tb_lineno)
-        
+
+    def convertValToHex(self, val):
+        return unichr(int(val.group()[2:-1]))
+
+    def convertTermToHex(self, term):
+        import re
+        return re.sub('&#[0-9]+;', self.convertValToHex, term)
+
 class catalog_utils:
 
     def __init__(self):
@@ -246,11 +253,8 @@ class catalog_utils:
         catalog = self.getGlossaryCatalog()
         try:
             ob_path = self.__build_catalog_path(ob)
-            print 'path [%s]' % ob_path
             catalog.uncatalog_object(ob_path)
-            print '@@@@'
             self.cu_catalog_object(ob)
-            print '#####'
         except Exception, error:
             print self.debug(error)
 

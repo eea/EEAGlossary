@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.70 2004/06/01 13:12:54 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.71 2004/06/01 15:27:36 finrocvs Exp $
 
 # python imports
 import string
@@ -532,7 +532,6 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         for obj in self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
             if (not obj.approved):
                 append(obj)
-        print lst_not_approved
         return lst_not_approved
 
     def get_approved(self):
@@ -777,8 +776,9 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                     elem_ob = folder._getOb(self.ut_makeId(obj.entry), None)
                     if elem_ob is not None:
                         for k,v in obj.translations.items():
-                            elem_ob.set_translations_list(k, v)
-                            elem_ob.set_history(k, v)
+                            buf = self.convertTermToHex(v).encode('utf8')
+                            elem_ob.set_translations_list(k, buf)
+                            elem_ob.set_history(k, buf)
                         elem_ob.cu_recatalog_object(elem_ob)
             obj.emptyObject()
         if REQUEST is not None:
@@ -806,7 +806,6 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         body_info = chandler.getBody() #return a dictionary {id: (source, target)}
         obj = mapTiny()
         for elem_id, translation in body_info.items():
-            print elem_id
             if elem_id!='':
                 folder_id = self.utf8_to_latin1(string.upper(elem_id[:1]))
                 folder = self.unrestrictedTraverse(folder_id, None)
@@ -826,6 +825,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                         for k,v in obj.translations.items():
                             elem_ob.set_translations_list(k, v)
                             elem_ob.set_history(k, v)
+                        elem_ob.cu_recatalog_object(elem_ob)
                     else:
                         try:
                             folder.manage_addGlossaryElement(obj.entry, '', '', [], '', '', '', '', '', 
@@ -835,10 +835,9 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                         elem_ob = folder._getOb(self.ut_makeId(obj.entry), None)
                         if elem_ob is not None:
                             for k,v in obj.translations.items():
-                                elem_ob.set_translations_list(k, v)
-                                elem_ob.set_history(k, v)
-                    print elem_ob
-                    self.cu_recatalog_object(elem_ob)
+                                elem_ob.set_translations_list(k, v.encode('utf8'))
+                                elem_ob.set_history(k, v.encode('utf8'))
+                            elem_ob.cu_recatalog_object(elem_ob)
             obj.emptyObject()
         if REQUEST is not None:
              return MessageDialog(title = 'Messages imported', message = 'Terms successfully imported' ,
