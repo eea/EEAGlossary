@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.54 2004/10/01 08:12:50 finrocvs Exp $
+#$Id$
 
 # python imports
 import string
@@ -62,13 +62,14 @@ class ElementBasic:
 
 manage_addGlossaryElement_html = DTMLFile('dtml/EEAGlossaryElement/add', globals())
 
-def manage_addGlossaryElement(self, name='', el_type='', source='', subjects=[], el_context='', comment='', 
-    definition='', definition_source_publ='', definition_source_publ_year='', 
-    definition_source_url='', definition_source_org='', definition_source_org_fullname='', long_definition='', 
-    disabled=0, approved=1, QA_needed=0, image_url='', flash_url='', links=[], actions=[], translations={}, synonym=[], REQUEST=None):
+def manage_addGlossaryElement(self, name='', el_type='', source='', subjects=[], el_context='',
+    comment='', definition='', definition_source_publ='', definition_source_publ_year='', 
+    definition_source_url='', definition_source_org='', definition_source_org_fullname='',
+    long_definition='', disabled=0, approved=1, QA_needed=0, image_url='', flash_url='',
+    links=[], actions=[], translations={}, synonym=[], id='', REQUEST=None):
     """ adds a new EEAGlossaryElement object """
     #remove the spaces from name
-    id = self.ut_makeId(name)
+    if id == '':  id = self.ut_makeId(name)
     ob = EEAGlossaryElement(id, name, el_type, source, subjects, el_context, comment,
             definition, definition_source_publ, definition_source_publ_year, definition_source_url, 
             definition_source_org, definition_source_org_fullname, long_definition, disabled, approved, QA_needed, 

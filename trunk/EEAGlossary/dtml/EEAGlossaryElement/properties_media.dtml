@@ -4,7 +4,7 @@
         <table cellspacing="2" cellpadding="0" border="0">
             <form name="frmProperties" action="manageMediaProperties" method="post">
                 <tr>
-                    <td width="20%"><b>Image url:</b<</td>
+                    <td width="20%"><b>Image url:</b></td>
                     <td><input type="text" name="image_url" size="40" value="<dtml-var image_url>"></td>
                 </tr>
                 <tr>
