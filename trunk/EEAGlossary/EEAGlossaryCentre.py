@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.12 2004/05/03 18:39:13 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.13 2004/05/03 20:07:49 finrocvs Exp $
 
 # python imports
 import string
@@ -36,7 +36,9 @@ from Products.ZCatalog.ZCatalog import manage_addZCatalog, manage_addZCatalogFor
 
 # product imports
 import EEAGlossaryFolder
-from EEAGlossary_utils import languages_parser, utils, subjects_parser
+from EEAGlossary_utils import utils
+from parsers.languages_parser import languages_parser
+from parsers.subjects_parser import subjects_parser
 from EEAGlossary_constants import *
 
 manage_addGlossaryCentre_html = DTMLFile('dtml/EEAGlossaryCentre/add', globals())
