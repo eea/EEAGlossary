@@ -163,17 +163,11 @@ def exportGlossaryElement(p_item):
 #
 ###    l_temp += ' Maltese="%s"' % utXmlEncode(p_item.Maltese, 'iso-8859-3', 0)
 #
-##    l_temp += ' Norwegian="%s"' % to_utf8(p_item.Norwegian, 'iso-8859-1')
-##    l_temp += ' Norwegian="%s"' % (unicode(p_item.Norwegian, 'iso-8859-1')).encode('utf-8')
-##    l_temp += ' Norwegian="%s"' % unicode(utHtmlEncode(p_item.Norwegian, 0), 'iso-8859-1').encode('utf-8')
-#    l_temp += ' Norwegian="%s"' % p_item.Norwegian
+###    l_temp += ' Norwegian="%s"' % utXmlEncode(p_item.Norwegian, 'iso-8859-1', 0)
 #
 ###    l_temp += ' Polish="%s"' % utHtmlEncode(p_item.Polish, 0)
 #
-##    l_temp += ' Portuguese="%s"' % utHtmlEncode(p_item.Portuguese, 0)
-##    l_temp += ' Portuguese="%s"' % to_utf8(p_item.Portuguese, 'iso-8859-1')
-##    l_temp += ' Portuguese="%s"' % (unicode(p_item.Portuguese, 'iso-8859-1')).encode('utf-8')
-##    l_temp += ' Portuguese="%s"' % p_item.Portuguese
+###    l_temp += ' Portuguese="%s"' % utXmlEncode(p_item.Portuguese, 'iso-8859-1', 0)
 #
 ###    l_temp += ' Romanian="%s"' % utXmlEncode(p_item.Romanian, 'utf-8', 0)
 #
@@ -194,13 +188,9 @@ def exportGlossaryElement(p_item):
 ##    l_temp += ' Slovenian="%s"' % to_utf8(p_item.Slovenian, 'iso-8859-2')
 ##    l_temp += ' Slovenian="%s"' % (unicode(p_item.Slovenian, 'iso-8859-2')).encode('utf-8')
 #
-##    l_temp += ' Spanish="%s"' % p_item.Spanish
-##    l_temp += ' Spanish="%s"' % to_utf8(p_item.Spanish, 'iso-8859-1')
-##    l_temp += ' Spanish="%s"' % (unicode(p_item.Spanish, 'iso-8859-1')).encode('utf-8')
+###    l_temp += ' Spanish="%s"' % utXmlEncode(p_item.Spanish, 'iso-8859-1', 0)
 #
-#    l_temp += ' Swedish="%s"' % p_item.Swedish
-##    l_temp += ' Swedish="%s"' % to_utf8(p_item.Swedish, 'iso-8859-1')
-##    l_temp += ' Swedish="%s"' % (unicode(p_item.Swedish, 'iso-8859-1')).encode('utf-8')
+###    l_temp += ' Swedish="%s"' % utXmlEncode(p_item.Swedish, 'iso-8859-1', 0)
 #
 ##    l_temp += ' Turkish="%s"' % utXmlEncode(p_item.Turkish, 'latin1', 0)
 ##    l_temp += ' Turkish="%s"' % to_utf8(p_item.Turkish, 'iso-8859-9')
@@ -243,34 +233,54 @@ def utEncodeHtml(p_string):
     """ """
     l_tmp = str(p_string)
 
+    l_tmp = l_tmp.replace('&Agrave;', 'À')
     l_tmp = l_tmp.replace('&agrave;', 'à')
+    l_tmp = l_tmp.replace('&Ugrave;', 'Ù')
     l_tmp = l_tmp.replace('&ugrave;', 'ù')
+    l_tmp = l_tmp.replace('&Oslash;', 'Ø')
     l_tmp = l_tmp.replace('&oslash;', 'ø')
+    l_tmp = l_tmp.replace('&Aring;', 'Å')
     l_tmp = l_tmp.replace('&aring;', 'å')
+    l_tmp = l_tmp.replace('&AElig;', 'Æ')
     l_tmp = l_tmp.replace('&aelig;', 'æ')
+    l_tmp = l_tmp.replace('&Euml;', 'Ë')
     l_tmp = l_tmp.replace('&euml;', 'ë')
+    l_tmp = l_tmp.replace('&Auml;', 'Ä')
     l_tmp = l_tmp.replace('&auml;', 'ä')
+    l_tmp = l_tmp.replace('&Ouml;', 'Ö')
     l_tmp = l_tmp.replace('&ouml;', 'ö')
+    l_tmp = l_tmp.replace('&Egrave;', 'È')
     l_tmp = l_tmp.replace('&egrave;', 'è')
+    l_tmp = l_tmp.replace('&Eacute;', 'É')
     l_tmp = l_tmp.replace('&eacute;', 'é')
+    l_tmp = l_tmp.replace('&Ecirc;', 'Ê')
     l_tmp = l_tmp.replace('&ecirc;', 'ê')
+    l_tmp = l_tmp.replace('&Uuml;', 'Ü')
     l_tmp = l_tmp.replace('&uuml;', 'ü')
     l_tmp = l_tmp.replace('&Ouml;', 'Ö')
+    l_tmp = l_tmp.replace('&ouml;', 'ö')
+    l_tmp = l_tmp.replace('&ETH;', 'Ð')
     l_tmp = l_tmp.replace('&eth;', 'ð')
+    l_tmp = l_tmp.replace('&Uacute;', 'Ú')
     l_tmp = l_tmp.replace('&uacute;', 'ú')
+    l_tmp = l_tmp.replace('&Iacute;', 'Í')
     l_tmp = l_tmp.replace('&iacute;', 'í')
+    l_tmp = l_tmp.replace('&Aacute;', 'Á')
     l_tmp = l_tmp.replace('&aacute;', 'á')
+    l_tmp = l_tmp.replace('&Oacute;', 'Ó')
     l_tmp = l_tmp.replace('&oacute;', 'ó')
+    l_tmp = l_tmp.replace('&THORN;', 'Þ')
     l_tmp = l_tmp.replace('&thorn;', 'þ')
+    l_tmp = l_tmp.replace('&Yacute;', 'Ý')
     l_tmp = l_tmp.replace('&yacute;', 'ý')
-    l_tmp = l_tmp.replace('&ugrave;', 'aaaaaaaaa')
-    l_tmp = l_tmp.replace('&ugrave;', 'aaaaaaaaa')
-    l_tmp = l_tmp.replace('&ugrave;', 'aaaaaaaaa')
-    l_tmp = l_tmp.replace('&ugrave;', 'aaaaaaaaa')
-    l_tmp = l_tmp.replace('&ugrave;', 'aaaaaaaaa')
-    l_tmp = l_tmp.replace('&ugrave;', 'aaaaaaaaa')
-    l_tmp = l_tmp.replace('&ugrave;', 'aaaaaaaaa')
-    l_tmp = l_tmp.replace('&ugrave;', 'aaaaaaaaa')
+    l_tmp = l_tmp.replace('&Atilde;', 'Ã')
+    l_tmp = l_tmp.replace('&atilde;', 'ã')
+    l_tmp = l_tmp.replace('&Ccedil;', 'Ç')
+    l_tmp = l_tmp.replace('&ccedil;', 'ç')
+    l_tmp = l_tmp.replace('&Acirc;', 'Â')
+    l_tmp = l_tmp.replace('&acirc;', 'â')
+    l_tmp = l_tmp.replace('&Ntilde;', 'Ñ')
+    l_tmp = l_tmp.replace('&ntilde;', 'ñ')
 
     return l_tmp
 
