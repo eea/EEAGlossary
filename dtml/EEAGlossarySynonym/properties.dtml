@@ -1,3 +1,83 @@
 <dtml-var manage_page_header>
-    <dtml-var manage_tabs>
+<dtml-var manage_tabs>
+
+<b>Synonym:</b><br><br>
+The definiton and definition source cannot be changed. You have to go to the GlossaryElement this term is synonym of.<br><br>
+</p>
+<p><dtml-var short_info></p>
+<dtml-if "'Manager' in _.SecurityGetUser().getRoles() or 'GlossaryManager' in _.SecurityGetUser().getRoles()">
+<p><b>You can only change the following properties for a synonym.</b></p>
+<form action="editSynonym" method="post">
+<table>
+<tr>
+  <td align="left" valign="top" width="16">
+      </td>
+  <td align="left" valign="top">
+  <div class="form-label">
+  <label for="cb-name">name</label>
+  </div>
+  </td>
+  <td align="left" valign="top">
+
+      <input type="text" name="name:string" size="35"
+   value="<dtml-var name>">
+      </td>
+  <td align="left" valign="top">
+  <div class="list-item">
+  string
+  </div>
+  </td>
+</tr>
+<tr>
+  <td align="left" valign="top" width="16">
+      </td>
+  <td align="left" valign="top">
+  <div class="form-label">
+  <label for="cb-disabled">disabled</label>
+  </div>
+  </td>
+  <td align="left" valign="top">
+
+      <input type="checkbox" name="disabled:boolean" size="35"
+   <dtml-if disabled>CHECKED</dtml-if>>
+      </td>
+  <td align="left" valign="top">
+  <div class="list-item">
+  boolean
+  </div>
+  </td>
+</tr>
+<tr>
+  <td align="left" valign="top" width="16">
+      </td>
+  <td align="left" valign="top">
+  <div class="form-label">
+  <label for="cb-approved">approved</label>
+  </div>
+  </td>
+  <td align="left" valign="top">
+
+      <input type="checkbox" name="approved:boolean" size="35"
+   <dtml-if approved>CHECKED</dtml-if>>
+      </td>
+  <td align="left" valign="top">
+  <div class="list-item">
+  boolean
+  </div>
+  </td>
+</tr>
+<tr>
+  <td colspan="2">&nbsp;</td>
+  <td align="left" valign="top">
+  <div class="form-element">
+  <input name="DestinationURL" type="hidden" 
+   class="form-element" value="manage_properties" />
+  <input type="submit" 
+   class="form-element" value="Save Changes" />
+  <td>&nbsp;</td>
+  </td>
+</tr>
+</table>
+</form>
+</dtml-if>
 <dtml-var manage_page_footer>
