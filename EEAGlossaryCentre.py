@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.56 2004/05/17 19:45:45 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.57 2004/05/18 08:25:59 finrocvs Exp $
 
 # python imports
 import string
@@ -501,7 +501,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         """.return the elements&synonyms not approved """
         lst_not_approved = []
         append = lst_not_approved.append
-        for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
+        for obj in self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
             if (not obj.approved):
                 append(obj)
         return lst_not_approved
@@ -510,7 +510,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         """.return the elements&synonyms approved """
         lst_approved = []
         append = lst_approved.append
-        for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
+        for obj in self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
             if obj.approved:
                 append(obj)
         return lst_approved
@@ -519,7 +519,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         """.return the elements&synonyms not disabled """
         lst_disabled = []
         append = lst_disabled.append
-        for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
+        for obj in self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
             if obj.disabled:
                 append(obj)
         return lst_disabled
@@ -528,7 +528,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         """.return the elements&synonyms not published """
         lst_not_published = []
         append = lst_not_published.append
-        for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
+        for obj in self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
             if (not obj.approved or obj.disabled):
                 append(obj)
         return lst_not_published
@@ -537,7 +537,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         """.return the elements&synonyms published """
         lst_published = []
         append = lst_published.append
-        for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
+        for obj in self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
             if (obj.approved or not obj.disabled):
                 append(obj)
         return lst_published
@@ -563,18 +563,15 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     ######################################
     def searchGlossary(self, query='', size=10000, language='English', definition='*', REQUEST=None):
         """ search glossary """
-        catalog = self.getGlossaryCatalog()
-        results = self.cu_search_catalog(catalog, [EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], query, size, language, definition)
+        results = self.cu_search_catalog([EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], query, size, language, definition)
         return (language, query, results)
 
     def random_from_catalog(self, p_meta_type=''):
         """a random element from catalog """
         elements=[]
         append = elements.append
-        catalog = self.getGlossaryCatalog()
-
         if p_meta_type=='centre':
-            for obj in self.cu_get_cataloged_objects(catalog, meta_type=EEA_GLOSSARY_ELEMENT_METATYPE):
+            for obj in self.cu_get_cataloged_objects(meta_type=EEA_GLOSSARY_ELEMENT_METATYPE):
                 if obj.is_published:
                     append(obj)
             if len(elements) > 0:
@@ -582,7 +579,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
             else:
                 return None
         else:
-            for obj in self.cu_get_cataloged_objects(catalog, meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, path=self.absolute_url):
+            for obj in self.cu_get_cataloged_objects(meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, path=self.absolute_url):
                 if obj.is_published:
                     append(obj)
             if len(elements) > 0:
@@ -603,28 +600,39 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
 
     def folder_list_sorted(self):
         """ Return all the folders, sorted"""
-        return self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_FOLDER_METATYPE], sort_on='id', sort_order='')
+        return self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_FOLDER_METATYPE], sort_on='id', sort_order='')
 
     def get_all_objects (self):
         """ return sorted objects by name """
-        return self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order='')
+        return self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order='')
 
     def get_all_elements(self):
         """ return sorted objects by name """
-        return self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE,], sort_on='id', sort_order='')
+        return self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE,], sort_on='id', sort_order='')
+
+#    def get_all_elements (self):
+#        """ return sorted elements by name """
+#        my_el=[]
+#        name_lst=[]
+#        my_el = self.cu_get_cataloged_objects(meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, sort_on='id', sort_order='')
+#        for ob in my_el:
+#            if ob.approved and (not ob.disabled):
+#                name_lst.append((ob.name,1))
+#            else:
+#                name_lst.append((ob.name,0))
+#        name_lst.sort(self.utCompare)
+#        return name_lst
 
     def reindexCatalog(self, REQUEST=None):
         """ reindex the catalog """
-        catalog = self.getGlossaryCatalog()
-        indexes = self.cu_getIndexes(catalog)
+        indexes = self.cu_getIndexes()
         for index in indexes:
-            self.cu_reindexCatalogIndex(catalog, index.id, REQUEST)
+            self.cu_reindexCatalogIndex(index.id, REQUEST)
         return 1
 
     def buildGlossary(self, glossary_table, REQUEST=None):
         """ build glossary -- initial phase """
         tiny = self.unrestrictedTraverse(glossary_table, None)
-        catalog = self.getGlossaryCatalog()
         transtab = string.maketrans('/ ','__')
         #return the columns names from tiny table
         cols = string.split(tiny.cols_text(), ' ')
@@ -689,7 +697,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
                         elem_ob.used_for_2  =  obj.used_for_2
                         elem_ob.definition = obj.definition
                         elem_ob.definition_source_url = 'dataservice, http://dataservice.eea.eu.int'
-                        elem_ob.cu_recatalog_object(catalog, elem_ob)
+                        elem_ob.cu_recatalog_object(elem_ob)
                     except:
                         pass
             obj.emptyObject()
@@ -738,7 +746,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
                 if elem_ob is not None:
                     for k,v in obj.translations.items():
                         elem_ob.set_translations_list(k, v)
-                    elem_ob.cu_recatalog_object(catalog, elem_ob)
+                    elem_ob.cu_recatalog_object(elem_ob)
                 else:
                     try:
                         folder.manage_addGlossaryElement(obj.entry, '', '', [], '', '', '', '', '', 
@@ -749,7 +757,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
                     if elem_ob is not None:
                         for k,v in obj.translations.items():
                             elem_ob.set_translations_list(k, v)
-                        elem_ob.cu_recatalog_object(catalog, elem_ob)
+                        elem_ob.cu_recatalog_object(elem_ob)
             obj.emptyObject()
         if REQUEST is not None:
             REQUEST.RESPONSE.redirect('update_trans_html')

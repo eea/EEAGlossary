@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.47 2004/05/17 14:08:40 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.48 2004/05/18 08:25:59 finrocvs Exp $
 
 # python imports
 import string
@@ -111,19 +111,6 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     def is_published (self):
         """ test if current element is published """
         return (self.approved and (not self.disabled))
-
-    def all_elements (self):
-        """ return sorted elements by name """
-        my_el=[]
-        name_lst=[]
-        my_el = self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, sort_on='id', sort_order='')
-        for ob in my_el:
-            if ob.approved and (not ob.disabled):
-                name_lst.append((ob.name,1))
-            else:
-                name_lst.append((ob.name,0))
-        name_lst.sort(self.utCompare)
-        return name_lst
 
     def is_image_url (self):
         """ test if the current element has an image URL """
@@ -219,11 +206,6 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         for lang in self.get_english_names():
             setattr(self, lang, '')
 
-#    def load_translations_list_with_values(self, translation):
-#        """ load translations """
-#        for lang in self.get_english_names():
-#            setattr(self, lang, translation)
-
     def convert_element(self, synonyms=[], REQUEST=None):
         """convert element to synonym """
         synid = self.id
@@ -245,7 +227,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
             self.set_history(lang_code, translation)
             self.set_translations_list(lang_code, translation)
             self._p_changed = 1
-            self.cu_recatalog_object(self.getGlossaryCatalog(), self)
+            self.cu_recatalog_object(self)
             if REQUEST is not None:
                 return REQUEST.RESPONSE.redirect('check_translation_html')
 
@@ -270,8 +252,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         self.long_definition = long_definition
         self.QA_needed = QA_needed
         self._p_changed = 1
-        catalog = self.getGlossaryCatalog()
-        self.cu_recatalog_object(catalog, self)
+        self.cu_recatalog_object(self)
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=0&save=ok')
 
@@ -366,12 +347,12 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         SimpleItem.inheritedAttribute('manage_afterAdd')(self, item, container)
         item.load_translations_list()
         item.set_translations_list('English', item.name)
-        self.cu_catalog_object(self.getGlossaryCatalog(), self)
+        self.cu_catalog_object(self)
 
     def manage_beforeDelete(self, item, container):
         """ this method is called, when the object is deleted """
         SimpleItem.inheritedAttribute('manage_beforeDelete')(self, item, container)
-        self.cu_uncatalog_object(self.getGlossaryCatalog(), self)
+        self.cu_uncatalog_object(self)
 
     #####################
     #   MANAGEMENT TABS #
