@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_export.py,v 1.15 2004/06/07 14:33:59 finrocvs Exp $
+#$Id: EEAGlossary_export.py,v 1.16 2004/06/08 07:23:11 finrocvs Exp $
 
 from DateTime import DateTime
 from types import UnicodeType, StringType
@@ -91,7 +91,7 @@ class glossary_export:
             term.get_translation_by_language('English')
             #translation = term.get_translation_by_language(language)
             if language in self.get_unicode_langs():
-                translation = term.get_translation_by_language(language)
+                translation = self.convertWinCodesToHTMLCodes(term.get_translation_by_language(language))
             else:
                 translation = self.display_unicode_langs(term.get_translation_by_language(language), charset=self.get_language_charset(language))
             r_append('<trans-unit id="%s">' % term.id)
@@ -127,7 +127,7 @@ class glossary_export:
                 translation = term.get_translation_by_language(language)
                 if language in self.get_unicode_langs():
                     r_append('<tuv xml:lang="%s">' % language)
-                    r_append('<seg>%s</seg></tuv>' % translation)
+                    r_append('<seg>%s</seg></tuv>' % self.convertWinCodesToHTMLCodes(translation))
                 else:
                     r_append('<tuv xml:lang="%s">' % language)
                     r_append('<seg>%s</seg></tuv>' % self.display_unicode_langs(translation,self.get_language_charset(language)))
