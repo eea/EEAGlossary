@@ -20,9 +20,10 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_export.py,v 1.4 2004/05/28 11:16:20 finrocvs Exp $
+#$Id: EEAGlossary_export.py,v 1.5 2004/05/28 12:00:20 finrocvs Exp $
 
 from DateTime import DateTime
+from types import UnicodeType
 
 class glossary_export:
     """ """
@@ -37,7 +38,7 @@ class glossary_export:
         r_append = results.append   #alias for append function. For optimization purposes
         # Generate the XLIFF file header
         if folders == '/':    folders='all'
-        self.REQUEST.RESPONSE.setHeader('Content-Type', 'text/xml; charset=UTF-8')
+        self.REQUEST.RESPONSE.setHeader('Content-Type', 'application/data; charset=UTF-8')
         self.REQUEST.RESPONSE.setHeader('Content-Disposition', 'attachment; filename="%s_%s_%s.xml"' % (self.id, folders, language))
         r_append('<?xml version="1.0" encoding="UTF-8"?>')
         r_append('<!DOCTYPE xliff SYSTEM "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">')
@@ -65,26 +66,30 @@ class glossary_export:
 
     def xliff_export(self, folder='/', language='', published=0, REQUEST=None):
         """ Exports the content of the EEAGlossary to an XLIFF file """
+        results_list = []
         results = []
         terms = []
-        r_append = results.append   #alias for append function. For optimization purposes
+        r_append = results_list.append   #alias for append function. For optimization purposes
         if published:
             terms.extend(self.get_published('/%s' % folder))
         else:
             terms.extend(self.get_all_objects('/%s' % folder))
-        results.extend(self.xliff_header(folder, language))
+        results_list.extend(self.xliff_header(folder, language))
         for term in terms:
             if language in self.get_unicode_langs():
                 translation = term.get_translation_by_language(language)
             else:
                 translation = self.display_unicode_langs(term.get_translation_by_language(language), charset=self.get_language_charset(language))
-            print translation    
             r_append('<trans-unit id="%s">' % term.id)
-            r_append(' <source>%s</source>' % term.get_translation_by_language('English'))
-            r_append(' <target>%s</target>' % translation)
+            r_append('<source>%s</source>' % term.get_translation_by_language('English'))
+            r_append('<target>%s</target>' % translation)
             if term.definition:
-                r_append(' <note>%s</note>' % term.definition)
+                pass #r_append('<note>%s</note>' % term.definition)
             r_append('</trans-unit>')
-        results.extend(self.xliff_footer())
-        print '\r\n'.join(results)
+        results_list.extend(self.xliff_footer())
+        for x in results_list:
+            if type(x) is UnicodeType:
+                results.append(x.encode('utf-8'))
+            else:
+                results.append(x)
         return '\r\n'.join(results)
