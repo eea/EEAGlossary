@@ -37,8 +37,11 @@
             <dtml-let language="_['sequence-item']" translation="get_translation_by_language(language)">
                 <dtml-let record=sequence-item role="'QC '+record">
                     <tr>
-                        <td align="left" valign="top"><div class="form-label"><label for="cb-<dtml-var language>"><dtml-var language></label></div></td>
-                        <td align="left" valign="top">
+                        <td width="35%" align="left" valign="top"><div class="form-label"><label for="cb-<dtml-var language>"><dtml-var language></label></div></td>
+                        <td width="65%" align="left" valign="top">
+                            <dtml-unless translation>
+                                &nbsp;
+                            </dtml-unless>
                             <dtml-if "language in get_unicode_langs()">
                                <dtml-var translation>
                            <dtml-else>
@@ -61,8 +64,12 @@
             </tr>
             <tr>
                 <td>
-                    <dtml-if utIsSynonym>
+                    
                     The original english term is:<br><b><dtml-var name>&nbsp;</b><br><br>
+                    <dtml-if definition>
+                        <b>Definition</b>:<br><i><dtml-var "toutf8(definition,'iso-8859-1')"></i>
+                    </dtml-if>
+                    <dtml-if utIsSynonym>
                     <dtml-in utGetSynonyms>
                         <dtml-if sequence-start>For definition and other properties see:<br></dtml-if>
                         <dtml-if "_.len(_['sequence-item'].name)>1">
