@@ -18,15 +18,16 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.25 2004/05/10 15:37:01 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.26 2004/05/10 17:42:14 finrocvs Exp $
 
 #Python imports
-
 import string
-
 
 #Zope imports
 from Products.PythonScripts.standard import url_quote
+
+#product imports
+from EEAGlossary_constants import *
 
 #constants
 class utils:
@@ -34,10 +35,9 @@ class utils:
     def __init__(self):
         pass
 
-    def utGetType(self):
-        """return meta_type of current object"""
-        print self.meta_type
-        return self.meta_type
+    def utIsSynonym(self):
+        """."""
+        return self.meta_type==EEA_GLOSSARY_SYNONYM_METATYPE
 
     def utAddObjectAction(self, REQUEST=None):
         """Check if adding an object"""

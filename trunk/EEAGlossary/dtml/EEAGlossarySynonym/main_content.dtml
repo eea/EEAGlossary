@@ -1,12 +1,8 @@
-<dtml-in synonyms>
+<dtml-in get_synonyms>
     <dtml-if sequence-start>See:<br></dtml-if>
-    <dtml-if "_.len(_['sequence-item'])>1"><dtml-comment>
-        <dtml-in "GlossaryCatalog(id=_['sequence-item'])">
-            <dtml-with "getObject()">
-                <a href="&dtml-absolute_url;">
-                <dtml-var title_or_id>
-                </a><br>
-            </dtml-with>
-        </dtml-in></dtml-comment>
+    <dtml-if "_.len(_['sequence-item'].name)>1">
+        <a href="<dtml-var absolute_url>">
+        <dtml-var title_or_id>
+        </a><br>
     </dtml-if>
 </dtml-in>

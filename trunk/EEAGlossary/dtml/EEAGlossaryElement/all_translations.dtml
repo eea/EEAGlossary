@@ -59,10 +59,20 @@
                 <td><p><b>Support/Contact Info</b></p></td>
             </tr>
             <tr>
-                <td><dtml-var help_contact_html><dtml-comment></td>
+                <td><dtml-var help_contact_html></td>
             </tr>
             <tr>
-                <td><dtml-var short_info></dtml-comment></td>
+                <td>
+                    <dtml-if utIsSynonym>
+                    The original english term is:<br><b><dtml-var name>&nbsp;</b><br><br>
+                    <dtml-in get_synonyms>
+                        <dtml-if sequence-start>For definition and other properties see:<br></dtml-if>
+                        <dtml-if "_.len(_['sequence-item'].name)>1">
+                            <a href="<dtml-var absolute_url>/manage_workspace"><dtml-var title_or_id></a><br>
+                        </dtml-if>
+                    </dtml-in>
+                    </dtml-if>
+                </td>
             </tr>
         </table>
                 <table border=1 width="100%">
