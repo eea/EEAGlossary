@@ -18,7 +18,7 @@
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
 #
-#$Id: EEAGlossaryFolder.py,v 1.4 2004/05/03 13:19:48 finrocvs Exp $
+#$Id: EEAGlossaryFolder.py,v 1.5 2004/05/03 13:43:17 finrocvs Exp $
 
 # Zope imports
 from Globals import DTMLFile, MessageDialog, InitializeClass
@@ -72,7 +72,6 @@ class EEAGlossaryFolder(Folder, Utils):
         self.id = id
         self.title = title
         self.description = description
-        print "intre"
         self.adt_meta_types = []
 
     def all_meta_types(self):
