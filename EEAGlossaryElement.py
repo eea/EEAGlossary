@@ -17,7 +17,10 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossaryElement.py,v 1.6 2004/05/03 13:19:48 finrocvs Exp $
+# Cornel Nitu, Finsiel Romania
+#
+#
+#$Id: EEAGlossaryElement.py,v 1.7 2004/05/03 18:39:13 finrocvs Exp $
 
 # python imports
 import string
@@ -30,7 +33,8 @@ from Products.ZCatalog.CatalogAwareness import CatalogAware
 
 # product imports
 import EEAGlossaryCentre
-from EEAGlossary_utils import Utils
+from EEAGlossary_utils import utils
+from EEAGlossary_constants import *
 
 class ElementBasic:
     """ define the basic properties for EEAGlossaryElement"""
@@ -45,47 +49,48 @@ class ElementBasic:
         self.subjects = subjects
         self.context = context
         self.comment = comment
-        self.used_for_1 = used_for_1    #????????
-        self.used_for_2 = used_for_2    #????????
+        self.used_for_1 = used_for_1
+        self.used_for_2 = used_for_2
         self.definition = definition
         self.definition_source_url = definition_source_url
         self.disabled = disabled
         self.approved = approved
         self.long_definition = long_definition
-        self.QA_needed = QA_needed  #?????
+        self.QA_needed = QA_needed
 
 manage_addGlossaryElement_html = DTMLFile('dtml/EEAGlossaryElement_add', globals())
-def manage_addGlossaryElement(self, id, name='', type='', source='', subjects=[], context='', comment='', used_for_1='', used_for_2='',
-    definition='', definition_source_url='', long_definition='', disabled=0, approved=0, QA_needed=0, image_url='', flash_url='', links=[], actions=[], REQUEST=None):
+def manage_addGlossaryElement(self, id, name='', type='', source='', subjects=[], context='', comment='', 
+    used_for_1='', used_for_2='',definition='', definition_source_url='', long_definition='', disabled=0, 
+    approved=0, QA_needed=0, image_url='', flash_url='', links=[], actions=[], REQUEST=None):
     """ Adds a new EEAGlossaryElement object """
 
-    ob = EEAGlossaryElement(id, name, type, source, subjects, context, comment, used_for_1, used_for_2, definition, 
-        definition_source_url, long_definition, disabled, approved, QA_needed, image_url, flash_url, links, actions)
+    ob = EEAGlossaryElement(id, name, type, source, subjects, context, comment, used_for_1, used_for_2, 
+            definition, definition_source_url, long_definition, disabled, approved, QA_needed, 
+            image_url, flash_url, links, actions)
     self._setObject(id, ob)
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
-class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, Utils):
+class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
     """ EEAGlossaryElement """
 
-    meta_type='EEA Glossary Element'
-    product_name = 'EEAGlosary'
-    icon = 'misc_/EEAGlossary/OpenBook.gif'
-    default_catalog='GlossaryCatalog'
+    meta_type = EEA_GLOSSARY_ELEMENT_METATYPE
+    product_name = EEA_GLOSSARY_PRODUCT_NAME
+    icon = 'misc_/EEAGlossary/element.gif'
+    default_catalog = GLOSSARY_CATALOG_NAME
 
-    manage_options = ((
-        #{'label':'All Translations',        'action':'viewTranslations'},
-        #{'label':'Check Translation',       'action':'transForm2'},
-        #{'label':'Properties',              'action':'manage_properties'},
-        {'label':"View [OK_!]",                    'action':'preview'},
-        {'label':'History',                 'action':'viewHistory'},
-        {'label':'Help [OK_]',                    'action':'manageHelpE'},
-        {'label':'Undo [OK_]',                    'action':'manage_UndoForm'},
-        {'label':'My props',                'action':'all_langs_list'},
-        {'label':'Media',                   'action':'/propertysheets/Media/manage'},
-        {'label':'Actions',                 'action':'/propertysheets/Actions/manage'},
-        {'label':'Convert to Synonym',      'action':'convertToSynonymForm'},)
-        )
+    manage_options = (
+        {'label':'All Translations',        'action':'all_translations_html'},
+        {'label':'Check Translation',       'action':'check_translation_html'},
+        {'label':'Properties',              'action':'manage_properties_html'},
+        {'label':"View",                    'action':'preview_html'},
+        {'label':'My props',                'action':'custom_properties_html'},
+        {'label':'Media',                   'action':'media_html'},
+        {'label':'Actions',                 'action':'actions_html'},
+        {'label':'Convert to Synonym',      'action':'synonym_html'},
+        {'label':'History',                 'action':'history_html'},
+        {'label':'Undo',                    'action':'manage_UndoForm'},
+        {'label':'Help',                    'action':'help_html'},)
 
     security = ClassSecurityInfo()
 
@@ -97,49 +102,21 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, Utils):
         self.flash_url = flash_url
         self.links = links
         self.actions = actions
-        self.all_langs_list= {} #????????
-        self.history={} #??????
+        self.all_langs_list= {}
+        self.history={}
         ElementBasic.__dict__['__init__'](self, name, type, source, subjects, context, comment, used_for_1, used_for_2, 
             definition, definition_source_url, long_definition, disabled, approved, QA_needed)
 
-    def isPublished (self):
-        if self.approved and not self.disabled:
-            return 1
-        else:
-            return 0
 
-    def isImageURL (self):
-        if not self.isEmptyString(self.ImageURL) and (not 'ImageURL' in self.REQUEST.PARENTS[2].hidden_fields):
-            return 1
-        else:
-            return 0
-
-    def isLong_Definition (self):
-        if not self.isEmptyString(self.long_definition) and (not 'long_definition' in self.REQUEST.PARENTS[2].hidden_fields):
-            return 1
-        else:
-            return 0
-
-    def isDefintion_Source (self):
-        if not self.isEmptyString(self.definition_source_url) and (not 'definition_source' in self.REQUEST.PARENTS[2].hidden_fields):
-            return 1
-        else:
-            return 0
-
-    index_html = DTMLFile("dtml/EEAGlossaryElement_index", globals())
-    preview = DTMLFile("dtml/EEAGlossaryElement_preview", globals())
-    main_content = DTMLFile("dtml/EEAGlossaryElement_main_content", globals())
-    viewTranslations = DTMLFile("dtml/EEAGlossaryElement_viewTranslations", globals())
-    manage_utf8_header = DTMLFile("dtml/EEAGlossaryElement_manage_utf8_header", globals())
-    manage_utf8_footer = DTMLFile("dtml/EEAGlossaryElement_manage_utf8_footer", globals())
-    transForm2 = DTMLFile("dtml/EEAGlossaryElement_transForm2", globals())
-    manage_properties = DTMLFile("dtml/EEAGlossaryElement_manage_properties", globals())
-    viewHistory = DTMLFile("dtml/EEAGlossaryElement_viewHistory", globals())
-    manageHelpE = DTMLFile('dtml/EEAGlossaryCentre_manageHelp', globals())
-    new_entry_icon = DTMLFile("dtml/EEAGlossaryElement_new_entry_icon", globals())
-    status_view = DTMLFile("dtml/EEAGlossaryElement_status_view", globals())
-    isPublished = DTMLFile("dtml/EEAGlossaryElement_isPublished", globals())
+    all_translations_html = DTMLFile("dtml/EEAGlossaryElement/all_translations", globals())
+    check_translation_html = DTMLFile("dtml/EEAGlossaryElement/check_translation", globals())
+    manage_properties = DTMLFile("dtml/EEAGlossaryElement/manage_properties", globals())
+    preview_html = DTMLFile("dtml/EEAGlossaryElement/preview", globals())
+    custom_properties_html = DTMLFile("dtml/EEAGlossaryElement/custom_prop", globals())
+    media_html = DTMLFile("dtml/EEAGlossaryElement/media", globals())
+    actions_html = DTMLFile("dtml/EEAGlossaryElement/actions", globals())
+    synonym_html = DTMLFile("dtml/EEAGlossaryElement/synonym", globals())
+    history_html = DTMLFile("dtml/EEAGlossaryElement/history", globals())
+    help_html = DTMLFile("dtml/EEAGlossaryElement/help", globals())
 
 InitializeClass(EEAGlossaryElement)
-
-

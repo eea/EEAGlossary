@@ -16,8 +16,11 @@
 # Rights Reserved.
 #
 # Contributor(s):
-# Anton Cupcea, Finsiel Romania
-#$Id: EEAGlossarySynonym.py,v 1.3 2004/05/03 12:19:22 finrocvs Exp $
+# Alex Ghica, Finsiel Romania
+# Cornel Nitu, Finsiel Romania
+#
+#
+#$Id: EEAGlossarySynonym.py,v 1.4 2004/05/03 18:39:13 finrocvs Exp $
 
 # Zope imports
 from Globals import DTMLFile, MessageDialog, InitializeClass

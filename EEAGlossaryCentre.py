@@ -17,7 +17,10 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossaryCentre.py,v 1.11 2004/05/03 15:38:16 finrocvs Exp $
+# Cornel Nitu, Finsiel Romania
+#
+#
+#$Id: EEAGlossaryCentre.py,v 1.12 2004/05/03 18:39:13 finrocvs Exp $
 
 # python imports
 import string
@@ -31,17 +34,14 @@ from Products.ZCatalog.CatalogAwareness import CatalogAware
 import AccessControl.User
 from Products.ZCatalog.ZCatalog import manage_addZCatalog, manage_addZCatalogForm
 
-#product imports
+# product imports
 import EEAGlossaryFolder
-import EEAGlossaryElement
-from EEAGlossary_utils import languages_parser
-#import EEAGlossaryElementSynonym
+from EEAGlossary_utils import languages_parser, utils, subjects_parser
 from EEAGlossary_constants import *
-from EEAGlossary_utils import *
 
-manage_addEEAGlossaryCentreForm = DTMLFile('dtml/EEAGlossaryCentre_add', globals())
+manage_addGlossaryCentre_html = DTMLFile('dtml/EEAGlossaryCentre/add', globals())
 
-def manage_addEEAGlossaryCentre(self, id, title='', description='', REQUEST=None):
+def manage_addGlossaryCentre(self, id, title='', description='', REQUEST=None):
     """ Adds a new EEAGlossaryCentre object """
     ob = EEAGlossaryCentre(id, title, description)
     self._setObject(id, ob)
@@ -51,22 +51,23 @@ def manage_addEEAGlossaryCentre(self, id, title='', description='', REQUEST=None
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
-class EEAGlossaryCentre(Folder, CatalogAware):
+class EEAGlossaryCentre(Folder, CatalogAware, utils):
     """ EEAGlossaryCentre """
 
     meta_type = EEA_GLOSSARY_CENTRE_METATYPE
-    product_name = 'EEAGlosary'
+    product_name = EEA_GLOSSARY_PRODUCT_NAME
 
     manage_options =((Folder.manage_options[0],) +
-                (Folder.manage_options[2],) + ({'label':'View [lucru_!!]',           'action':'preview'},
-                {'label':'Contexts Reference',        'action':'contexts_table_man'},
-                {'label':'Check list',                'action':'check_form'},
-                {'label':'Change Password [OK_!]',    'action':'changePass'},
-                {'label':'XML/RDF',                   'action':'glossaryterms.rdf'},
-                {'label':'All terms',                 'action':'GlossaryElement'},) +
-                (Folder.manage_options[4],) + ({'label':'Help [OK_]',                'action':'manageHelp'},
-                {'label':'Management',                'action':'managementpage'},
-                {'label':'Undo [OK_]',                'action':'manage_UndoForm'},)
+                ({'label':'Properties',         'action':'manage_properties_html'},
+                {'label':'View',                'action':'preview_html'},
+                {'label':'Contexts Reference',  'action':'contexts_html'},
+                {'label':'Check list',          'action':'check_list_html'},
+                {'label':'Change Password',     'action':'change_pass_html'},
+                {'label':'XML/RDF',             'action':'glossary_terms_rdf'},
+                {'label':'All terms',           'action':'all_terms_html'},
+                {'label':'Management',          'action':'management_page_html'},
+                {'label':'Help',                'action':'manageHelp'},
+                {'label':'Undo',                'action':'manage_UndoForm'},)
                 )
 
     security = ClassSecurityInfo()
@@ -85,6 +86,7 @@ class EEAGlossaryCentre(Folder, CatalogAware):
         self.published = 0
         self.hidden_fields = ''
         self.alpha_list = string.uppercase + string.digits + 'other'
+        utils.__dict__['__init__'](self)
 
     def all_meta_types(self):
         """ Supported meta_types """
@@ -98,11 +100,10 @@ class EEAGlossaryCentre(Folder, CatalogAware):
         """loads languages & history properties defaults"""
         from os.path import join
         languages_obj = languages_parser()
-        file = open(join(SOFTWARE_HOME, 'Products','EEAGlossary','languages.xml'), 'r')
-        content = file.read()
-        file.close()
+        content = self.utOpenFile(join(SOFTWARE_HOME, 'Products','EEAGlossary', 'config', 'languages.xml'))
         languages_handler, error = languages_obj.parseContent(content)
         for lang in languages_handler.languages:
+            self.languages_list.append(lang.english_name)
             self.translations.append(lang.english_name)
             self.history.append(lang.english_name)
 
@@ -110,9 +111,7 @@ class EEAGlossaryCentre(Folder, CatalogAware):
         """loads subjects properties defaults"""
         from os.path import join
         subjects_obj = subjects_parser()
-        file = open(join(SOFTWARE_HOME, 'Products','EEAGlossary','subjects.xml'), 'r')
-        content = file.read()
-        file.close()
+        content = self.utOpenFile(join(SOFTWARE_HOME, 'Products','EEAGlossary','config', 'subjects.xml'))
         subjects_handler, error = subjects_obj.parseContent(content)
         for code in subjects_handler.subjects:
             self.subjects_list[code.code] = code.name
@@ -123,74 +122,38 @@ class EEAGlossaryCentre(Folder, CatalogAware):
         subjects_values.sort()
         return subjects_values
 
-    def changePass(self, REQUEST=None):
-        """."""
+    ##########################
+    #   MANAGEMENT FUNCTIONS #
+    ##########################
 
-    def glossary_terms_rdf(self, REQUEST=None):
-        """."""
-
-    def GlossaryElement(self, REQUEST=None):
-        """."""
-
-    def managementpage(self, REQUEST=None):
-        """."""
-
-
-    def changePassAction(self,REQUEST=None):
-        """Change Password for current Zope user"""
-        
-        domains = REQUEST.AUTHENTICATED_USER.getDomains()
-        roles = REQUEST.AUTHENTICATED_USER.getRoles()
-        name = REQUEST.AUTHENTICATED_USER.getUserName()
-        password = REQUEST.new_password
-        confirm = REQUEST.new_password_confirm
-
-        return self.acl_users._changeUser(name,password,confirm,roles,domains,REQUEST=None)
-        #return MessageDialog(
-        #           title  ='Illegal value',
-        #           message='AAAA',
-        #           action ='manage_main')
+    def manageProperties(self, title='', description='', alpha_list=[], types_list=[], subjects_list=[], 
+        languages_list=[], search_langs=[], published=0, hidden_fields=[], REQUEST=None):
+        """ manage properties for EEAGlossaryCentre """
+        self.title = title
+        self.description = description
+        self.alpha_list = self.utConvertLinesToList(alpha_list)
+        self.types_list = self.utConvertLinesToList(types_list)
+        #self.subjects_list = self.utConvertLinesToList(subjects_list)
+        self.languages_list = self.utConvertLinesToList(languages_list)
+        self.search_langs = self.utConvertLinesToList(search_langs)
+        self.published = published
+        self.hidden_fields = self.utConvertLinesToList(hidden_fields)
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?save=ok')
 
 
+    #####################
+    #   MANAGEMENT TABS #
+    #####################
+    manage_properties_html = DTMLFile('dtml/EEAGlossaryCentre/properties', globals())
+    preview_html = DTMLFile('dtml/EEAGlossaryCentre/preview', globals())
+    contexts_html = DTMLFile('dtml/EEAGlossaryCentre/contexts', globals())
+    check_list_html = DTMLFile('dtml/EEAGlossaryCentre/checklist', globals())
+    change_pass_html = DTMLFile('dtml/EEAGlossaryCentre/changepassword', globals())
+    glossary_terms_rdf = ''
+    all_terms_html = DTMLFile('dtml/EEAGlossaryCentre/allterms', globals())
+    management_page_html = DTMLFile('dtml/EEAGlossaryCentre/administration', globals())
 
-    def GlossaryCentre_folder_list(self):
-        """Return all 'EEA Glossary Folder' from a Centre"""
-        ret=''
-        lista=self.objectItems(EEA_GLOSSARY_FOLDER_METATYPE)
-        lista.sort()
-        for i in lista:
-            o=i[1]
-            ret=ret+'&nbsp;<a href="'+o.absolute_url()+'">'+o.id+'</a>&nbsp;|'
-        return ret
-
-    def term_tip(self):
-        """Return a random 'EEA Glossary Element' """
-        elements=[]
-        for fobject in container.objectValues(EEA_GLOSSARY_FOLDER_METATYPE):
-            for eobject in fobject.objectValues(EEA_GLOSSARY_ELEMENT_METATYPE):
-                if eobject.isPublished:
-                   elements.append(eobject)
-        if len(elements) > 0:
-            return whrandom.choice(elements)
-        else:
-            return None
-
-    contexts_table_man = DTMLFile('dtml/EEAGlossary_contexts_table_man', globals())
-    about = DTMLFile('dtml/EEAGlossary_contexts_table_man', globals())
-    changePass_html = DTMLFile('dtml/EEAGlossaryCentre_ChangePassForm', globals())
-    term_tip_box = DTMLFile('dtml/EEAGlossaryCentre_term_tip_box', globals())
-    manageHelp = DTMLFile('dtml/EEAGlossaryCentre_manageHelp', globals())
-    contact_Help = DTMLFile('dtml/EEAGlossaryCentre_contact_help', globals())
-
-    file2 = DTMLFile('dtml/f2', globals())
-
-    style_css = DTMLFile('dtml/EEAGlossary_StyleCSS', globals())
-    preview = DTMLFile('dtml/EEAGlossaryCentre_preview', globals())
-    index_html = DTMLFile('dtml/EEAGlossaryCentre_index', globals())
-    changePass = DTMLFile('dtml/EEAGlossaryCentre_changePass', globals())
-    term_tip_box = DTMLFile('dtml/EEAGlossaryCentre_term_tip_box', globals())
-    completeGlossary = DTMLFile('dtml/EEAGlossary_Complete', globals())
-
-    #changePassAction = DTMLFile('dtml/EEAGlossaryCentre_changePassAction', globals())
+    style_css = DTMLFile('dtml/EEAGlossaryCentre/style', globals())
 
 InitializeClass(EEAGlossaryCentre)

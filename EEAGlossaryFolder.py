@@ -17,8 +17,10 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
+# Cornel Nitu, Finsiel Romania
 #
-#$Id: EEAGlossaryFolder.py,v 1.6 2004/05/03 14:05:01 finrocvs Exp $
+#
+#$Id: EEAGlossaryFolder.py,v 1.7 2004/05/03 18:39:13 finrocvs Exp $
 
 # Zope imports
 from Globals import DTMLFile, MessageDialog, InitializeClass
@@ -29,10 +31,10 @@ import Products
 
 # product imports
 import EEAGlossaryElement
-from EEAGlossary_utils import Utils
+from EEAGlossary_utils import utils
 from EEAGlossary_constants import *
 
-manage_addGlossaryFolder_html = DTMLFile('dtml/EEAGlossaryFolder_add', globals())
+manage_addGlossaryFolder_html = DTMLFile('dtml/EEAGlossaryFolder/add', globals())
 def manage_addGlossaryFolder(self, id, title, description, REQUEST=None):
     """ Adds a new EEAGlossaryFolder object """
     ob = EEAGlossaryFolder(id, title, description)
@@ -40,21 +42,19 @@ def manage_addGlossaryFolder(self, id, title, description, REQUEST=None):
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
-class EEAGlossaryFolder(Folder, Utils):
+class EEAGlossaryFolder(Folder, utils):
     """ EEAGlossaryFolder """
 
     meta_type = EEA_GLOSSARY_FOLDER_METATYPE
     product_name = EEA_GLOSSARY_PRODUCT_NAME
     icon = "misc_/EEAGlossary/folder.gif"
 
-    manage_options = (
-                (Folder.manage_options[0],) +
-                ({'label':'View',       'action':'preview'},) +
-                (Folder.manage_options[4],) + (
-                {'label':'Properties',       'action':'manage_propertiesForm'},
-                {'label':'Subobjects',              'action':'manage_subobjects_html'},
-                {'label':'Undo',              'action':'manage_UndoForm'},
-                {'label':'Help',               'action':'manageHelpForm'},)
+    manage_options = ((Folder.manage_options[0],) +
+                ({'label':'View',       'action':'preview_html'},
+                {'label':'Properties',  'action':'manage_properties_html'},
+                {'label':'Subobjects',  'action':'manage_subobjects_html'},
+                {'label':'Undo',        'action':'manage_UndoForm'},
+                {'label':'Help',        'action':'manageHelpForm'},)
                 )
 
     security = ClassSecurityInfo()
@@ -94,25 +94,8 @@ class EEAGlossaryFolder(Folder, Utils):
         self._p_changed = 1
         REQUEST.RESPONSE.redirect('manage_subobjects_html')
 
-
-    def IsEmptyFolder(self):
-        """returns 0 if is an empty folder"""
-        for eobject in self.objectValues([EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE]):
-            if (eobject.approved and not eobject.disabled):
-                return 1
-        return 0
-
-    def GlossaryFolder_parent_list(self):
-        """returns parent"""
-        ret='<a href="'+self.REQUEST.PARENTS[1].absolute_url()+'">' \
-            +'<img src="misc_/EEAGlossary/OpenBook.gif" BORDER=0></a>&nbsp;<a href="'+ \
-            self.REQUEST.PARENTS[1].absolute_url()+'">'+self.REQUEST.PARENTS[1].title_or_id()+'</a>'
-        return ret
-
-    index_html = DTMLFile('dtml/EEAGlossaryFolder_index', globals())
-    preview = DTMLFile('dtml/EEAGlossaryFolder_preview', globals())
-    manage_subobjects_html = DTMLFile('dtml/EEAGlossaryFolder_subobjects', globals())
-    #IsEmpty = DTMLFile('dtml/EEAGlossaryFolder_IsEmpty', globals())
-    #manageHelpForm = DTMLFile('dtml/EEAGlossaryCentre_manageHelp', globals())
+    preview_html = DTMLFile('dtml/EEAGlossaryFolder/preview', globals())
+    manage_properties_html = DTMLFile('dtml/EEAGlossaryFolder/properties', globals())
+    manage_subobjects_html = DTMLFile('dtml/EEAGlossaryFolder/subobjects', globals())
 
 InitializeClass(EEAGlossaryFolder)
