@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.28 2004/05/10 09:53:42 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.29 2004/05/10 12:15:18 finrocvs Exp $
 
 # python imports
 import string
@@ -94,12 +94,13 @@ class EEAGlossaryCentre(Folder, utils):
     manage_addGlossaryFolder_html = EEAGlossaryFolder.manage_addGlossaryFolder_html
     manage_addGlossaryFolder = EEAGlossaryFolder.manage_addGlossaryFolder
 
-    def random_from_catalog(self,rand_type=''):
+    def random_from_catalog(self):
         """a random element"""
         elements=[]
+        l_type=self.get_type()
         catalog = self.getGlossaryCatalog()
-        if rand_type=='all':
-            for obj in self.catalog(metatype=EEA_GLOSSARY_ELEMENT_METATYPE):
+        if l_type==EEA_GLOSSARY_CENTRE_METATYPE:
+            for obj in catalog(metatype=EEA_GLOSSARY_ELEMENT_METATYPE):
                 if obj.is_published:
                     elements.append(eobject)
                 if len(elements) > 0:
@@ -107,13 +108,17 @@ class EEAGlossaryCentre(Folder, utils):
                 else:
                     return None
         else:
-            for obj in self.catalog(metatype=EEA_GLOSSARY_ELEMENT_METATYPE, path=absolute_url):
+            for obj in catalog(metatype=EEA_GLOSSARY_ELEMENT_METATYPE, path=absolute_url):
                 if obj.is_published:
                     elements.append(eobject)
                 if len(elements) > 0:
                     return whrandom.choice(elements)
                 else:
                     return None
+
+    def get_type(self):
+        """return meta_type of current object"""
+        return self.meta_type
 
     def change_pass_action(self,REQUEST=None):
         """Change Password for current Zope user"""
