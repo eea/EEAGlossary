@@ -1,0 +1,86 @@
+<dtml-var standard_html_header>
+
+<p class=title2>
+
+    <dtml-with "PARENTS[1]">
+        <a href="<dtml-var absolute_url>">
+            <img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/element.gif<dtml-else><dtml-var icon></dtml-if>" BORDER=0>
+        </a>&nbsp;
+        <a href="<dtml-var absolute_url>">
+            <dtml-var title_or_id>
+        </a>
+    </dtml-with>
+    / <img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/element.gif<dtml-else><dtml-var icon></dtml-if>" BORDER=0>&nbsp;
+    <dtml-var title_or_id>
+    / <img src="misc_/EEAGlossary/element.gif" BORDER=0>&nbsp;
+    <dtml-var title_or_id>
+
+</p>
+
+<hr>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="1"></td>
+        <td width="256" align="left" valign="top">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="B5DED6">
+                <tr>
+                    <td><img src="misc_/EEAGlossary/line.gif" width="100%" height="1"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <table width="100%" border="0" cellspacing="2" cellpadding="2">
+                            <tr>
+                                <td>
+                                    <p class=head0>Description</p>
+                                    <p class=mainfont>Here you see the list of terms found in <b><dtml-var title_or_id></b>-folder. Click
+                                    on the term to see the details like definition, translations etc..</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="misc_/EEAGlossary/line.gif" width="100%" height="1"></td>
+                </tr>
+            </table>
+        </td>
+        <td width="21">
+            &nbsp;
+        </td>
+        <td width="272" align="left" valign="top">
+            <dtml-var term_tip_box_html>
+        </td>
+    </tr>
+</table>
+
+<br>
+
+<dtml-in get_object_list>
+    <dtml-if is_published>
+        <dtml-if synonyms>
+            <img src="misc_/EEAGlossary/element.gif">&nbsp;<dtml-var name>&nbsp;<img src="misc_/EEAGlossary/new.gif">
+            <dtml-in synonyms size=1>
+                <dtml-if sequence-start>
+                    (<small>See </small>
+                </dtml-if><dtml-comment>
+                <dtml-if "_.len(_['sequence-item'])>1">
+                    <dtml-in "GlossaryCatalog(id=_['sequence-item'])">
+                        <dtml-with "getObject()">
+                            <a href="&dtml-absolute_url;"><dtml-var name_or_id></a>)
+                        </dtml-with>
+                    </dtml-in>
+                </dtml-if></dtml-comment>
+            </dtml-in>
+        <dtml-else>
+              <a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/element.gif">&nbsp;<dtml-var name>&nbsp;<img src="misc_/EEAGlossary/new.gif"></a>
+        </dtml-if>
+    <br>
+    </dtml-if>
+</dtml-in>
+
+<br>
+
+
+
+<dtml-var standard_html_footer>
