@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.22 2004/05/06 14:26:15 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.23 2004/05/06 15:19:24 finrocvs Exp $
 
 # python imports
 import string
@@ -133,6 +133,14 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
         self._p_changed = 1
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=0&save=ok')
+
+    def get_contact_persons(self):
+        """ """
+        return self.getGlossaryEngine().technic_contact
+
+    def get_translation_persons(self):
+        """ """
+        return self.getGlossaryEngine().trans_contact
 
     ##########################
     #   SUBJECTS FUNCTIONS   #
