@@ -13,10 +13,10 @@
     &nbsp;/&nbsp;
     <img src="misc_/EEAGlossary/element.gif" border=0>
 
-    <dtml-var "PARENTS[0].name">
+    <dtml-var name>
 
     &nbsp;
-    <dtml-if "PARENTS[0].QA_needed">
+    <dtml-if QA_needed>
         <img border=0 src="misc_/EEAGlossary/new.gif" alt='New glossary entry'>
         <p>
             <span class='head0' style="color:red;">Translations under validation</span>

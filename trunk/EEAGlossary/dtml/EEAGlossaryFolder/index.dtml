@@ -5,14 +5,13 @@
     <dtml-with "PARENTS[1]">
         <a href="<dtml-var absolute_url>">
             <img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/element.gif<dtml-else><dtml-var icon></dtml-if>" BORDER=0>
-        </a>&nbsp;
+            &nbsp;
+        </a>
         <a href="<dtml-var absolute_url>">
             <dtml-var title_or_id>
         </a>
     </dtml-with>
     / <img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/element.gif<dtml-else><dtml-var icon></dtml-if>" BORDER=0>&nbsp;
-    <dtml-var title_or_id>
-    / <img src="misc_/EEAGlossary/element.gif" BORDER=0>&nbsp;
     <dtml-var title_or_id>
 
 </p>

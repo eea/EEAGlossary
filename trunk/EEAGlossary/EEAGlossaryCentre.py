@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.25 2004/05/07 13:43:28 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.26 2004/05/07 15:57:23 finrocvs Exp $
 
 # python imports
 import string
@@ -94,6 +94,26 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
 
     manage_addGlossaryFolder_html = EEAGlossaryFolder.manage_addGlossaryFolder_html
     manage_addGlossaryFolder = EEAGlossaryFolder.manage_addGlossaryFolder
+
+    def random_from_catalog(self,rand_type=''):
+        """a random element"""
+        elements=[]
+        if rand_type=='all':
+            for obj in self.GlossaryCatalog(metatype=EEA_GLOSSARY_ELEMENT_METATYPE):
+                if obj.is_published:
+                    elements.append(eobject)
+                if len(elements) > 0:
+                    return whrandom.choice(elements)
+                else:
+                    return None
+        else:
+            for obj in self.GlossaryCatalog(metatype=EEA_GLOSSARY_ELEMENT_METATYPE, path=absolute_url):
+                if obj.is_published:
+                    elements.append(eobject)
+                if len(elements) > 0:
+                    return whrandom.choice(elements)
+                else:
+                    return None
 
     #####################
     # LOAD PROPERTIES   #
