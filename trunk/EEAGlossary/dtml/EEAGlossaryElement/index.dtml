@@ -1,6 +1,6 @@
 <dtml-var standard_html_header>
 
-<p class=title2>
+<p>
 
     <dtml-with "PARENTS[1]">
         <a href="&dtml-absolute_url;">
@@ -19,7 +19,7 @@
     <dtml-if QA_needed>
         <img border=0 src="misc_/EEAGlossary/new.gif" alt='New glossary entry'>
         <p>
-            <span class='head0' style="color:red;">Translations under validation</span>
+            <span style="color:red;">Translations under validation</span>
         </p>
     </dtml-if>
 </p>

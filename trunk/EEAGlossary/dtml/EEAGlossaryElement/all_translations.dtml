@@ -28,16 +28,16 @@
         </table>
         <br>
         <table cellpadding="1" cellspacing="1" border=1 width="100%">
-            <tr class="list-header">
-                <td width="35%" align="left" valign="top"><div class="form-label"><b>Language</b></div></td>
-                <td width="65%" align="left" valign="top"><div class="form-label"><b>Translation</b></div></td>
+            <tr>
+                <td width="35%" align="left" valign="top"><div><b>Language</b></div></td>
+                <td width="65%" align="left" valign="top"><div><b>Translation</b></div></td>
             </tr>
 
             <dtml-in get_english_names>
             <dtml-let language="_['sequence-item']" translation="get_translation_by_language(language)">
                 <dtml-let record=sequence-item role="'QC '+record">
                     <tr>
-                        <td width="35%" align="left" valign="top"><div class="form-label"><label for="cb-<dtml-var language>"><dtml-var language></label></div></td>
+                        <td width="35%" align="left" valign="top"><div><label for="cb-<dtml-var language>"><dtml-var language></label></div></td>
                         <td width="65%" align="left" valign="top">
                             <dtml-unless translation>
                                 &nbsp;
@@ -64,7 +64,6 @@
             </tr>
             <tr>
                 <td>
-                    
                     The original english term is:<br><b><dtml-var name>&nbsp;</b><br><br>
                     <dtml-if definition>
                         <b>Definition</b>:<br><i><dtml-var "toutf8(definition,'iso-8859-1')"></i>
