@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryFolder.py,v 1.11 2004/05/10 08:08:02 finrocvs Exp $
+#$Id: EEAGlossaryFolder.py,v 1.12 2004/05/10 09:38:07 finrocvs Exp $
 
 # python imports
 import whrandom
@@ -126,10 +126,10 @@ class EEAGlossaryFolder(Folder, utils):
         subobjects = self.utConvertToList(REQUEST.get('subobjects', ''))
         self.adt_meta_types = subobjects
         self._p_changed = 1
-        REQUEST.RESPONSE.redirect('manage_subobjects_html')
+        REQUEST.RESPONSE.redirect('manage_subobjects_html?save=ok')
 
     def manage_folder_properties(self, title='', description='', REQUEST=None):
-        print 'aa'
+        """ save the properties for EEAGlossaryFolder"""
         self.title=title
         self.description=description
         if REQUEST is not None:

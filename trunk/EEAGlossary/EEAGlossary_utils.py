@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.20 2004/05/06 17:35:53 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.21 2004/05/10 09:38:07 finrocvs Exp $
 
 #Python imports
 
@@ -90,6 +90,11 @@ class utils:
     def utUrlEncode(self, p_string):
         """Encode a string using url_encode"""
         return url_quote(p_string)
+
+    def utISOFormat(self):
+        """ return the currect time in ISO format """
+        import time
+        return time.strftime("%Y-%m-%d %H:%M:%S")
 
     def utIsEmptyString(self, term='',REQUEST=None):
         """return true if a string contains only white characters"""
@@ -202,3 +207,39 @@ class utils:
             p_list.sort(lambda x, y, param=p_key: cmp(x[param], y[param]))
         else:           #desceding
             p_list.sort(lambda x, y, param=p_key: cmp(y[param], x[param]))
+
+
+class catalog_utils:
+
+    def __init__(self):
+        """ """
+        pass
+
+    def __build_catalog_path(self, item):
+        """Creates an id for the item to be added in catalog"""
+        return '/'.join(item.getPhysicalPath())
+
+    def cu_catalog_object(self, catalog, ob):
+        """ catalog an object """
+        catalog.catalog_object(ob, self.__build_catalog_path(ob))
+        try:
+            catalog.catalog_object(ob, self.__build_catalog_path(ob))
+        except:
+            pass
+
+    def cu_uncatalog_object(self, catalog, ob):
+        """ uncatalog an object """
+        try:
+            catalog.uncatalog_object(self.__build_catalog_path(ob))
+        except:
+            pass
+
+    def cu_recatalog_object(self, catalog, ob):
+        """ recatalog an object """
+        try:
+            ob_path = self.__build_catalog_path(ob)
+            catalog.uncatalog_object(ob_path)
+            catalog.catalog_object(ob, ob_path)
+        except:
+            pass
+

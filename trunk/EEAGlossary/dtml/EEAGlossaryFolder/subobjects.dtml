@@ -6,6 +6,12 @@
     Every time you want to add instances of its objects inside folders, select them from the list below and press <b>Save changes</b>.
 </p>
 
+<dtml-if "REQUEST.has_key('save') and REQUEST['save']=='ok'">
+    <div class="system-msg">
+    Saved changes. (<dtml-var ZopeTime>)
+    </div>
+</dtml-if>
+
 <form method="post" action="manageSubobjects">
 <table border="0" cellspacing="2" cellpadding="2" width="100%">
     <tr>
