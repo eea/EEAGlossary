@@ -2,7 +2,7 @@
 <dtml-var style_console_css>
 <dtml-var manage_tabs>
 
-<p class="form-help">commnets here</p>
+<p class="form-help">Terms and concepts statistics</p>
 <dtml-if isManager>
 <table width="90%" border="0" cellpadding="3" cellspacing="0">
     <tr class="row-header"><td class="cell-header">Glossary basic statistics</td></tr>

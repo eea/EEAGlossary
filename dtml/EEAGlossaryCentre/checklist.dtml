@@ -44,7 +44,7 @@
                                     </dtml-in>
                                 </select>
                             </td>
-                            <td valign="top">Including defition&nbsp;<input type="checkbox" name="definition:boolean" value="1" checked></td>
+                            <td valign="top">Including definition&nbsp;<input type="checkbox" name="definition:boolean" value="1" checked></td>
                         </tr>
                         <tr>
                             <td valign="bottom">
