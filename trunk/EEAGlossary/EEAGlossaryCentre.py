@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.77 2004/06/08 15:07:32 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.78 2004/06/08 15:11:14 finrocvs Exp $
 
 # python imports
 import string
@@ -236,16 +236,16 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
     #   SUBJECTS FUNCTIONS   #
     ##########################
     def get_subjects_list(self):
-        """ get the languages """
+        """ get the subjects """
         self.utSortListOfDictionariesByKey(self.subjects_list, 'code')
         return self.subjects_list
 
     def set_subjects_list(self, code, name):
-        """ set the languages """
+        """ set the subjects """
         self.subjects_list.append({'code':code, 'name':name})
 
     def del_subject_from_list(self, code):
-        """ remove a language from list """
+        """ remove a subjects from list """
         for subj_info in self.subjects_list:
             if subj_info['code'] == code:
                 self.subjects_list.remove(subj_info)
@@ -260,7 +260,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         return results
 
     def check_subjects_exists(self, code):
-        """ check if this language exists """
+        """ check if this subject exists """
         ret = 1
         for l_code in self.subjects_list:
             if l_code['code'] == code:
@@ -478,7 +478,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         self.hidden_fields.remove(value)
 
     def check_hidden_exists(self, field):
-        """ check if this language exists """
+        """ check if this hidden field exists """
         ret = 1
         for l_field in self.hidden_fields:
             if l_field == field:

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryEngine.py,v 1.18 2004/06/08 15:07:32 finrocvs Exp $
+#$Id: EEAGlossaryEngine.py,v 1.19 2004/06/08 15:11:14 finrocvs Exp $
 
 import string
 
@@ -295,23 +295,23 @@ class EEAGlossaryEngine(SimpleItem, utils):
     # SUBJECTS FUNCTIONS #
     ######################
     def get_subjects_list(self):
-        """ get the languages """
+        """ get the subjects """
         self.utSortListOfDictionariesByKey(self.__subjects_list, 'code')
         return self.__subjects_list
 
     def set_subjects_list(self, code, name):
-        """ set the languages """
+        """ set the subjects """
         append = self.__subjects_list.append
         append({'code':code, 'name':name})
 
     def del_subject_from_list(self, code):
-        """ remove a language from list """
+        """ remove a subjects from list """
         for subj_info in self.__subjects_list:
             if subj_info['code'] == code:
                 self.__subjects_list.remove(subj_info)
 
     def check_subjects_exists(self, code):
-        """ check if this language exists """
+        """ check if this subjects exists """
         ret = 1
         for l_code in self.__subjects_list:
             if l_code['code'] == code:
