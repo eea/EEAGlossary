@@ -8,7 +8,7 @@
 # implied. See the License for the specific language governing
 # rights and limitations under the License.
 #
-# The Original Code is EEAGlossary version 1.0.
+# The Original Code is EEAGlossary version 1.0.0
 #
 # The Initial Developer of the Original Code is European Environment
 # Agency (EEA).  Portions created by Finsiel Romania are
@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.44 2004/05/17 07:42:25 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.45 2004/05/17 08:54:19 finrocvs Exp $
 
 # python imports
 import string
@@ -210,21 +210,9 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         """ set the languages """
         setattr(self, language, translation)
 
-#    def remove_translation_from_list(self, language):
-#        """ remove a language from list """
-#        for lang_info in self.translations:
-#            if lang_info['language'] == language:
-#                self.translations.remove(lang_info)
-#
     def del_translation_by_language(self, language):
         """ remove a translation from list """
         setattr(self, language, '')
-
-#    def del_translation_by_translation(self, translation):
-#        """ remove a translation from list """
-#        for lang_info in self.translations:
-#            if lang_info['translation'] == translation:
-#                lang_info['translation'] = ''
 
     def load_translations_list (self):
         """ load languages """

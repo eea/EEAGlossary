@@ -8,7 +8,7 @@
 # implied. See the License for the specific language governing
 # rights and limitations under the License.
 #
-# The Original Code is EEAGlossary version 1.0.
+# The Original Code is EEAGlossary version 1.0.0
 #
 # The Initial Developer of the Original Code is European Environment
 # Agency (EEA).  Portions created by Finsiel Romania are
@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryEngine.py,v 1.11 2004/05/17 07:42:25 finrocvs Exp $
+#$Id: EEAGlossaryEngine.py,v 1.12 2004/05/17 08:54:19 finrocvs Exp $
 
 import string
 

@@ -8,7 +8,7 @@
 # implied. See the License for the specific language governing
 # rights and limitations under the License.
 #
-# The Original Code is EEAGlossary version 1.0.
+# The Original Code is EEAGlossary version 1.0.0
 #
 # The Initial Developer of the Original Code is European Environment
 # Agency (EEA).  Portions created by Finsiel Romania are
@@ -16,13 +16,16 @@
 # Rights Reserved.
 #
 # Contributor(s):
-# Anton Cupcea, Finsiel Romania
-#$Id: EEAGlossaryNews.py,v 1.2 2004/05/03 09:03:42 finrocvs Exp $
+# Alex Ghica, Finsiel Romania
+# Cornel Nitu, Finsiel Romania
+#
+#
+#$Id: EEAGlossaryNews.py,v 1.3 2004/05/17 08:54:19 finrocvs Exp $
 
 # Zope imports
 from Globals import DTMLFile, MessageDialog, InitializeClass
 from AccessControl import ClassSecurityInfo
-from OFS.Folder import Folder
+from OFS.SimpleItem import SimpleItem
 
 # product imports
 
@@ -37,16 +40,11 @@ def manage_addEEAGlossaryNews(self, id, title, description,  glossary='', news_d
         return self.manage_main(self, REQUEST, update_menu=1)
 
 
-class EEAGlossaryNews(Folder):
+class EEAGlossaryNews(SimpleItem):
     """ EEAGlossaryNews """
 
     meta_type='EEA Glossary News'
     security = ClassSecurityInfo()
-
-#    def all_meta_types( self, interfaces=None ):
-#        """ Supported meta_types """
-#        y = [  {'name': 'Mumukkt-news', 'action': 'manage_addpokemon'} ]
-#        return y
 
     def __init__(self, id, title, news_date, description, glossary):
         """ constructor  for EEAGlossaryNews"""

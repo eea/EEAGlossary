@@ -8,6 +8,8 @@
 # implied. See the License for the specific language governing
 # rights and limitations under the License.
 #
+# The Original Code is EEAGlossary version 1.0.0
+#
 # The Initial Owner of the Original Code is European Environment
 # Agency (EEA).  Portions created by Finsiel Romania are
 # Copyright (C) European Environment Agency.  All
@@ -18,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.36 2004/05/17 07:42:25 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.37 2004/05/17 08:54:19 finrocvs Exp $
 
 #Python imports
 import string
@@ -227,8 +229,8 @@ class catalog_utils:
         catalog.reindexIndex(name, REQUEST)
 
     def cu_get_cataloged_objects(self, catalog, meta_type=None, approved=0, howmany=-1, sort_on='bobobase_modification_time', 
-        """ return objects from catalog """
         sort_order='reverse', path='/'):
+        """ return objects from catalog """
         results = []
         filter = {}
         if approved == 1:
