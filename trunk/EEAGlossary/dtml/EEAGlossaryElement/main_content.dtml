@@ -116,12 +116,7 @@
                 </td>
             </tr>
         </dtml-if>
-ALEC
-<dtml-let alec="self.translations.keys()">
-<dtml-in "self.translations.keys()">
-</dtml-in>
-</dtml-let>
-ALEC
+
         <dtml-if "(not 'translations' in PARENTS[2].hidden_fields)">
             <tr>
                 <td colspan=3 width="100%" valign="top" bgcolor="#808080">
@@ -134,9 +129,7 @@ ALEC
                 </td>
             </tr>
 
-<dtml-comment>
-#Alec
-            <dtml-in "propertysheets.Translations.propertyIds()" sort=id>
+            <dtml-in "self.translations.keys()"><dtml-comment>#alec
                 <dtml-let langid=sequence-item>
                     <dtml-in "langcharsets(englishname=langid)">
                         <dtml-if "_.len(_[langid])>0 or _[langid]!=''">
@@ -155,9 +148,8 @@ ALEC
                             </tr>
                         </dtml-if>
                     </dtml-in>
-                </dtml-let>
-            </dtml-in>    #/Alec 
-            </dtml-comment>
+                </dtml-let></dtml-comment>#alec
+            </dtml-in>
         </dtml-if>
 
         <dtml-if "PARENTS[0].subjects">
