@@ -17,7 +17,7 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossaryElement.py,v 1.2 2004/05/03 09:03:42 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.3 2004/05/03 09:33:26 finrocvs Exp $
 
 # python imports
 import string
@@ -59,7 +59,7 @@ class EEAGlossaryElement(SimpleItem,MyUtils,CatalogAware):
         #{'label':'All Translations',        'action':'viewTranslations'},
         #{'label':'Check Translation',       'action':'transForm2'},
         #{'label':'Properties',              'action':'manage_properties'},
-        {'label':"View [lucru_]",                    'action':'preview'},
+        {'label':"View [OK_!]",                    'action':'preview'},
         {'label':'History',                 'action':'viewHistory'},
         {'label':'Help [OK_]',                    'action':'manageHelpE'},
         {'label':'Undo [OK_]',                    'action':'manage_UndoForm'},
