@@ -2,23 +2,32 @@
 <dtml-var manage_tabs>
 <dtml-var style_css>
 
+<dtml-if "REQUEST.has_key('save') and REQUEST['save']=='ok'">
+<div class="system-msg">
+Saved changes. (<dtml-var ZopeTime>)
+</div>
+</dtml-if>
+
 <form name="frmProperties" action="manageElementProperties" method="post">
-    <table cellspacing=0 cellpadding=0 border=1>
+    <table cellspacing=0 cellpadding=0 border=0>
         <tr>
             <td>Name</td>
-            <td><input type="text" name="name" size="35" value="<dtml-var name>"></td>
+            <td><input type="text" name="name" size="40" value="<dtml-var name>"></td>
         </tr>
         <tr>
             <td>Type</td>
-            <td><select name="type"><option name="">nimic</option></select></td>
+            <td><select name="type"><dtml-in types_list>
+                <option name="<dtml-var sequence-item>"><dtml-var sequence-item></option>
+                </dtml-in>
+                </select></td>
         </tr>
         <tr>
             <td>Source</td>
-            <td><input type="text" name="source" size="35" value="<dtml-var source>"></td>
+            <td><input type="text" name="source" size="40" value="<dtml-var source>"></td>
         </tr>
         <tr>
             <td>Context</td>
-            <td><input type="text" name="el_context" size="35" value="<dtml-var el_context>"></td>
+            <td><input type="text" name="el_context" size="40" value="<dtml-var el_context>"></td>
         </tr>
         <tr>
             <td>Comment</td>
@@ -26,11 +35,11 @@
         </tr>
         <tr>
             <td>Used for 1</td>
-            <td><input type="text" name="used_for_1" size="35" value="<dtml-var used_for_1>"></td>
+            <td><input type="text" name="used_for_1" size="40" value="<dtml-var used_for_1>"></td>
         </tr>
         <tr>
             <td>Used for 2</td>
-            <td><input type="text" name="used_for_2" size="35" value="<dtml-var used_for_2>"></td>
+            <td><input type="text" name="used_for_2" size="40" value="<dtml-var used_for_2>"></td>
         </tr>
         <tr>
             <td>Definition</td>
@@ -38,19 +47,20 @@
         </tr>
         <tr>
             <td>Definition source</td>
-            <td><input type="text" name="definition_source_url" size="35" value="<dtml-var definition_source_url>"></td>
+            <td><input type="text" name="definition_source_url" size="40" value="<dtml-var definition_source_url>"></td>
         </tr>
         <tr>
             <td>Subjects</td>
-            <td><select name="subjects" multiple><option name="">nimic</option></select></td>
+            <td><select name="subjects" multiple>
+                <dtml-in "subjects_list.values()"><option name="<dtml-var sequence-item>"><dtml-var sequence-item></option></dtml-in></select></td>
         </tr>
         <tr>
             <td>Disabled</td>
-            <td><input type="checkbox" name="disabled"></td>
+            <td><input type="checkbox" name="disabled" <dtml-if disabled>CHECKED</dtml-if>></td>
         </tr>
         <tr>
             <td>Approved</td>
-            <td><input type="checkbox" name="approved"></td>
+            <td><input type="checkbox" name="approved" <dtml-if approved>CHECKED</dtml-if>></td>
         </tr>
         <tr>
             <td>Long definition</td>
@@ -58,11 +68,11 @@
         </tr>
         <tr>
             <td>QA needed</td>
-            <td><input type="checkbox" name="QA_needed"></td>
+            <td><input type="checkbox" name="QA_needed" <dtml-if QA_needed>CHECKED</dtml-if>></td>
         </tr>
         <tr>
-            <td>Context</td>
-            <td><input type="text" name="definition_source_url" size="35" value="<dtml-var definition_source_url>"></td>
+            <td>&nbsp;</td>
+            <td><input type="submit" name="save" size="35" value=" Save changes "></td>
         </tr>
     </table>
 </form>
