@@ -15,7 +15,7 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossary_utils.py,v 1.6 2004/05/03 13:19:48 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.7 2004/05/03 13:43:17 finrocvs Exp $
 
 #Python imports
 from xml.sax.handler import ContentHandler
@@ -191,26 +191,18 @@ class languages_handler(ContentHandler):
 class languages_parser:
     """ """
 
-    def __init__(self):
+    def parseContent(self, content):
         """ """
-        pass
-
-    def parseContent(self, p_content):
-        """ """
-        l_handler = language_handler()
-        l_parser = make_parser()
-        l_parser.setContentHandler(l_handler)
-        l_inpsrc = InputSource()
-        l_inpsrc.setByteStream(StringIO(p_content))
+        handler = language_handler()
+        parser = make_parser()
+        parser.setContentHandler(handler)
+        inpsrc = InputSource()
+        inpsrc.setByteStream(StringIO(content))
         try:
-            l_parser.parse(l_inpsrc)
-            return (l_handler, '')
+            parser.parse(inpsrc)
+            return (handler, '')
         except Exception, error:
             return (None, error)
-
-
-
-
 
 
 class subjects_struct:
@@ -236,22 +228,18 @@ class subjects_handler(ContentHandler):
         """ """
         pass
 
-class ini_subjects_parser:
+class subjects_parser:
     """ """
 
-    def __init__(self):
+    def parseContent(self, content):
         """ """
-        pass
-
-    def parseContent(self, p_content):
-        """ """
-        l_handler = subjects_handler()
-        l_parser = make_parser()
-        l_parser.setContentHandler(l_handler)
-        l_inpsrc = InputSource()
-        l_inpsrc.setByteStream(StringIO(p_content))
+        handler = subjects_handler()
+        parser = make_parser()
+        parser.setContentHandler(handler)
+        inpsrc = InputSource()
+        inpsrc.setByteStream(StringIO(content))
         try:
-            l_parser.parse(l_inpsrc)
-            return (l_handler, '')
+            parser.parse(inpsrc)
+            return (handler, '')
         except Exception, error:
             return (None, error)
