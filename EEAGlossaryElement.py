@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.34 2004/05/11 11:38:36 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.35 2004/05/11 13:58:38 finrocvs Exp $
 
 # python imports
 import string
@@ -68,6 +68,7 @@ def manage_addGlossaryElement(self, id, name='', el_type='', source='', subjects
             definition, definition_source_url, long_definition, disabled, approved, QA_needed, 
             image_url, flash_url, links, actions, translations)
     self._setObject(id, ob)
+    element_obj = self._getOb(id)
     element_obj.subjects = self.get_subject_by_codes(subjects)
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
@@ -100,7 +101,6 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         self.flash_url = flash_url
         self.links = links
         self.actions = actions
-#        self.translations = {}
         self.all_langs_list= {}
         self.history=[]
         ElementBasic.__dict__['__init__'](self, name, el_type, source, [], el_context, comment, used_for_1, used_for_2, 
@@ -242,6 +242,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
             #self.set_history(lang_code, translation)
             self.set_translations_list(lang_code, translation)
             self._p_changed = 1
+            self.cu_recatalog_object(self.getGlossaryCatalog(), self)
             if REQUEST is not None:
                 return REQUEST.RESPONSE.redirect('check_translation_html')
 

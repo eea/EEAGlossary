@@ -9,50 +9,48 @@
 <table border=1 width="100%">
 <tr>
     <td width="40%" align="left" valign="top">
-    <table cellpadding="1" cellspacing="1" border=1 width="100%">
-        <tr>
-            <td colspan="2"><b>User Info</b><br></td>
-        </tr>
-        <tr>
-            <td>User :&nbsp;</td>
-            <td><b><dtml-var getAuthenticatedUser></b><br></td>
-        </tr>
-        <tr>
-            <td>Roles:&nbsp;</td>
-            <td>
-                <dtml-in getAuthenticatedUserRoles>
-                    <b><dtml-var sequence-item></b><dtml-if sequence-end>.<dtml-else>,&nbsp;</dtml-if>
-                </dtml-in>
-            </td>
-        </tr>
-    </table>
-<br>
-<table cellpadding="1" cellspacing="1" border=1 width="100%">
-    <tr class="list-header">
-        <td width="35%" align="left" valign="top"><div class="form-label"><b>Language</b></div></td>
-        <td width="65%" align="left" valign="top"><div class="form-label"><b>Translation</b></div></td>
-    </tr>
-
-    <dtml-in get_english_names>
-    <dtml-let language="_['sequence-item']" translation="get_translation_by_language(language)">
-        <dtml-let record=sequence-item role="'QC '+record">
+        <table cellpadding="1" cellspacing="1" border=1 width="100%">
             <tr>
-                <td align="left" valign="top"><div class="form-label"><label for="cb-<dtml-var language>"><dtml-var language></label></div></td>
-                <td align="left" valign="top">
-                    <dtml-if "language in get_unicode_langs()">
-                       <dtml-var translation>
-                   <dtml-else>
-                      <dtml-var "display_unicode_langs(translation,get_language_charset(language))"><br>
-                   </dtml-if>
+                <td colspan="2"><b>User Info</b><br></td>
+            </tr>
+            <tr>
+                <td>User :&nbsp;</td>
+                <td><b><dtml-var getAuthenticatedUser></b><br></td>
+            </tr>
+            <tr>
+                <td>Roles:&nbsp;</td>
+                <td>
+                    <dtml-in getAuthenticatedUserRoles>
+                        <b><dtml-var sequence-item></b><dtml-if sequence-end>.<dtml-else>,&nbsp;</dtml-if>
+                    </dtml-in>
                 </td>
             </tr>
-        </dtml-let>
-    </dtml-let>
-    </dtml-in>
-</table>
+        </table>
+        <br>
+        <table cellpadding="1" cellspacing="1" border=1 width="100%">
+            <tr class="list-header">
+                <td width="35%" align="left" valign="top"><div class="form-label"><b>Language</b></div></td>
+                <td width="65%" align="left" valign="top"><div class="form-label"><b>Translation</b></div></td>
+            </tr>
 
+            <dtml-in get_english_names>
+            <dtml-let language="_['sequence-item']" translation="get_translation_by_language(language)">
+                <dtml-let record=sequence-item role="'QC '+record">
+                    <tr>
+                        <td align="left" valign="top"><div class="form-label"><label for="cb-<dtml-var language>"><dtml-var language></label></div></td>
+                        <td align="left" valign="top">
+                            <dtml-if "language in get_unicode_langs()">
+                               <dtml-var translation>
+                           <dtml-else>
+                              <dtml-var "display_unicode_langs(translation,get_language_charset(language))"><br>
+                           </dtml-if>
+                        </td>
+                    </tr>
+                </dtml-let>
+            </dtml-let>
+            </dtml-in>
+        </table>
     </td>
-
     <td width="*" valign="top">
         <table cellpadding="1" cellspacing="1" border=1 width="100%">
             <tr>
