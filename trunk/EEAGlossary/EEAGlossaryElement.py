@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.18 2004/05/04 16:40:46 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.19 2004/05/05 08:31:13 finrocvs Exp $
 
 # python imports
 import string
@@ -144,9 +144,9 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
     #   MANAGEMENT TABS #
     #####################
 
-    def manageElementProperties(self, name='', el_type='', source='', el_context='', comment='', used_for_1='', used_for_2='', definition='',
+    def manageBasicProperties(self, name='', el_type='', source=[], el_context='', comment='', used_for_1='', used_for_2='', definition='',
         definition_source_url='', subjects='', disabled=0, approved =0, long_definition='', QA_needed=0, REQUEST=None):
-        """ """
+        """ manage basic properties for EEAGlossaryElement """
         self.name = name
         self.el_type = el_type
         self.source = source
@@ -163,15 +163,74 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
         self.QA_needed = QA_needed
         self._p_changed = 1
         if REQUEST is not None:
-            return REQUEST.RESPONSE.redirect('manage_properties_html?save=ok')
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=0&save=ok')
+
+    def manageMediaProperties(self, image_url='', flash_url='', REQUEST=None):
+        """ manage media properties for EEAGlossaryElement """
+        self.image_url = image_url
+        self.flash_url = flash_url
+        self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1&save=ok')
+
+    def manageLinksProperties(self, old_link='', link='', ids='', REQUEST=None):
+        """ manage actions properties for EEAGlossaryElement """
+        if self.utAddObjectAction(REQUEST):
+            if string.strip(link) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
+            else:
+                self.links.append(link)
+                self._p_changed = 1
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(link) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
+            else:
+                self.links.remove(old_link)
+                self.links.append(link)
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
+            for link in self.utConvertToList(ids):
+                self.links.remove(link)
+            self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2&save=ok')
+
+    def manageActionsProperties(self, old_action='', action='', ids='', REQUEST=None):
+        """ manage actions properties for EEAGlossaryElement """
+        if self.utAddObjectAction(REQUEST):
+            if string.strip(action) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
+            else:
+                self.actions.append(action)
+                self._p_changed = 1
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(action) == '':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
+            else:
+                self.actions.remove(old_action)
+                self.actions.append(action)
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
+            for action in self.utConvertToList(ids):
+                self.actions.remove(action)
+            self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2&save=ok')
 
     all_translations_html = DTMLFile("dtml/EEAGlossaryElement/all_translations", globals())
     check_translation_html = DTMLFile("dtml/EEAGlossaryElement/check_translation", globals())
-    manage_properties_html = DTMLFile("dtml/EEAGlossaryElement/manage_properties", globals())
+
+    manage_properties_html = DTMLFile("dtml/EEAGlossaryElement/properties", globals())
+    media_html = DTMLFile("dtml/EEAGlossaryElement/properties_media", globals())
+    actions_html = DTMLFile("dtml/EEAGlossaryElement/properties_actions", globals())
+    basic_html = DTMLFile("dtml/EEAGlossaryElement/properties_basic", globals())
+
     preview_html = DTMLFile("dtml/EEAGlossaryElement/preview", globals())
     custom_properties_html = DTMLFile("dtml/EEAGlossaryElement/custom_prop", globals())
-    media_html = DTMLFile("dtml/EEAGlossaryElement/media", globals())
-    actions_html = DTMLFile("dtml/EEAGlossaryElement/actions", globals())
     synonym_html = DTMLFile("dtml/EEAGlossaryElement/synonym", globals())
     history_html = DTMLFile("dtml/EEAGlossaryElement/history", globals())
     help_html = DTMLFile("dtml/EEAGlossaryElement/help", globals())
