@@ -6,7 +6,4 @@
 
 </table>\
 
-
-<dtml-comment>
 <dtml-var index_html>
-</dtml-comment>

@@ -20,10 +20,11 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.29 2004/05/10 12:15:18 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.30 2004/05/10 15:23:25 finrocvs Exp $
 
 # python imports
 import string
+import whrandom
 
 # Zope imports
 from Globals import DTMLFile, MessageDialog, InitializeClass
@@ -35,6 +36,7 @@ from Products.ZCatalog.ZCatalog import ZCatalog
 # product imports
 import EEAGlossaryFolder
 from EEAGlossary_utils import utils
+from EEAGlossary_utils import catalog_utils
 from EEAGlossary_constants import *
 
 manage_addGlossaryCentre_html = DTMLFile('dtml/EEAGlossaryCentre/add', globals())
@@ -50,7 +52,7 @@ def manage_addGlossaryCentre(self, id, title='', description='', REQUEST=None):
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
-class EEAGlossaryCentre(Folder, utils):
+class EEAGlossaryCentre(Folder, utils, catalog_utils):
     """ EEAGlossaryCentre """
 
     meta_type = EEA_GLOSSARY_CENTRE_METATYPE
@@ -94,31 +96,31 @@ class EEAGlossaryCentre(Folder, utils):
     manage_addGlossaryFolder_html = EEAGlossaryFolder.manage_addGlossaryFolder_html
     manage_addGlossaryFolder = EEAGlossaryFolder.manage_addGlossaryFolder
 
-    def random_from_catalog(self):
+    def random_from_catalog(self, p_meta_type=''):
         """a random element"""
         elements=[]
-        l_type=self.get_type()
+        #l_type=self.utGetType()
         catalog = self.getGlossaryCatalog()
-        if l_type==EEA_GLOSSARY_CENTRE_METATYPE:
-            for obj in catalog(metatype=EEA_GLOSSARY_ELEMENT_METATYPE):
+        if p_meta_type=='centre':
+            for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE):
                 if obj.is_published:
-                    elements.append(eobject)
-                if len(elements) > 0:
-                    return whrandom.choice(elements)
-                else:
-                    return None
+                    elements.append(obj)
+            if len(elements) > 0:
+                return whrandom.choice(elements)
+            else:
+                return None
         else:
-            for obj in catalog(metatype=EEA_GLOSSARY_ELEMENT_METATYPE, path=absolute_url):
+            print 'else'
+            for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, path=self.absolute_url):
                 if obj.is_published:
-                    elements.append(eobject)
-                if len(elements) > 0:
-                    return whrandom.choice(elements)
-                else:
-                    return None
+                    elements.append(obj)
+            if len(elements) > 0:
+                return whrandom.choice(elements)
+            else:
+                 return None
 
-    def get_type(self):
-        """return meta_type of current object"""
-        return self.meta_type
+    def elements_from_catalog(self):
+        return self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, sort_on='')
 
     def change_pass_action(self,REQUEST=None):
         """Change Password for current Zope user"""

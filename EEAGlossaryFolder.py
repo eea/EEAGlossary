@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryFolder.py,v 1.13 2004/05/10 09:53:42 finrocvs Exp $
+#$Id: EEAGlossaryFolder.py,v 1.14 2004/05/10 15:23:25 finrocvs Exp $
 
 # python imports
 import whrandom
@@ -105,17 +105,6 @@ class EEAGlossaryFolder(Folder, utils):
             ob = self._getOb(term)
             obj_lst.append(ob)
         return obj_lst
-
-    def random_element(self):
-        """Return a random 'EEA Glossary Element' """
-        elements=[]
-        for eobject in self.objectValues(EEA_GLOSSARY_ELEMENT_METATYPE):
-            if eobject.is_published:
-               elements.append(eobject)
-        if len(elements) > 0:
-            return whrandom.choice(elements)
-        else:
-            return None
 
     def getMetaTypes(self):
         return [x['name'] for x in Products.meta_types]

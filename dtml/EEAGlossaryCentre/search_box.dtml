@@ -1,0 +1,42 @@
+<table>
+<form action="searchGlossary" method=post>
+<tr><th>Term</th>
+<td align="left" valign="top">
+  <input type="text" name="k_name" size="40" value="">
+  <select <dtml-if "_.len(search_langs)<2">disabled<dtml-else>type="text"</dtml-if> name="k_language">
+  <dtml-in search_langs sort=id>
+   <option <dtml-if "_['sequence-item']=='English'">selected</dtml-if>><dtml-var sequence-item></option>
+  </dtml-in>
+  </select>&nbsp; <- select language
+  </td></tr>
+
+<tr><th >Definition</th>
+<td align="left" valign="top">
+  <input type="text" name="k_definition" size="40" value="">
+  </td></tr>
+<dtml-comment>
+<tr><th >Type</th>
+<td align="left" valign="top" class=head0>
+  <select type="text" name="k_type" value="">
+   <option selected>Choose type</option>
+  <dtml-in types_list>
+   <option><dtml-var sequence-item></option>
+  </dtml-in>
+  </td>
+  
+  </tr>
+</dtml-comment>
+<tr>
+<th >Show max</th>
+<td align="left" valign="top" class=head0><select type="text" name="k_size" value="">
+   <option selected>10</option>
+   <option>20</option>
+   <option>50</option>
+   <option>100</option>
+   <option>All</option>
+  </select>&nbsp;
+  <input class="form-element" type="submit" name="SUBMIT" value="Find in Glossary"></td>
+</tr>
+</form>
+</table>
+<a href="search_help" target="_new">Search Help</a>

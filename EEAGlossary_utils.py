@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.23 2004/05/10 13:35:22 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.24 2004/05/10 15:23:25 finrocvs Exp $
 
 #Python imports
 
@@ -33,6 +33,11 @@ class utils:
 
     def __init__(self):
         pass
+
+    def utGetType(self):
+        """return meta_type of current object"""
+        print self.meta_type
+        return self.meta_type
 
     def utAddObjectAction(self, REQUEST=None):
         """Check if adding an object"""
@@ -254,7 +259,7 @@ class catalog_utils:
         except:
             pass
 
-    def cu_get_cataloged_objects(self, catalog, meta_type=None, approved=0, howmany=-1, sort_on='releasedate', sort_order='reverse', path='/'):
+    def cu_get_cataloged_objects(self, catalog, meta_type=None, approved=0, howmany=-1, sort_on='bobobase_modification_time', sort_order='reverse', path='/'):
         results = []
         filter = {}
         if approved == 1:
@@ -264,11 +269,9 @@ class catalog_utils:
             if sort_order != '':
                 filter['sort_order'] = sort_order
         if meta_type:
-            l_filter['meta_type'] = self.utConvertToList(meta_type)
+            filter['meta_type'] = self.utConvertToList(meta_type)
         results = self.__searchCatalog(catalog, filter, path)
         if howmany != -1:
             results = results[:howmany]
-        
-        results = self.__get_objects(results)
+        results = self.__get_objects(catalog, results)
         return results
-
