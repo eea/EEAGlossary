@@ -2,21 +2,19 @@
 <dtml-var style_console_css>
 <dtml-var manage_tabs>
 
-<p>
+<p class="form-help">commnets here</p>
 <dtml-if isManager>
-<table width="100%" border="0" cellpadding="2" cellspacing="0">
+<table width="90%" border="0" cellpadding="3" cellspacing="0">
     <tr class="row-header"><td class="cell-header">Glossary basic statistics</td></tr>
     <dtml-let lst=get_terms_stats>
-        <tr class="row-even"><td>Tot. numbers of English terms (Published): <b><dtml-var "lst[0]"></b></td></tr>
-        <tr class="row-odd"><td>Tot. numbers of concepts (Published): <b><dtml-var "lst[1]"></b></td></tr>
-        <tr class="row-even"><td>Tot. numbers of English terms (Published and Unpublished): <b><dtml-var "lst[2]"></b></td></tr>
-        <tr class="row-odd"><td>Tot. numbers of concepts (Published and Unpublished): <b><dtml-var "lst[3]"></b><br></td></tr>
+        <tr class="celleven"><td>Tot. numbers of English terms (Published): <b><dtml-var "lst[0]"></b></td></tr>
+        <tr class="cellodd"><td>Tot. numbers of concepts (Published): <b><dtml-var "lst[1]"></b></td></tr>
+        <tr class="celleven"><td>Tot. numbers of English terms (Published and Unpublished): <b><dtml-var "lst[2]"></b></td></tr>
+        <tr class="cellodd"><td>Tot. numbers of concepts (Published and Unpublished): <b><dtml-var "lst[3]"></b><br></td></tr>
     </dtml-let>
 </table>
 <dtml-else>
 This operation is only allowed to Managers.
 
 </dtml-if>
-</p>
-
 <dtml-var manage_page_footer>

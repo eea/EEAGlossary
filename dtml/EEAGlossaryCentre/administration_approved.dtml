@@ -2,20 +2,18 @@
 <dtml-var style_console_css>
 <dtml-var manage_tabs>
 
-
+<p class="form-help">List of approved terms</p>
 <dtml-call "REQUEST.set('tottcount',0)">
 <dtml-call "REQUEST.set('totccount',0)">
 
 <dtml-call "REQUEST.set('tcount',0)">
 <dtml-call "REQUEST.set('ccount',0)">
 
-<table width="100%" border="0" cellpadding="2" cellspacing="0">
-<tr class="row-header"><td class="cell-header" colspan="2">List of Approved Terms</td></tr>
-
 <dtml-if isManager>
-<tr >
-<td width="40%"><b>Name</b></td>
-<td width="*">&nbsp;<b>Last modification</b></td>
+<table width="90%" border="0" cellpadding="3" cellspacing="0">
+<tr class="row-header">
+    <td class="cell-header" width="40%"><b>Name</b></td>
+    <td class="cell-header" width="*">&nbsp;<b>Last modification</b></td>
 </tr>
     <dtml-in get_approved>
         <dtml-call "REQUEST.set('tottcount',tottcount+1)">
@@ -25,8 +23,8 @@
             <dtml-call "REQUEST.set('tcount',tcount+1)">
             <dtml-if "ut_test_even(tcount)">
                 <dtml-if "meta_type=='EEA Glossary Element'"><dtml-call "REQUEST.set('ccount',ccount+1)"></dtml-if>
-                    <tr class="row-even">
-                        <td width="40%"><li><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></li></td>
+                    <tr class="celleven">
+                        <td width="70%"><li><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></li></td>
                         <td width="*">
                             &nbsp;<dtml-var bobobase_modification_time>&nbsp;
                             <dtml-if QA_needed>
@@ -38,8 +36,8 @@
             </dtml-if>
             <dtml-unless "ut_test_even(tcount)">
                 <dtml-if "meta_type=='EEA Glossary Element'"><dtml-call "REQUEST.set('ccount',ccount+1)"></dtml-if>
-                    <tr class="row-odd">
-                        <td width="40%"><li><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></li></td>
+                    <tr class="cellodd">
+                        <td width="60%"><li><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></li></td>
                         <td width="*">
                             &nbsp;<dtml-var bobobase_modification_time>&nbsp;
                             <dtml-if QA_needed>
@@ -48,16 +46,17 @@
                         </td>
                     </tr>
             </dtml-unless>
+    <dtml-else>
+        <tr><td colspan="2"><b>No approved terms</td></tr>
     </dtml-in>
     <tr>
-    <td colspan="2">
-    <br>Tot. numbers of English terms (Published): <b><dtml-var tcount></b>
-    <br>Tot. numbers of concepts (Published): <b><dtml-var ccount></b>
-    <br>Tot. numbers of English terms (Published and Unpublished): <b><dtml-var tottcount></b>
-    <br>Tot. numbers of concepts (Published and Unpublished): <b><dtml-var totccount></b><br>
-    </td>
+        <td colspan="2"><br>Tot. numbers of English terms (Published): <b><dtml-var tcount></b>
+        <br>Tot. numbers of concepts (Published): <b><dtml-var ccount></b>
+        <br>Tot. numbers of English terms (Published and Unpublished): <b><dtml-var tottcount></b>
+        <br>Tot. numbers of concepts (Published and Unpublished): <b><dtml-var totccount></b><br>
+        </td>
     </tr>
-    </table>
+</table>
 <dtml-else>
     This operation is only allowed to Managers.
 </dtml-if>

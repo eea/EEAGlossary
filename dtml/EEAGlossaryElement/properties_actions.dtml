@@ -1,14 +1,10 @@
 <dtml-let record_action="REQUEST.get('action', '')" record_link="REQUEST.get('link', '')">
-
-<table border="1" cellspacing="0" cellpadding="0" width="90%">
+<p class="form-help">Comments here</p>
+<table border="0" cellspacing="0" cellpadding="3" width="90%">
     <tr><td>
-        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <fieldset><legend><b>Actions</b></legend>
+        <table border="0" cellspacing="0" cellpadding="2" width="100%">
         <form name="frmActions" action="manageActionsProperties" method="post">
-            <tr class="row-header">
-                <td class="cell-header" width="1%">&nbsp;</td>
-                <td class="cell-header"><b>Actions</b></td>
-                <td class="cell-header">&nbsp;</td>
-            </tr>
             <dtml-in get_actions>
             <dtml-if sequence-odd>
                 <dtml-call "REQUEST.set('cellclass', 'cellodd')">
@@ -42,20 +38,16 @@
             </tr>
             </dtml-if>
             <tr>
-                <td width="1%">&nbsp;</td>
-                <td colspan="4"><input type="submit" name="delete" value="Delete"></td>
+                <td class="cell" width="1%">&nbsp;</td>
+                <td class="cell" colspan="4"><input type="submit" name="delete" value="Delete"></td>
             </tr>
         </form>
         </table>
+        </fieldset>
         <br>
-        <br>
+        <fieldset><legend><b>Links</b></legend>
         <table border="0" cellspacing="0" cellpadding="0" width="100%">
         <form name="frmLinks" action="manageLinksProperties" method="post">
-            <tr class="row-header">
-                <td class="cell-header" width="1%">&nbsp;</td>
-                <td class="cell-header"><b>Links</b></td>
-                <td class="cell-header">&nbsp;</td>
-            </tr>
             <dtml-in get_links>
             <dtml-if sequence-odd>
                 <dtml-call "REQUEST.set('cellclass', 'cellodd')">
@@ -89,11 +81,13 @@
             </tr>
             </dtml-if>
             <tr>
-                <td width="1%">&nbsp;</td>
-                <td colspan="4"><input type="submit" name="delete" value="Delete"></td>
+                <td class="cell" width="1%">&nbsp;</td>
+                <td class="cell" colspan="4"><input type="submit" name="delete" value="Delete"></td>
             </tr>
-        </table>
         </form>
-    </td></tr>
+        </table>
+        </fieldset>
+        </td>
+    </tr>
 </table>
 </dtml-let>

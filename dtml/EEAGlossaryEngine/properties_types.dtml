@@ -1,6 +1,6 @@
 <dtml-let record_code="REQUEST.get('code', '')">
 
-<table border="1" cellspacing="0" cellpadding="0" width="90%">
+<table border="1" cellspacing="0" cellpadding="3" width="90%">
     <tr><td>
         <table border="0" cellspacing="0" cellpadding="0" width="100%">
         <form name="frmTypes" action="manageTypesProperties" method="post">
@@ -42,8 +42,8 @@
             </tr>
             </dtml-if>
             <tr>
-                <td width="1%">&nbsp;</td>
-                <td colspan="4"><input type="submit" name="delete" value="Delete"></td>
+                <td class="cell" width="1%">&nbsp;</td>
+                <td class="cell" colspan="4"><input type="submit" name="delete" value="Delete"></td>
             </tr>
         </form>
         </table>

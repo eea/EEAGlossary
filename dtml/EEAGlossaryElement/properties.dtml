@@ -14,7 +14,7 @@ Saved changes. (<dtml-var ZopeTime>)
 </div>
 </dtml-if>
 
-<table width="90%" border="1" cellpadding="0" cellspacing="0" bordercolor="#333333">
+<table width="90%" border="0" cellpadding="0" cellspacing="0">
     <tr class="row-header"><td height="20px" class="cell-header">
         &nbsp;<a class="<dtml-if "pagetab=='0'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=0">Basic properties</a>
         &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='1'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=1">Media</a>

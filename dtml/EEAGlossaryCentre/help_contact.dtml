@@ -1,19 +1,18 @@
 <dtml-var style_console_css>
 <table><tr><td>
-If you have any technical problems please contact <br>
+If you have any technical problems please contact:
 <dtml-in "get_contact_persons().items()">
-    <b>&nbsp;<dtml-var "_['sequence-item'][0]"></b> on <a href="mailto:<dtml-var sequence-key>"><dtml-var sequence-key></a>
-    <dtml-if "_['sequence-item'][1]!=''"> or at the phone <dtml-var "_['sequence-item'][1]"></dtml-if><br>
+    <li><b>&nbsp;<dtml-var "_['sequence-item'][0]"></b> on <a href="mailto:<dtml-var sequence-key>"><dtml-var sequence-key></a>
+    <dtml-if "_['sequence-item'][1]!=''"> or at the phone <dtml-var "_['sequence-item'][1]"></dtml-if></li>
 <dtml-else>
-    <b>No technical contact person added.</b><br>
-</dtml-in>
-
+    <b>No technical contact person added.</b>
+</dtml-in><br><br>
 For other issues regarding the translation please contact <br>
 <dtml-in "get_translation_persons().items()">
-    <b>&nbsp;<dtml-var "_['sequence-item'][0]"></b> on <a href="mailto:<dtml-var sequence-key>"><dtml-var sequence-key></a>
-    <dtml-if "_['sequence-item'][1]!=''"> or at the phone <dtml-var "_['sequence-item'][1]"></dtml-if><br>
+    <li><b>&nbsp;<dtml-var "_['sequence-item'][0]"></b> on <a href="mailto:<dtml-var sequence-key>"><dtml-var sequence-key></a>
+    <dtml-if "_['sequence-item'][1]!=''"> or at the phone <dtml-var "_['sequence-item'][1]"></dtml-if></li>
 <dtml-else>
-    <b>No translation contact person added.</b><br>
-</dtml-in>
+    <b>No translation contact person added.</b>
+</dtml-in><br>
 <br>As this system is new we hope that you will send us any comments you might have.
 </td></tr></table>

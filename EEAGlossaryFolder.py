@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryFolder.py,v 1.20 2004/05/18 08:25:59 finrocvs Exp $
+#$Id: EEAGlossaryFolder.py,v 1.21 2004/05/19 11:46:34 finrocvs Exp $
 
 # python imports
 import whrandom
@@ -53,7 +53,6 @@ class EEAGlossaryFolder(Folder, utils, catalog_utils):
     meta_type = EEA_GLOSSARY_FOLDER_METATYPE
     product_name = EEA_GLOSSARY_PRODUCT_NAME
     icon = "misc_/EEAGlossary/folder.gif"
-    default_catalog = "EEA_GLOSSARY_CATALOG_NAME"
 
     manage_options = ((Folder.manage_options[0],) +
                 ({'label':'View',       'action':'preview_html'},

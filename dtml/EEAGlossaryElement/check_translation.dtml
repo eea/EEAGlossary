@@ -4,103 +4,121 @@
 <dtml-if "not _.has_key('lang_code')">
     <dtml-call "REQUEST.set('lang_code','Nothing')">
 </dtml-if>
-
-<br>
-<table width="100%" border="0" cellpadding="2" cellspacing="0">
-    <tr class="row-header"><td class="cell-header"><b>Welcome</b> to the management tool of <b>EEA glossary database.</b><br></td></tr>
-</table>
-<br>
-
-<table border="0" width="100%">
+<p class="form-help"><b>Welcome</b> to the management tool of <b>EEA glossary database.</b></p>
+<table border="0" width="100%" cellpadding="0" cellspacing="3">
 <tr>
     <td width="30%">
-        <table cellpadding="1" cellspacing="0" border=1 width="100%">
-            <tr class="row-header">
-                <td class="cell-header" colspan="2"><b>User Info</b><br></td>
-            </tr>
+        <table cellpadding="0" cellspacing="0" border="1" width="100%">
             <tr>
-                <td class="row-odd"><b>User :&nbsp;</b></td>
-                <td><b><dtml-var getAuthenticatedUser></b><br></td>
-            </tr>
-            <tr>
-                <td class="row-odd"><b>Roles:&nbsp;</b></td>
                 <td>
-                    <dtml-in getAuthenticatedUserRoles>
-                        <b><dtml-var sequence-item></b><dtml-if sequence-end>.<dtml-else>,&nbsp;</dtml-if>
-                    </dtml-in>
+                    <table cellpadding="3" cellspacing="0" border="0" width="100%">
+                        <tr class="row-header">
+                            <td class="cell-header" colspan="2"><b>User Info</b><br></td>
+                        </tr>
+                        <tr>
+                            <td class="cellodd"><b>User :&nbsp;</b></td>
+                            <td bgcolor="white"><dtml-var getAuthenticatedUser><br></td>
+                        </tr>
+                        <tr>
+                            <td class="cellodd" valign="top"><b>Roles:&nbsp;</b></td>
+                            <td>
+                                <dtml-in getAuthenticatedUserRoles>
+                                    <dtml-var sequence-item><dtml-if sequence-end>.<dtml-else>,&nbsp;</dtml-if>
+                                </dtml-in>
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
-        </table>
-
-        <form action="&dtml-URL;" method="get">
-        <table cellpadding="1" cellspacing="0" border="1" width="100%">
-            <tr>
-                <td class="row-odd" colspan="2">You have the permission to check and change the following languages. Pick the language to check.</td>
+        </table><br>
+        <table cellpadding="0" cellspacing="0" border="1" width="100%">
+             <tr>
+                 <td>
+                    <table cellpadding="3" cellspacing="0" border="0" width="100%">
+                    <form action="&dtml-URL;" method="get">
+                        <tr>
+                            <td class="cellodd" colspan="2">You have the permission to check and change the following languages. Pick the language to check.</td>
+                        </tr>
+                        <tr>
+                            <td><select name="lang_code">
+                                    <option> Select Language </option>
+                                    <dtml-in get_english_names>
+                                        <dtml-let lang_id="_['sequence-item']">
+                                        <dtml-if "check_allowed_translations(lang_id)">
+                                            <option <dtml-if "lang_code==lang_id"> selected </dtml-if>>
+                                                <dtml-var "lang_id">
+                                            </option>
+                                        </dtml-if>
+                                        </dtml-let>
+                                    </dtml-in></select>
+                            </td>
+                            <td><input class="form-element" type="submit" value="Check Translation"></td>
+                        </tr>
+                    </form>
+                    </table>
+                </td>
             </tr>
+        </table><br>
+        <table cellpadding="0" cellspacing="0" border="1" width="100%">
             <tr>
-                <td><select name="lang_code">
-                        <option> Select Language </option>
-                        <dtml-in get_english_names>
-                            <dtml-let lang_id="_['sequence-item']">
-                            <dtml-if "check_allowed_translations(lang_id)">
-                                <option <dtml-if "lang_code==lang_id"> selected </dtml-if>>
-                                    <dtml-var "lang_id">
-                                </option>
-                            </dtml-if>
+                <td>
+            <dtml-if "lang_code != 'Nothing'">
+                <dtml-if "check_allowed_translations(lang_code)">
+                    <table cellspacing="0" cellpadding="3" border="0" width="100%">
+                    <form action="manageTranslations" method="post">
+                        <tr><td class="cellodd" align="left" valign="top"><b>Language</b></td>
+                            <td align="left" valign="top"><dtml-var lang_code></td>
+                        </tr>
+                            <td class="cellodd" align="left" valign="top"><b>Translation</b></td>
+                            <dtml-let result="get_translation_by_language(lang_code)">
+                            <td align="left" valign="top">
+                                <input type="text" name="translation" size="36" 
+                                    value="<dtml-if "lang_code in get_unicode_langs()"><dtml-var result><dtml-else><dtml-var "display_unicode_langs(result, charset=get_language_charset(lang_code))"></dtml-if>"</td>
+                            </td>
                             </dtml-let>
-                        </dtml-in></select>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left">
+                                    <input name="lang_code" type="hidden" value="<dtml-var lang_code>"/> 
+                                    <input name="editTrans" type="submit" value="Save Changes" />
+                            </td>
+                        </tr>
+                    </form>
+                    </table>
+                </dtml-if>
+            <dtml-else>
+                <b>Chosen language to check: Nothing</b>
+            </dtml-if>
                 </td>
-                <td><input class="form-element" type="submit" value="Check Translation"></td>
             </tr>
         </table>
-        </form>
-        <dtml-if "lang_code != 'Nothing'">
-            <dtml-if "check_allowed_translations(lang_code)">
-                <form action="manageTranslations" method="post">
-                <table cellspacing="0" cellpadding="1" border="1" width="100%">
-                    <tr><td class="row-odd" align="left" valign="top"><b>Language</b></td>
-                        <td align="left" valign="top"><dtml-var lang_code></td>
-                    </tr>
-                        <td class="row-odd" align="left" valign="top"><b>Translation</b></td>
-                        <dtml-let result="get_translation_by_language(lang_code)">
-                        <td align="left" valign="top">
-                            <input type="text" name="translation" size="36" 
-                                value="<dtml-if "lang_code in get_unicode_langs()"><dtml-var result><dtml-else><dtml-var "display_unicode_langs(result, charset=get_language_charset(lang_code))"></dtml-if>"</td>
-                        </td>
-                        </dtml-let>
-                    </tr>
-                    <tr>
-                        <td colspan="2" align="left">
-                                <input name="lang_code" type="hidden" value="<dtml-var lang_code>"/> 
-                                <input name="editTrans" type="submit" value="Save Changes" />
-                        </td>
-                    </tr>
-                </table>
-                </form>
-            </dtml-if>
-        <dtml-else>
-            <b>Chosen language to check: Nothing</b>
-        </dtml-if>
         <p>
-        <table cellspacing="0" cellpadding="1" border="1" width="100%">
+        <table cellspacing="0" cellpadding="3" border="1" width="100%">
             <tr>
-                <td class="row-odd"><dtml-var definition_html></td>
+                <td class="cellodd"><dtml-var definition_html></td>
              </tr>
         </table>
         </p>
     </td>
     <td width="*" valign="top">
-        <table cellpadding="1" cellspacing="0" border="1" width="100%">
-            <tr class="row-header">
-                <td class="cell-header"><b>Support/Contact Info</b></td>
-            </tr>
-            <tr>
-                <td><dtml-var help_contact_html></td>
-            </tr>
-            <tr>
-                <td class="row-odd">In order to <b>change your password</b> click <a href="/EEAGlossary/changePassForm">here</a></td>
-            </tr>
+        <table cellspacing="0" cellpadding="0" border="1" width="100%">
+        <tr>
+            <td>
+                <table cellpadding="3" cellspacing="0" border="0" width="100%">
+                    <tr class="row-header">
+                        <td class="cell-header"><b>Support/Contact Info</b></td>
+                    </tr>
+                    <tr>
+                        <td><dtml-var help_contact_html></td>
+                    </tr>
+                    <tr>
+                        <td class="cellodd">In order to <b>change your password</b> click <a href="change_pass_html">here</a></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
         </table>
+        <br>
         <table width="100%" border="1" cellpadding="0" cellspacing="0">
             <tr><td>
                 <table width="100%" border="0" cellpadding="2" cellspacing="0">
@@ -116,13 +134,13 @@
                     <dtml-let record="_['sequence-item']">
                         <dtml-if sequence-odd>
                         <tr>
-                            <td class="row-even"><b>{<dtml-var "record['code']">}</b></td>
-                            <td class="row-even"><dtml-var "record['name']"></td>
+                            <td class="cellodd"><b>{<dtml-var "record['code']">}</b></td>
+                            <td class="cellodd"><dtml-var "record['name']"></td>
                         </tr>
                         <dtml-else>
                         <tr>
-                            <td class="row-odd"><b>{<dtml-var "record['code']">}</b></td>
-                            <td class="row-odd"><dtml-var "record['name']"></td>
+                            <td class="celleven"><b>{<dtml-var "record['code']">}</b></td>
+                            <td class="celleven"><dtml-var "record['name']"></td>
                         </tr>
                         </dtml-if>
                     </dtml-let>

@@ -2,21 +2,21 @@
 <dtml-var style_console_css>
 <dtml-var manage_tabs>
 
-<p>
+<p class="form-help">List of published terms</p>
 <dtml-if isManager>
-<table width="100%" border="0" cellpadding="2" cellspacing="0">
+<table width="90%" border="0" cellpadding="3" cellspacing="0">
     <tr class="row-header"><td class="cell-header" colspan="2">Published terms</td></tr>
     <dtml-in get_published>
         <dtml-let record=sequence-length>
         <dtml-if sequence-odd>
-        <tr class="row-even">
+        <tr class="celleven">
             <td width="30%"><li><dtml-unless approved>NOT </dtml-unless>APPROVED, <dtml-if disabled> DISABLED<dtml-else> ENABLED</dtml-if></td>
-            <td width="*">&nbsp;&nbsp;<b><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></b></li></td>
+            <td width="*">&nbsp;&nbsp;<a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></li></td>
         </tr>
         <dtml-else>
-        <tr class="row-odd">
+        <tr class="cellodd">
             <td width="30%"><li><dtml-unless approved>NOT </dtml-unless>APPROVED, <dtml-if disabled> DISABLED<dtml-else> ENABLED</dtml-if></td>
-            <td width="*">&nbsp;&nbsp;<b><a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></b></li></td>
+            <td width="*">&nbsp;&nbsp;<a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a></li></td>
         </tr>
         </dtml-if>
         <dtml-if sequence-end>
@@ -25,11 +25,12 @@
             </tr>
         </dtml-if>
         </dtml-let>
+    <dtml-else>
+        <tr><td colspan="2"><b>No published terms</b></td></tr>
     </dtml-in>
 </table>
 <dtml-else>
     This operation is only allowed to Managers.
 </dtml-if>
-</p>
 
 <dtml-var manage_page_footer>

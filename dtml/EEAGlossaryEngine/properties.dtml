@@ -15,14 +15,14 @@ Saved changes. (<dtml-var ZopeTime>)
 </div>
 </dtml-if>
 
-<table width="90%" border="1" cellpadding="0" cellspacing="0" bordercolor="#333333">
+<table width="90%" border="0" cellpadding="0" cellspacing="0">
     <tr class="row-header"><td height="20px" class="cell-header">
         &nbsp;<a class="<dtml-if "pagetab=='0'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=0">Contact info</a>
         &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='1'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=1">Unicode languages</a>
-        &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='2'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=2">Types List</a>
-        &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='3'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=3">Subjects List</a>
-        &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='4'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=4">Languages List</a>
-        &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='5'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=5">Searchable languages list</a>
+        &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='2'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=2">Types</a>
+        &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='3'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=3">Subjects</a>
+        &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='4'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=4">Languages</a>
+        &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='5'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=5">Searchable languages</a>
         &nbsp;
     </td></tr>
 </table>
