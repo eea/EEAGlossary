@@ -19,7 +19,7 @@
 # Alex Ghica, Finsiel Romania
 # Cornel Nitu, Finsiel Romania
 #
-#$Id: __init__.py,v 1.7 2004/05/05 10:24:52 finrocvs Exp $
+#$Id: __init__.py,v 1.8 2004/05/05 13:44:35 finrocvs Exp $
 
 from ImageFile import ImageFile
 
@@ -71,9 +71,9 @@ def initialize(context):
 
 misc_ = {
     'element.gif':ImageFile('www/element.gif', globals()),
+    'synonym.gif':ImageFile('www/synonym.gif', globals()),
     'folder.gif':ImageFile('www/folder.gif', globals()),
     'engine.gif':ImageFile('www/engine.gif', globals()),
-#alec
     'line.gif':ImageFile('www/line.gif', globals()),
     'img_search_med.gif':ImageFile('www/img_search_med.gif', globals()),
     'img_search_small.gif':ImageFile('www/img_search_small.gif', globals()),

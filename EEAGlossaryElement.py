@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.20 2004/05/05 08:36:02 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.21 2004/05/05 13:44:35 finrocvs Exp $
 
 # python imports
 import string
@@ -87,7 +87,7 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
         {'label':'All Translations',        'action':'all_translations_html'},
         {'label':'Check Translation',       'action':'check_translation_html'},
         {'label':'Properties',              'action':'manage_properties_html'},
-        {'label':"View",                    'action':'preview_html'},
+        {'label':"View [OK]",                    'action':'preview_html'},
         #{'label':'My props',                'action':'custom_properties_html'},
         {'label':'Convert to Synonym',      'action':'synonym_html'},
         {'label':'History',                 'action':'history_html'},
