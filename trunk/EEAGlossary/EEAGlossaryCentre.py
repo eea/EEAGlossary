@@ -17,7 +17,7 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossaryCentre.py,v 1.9 2004/05/03 14:05:01 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.10 2004/05/03 15:09:56 finrocvs Exp $
 
 # python imports
 import string
@@ -45,8 +45,8 @@ def manage_addEEAGlossaryCentre(self, id, title='', description='', REQUEST=None
     """ Adds a new EEAGlossaryCentre object """
     ob = EEAGlossaryCentre(id, title, description)
     self._setObject(id, ob)
-    centre_obj  = self._getOb(id)
-    centre_obj.= load_subjects_list()
+    centre_obj = self._getOb(id)
+    centre_obj.load_subjects_list()
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
@@ -76,7 +76,7 @@ class EEAGlossaryCentre(Folder, CatalogAware):
         self.title = title
         self.description = description
         self.types_list = []
-        self.subjects_list = []
+        self.subjects_list = {}
         self.languages_list = []
         self.search_langs = ''
         self.published = 0
@@ -111,7 +111,15 @@ class EEAGlossaryCentre(Folder, CatalogAware):
         file.close()
         subjects_handler, error = subjects_obj.parseContent(content)
         for code in subjects_handler.subjects:
-            self.subjects_list = code.name
+            self.subjects_list[code.code] = code.name
+        print self.subjects_list
+
+    def get_subjects_list (self):
+        """gets subjects list in alphabetical order """
+        subjects_values = self.subjects_list.values()
+        subjects_values.sort()
+        print subjects_values
+        return subjects_values
 
     def changePass(self, REQUEST=None):
         """."""

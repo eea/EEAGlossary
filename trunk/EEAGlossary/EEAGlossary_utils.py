@@ -15,7 +15,7 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossary_utils.py,v 1.9 2004/05/03 13:57:40 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.10 2004/05/03 15:09:56 finrocvs Exp $
 
 #Python imports
 from xml.sax.handler import ContentHandler
@@ -43,17 +43,17 @@ class Utils:
 #                code, name = string.split(line,',')
 #                ret.append(name)
 #        return ret
-#
-#    def utListSubjects (self):
-#        """loads subjects list"""
-#        ret={}
-#        for line1 in self.REQUEST.PARENTS[0].subjects:
-#            mysub=line1
-#            for line2 in self.subjects_list:
-#                code, name=string.split(line2,',')
-#                if name==mysub:
-#                    ret[code]=name
-#        return ret
+
+    def utListSubjects (self):
+        """loads subjects list"""
+        ret={}
+        for line1 in self.REQUEST.PARENTS[0].subjects:
+            ut_subj=line1
+            for line2 in self.subjects_list:
+                code, name=string.split(line2,',')
+                if name==ut_subj:
+                    ret[code]=name
+        return ret
 
     def utConvertToList(self, something):
         """Convert to list"""

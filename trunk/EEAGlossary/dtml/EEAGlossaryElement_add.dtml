@@ -232,11 +232,11 @@
 
         <td align="left" valign="top">
             <select size=10 multiple name="subjects">
-                <dtml-in "PARENTS[1].subjects_list">
-                    <div class="form-text">
-                    <OPTION VALUE="<dtml-var sequence-item>"><dtml-var sequence-item></OPTION>
-                    </div>
-                </dtml-in>
+                    <dtml-in get_subjects_list>
+                        <div class="form-text">
+                        <OPTION VALUE="<dtml-var sequence-item>"><dtml-var sequence-item></OPTION>
+                        </div>
+                    </dtml-in>
             </select>
         </td>
 
