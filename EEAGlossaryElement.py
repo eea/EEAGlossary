@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.8 2004/05/04 06:29:21 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.9 2004/05/04 07:23:15 finrocvs Exp $
 
 # python imports
 import string
@@ -58,7 +58,7 @@ class ElementBasic:
         self.long_definition = long_definition
         self.QA_needed = QA_needed
 
-manage_addGlossaryElement_html = DTMLFile('dtml/EEAGlossaryElement_add', globals())
+manage_addGlossaryElement_html = DTMLFile('dtml/EEAGlossaryElement/add', globals())
 
 def manage_addGlossaryElement(self, id, name='', type='', source='', subjects=[], context='', comment='', 
     used_for_1='', used_for_2='',definition='', definition_source_url='', long_definition='', disabled=0, 
@@ -112,7 +112,7 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
 
     all_translations_html = DTMLFile("dtml/EEAGlossaryElement/all_translations", globals())
     check_translation_html = DTMLFile("dtml/EEAGlossaryElement/check_translation", globals())
-    manage_properties = DTMLFile("dtml/EEAGlossaryElement/manage_properties", globals())
+    manage_properties_html = DTMLFile("dtml/EEAGlossaryElement/manage_properties", globals())
     preview_html = DTMLFile("dtml/EEAGlossaryElement/preview", globals())
     custom_properties_html = DTMLFile("dtml/EEAGlossaryElement/custom_prop", globals())
     media_html = DTMLFile("dtml/EEAGlossaryElement/media", globals())

@@ -19,7 +19,7 @@
 # Alex Ghica, Finsiel Romania
 # Cornel Nitu, Finsiel Romania
 #
-#$Id: __init__.py,v 1.4 2004/05/03 20:05:32 finrocvs Exp $
+#$Id: __init__.py,v 1.5 2004/05/04 07:23:15 finrocvs Exp $
 
 from ImageFile import ImageFile
 
@@ -36,8 +36,8 @@ def initialize(context):
     app = context._ProductContext__app
     global Engine
 
-    if hasattr(app, EnginelID):
-        Engine = getattr(app, EnginelID)
+    if hasattr(app, EngineID):
+        Engine = getattr(app, EngineID)
     else:
         try:
             oEngine = EEAGlossaryEngine.EEAGlossaryEngine(id=EngineID)

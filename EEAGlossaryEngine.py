@@ -20,15 +20,36 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_constants.py,v 1.4 2004/05/04 07:23:15 finrocvs Exp $
+#$Id: EEAGlossaryEngine.py,v 1.1 2004/05/04 07:23:15 finrocvs Exp $
 
-#META TYPES
-EEA_GLOSSARY_FOLDER_METATYPE = "EEA Glossary Folder"
-EEA_GLOSSARY_ELEMENT_METATYPE = "EEA Glossary Element"
-EEA_GLOSSARY_CENTRE_METATYPE = "EEA Glossary Centre"
-EEA_GLOSSARY_SYNONYM_METATYPE = "EEA Glossary Synonym"
-EEA_GLOSSARY_PRODUCT_NAME = "EEAGlossary"
-EEA_GLOSSARY_ENGINE_METATYPE = "EEA Glossary Engine"
-GLOSSARY_CATALOG_NAME = "GlossaryCatalog"
+# Zope imports
+from Globals import DTMLFile, InitializeClass
+from AccessControl import ClassSecurityInfo
+from OFS.SimpleItem import SimpleItem
 
+# product imports
+from EEAGlossary_constants import *
 
+EngineID = 'Engine'
+
+class EEAGlossaryEngine(SimpleItem):
+    """ EEAGlossaryEngine """
+
+    meta_type = EEA_GLOSSARY_ENGINE_METATYPE
+    product_name = EEA_GLOSSARY_PRODUCT_NAME
+
+    manage_options =({'label':'Help', 'action':'help_html'},)
+
+    security = ClassSecurityInfo()
+
+    def __init__(self, id):
+        """ constructor """
+        self.id = EngineID
+
+    def load_roles_list(self):
+        """ """
+        pass
+
+    help_html = DTMLFile("dtml/EEAGlossaryEngine/help", globals())
+
+InitializeClass(EEAGlossaryEngine)

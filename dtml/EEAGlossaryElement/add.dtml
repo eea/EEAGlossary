@@ -12,7 +12,7 @@
     <tr class="location-bar">
     <div class="form-title">
       Add EEAGlossaryElement</div></tr>
-    <form action="manage_addEEAGlossaryElement">
+    <form action="manage_addGlossaryElement">
     <p class="form-help">
 
     </p>
