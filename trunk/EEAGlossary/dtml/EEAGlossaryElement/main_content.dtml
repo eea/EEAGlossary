@@ -126,28 +126,20 @@
 
             <dtml-in get_translations_list>
                 <dtml-let record="_['sequence-item']">
+                    <dtml-if "record['translation']!=''">
                             <tr>
                                 <td bgcolor="#808080"><font color="#FFFFFF"><dtml-var "record['language']">:</font></td>
-                                <td><dtml-comment>
-                                    <dtml-if "record['language'] in get_unicode_langs">
+                                <td>
+                                    <dtml-if "record['language'] in get_unicode_langs()">
                                         <dtml-var "record['translation']">
                                     <dtml-else>
-                                        <dtml-var "utToUTF8(record['translation'],charset)">
-                                    </dtml-if></dtml-comment>
+                                        <dtml-var "display_unicode_langs(record['translation'],get_language_charset(record['language']))">
+                                    </dtml-if>
                                 </td>
                             </tr>
+                        </dtml-if>
                 </dtml-let>
             </dtml-in>
-
-            <dtml-in get_translations_list>
-                <dtml-let record="_['sequence-item']">
-                    <tr>
-                        <td bgcolor="#808080"><font color="#FFFFFF"><dtml-var "record['language']">:</font></td>
-                        <td><dtml-var "record['translation']"></td>
-                    </tr>
-                </dtml-let>
-            </dtml-in>
-
         </dtml-if>
 
 
