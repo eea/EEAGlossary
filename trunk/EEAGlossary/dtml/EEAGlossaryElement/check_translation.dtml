@@ -73,7 +73,7 @@
                             <dtml-let result="get_translation_by_language(lang_code)">
                             <td align="left" valign="top" class="celleven">
                                 <input type="text" name="translation" size="36" 
-                                    value="<dtml-if "lang_code in get_unicode_langs()"><dtml-var result><dtml-else><dtml-var "display_unicode_langs(result, charset=get_language_charset(lang_code))"></dtml-if>"</td>
+                                    value="<dtml-var result>"></dtml-if>"</td>
                             </td>
                             </dtml-let>
                         </tr>

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: xliff_parser.py,v 1.3 2004/06/01 08:28:15 finrocvs Exp $
+#$Id: xliff_parser.py,v 1.4 2004/06/07 11:15:29 finrocvs Exp $
 
 from xml.sax.handler import ContentHandler
 from xml.sax import *
@@ -167,5 +167,3 @@ class xliff_parser:
             return chandler
         except:
             return None
-
-

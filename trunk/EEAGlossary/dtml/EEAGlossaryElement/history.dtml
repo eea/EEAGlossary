@@ -27,21 +27,13 @@
                     <dtml-let record="_['sequence-item']">
                     <dtml-if sequence-odd>
                     <tr class="cellodd">
-                        <td><dtml-if "lang_id in get_unicode_langs()">
-                                <dtml-var "record['trans']">
-                            <dtml-else>
-                                <dtml-var "display_unicode_langs(record['trans'], charset=get_language_charset(lang_id))">
-                            </dtml-if></td>
+                        <td><dtml-var "record['trans']"></td>
                         <td><dtml-var "record['time']"></td>
                         <td><dtml-var "record['user']"></td>
                     </tr>
                     <dtml-else>
                     <tr class="celleven">
-                        <td><dtml-if "lang_id in get_unicode_langs()">
-                                <dtml-var "record['trans']">
-                            <dtml-else>
-                                <dtml-var "display_unicode_langs(record['trans'], charset=get_language_charset(lang_id))">
-                            </dtml-if></td>
+                        <td><dtml-var "record['trans']"></td>
                         <td><dtml-var "record['time']"></td>
                         <td><dtml-var "record['user']"></td>
                     </tr>

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.73 2004/06/02 09:57:32 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.74 2004/06/07 11:15:29 finrocvs Exp $
 
 # python imports
 import string
@@ -758,10 +758,11 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                                 print error
                 elif cap_col in self.get_english_names():
                     col_info = eval("item.%s" % col)
-                    obj.translations[cap_col] = self.display_unicode_langs(col_info,self.get_language_charset(cap_col))
+                    obj.translations[cap_col] = col_info#self.display_unicode_langs(col_info,self.get_language_charset(cap_col))
                 elif low_col in self.get_language_codes():
                     col_info = eval("item.%s" % col)
                     lang = self.get_language_by_code(low_col)
+                    print "intra"
                     obj.translations[lang] = self.display_unicode_langs(col_info,self.get_language_charset(lang))
             if obj.entry != '':
                 elem_ob = folder._getOb(self.ut_makeId(obj.entry), None)
@@ -780,14 +781,23 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                     if elem_ob is not None:
                         for k,v in obj.translations.items():
                             #print self.get_language_charset(k)
-                            buf1 = self.display_unicode_langs(v, self.get_language_charset(k))
+                            #buf1 = self.display_unicode_langs(v, self.get_language_charset(k))
                             #print buf1
-                            buf2 = self.convertTermToHex(buf1)
+                            #print type(v)
+                            #print v
+                            #buf1 = self.convertWinCodesToHTMLCodes(v)
+                            #buf2 = self.convertHTMLCodesToHex(v)
                             #print buf2
-                            buf3 = buf2.encode('utf8')
+                            #print type(buf2)
+                            #print buf2
+                            #buf3 = buf2.encode('utf-8')
                             #print buf3
-                            elem_ob.set_translations_list(k, buf3)
-                            elem_ob.set_history(k, buf3)
+                            #print type(buf3)
+                            #print buf2
+                            #print buf3
+                            #print buf3
+                            elem_ob.set_translations_list(k, v)
+                            #elem_ob.set_history(k, buf3)
                         elem_ob.cu_recatalog_object(elem_ob)
             obj.emptyObject()
         if REQUEST is not None:
@@ -827,13 +837,14 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                 if target_language in self.get_english_names():
                     obj.entry = self.utf8_to_latin1(translation['source'])
                     obj.translations[target_language] = translation['target']
-                    #self.display_unicode_langs(translation['target'],self.get_language_charset(target_language))    
+                    #self.display_unicode_langs(translation['target'],self.get_language_charset(target_language))
+                    charset = self.get_language_charset(target_language)
                 if obj.entry!='':
                     elem_ob = folder._getOb(self.ut_makeId(obj.entry), None)
                     if elem_ob is not None:
                         for k,v in obj.translations.items():
-                            elem_ob.set_translations_list(k, v)
-                            elem_ob.set_history(k, v)
+                            elem_ob.set_translations_list(k, v.encode('utf-8'))
+                            elem_ob.set_history(k, v.encode('utf-8'))
                         elem_ob.cu_recatalog_object(elem_ob)
                     else:
                         try:
@@ -844,8 +855,8 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                         elem_ob = folder._getOb(self.ut_makeId(obj.entry), None)
                         if elem_ob is not None:
                             for k,v in obj.translations.items():
-                                elem_ob.set_translations_list(k, v.encode('utf8'))
-                                elem_ob.set_history(k, v.encode('utf8'))
+                                elem_ob.set_translations_list(k, v.encode('utf-8'))
+                                elem_ob.set_history(k, v.encode('utf-8'))
                             elem_ob.cu_recatalog_object(elem_ob)
             obj.emptyObject()
         if REQUEST is not None:

@@ -129,12 +129,7 @@
                     <dtml-if "translation!=''">
                             <tr>
                                 <td class="header-element"><dtml-var language>:</td>
-                                <td>
-                                    <dtml-if "language in get_unicode_langs()">
-                                        <dtml-var translation>
-                                    <dtml-else>
-                                        <dtml-var "display_unicode_langs(translation,get_language_charset(language))">
-                                    </dtml-if>
+                                <td><dtml-var translation>
                                 </td>
                             </tr>
                         </dtml-if>
