@@ -4,6 +4,6 @@
         <td><dtml-var manage_tabs></td>
     </tr>
 
-</table>\
+</table>
 
 <dtml-var index_html>

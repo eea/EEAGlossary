@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <languages>
-    <language lang="en" charset ="iso-8859-1" englishname="English"/>
-    <language lang="no" charset ="iso-8859-1" englishname="Norwegian"/>
-    <language lang="fi" charset ="iso-8859-1" englishname="Finnish"/>
-    <language lang="sv" charset ="iso-8859-1" englishname="Swedish"/>
-    <language lang="da" charset ="iso-8859-1" englishname="Danish"/>
-    <language lang="de" charset ="iso-8859-1" englishname="German"/>
-    <language lang="fr" charset ="iso-8859-1" englishname="French"/>
-    <language lang="es" charset ="iso-8859-1" englishname="Spanish"/>
-    <language lang="ca" charset ="iso-8859-1" englishname="Catalan"/>
-    <language lang="eu" charset ="iso-8859-1" englishname="Basque"/>
-    <language lang="sq" charset ="iso-8859-1" englishname="Albanian"/>
-    <language lang="rm" charset ="iso-8859-1" englishname="Rhaeto-Romanic"/>
-    <language lang="fo" charset ="iso-8859-1" englishname="Faroese"/>
-    <language lang="ga" charset ="iso-8859-1" englishname="Irish"/>
-    <language lang="gd" charset ="iso-8859-1" englishname="Scottish"/>
-    <language lang="nl" charset ="iso-8859-1" englishname="Dutch"/>
-    <language lang="pt" charset ="iso-8859-1" englishname="Portuguese"/>
-    <language lang="it" charset ="iso-8859-1" englishname="Italian"/>
-    <language lang="is" charset ="iso-8859-1" englishname="Icelandic"/>
-    <language lang="cs" charset ="iso-8859-2" englishname="Czech"/>
-    <language lang="hu" charset ="iso-8859-2" englishname="Hungarian"/>
-    <language lang="pl" charset ="iso-8859-2" englishname="Polish"/>
-    <language lang="ro" charset ="iso-8859-2" englishname="Romanian"/>
-    <language lang="hr" charset ="iso-8859-2" englishname="Croatian"/>
-    <language lang="sk" charset ="iso-8859-2" englishname="Slovak"/>
-    <language lang="sl" charset ="iso-8859-2" englishname="Slovenian"/>
-    <language lang="pt" charset ="iso-8859-3" englishname="Maltese"/>
-    <language lang="et" charset ="iso-8859-4" englishname="Estonian"/>
-    <language lang="lv" charset ="iso-8859-4" englishname="Latvian"/>
-    <language lang="lt" charset ="iso-8859-4" englishname="Lithuanian"/>
-    <language lang="kl" charset ="iso-8859-4" englishname="Greenlandic"/>
-    <language lang="bg" charset ="iso-8859-5" englishname="Bulgarian"/>
-    <language lang="be" charset ="iso-8859-5" englishname="Byelorussian"/>
-    <language lang="mk" charset ="iso-8859-5" englishname="Macedonian"/>
-    <language lang="ru" charset ="iso-8859-5" englishname="Russian"/>
-    <language lang="sr" charset ="iso-8859-5" englishname="Serbian"/>
-    <language lang="el" charset ="iso-8859-7" englishname="Greek"/>
-    <language lang="tr" charset ="iso-8859-9" englishname="Turkish"/>
+    <language lang="en" charset ="iso-8859-1" englishname="English" unicode="0"/>
+    <language lang="no" charset ="iso-8859-1" englishname="Norwegian" unicode="0"/>
+    <language lang="fi" charset ="iso-8859-1" englishname="Finnish" unicode="0"/>
+    <language lang="sv" charset ="iso-8859-1" englishname="Swedish" unicode="0"/>
+    <language lang="da" charset ="iso-8859-1" englishname="Danish" unicode="0"/>
+    <language lang="de" charset ="iso-8859-1" englishname="German" unicode="0"/>
+    <language lang="fr" charset ="iso-8859-1" englishname="French" unicode="0"/>
+    <language lang="es" charset ="iso-8859-1" englishname="Spanish" unicode="0"/>
+    <language lang="ca" charset ="iso-8859-1" englishname="Catalan" unicode="0"/>
+    <language lang="eu" charset ="iso-8859-1" englishname="Basque" unicode="0"/>
+    <language lang="sq" charset ="iso-8859-1" englishname="Albanian" unicode="0"/>
+    <language lang="rm" charset ="iso-8859-1" englishname="Rhaeto-Romanic" unicode="0"/>
+    <language lang="fo" charset ="iso-8859-1" englishname="Faroese" unicode="0"/>
+    <language lang="ga" charset ="iso-8859-1" englishname="Irish" unicode="0"/>
+    <language lang="gd" charset ="iso-8859-1" englishname="Scottish" unicode="0"/>
+    <language lang="nl" charset ="iso-8859-1" englishname="Dutch" unicode="0"/>
+    <language lang="pt" charset ="iso-8859-1" englishname="Portuguese" unicode="0"/>
+    <language lang="it" charset ="iso-8859-1" englishname="Italian" unicode="0"/>
+    <language lang="is" charset ="iso-8859-1" englishname="Icelandic" unicode="0"/>
+    <language lang="cs" charset ="iso-8859-2" englishname="Czech" unicode="1"/>
+    <language lang="hu" charset ="iso-8859-2" englishname="Hungarian" unicode="1"/>
+    <language lang="pl" charset ="iso-8859-2" englishname="Polish" unicode="1"/>
+    <language lang="ro" charset ="iso-8859-2" englishname="Romanian" unicode="1"/>
+    <language lang="hr" charset ="iso-8859-2" englishname="Croatian" unicode="1"/>
+    <language lang="sk" charset ="iso-8859-2" englishname="Slovak" unicode="1"/>
+    <language lang="sl" charset ="iso-8859-2" englishname="Slovenian" unicode="1"/>
+    <language lang="pt" charset ="iso-8859-3" englishname="Maltese" unicode="0"/>
+    <language lang="et" charset ="iso-8859-4" englishname="Estonian" unicode="1"/>
+    <language lang="lv" charset ="iso-8859-4" englishname="Latvian" unicode="1"/>
+    <language lang="lt" charset ="iso-8859-4" englishname="Lithuanian" unicode="1"/>
+    <language lang="kl" charset ="iso-8859-4" englishname="Greenlandic" unicode="1"/>
+    <language lang="bg" charset ="iso-8859-5" englishname="Bulgarian" unicode="1"/>
+    <language lang="be" charset ="iso-8859-5" englishname="Byelorussian" unicode="1"/>
+    <language lang="mk" charset ="iso-8859-5" englishname="Macedonian" unicode="1"/>
+    <language lang="ru" charset ="iso-8859-5" englishname="Russian" unicode="1"/>
+    <language lang="sr" charset ="iso-8859-5" englishname="Serbian" unicode="1"/>
+    <language lang="el" charset ="iso-8859-7" englishname="Greek" unicode="0"/>
+    <language lang="tr" charset ="iso-8859-9" englishname="Turkish" unicode="1"/>
 </languages>

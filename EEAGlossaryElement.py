@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.31 2004/05/10 09:38:07 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.32 2004/05/10 15:37:01 finrocvs Exp $
 
 # python imports
 import string
@@ -33,6 +33,7 @@ from OFS.SimpleItem import SimpleItem
 # product imports
 from EEAGlossary_utils import utils
 from EEAGlossary_utils import catalog_utils
+
 from EEAGlossary_constants import *
 
 class ElementBasic:
@@ -198,7 +199,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     def remove_translation_from_list(self, language):
         """ remove a language from list """
         for lang_info in self.translations:
-            if lang_info['language'] == lang:
+            if lang_info['language'] == language:
                 self.translations.remove(lang_info)
 
     def del_translation_by_language(self, language):
@@ -230,17 +231,17 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
             if REQUEST is not None:
                 return REQUEST.RESPONSE.redirect('convert_to_synonym_html')
 
-    def saveTranslations(self, lang_code='', translation='', REQUEST=None):
+    def manageTranslations(self, lang_code='', translation='', REQUEST=None):
         """ save translation for a language"""
         if not lang_code:
             return 
         if self.check_allowed_translations(lang_code):
-            charset = self.get_language_charset(translation)
-            encode_translation = self.display_unicode_langs(translation, charset)
-            #self.set_history(lang_code, encode_translation)
-            self.set_translations_list(lang_code, encode_translation)
+            #charset = self.get_language_charset(lang_code)
+            #encode_translation = self.display_unicode_langs(translation, charset)
+            self.set_history(lang_code, translation)
+            self.remove_translation_from_list(lang_code)
+            self.set_translations_list(lang_code, translation)
             self._p_changed = 1
-            print self.translations
             if REQUEST is not None:
                 return REQUEST.RESPONSE.redirect('check_translation_html')
 

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.31 2004/05/10 15:24:02 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.32 2004/05/10 15:37:01 finrocvs Exp $
 
 # python imports
 import string
@@ -36,7 +36,9 @@ from Products.ZCatalog.ZCatalog import ZCatalog
 # product imports
 import EEAGlossaryFolder
 from EEAGlossary_utils import utils
+from toutf8 import toUTF8
 from EEAGlossary_utils import catalog_utils
+
 from EEAGlossary_constants import *
 
 manage_addGlossaryCentre_html = DTMLFile('dtml/EEAGlossaryCentre/add', globals())
@@ -52,7 +54,7 @@ def manage_addGlossaryCentre(self, id, title='', description='', REQUEST=None):
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
-class EEAGlossaryCentre(Folder, utils, catalog_utils):
+class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     """ EEAGlossaryCentre """
 
     meta_type = EEA_GLOSSARY_CENTRE_METATYPE
@@ -87,6 +89,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils):
         self.hidden_fields = []
         self.alpha_list = list(string.uppercase + string.digits)
         utils.__dict__['__init__'](self)
+        toUTF8.__dict__['__init__'](self)
 
     def all_meta_types(self):
         """ Supported meta_types """
@@ -300,7 +303,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils):
     def get_language_charset(self, language):
         """ get the charset for a specific language """
         for k in self.get_languages_list():
-            if k['english_name'] == 'language':
+            if k['english_name'] == language:
                 return k['charset']
 
     def set_languages_list(self, lang, charset, english_name):
@@ -320,9 +323,9 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils):
     def display_unicode_langs(self, language, charset=""):
         """ """
         if charset=="":
-            return self.utToUTF8(language, self.get_language_charset(language))
+            return self.toutf8(language, self.get_language_charset(language))
         else:
-            return self.utToUTF8(language, charset)
+            return self.toutf8(language, charset)
 
     def manageLanguagesProperties(self, ids='', lang='', charset='', english_name='', old_english_name='', REQUEST=None):
         """ manage languages for EEAGlossaryCentre """

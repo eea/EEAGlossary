@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryEngine.py,v 1.7 2004/05/06 14:26:15 finrocvs Exp $
+#$Id: EEAGlossaryEngine.py,v 1.8 2004/05/10 15:37:01 finrocvs Exp $
 
 import string
 
@@ -83,6 +83,8 @@ class EEAGlossaryEngine(SimpleItem, utils):
 
         for lang in languages_handler.languages:
             self.set_languages_list(lang.lang, lang.charset, lang.english_name)
+            if int(lang.unicode):
+                self.set_unicode_langs(lang.english_name)
         self._p_changed = 1
 
     def load_subjects_list (self):

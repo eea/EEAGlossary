@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: subjects_parser.py,v 1.1 2004/05/03 20:05:32 finrocvs Exp $
+#$Id: subjects_parser.py,v 1.2 2004/05/10 15:37:01 finrocvs Exp $
 
 from xml.sax.handler import ContentHandler
 from xml.sax import *
@@ -41,7 +41,7 @@ class subjects_handler(ContentHandler):
     def startElement(self, name, attrs):
         """ """
         if name == 'subject':
-            self.subjects.append(subjects_struct(attrs['code'], attrs['name']))
+            self.subjects.append(subjects_struct(attrs['code'].encode('latin-1'), attrs['name'].encode('latin-1')))
 
     def endElement(self, name):
         """ """
