@@ -1,0 +1,16 @@
+<html>
+<head>
+<dtml-if lang_code>
+<dtml-in "langcharsets(englishname=lang_code)">
+<dtml-if "lang_code in unicode_langs"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<dtml-call "RESPONSE.setHeader('Content-Type','text/html; charset=UTF-8')"><dtml-else><meta http-equiv="Content-Type" content="text/html; charset=&dtml-charset;">
+<dtml-call "RESPONSE.setHeader('Content-Type','text/html; charset=&dtml-charset;')">
+</dtml-if>
+</dtml-in>
+<dtml-else>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<dtml-call "RESPONSE.setHeader('Content-Type','text/html; charset=UTF-8')">
+</dtml-if>
+<title><dtml-var title_or_id></title>
+</head>
+<body>

@@ -1,0 +1,18 @@
+<dtml-var standard_html_header>
+
+<div class="title2">
+    Complete <dtml-var "PARENTS[0].title"> (<dtml-var "_.DateTime()" fmt="%d %b %Y">)
+</div>
+<dtml-in "GlossaryCatalog(meta_type=['EEA Glossary Element','EEA Glossary Synonym'])" sort=name,id>
+    <dtml-with "getObject()">
+        <dtml-if isPublished>
+            <p>
+                <img src="<dtml-var icon>" border=0>
+                <b><dtml-var name></b>
+            </p>
+            <dtml-var main_content_short>
+        </dtml-if>
+    </dtml-with>
+</dtml-in>
+
+<dtml-var standard_html_footer>

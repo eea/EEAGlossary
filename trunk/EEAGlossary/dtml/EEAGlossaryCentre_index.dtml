@@ -1,0 +1,89 @@
+<dtml-var standard_html_header>
+
+<p class=title2>
+    <IMG SRC="<dtml-var icon>" BORDER=0>&nbsp;<dtml-var title_or_id>
+</p>
+
+<div align=center>
+    <dtml-var GlossaryCentre_folder_list>
+    <br><hr>
+</div>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="B5DED6">
+    <tr>
+        <td>
+            <img src="misc_/EEAGlossary/line.gif" width="100%" height="1">
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="B5DED6">
+                <tr>
+                    <td>
+                        <p class=head0>
+                            &nbsp;<img src="misc_/EEAGlossary/img_search_med.gif" border=0 alt="Search for a term">&nbsp;<span class="head1">Search for terms</span>
+                        </p>
+                        <p class=mainfont>
+                            <dtml-comment>
+                            *** alec - facut de mine ***
+                            <dtml-var searchBox>
+                            </dtml-comment>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <img src="misc_/EEAGlossary/line.gif" width="100%" height="1">
+        </td>
+    </tr>
+</table>
+
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="1">
+        </td>
+
+        <td width="256" align="left" valign="top">
+            <dtml-comment>
+            *** alec - facut de mine ***
+            <dtml-var term_tip_box>
+            </dtml-comment>
+        </td>
+
+        <td width="21">
+            &nbsp;
+        </td>
+
+        <td width="272" align="left" valign="top">
+            <dtml-comment>
+            *** alec - facut de mine ***
+            <dtml-var term_tip_box>
+            </dtml-comment>
+        </td>
+    </tr>
+</table>
+
+<dtml-comment>
+*** alec [era in plus] ***
+
+<br>
+<dtml-in "objectValues('GlossaryElement')" sort=name>
+    <dtml-unless disabled>
+        <a href="<dtml-var absolute_url>"><IMG SRC="<dtml-var icon>" BORDER=0>&nbsp;<dtml-var name></a>
+        <br>
+    </dtml-unless>
+</dtml-in>
+<br>
+
+</dtml-comment>
+
+<dtml-var standard_html_footer>
