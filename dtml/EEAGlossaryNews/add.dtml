@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>Add EEAGlossaryNews</title>
+    <link rel="stylesheet" type="text/css" href="/manage_page_style.css">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" border="1">
+    <tr>
+        <td class="form-title">&nbsp; Add EEAGlossaryNews &nbsp;</b></td>
+    </tr>
+    <tr>
+        <td>
+            <form action="manage_addGlossaryNews">
+            <table>
+                <tr>
+                    <th>Id:</th>
+                    <td><input type="text" name="id:string"></td>
+                </tr>
+                <tr>
+                    <th>Title:</th>
+                    <td><input type="text" name="title:string"></td>
+                </tr>
+                <tr>
+                    <th>News Date:</th>
+                    <td><input type="text" name="news_date:string"></td>
+                </tr>
+                <tr>
+                    <th>Description:</th>
+                    <td><textarea name="description:string" rows="6" cols="35"></textarea></td>
+                </tr>
+                <tr>
+                    <th>Glossary:</th>
+                    <td><input type="text" name="glossary:string"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Add News"></td>
+                </tr>
+            </table>
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

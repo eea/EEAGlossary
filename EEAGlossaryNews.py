@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryNews.py,v 1.3 2004/05/17 08:54:19 finrocvs Exp $
+#$Id: EEAGlossaryNews.py,v 1.4 2004/05/17 11:08:40 finrocvs Exp $
 
 # Zope imports
 from Globals import DTMLFile, MessageDialog, InitializeClass
@@ -28,14 +28,14 @@ from AccessControl import ClassSecurityInfo
 from OFS.SimpleItem import SimpleItem
 
 # product imports
+from EEAGlossary_constants import *
 
-manage_addEEAGlossaryNewsForm = DTMLFile('dtml/EEAGlossaryNews_add', globals())
-def manage_addEEAGlossaryNews(self, id, title, description,  glossary='', news_date='', REQUEST=None):
-    """ Adds a new EEAGlossaryNews object """
+manage_addGlossaryNews_html = DTMLFile('dtml/EEAGlossaryNews/add', globals())
 
-    ob = EEAGlossaryNews(id, title, news_date,  description, glossary)
+def manage_addGlossaryNews(self, id, title='', news_date='', description='', glossary='', REQUEST=None):
+    """ adds a new EEAGlossaryNews object """
+    ob = EEAGlossaryNews(id, title, news_date, description, glossary)
     self._setObject(id, ob)
-
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
@@ -43,18 +43,35 @@ def manage_addEEAGlossaryNews(self, id, title, description,  glossary='', news_d
 class EEAGlossaryNews(SimpleItem):
     """ EEAGlossaryNews """
 
-    meta_type='EEA Glossary News'
+    meta_type=EEA_GLOSSARY_NEWS_METATYPE
+    product_name = EEA_GLOSSARY_PRODUCT_NAME
+    icon = 'misc_/EEAGlossary/news.gif'
+
+    manage_options = (
+        {'label':'Properties',                      'action':'manage_properties_html'},
+        {'label':'Undo',                       'action':'manage_UndoForm'},
+        {'label':'Ownership',         'action':'manage_owner'},)
+
     security = ClassSecurityInfo()
 
     def __init__(self, id, title, news_date, description, glossary):
-        """ constructor  for EEAGlossaryNews"""
+        """ constructor """
         self.id = id
         self.title = title
         self.news_date = news_date
         self.description = description
         self.glossary = glossary
 
-    content = DTMLFile('dtml/EEAGlossaryNews_content', globals())
+    def manage_news_properties(self, title='', news_date='', description='', glossary='', REQUEST=None):
+        """ folder properties """
+        self.title=title
+        self.news_date=news_date
+        self.description=description
+        self.glossary=glossary
+        if REQUEST is not None:
+            REQUEST.RESPONSE.redirect('manage_properties_html?save=ok')
+
+    manage_properties_html = DTMLFile("dtml/EEAGlossaryNews/properties", globals())
 
 InitializeClass(EEAGlossaryNews)
 

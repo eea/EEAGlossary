@@ -19,7 +19,7 @@
 # Alex Ghica, Finsiel Romania
 # Cornel Nitu, Finsiel Romania
 #
-#$Id: __init__.py,v 1.10 2004/05/06 14:26:15 finrocvs Exp $
+#$Id: __init__.py,v 1.11 2004/05/17 11:08:40 finrocvs Exp $
 
 from ImageFile import ImageFile
 
@@ -60,9 +60,9 @@ def initialize(context):
     # Glossary News
     context.registerClass(
         EEAGlossaryNews.EEAGlossaryNews,
-        constructors=(EEAGlossaryNews.manage_addEEAGlossaryNewsForm,
-                       EEAGlossaryNews.manage_addEEAGlossaryNews),
-        icon='www/glossarynews.gif',
+        constructors=(EEAGlossaryNews.manage_addGlossaryNews_html,
+                       EEAGlossaryNews.manage_addGlossaryNews),
+        icon='www/news.gif',
         )
 
     context.registerHelp()
@@ -76,5 +76,6 @@ misc_ = {
     'line.gif':ImageFile('www/line.gif', globals()),
     'img_search_med.gif':ImageFile('www/img_search_med.gif', globals()),
     'img_search_small.gif':ImageFile('www/img_search_small.gif', globals()),
+    'news.gif':ImageFile('www/news.gif', globals()),
     'new.gif':ImageFile('www/new.gif', globals())
 }

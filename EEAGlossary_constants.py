@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_constants.py,v 1.8 2004/05/17 08:54:19 finrocvs Exp $
+#$Id: EEAGlossary_constants.py,v 1.9 2004/05/17 11:08:40 finrocvs Exp $
 
     ##################
     #   META TYPES   #
@@ -30,6 +30,7 @@ EEA_GLOSSARY_ELEMENT_METATYPE = "EEA Glossary Element"
 EEA_GLOSSARY_CENTRE_METATYPE = "EEA Glossary Centre"
 EEA_GLOSSARY_SYNONYM_METATYPE = "EEA Glossary Synonym"
 EEA_GLOSSARY_ENGINE_METATYPE = "EEA Glossary Engine"
+EEA_GLOSSARY_NEWS_METATYPE = "EEA Glossary News"
 
 EEA_GLOSSARY_CATALOG_NAME = "GlossaryCatalog"
 EEA_GLOSSARY_PRODUCT_NAME = "EEAGlossary"
