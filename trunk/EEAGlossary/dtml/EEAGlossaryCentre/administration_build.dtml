@@ -2,7 +2,7 @@
 <dtml-var manage_tabs>
 <dtml-if isManager>
 
-    <form action="<dtml-var URL0>" method="post" name="frmChooseTiny">
+    <form action="buildGlossary" method="post" name="frmGenerateGlossary">
     <dtml-let tiny_list="objectValues('TinyTablePlus')">
     <table border=1 cellpadding=0 cellspacing=0 width="100%">
         <tr>
@@ -27,37 +27,6 @@
     </dtml-let>
     </form>
 
-map the tiny table fields
-    <dtml-if "REQUEST.has_key('glossary_table')">
-    <form action="buildGlossary" method="post" name="frmBuildGlossary">
-    <table border=1 cellpadding=0 cellspacing=0 width="50%">
-        <tr>
-            <td colspan="2">Map the TinyTableFields with the GlossaryElement fields</td>
-        </tr>
-        <dtml-let columns="utGetObject(REQUEST.get('glossary_table', '')).cols_text()"
-                fields="_.string.split(columns, ' ')" props="getElementsProperties()">
-        <dtml-in fields>
-        <dtml-let field="_['sequence-item']">
-        <tr>
-            <td width="50%" align="left"><dtml-var field></td>
-            <td><select name="elements">
-                <dtml-in "props">
-                    <option value="<dtml-var sequence-item>~~<dtml-var field>"><dtml-var sequence-item></option>
-                </dtml-in>
-                </select>
-            </td>
-        </tr>
-        </dtml-let>
-        </dtml-in>
-        </dtml-let>
-        <tr>
-            <td colspan="2" align="left">
-                <input type="hidden" name="glossary" value="<dtml-var "REQUEST.get('glossary_table','')">">
-                <input type="submit" value="Generate"></td>
-        </tr>
-    </table>
-    </form>
-    </dtml-if>
 <dtml-else>
     <p>You have no permission to build the glossary</p>
 </dtml-if>

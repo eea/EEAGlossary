@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.37 2004/05/17 08:54:19 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.38 2004/05/17 13:20:43 finrocvs Exp $
 
 #Python imports
 import string
@@ -198,7 +198,6 @@ class catalog_utils:
 
     def cu_catalog_object(self, catalog, ob):
         """ catalog an object """
-        catalog.catalog_object(ob, self.__build_catalog_path(ob))
         try:
             catalog.catalog_object(ob, self.__build_catalog_path(ob))
         except:
