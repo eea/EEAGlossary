@@ -184,9 +184,11 @@ def exportGlossaryElement(p_item):
 ###            l_temp += ' Slovak_trunkated="%s"' % utHtmlEncode(unicode(p_item.Slovak, 'iso-8859-2').encode('utf-8'), 0)
 ###            l_temp += ' Slovak_bad="%s"' % utHtmlEncode(p_item.Slovak, 0)
 #
-##    l_temp += ' Slovenian="%s"' % p_item.Slovenian
-##    l_temp += ' Slovenian="%s"' % to_utf8(p_item.Slovenian, 'iso-8859-2')
-##    l_temp += ' Slovenian="%s"' % (unicode(p_item.Slovenian, 'iso-8859-2')).encode('utf-8')
+###    try:
+###        l_temp += ' Slovenian="%s"' % utXmlEncode(p_item.Slovenian, 'utf-8', 0)
+###    except:
+###        l_temp += ' Slovenian_trunkated="%s"' % utXmlEncode(p_item.Slovenian, 'iso-8859-2', 0)
+###        l_temp += ' Slovenian_bad="%s"' % utHtmlEncode(p_item.Slovenian, 0)
 #
 ###    l_temp += ' Spanish="%s"' % utXmlEncode(p_item.Spanish, 'iso-8859-1', 0)
 #
