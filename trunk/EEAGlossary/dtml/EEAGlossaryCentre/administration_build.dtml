@@ -20,13 +20,14 @@
         </tr>
         <dtml-if "_.len(tiny_list)>0">
         <tr>
-            <td><input type="submit" name="submit" value="Select"></td>
+            <td><input type="submit" name="submit" value="Generate"></td>
         </tr>
         </dtml-if>
     </table>
     </dtml-let>
     </form>
 
+map the tiny table fields
     <dtml-if "REQUEST.has_key('glossary_table')">
     <form action="buildGlossary" method="post" name="frmBuildGlossary">
     <table border=1 cellpadding=0 cellspacing=0 width="50%">
@@ -40,9 +41,8 @@
         <tr>
             <td width="50%" align="left"><dtml-var field></td>
             <td><select name="elements">
-                <option value="None">None</options>
-                <dtml-in "props.items()">
-                    <option value="<dtml-var field>~<dtml-var sequence-key>"><dtml-var sequence-item></option>
+                <dtml-in "props">
+                    <option value="<dtml-var sequence-item>~~<dtml-var field>"><dtml-var sequence-item></option>
                 </dtml-in>
                 </select>
             </td>
@@ -59,6 +59,6 @@
     </form>
     </dtml-if>
 <dtml-else>
-    <p class=head0>You have no permission to build the glossary</p>
+    <p>You have no permission to build the glossary</p>
 </dtml-if>
 <dtml-var manage_page_footer>

@@ -1,6 +1,6 @@
 <dtml-var standard_html_header>
 
-<p class=title2>
+<p>
     <IMG SRC="<dtml-var icon>" BORDER=0>&nbsp;<dtml-var title_or_id>
 </p>
 
@@ -25,10 +25,10 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="B5DED6">
                 <tr>
                     <td>
-                        <p class=head0>
-                            &nbsp;<img src="misc_/EEAGlossary/img_search_med.gif" border=0 alt="Search for a term">&nbsp;<span class="head1">Search for terms</span>
+                        <p>
+                            &nbsp;<img src="misc_/EEAGlossary/img_search_med.gif" border=0 alt="Search for a term">&nbsp;<span>Search for terms</span>
                         </p>
-                        <p class=mainfont>
+                        <p>
                         <form action="search_html" method="post" name="frmSearch">
                         <table border=0 cellpadding=0 cellspacing=0 width="100%">
                             <tr>
@@ -62,7 +62,7 @@
                                         <option>50</option>
                                         <option>100</option>
                                     </select>&nbsp;
-                                    <input class="form-element" type="submit" name="SUBMIT" value="Find in Glossary">
+                                    <input type="submit" name="SUBMIT" value="Find in Glossary">
                                 </td>
                             </tr>
                         </table>

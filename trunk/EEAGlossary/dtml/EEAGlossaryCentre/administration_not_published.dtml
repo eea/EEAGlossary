@@ -2,10 +2,7 @@
 <dtml-var manage_tabs>
 
 <h2>Not approved or disabled</h2>
-
 <p>
-<dtml-call "REQUEST.set('mylist',[])">
-
 <dtml-if isManager>
 <table width="100%">
 <dtml-in get_not_published>

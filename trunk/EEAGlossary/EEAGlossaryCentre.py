@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.49 2004/05/14 11:52:43 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.50 2004/05/14 12:57:16 finrocvs Exp $
 
 # python imports
 import string
@@ -39,12 +39,10 @@ import EEAGlossaryFolder
 from EEAGlossary_utils import utils
 from toutf8 import toUTF8
 from EEAGlossary_utils import catalog_utils
-
-
 from EEAGlossary_constants import *
 
-manage_addGlossaryCentre_html = DTMLFile('dtml/EEAGlossaryCentre/add', globals())
 
+manage_addGlossaryCentre_html = DTMLFile('dtml/EEAGlossaryCentre/add', globals())
 def manage_addGlossaryCentre(self, id, title='', description='', REQUEST=None):
     """ Adds a new EEAGlossaryCentre object """
     ob = EEAGlossaryCentre(id, title, description)
@@ -55,6 +53,7 @@ def manage_addGlossaryCentre(self, id, title='', description='', REQUEST=None):
     obj._p_changed = 1
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
+
 
 class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     """ EEAGlossaryCentre """
@@ -154,15 +153,9 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         self.types_list = copy(engine.get_types_list())
         self.search_langs = copy(engine.get_searchable_langs())
 
-    #####################
-    # BASIC FUNCTIONS   #
-    #####################
-    def getGlossaryEngine(self):
-        return self.unrestrictedTraverse(EEA_GLOSSARY_ENGINE_NAME, None)
-
-    def getGlossaryCatalog(self):
-        return self._getOb(EEA_GLOSSARY_CATALOG_NAME)
-
+    ######################
+    # TEST PERMISSIONS   #
+    ######################
     def getAuthenticatedUser(self):
         """ return the authenticated user """
         return self.REQUEST.AUTHENTICATED_USER.getUserName()
@@ -183,9 +176,16 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         """test if the user has manager role """
         return 'Manager' in self.getAuthenticatedUserRoles()
 
-    def style_css(self):
-        """ return the css file from EEAGlossaryEngine """
-        return self.getGlossaryEngine().style_css.read()
+    #####################
+    # BASIC FUNCTIONS   #
+    #####################
+    def getGlossaryEngine(self):
+        """ return the glossary engine object """
+        return self.unrestrictedTraverse(EEA_GLOSSARY_ENGINE_NAME, None)
+
+    def getGlossaryCatalog(self):
+        """ return the glossary catalog object """
+        return self._getOb(EEA_GLOSSARY_CATALOG_NAME)
 
     def manageBasicProperties(self, title='', description='', published=0, REQUEST=None):
         """ manage basic properties for EEAGlossaryCentre """
@@ -197,11 +197,11 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=0&save=ok')
 
     def get_contact_persons(self):
-        """ """
+        """ return the technic persons list"""
         return self.getGlossaryEngine().technic_contact
 
     def get_translation_persons(self):
-        """ """
+        """ return the translation persons list"""
         return self.getGlossaryEngine().trans_contact
 
     ##########################
@@ -291,7 +291,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         return self.getGlossaryEngine().get_unicode_langs()
 
     def display_unicode_langs(self, language, charset=""):
-        """ """
+        """ display unicode languages """
         if charset=="":
             return self.toutf8(language, self.get_language_charset(language))
         else:
@@ -325,12 +325,15 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     #   SEARCH FUNCTIONS     #
     ##########################
     def get_search_langs(self):
+        """ return the searchable languages list"""
         return self.search_langs
 
     def set_search_langs(self, value):
+        """ set the searchable languages list"""
         self.search_langs.append(value)
 
     def del_search_langs(self, value):
+        """ delete from searchable languages list"""
         self.search_langs.remove(value)
 
     def manageSearchProperties(self, ids='', language='', old_language='', REQUEST=None):
@@ -361,12 +364,15 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     #   TYPES FUNCTIONS      #
     ##########################
     def get_types_list(self):
+        """ return the types list """
         return self.types_list
 
     def set_types_list(self, value):
+        """ set the types list """
         self.types_list.append(value)
 
     def del_types_list(self, value):
+        """ delete from types list """
         self.types_list.remove(value)
 
     def manageTypesProperties(self, old_type='', new_type='', ids='', REQUEST=None):
@@ -397,12 +403,15 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     # HIDDEN FIELDS FUNCTIONS      #
     ################################
     def get_hidden_list(self):
+        """ return the hidden properties list """
         return self.hidden_fields
 
     def set_hidden_list(self, value):
+        """ set the hidden properties list """
         self.hidden_fields.append(value)
 
     def del_hidden_list(self, value):
+        """ remove from hidden fields list """
         self.hidden_fields.remove(value)
 
     def manageHiddenProperties(self, old_field='', field='', ids='', REQUEST=None):
@@ -433,16 +442,19 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     #  ALPHA FIELDS FUNCTIONS      #
     ################################
     def get_alpha_list(self):
+        """ return the alpha list """
         return self.alpha_list
 
     def set_alpha_list(self, value):
+        """ set the alpha list """
         self.alpha_list.append(value)
 
     def del_alpha_list(self, value):
+        """ remove from alpha list """
         self.alpha_list.remove(value)
 
     def manageAlphaProperties(self, old_alpha='', alpha='', ids='', REQUEST=None):
-        """ manage the hidden properties for EEAGlossaryCentre """
+        """ manage the alpha list for EEAGlossaryCentre """
         if self.utAddObjectAction(REQUEST):
             if string.strip(alpha) == '':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1')
@@ -469,99 +481,97 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     # GLOSSARY ADMINISTRATION FUNCTIONS  #
     ######################################
     def get_not_approved(self):
-        """."""
+        """.return the elements&synonyms not approved """
         lst_not_approved = []
+        append = lst_not_approved.append
         for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
             if (not obj.approved):
-                lst_not_approved.append(obj)
+                append(obj)
         return lst_not_approved
 
     def get_approved(self):
-        """."""
+        """.return the elements&synonyms approved """
         lst_approved = []
+        append = lst_approved.append
         for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
             if obj.approved:
-                lst_approved.append(obj)
+                append(obj)
         return lst_approved
 
     def get_disabled(self):
-        """."""
+        """.return the elements&synonyms not disabled """
         lst_disabled = []
+        append = lst_approved.append
         for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
             if obj.disabled:
-                lst_disabled.append(obj)
+                append(obj)
         return lst_disabled
 
     def get_not_published(self):
-        """."""
+        """.return the elements&synonyms not published """
         lst_not_published = []
+        append = lst_not_published.append
         for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
             if (not obj.approved or obj.disabled):
-                lst_not_published.append(obj)
+                append(obj)
         return lst_not_published
 
     def get_published(self):
-        """."""
+        """.return the elements&synonyms published """
         lst_published = []
+        append = lst_published.append
         for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
             if (obj.approved or not obj.disabled):
-                lst_published.append(obj)
+                append(obj)
         return lst_published
 
     def get_terms_stats(self):
-        """."""
-        lst_resuts = []
+        """.return the stats for all elements&synonyms"""
         el_syn_tot = 0
         el_tot = 0
         el_pub_tot = 0
         el_syn_pub_tot = 0
         for obj in self.get_all_from_catalog():
-            el_syn_tot = el_syn_tot + 1
-            if obj.meta_type==EEA_GLOSSARY_ELEMENT_METATYPE:
-                el_tot = el_tot + 1
+            el_syn_tot += 1
+            if obj.meta_type == EEA_GLOSSARY_ELEMENT_METATYPE:
+                el_tot += 1
             if obj.is_published():
-                el_syn_pub_tot = el_syn_pub_tot + 1
-                if obj.meta_type==EEA_GLOSSARY_ELEMENT_METATYPE:
-                    el_pub_tot = el_pub_tot + 1
+                el_syn_pub_tot += 1
+                if obj.meta_type == EEA_GLOSSARY_ELEMENT_METATYPE:
+                    el_pub_tot += 1
         return [el_syn_tot, el_tot, el_syn_pub_tot, el_pub_tot]
 
     ######################################
     # GLOSSARY FUNCTIONALITIES FUNCTIONS #
     ######################################
     def searchGlossary(self, query='', size=10000, language='English', definition='*', REQUEST=None):
-        """ """
+        """ search glossary """
         catalog = self.getGlossaryCatalog()
         results = self.cu_search_catalog(catalog, [EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], query, size, language, definition)
         return (language, query, results)
 
     def random_from_catalog(self, p_meta_type=''):
-        """a random element"""
+        """a random element from catalog """
         elements=[]
+        append = elements.append
         catalog = self.getGlossaryCatalog()
+
         if p_meta_type=='centre':
-            for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE):
+            for obj in self.cu_get_cataloged_objects(catalog, meta_type=EEA_GLOSSARY_ELEMENT_METATYPE):
                 if obj.is_published:
-                    elements.append(obj)
+                    append(obj)
             if len(elements) > 0:
                 return whrandom.choice(elements)
             else:
                 return None
         else:
-            for obj in self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, path=self.absolute_url):
+            for obj in self.cu_get_cataloged_objects(catalog, meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, path=self.absolute_url):
                 if obj.is_published:
-                    elements.append(obj)
+                    append(obj)
             if len(elements) > 0:
                 return whrandom.choice(elements)
             else:
                  return None
-
-    def elements_from_catalog(self):
-        """."""
-        return self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, sort_on='')
-
-    def get_all_from_catalog(self):
-        """."""
-        return self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE])
 
     def change_pass_action(self,REQUEST=None):
         """Change Password for current Zope user"""
@@ -575,12 +585,10 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
             REQUEST.RESPONSE.redirect('change_pass_html?save=ok')
 
     def folder_list_sorted(self):
-        """ Return all 'EEA Glossary Folder' from a Centre """
-        fld_lst = self.objectItems(EEA_GLOSSARY_FOLDER_METATYPE)
-        fld_lst.sort()
-        return fld_lst
+        """ Return all the folders, sorted"""
+        return self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_FOLDER_METATYPE], sort_on='id', sort_order='')
 
-    def all_objects (self):
+    def get_all_objects (self):
         """ return sorted objects by name """
         return self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order='')
 
@@ -596,41 +604,57 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
             self.cu_reindexCatalogIndex(catalog, index.id, REQUEST)
         return 1
 
-    def getElementsProperties(self):
-        """ for user friendly iterface purpose only"""
-        dic = {'name':'name', 'el_type':'type', 'source':'source', 'el_context':'context', 'comment':'comment',
-            'used_for_1':'used_for_1', 'used_for_2':'used_for_2','definition_source_url':'definition_source_url',
-            'definition':'definition', 'long_definition':'long_definition', 'disabled':'disabled'}
-        return dic
-
-    def buildGlossary(self, glossary, elements=[], REQUEST=None):
+    #### TO BE FINISHED
+    def buildGlossary(self, glossary_table, REQUEST=None):
         """ build glossary -- initial phase """
-        elements = self.utConvertToList(elements)
-        
-#        tiny = self.unrestrictedTraverse(glossary_table, None)
-#        transtab = string.maketrans('/ ','__')
-#        #Replace danish characters to the old ones.
-#        for item in tiny.getRows():
-#            entry = string.replace(item.entry,'æ','ae')
-#            entry = string.replace(entry,'å','aa')
-#            entry = string.replace(entry,'ø','oe')
-#            id = string.translate(entry,transtab,'?&!;()<=>*#[]{}')
-#            #Set default values to empty string.
-#            folder_id = string.upper(id[:1])
-#            folder = self.unrestrictedTraverse(folder_id, None)
-#            if folder is None:
-#                try:
-#                    self.manage_addGlossaryFolder(folder_id)
-#                    folder = self._getOb(folder_id)
-#                except Exception, error:
-#                    print error
-#            try:
-#                folder.manage_addGlossaryElement(item.entry, '', '', [], '', '', item.USEFOR1, 
-#                    item.USEFOR2, item.definition, 'dataservice, http://dataservice.eea.eu.int', '', 0, 0, 0, '', '', [], [], {})
-#            except Exception, error:
-#                print error
+        tiny = self.unrestrictedTraverse(glossary_table, None)
+        transtab = string.maketrans('/ ','__')
+        for item in tiny.getRows():
+            if item.entry!= '':
+                #Replace danish characters to the old ones.
+                entry = string.replace(item.entry,'æ','ae')
+                entry = string.replace(entry,'å','aa')
+                entry = string.replace(entry,'ø','oe')
+                id = string.translate(item.entry,transtab,'?&!;()<=>*#[]{}')
+                #Set default values to empty string.
+                folder_id = string.upper(id[:1])
+                folder = self.unrestrictedTraverse(folder_id, None)
+                if folder is None:
+                    try:
+                        self.manage_addGlossaryFolder(folder_id)
+                        folder = self._getOb(folder_id)
+                    except Exception, error:
+                        print error
+                try:
+                    folder.manage_addGlossaryElement(item.entry, '', '', [], '', '', item.USEFOR1, 
+                        item.USEFOR2, item.definition, 'dataservice, http://dataservice.eea.eu.int', '', 0, 0, 0, '', '', [], [], {})
+                except Exception, error:
+                    print error
         if REQUEST is not None:
             REQUEST.RESPONSE.redirect('build_glossary_html')
+
+    #### TO BE FINISHED
+    def updateGlossary(self, glossary_table, REQUEST=None):
+        """ update the glossary translations """
+        tiny = self.unrestrictedTraverse(glossary_table, None)
+        transtab = string.maketrans('/ ','__')
+        for item in tiny.getRows():
+            if item.entry!= '':
+                #Replace danish characters to the old ones.
+                entry = string.replace(item.entry,'æ','ae')
+                entry = string.replace(entry,'å','aa')
+                entry = string.replace(entry,'ø','oe')
+                #Make an object ID removing spaces and other not allowed or user-friendly characters
+                id = string.translate(item.entry,transtab,'?&!;()<=>*#[]{}')
+                folder_id = string.upper(id[:1])
+                folder = self.unrestrictedTraverse(folder_id, None)
+
+        if REQUEST is not None:
+            REQUEST.RESPONSE.redirect('update_trans_html')
+
+    def style_css(self):
+        """ return the css file from EEAGlossaryEngine """
+        return self.getGlossaryEngine().style_css.read()
 
     #####################
     #   MANAGEMENT TABS #
@@ -662,10 +686,12 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     change_pass_html = DTMLFile('dtml/EEAGlossaryCentre/changepassword', globals())
     glossary_terms_rdf = DTMLFile('dtml/EEAGlossaryCentre/glossary_rdf', globals())
     all_terms_html = DTMLFile('dtml/EEAGlossaryCentre/all_terms_view', globals())
-    management_page_html = DTMLFile('dtml/EEAGlossaryCentre/administration', globals())
 
+    management_page_html = DTMLFile('dtml/EEAGlossaryCentre/administration', globals())
     reindex_html = DTMLFile('dtml/EEAGlossaryCentre/administration_reindex', globals())
     build_glossary_html = DTMLFile('dtml/EEAGlossaryCentre/administration_build', globals())
+    update_trans_html = DTMLFile('dtml/EEAGlossaryCentre/administration_trans', globals())
+
     centre_help_html = DTMLFile("dtml/EEAGlossaryCentre/centre_help", globals())
     help_html = DTMLFile("dtml/EEAGlossaryCentre/help", globals())
     help_contact_html = DTMLFile("dtml/EEAGlossaryCentre/help_contact", globals())

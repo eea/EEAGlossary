@@ -5,9 +5,9 @@
 
 <dtml-if "REQUEST.has_key('languagescheck')">
 
-    <span class=title1><dtml-var title></span>
-    <p class=mainfont>
-    <span class=title2>General Information</span><br>
+    <span><dtml-var title></span>
+    <p>
+    <span>General Information</span><br>
     <b>Glossary Link:</b><br>http://glossary.eea.eu.int/<br>
     <b>Description:</b><br><dtml-var description><br>
     <b>Publisher:</b><br>EEA (European Environment Agency)<br>
@@ -35,11 +35,11 @@
                 </dtml-in>
                 <option>Definition</option>
             </select>
-            <input class="form-element" type="submit" name="SUBMIT" value="Go to Check List">
+            <input type="submit" name="SUBMIT" value="Go to Check List">
         </form>
         </p>
     <dtml-else>
-        <p><font color=red>You're not allowed to check any terms.</font></p>
+        <p>You're not allowed to check any terms.</p>
         <p>Please login as a 'Quality Controller'.</p>
     </dtml-if>
 

@@ -2,7 +2,7 @@
 <table>
     <tr>
         <td>
-            <dtml-in all_objects>
+            <dtml-in get_all_objects>
                 <br>
                 <dtml-if utIsSynonym>
                     <dtml-var view_box_html>
