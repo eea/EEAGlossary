@@ -7,6 +7,7 @@
 ##parameters=glossary_center_id
 ##title=ZGlossary export
 
+# -*- coding: latin1 -*-
 # imports
 import base64
 
@@ -118,7 +119,7 @@ def exportGlossaryElement(p_item):
     #elements translations
 ###    l_temp += ' Bulgarian="%s"' % utHtmlEncode(p_item.Bulgarian, 0) # - D
 #
-#    l_temp += ' Croatian="%s"' % utHtmlEncode(p_item.Croatian) # - E D
+###    l_temp += ' Croatian="%s"' % utHtmlEncode(p_item.Croatian) # - E D
 #
 ###    l_temp += ' Czech="%s"' % utXmlEncode(p_item.Czech, 'utf-8', 0) # - D
 #
@@ -162,9 +163,23 @@ def exportGlossaryElement(p_item):
 ##    l_temp += ' Icelandic="%s"' % (unicode(p_item.Icelandic, 'iso-8859-1')).encode('utf-8')
 ##    l_temp += ' Icelandic="%s"' % p_item.Icelandic
 #
+
+
 ##    l_temp += ' Italian="%s"' % to_utf8(p_item.Italian, 'iso-8859-1') # - X
 ##    l_temp += ' Italian="%s"' % (unicode(p_item.Italian, 'iso-8859-1')).encode('utf-8')
-##    l_temp += ' Italian="%s"' % p_item.Italian
+
+
+    l_temp += ' Italian="%s"' % utXmlEncode(p_item.Italian, 'iso-8859-1', 0)
+#    if p_item.id == 'old-growth_forest':
+#        test1 = p_item.Italian.replace('&ugrave;', 'ù')
+#        l_temp += ' Italian="%s"' % utXmlEncode(test1, 'iso-8859-1', 0)
+#    elif p_item.id == 'teratogenicity':
+#        test1 = p_item.Italian.replace('&agrave;', 'à')
+#        l_temp += ' Italian="%s"' % utXmlEncode(test1, 'iso-8859-1', 0)
+#    else:
+#        l_temp += ' Italian="%s"' % utXmlEncode(p_item.Italian, 'iso-8859-1', 0)
+
+
 #
 ##    l_temp += ' Latvian="%s"' % to_utf8(p_item.Latvian, 'iso-8859-4') # - X
 ##    l_temp += ' Latvian="%s"' % (unicode(p_item.Latvian, 'iso-8859-4')).encode('utf-8')
@@ -197,14 +212,14 @@ def exportGlossaryElement(p_item):
 #
 ###    l_temp += ' Serbian="%s"' % utHtmlEncode(p_item.Serbian) # - E D
 #
-    try:
-        l_temp += ' Slovak="%s"' % utXmlEncode(p_item.Slovak, 'utf-8', 0)
-    except:
-        try:
-            l_temp += ' Slovak="%s"' % utHtmlEncode(unicode(p_item.Slovak, 'utf-8').encode('utf-8'), 0)
-        except:
-            l_temp += ' Slovak_trunkated="%s"' % utHtmlEncode(unicode(p_item.Slovak, 'iso-8859-2').encode('utf-8'), 0)
-            l_temp += ' Slovak_bad="%s"' % utHtmlEncode(p_item.Slovak, 0)
+###    try:
+###        l_temp += ' Slovak="%s"' % utXmlEncode(p_item.Slovak, 'utf-8', 0)
+###    except:
+###        try:
+###            l_temp += ' Slovak="%s"' % utHtmlEncode(unicode(p_item.Slovak, 'utf-8').encode('utf-8'), 0)
+###        except:
+###            l_temp += ' Slovak_trunkated="%s"' % utHtmlEncode(unicode(p_item.Slovak, 'iso-8859-2').encode('utf-8'), 0)
+###            l_temp += ' Slovak_bad="%s"' % utHtmlEncode(p_item.Slovak, 0)
 #
 ##    l_temp += ' Slovenian="%s"' % p_item.Slovenian # - X
 ##    l_temp += ' Slovenian="%s"' % to_utf8(p_item.Slovenian, 'iso-8859-2')
@@ -248,6 +263,7 @@ def utXmlEncode(p_string, p_charset = 'latin-1', p_special = 1):
     l_tmp = str(p_string)
 
     l_tmp = utHtmlEncode(l_tmp, p_special)
+    l_tmp = utEncodeHtml(l_tmp)
     l_tmp = utSpecialCharsEncode(l_tmp)
     if p_charset != 'none':
         l_tmp = (unicode(l_tmp, p_charset)).encode('utf-8')
@@ -264,6 +280,15 @@ def utHtmlEncode(p_string, p_special = 1):
     l_tmp = l_tmp.replace('"', '&quot;')
     l_tmp = l_tmp.replace('\'', '&apos;')
     l_tmp = l_tmp.replace('>', '&gt;')
+
+    return l_tmp
+
+def utEncodeHtml(p_string):
+    """ """
+    l_tmp = str(p_string)
+
+    l_tmp = l_tmp.replace('&agrave;', 'à')
+    l_tmp = l_tmp.replace('&ugrave;', 'ù')
 
     return l_tmp
 

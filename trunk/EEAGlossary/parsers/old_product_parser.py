@@ -108,7 +108,7 @@ class old_product__handler(ContentHandler, utils):
 ##            l_translations['Greek'] = (attrs['Greek']).encode('utf-8')
 ##            l_translations['Hungarian'] = (attrs['Hungarian']).encode('utf-8')
 #            l_translations['Icelandic'] = attrs['Icelandic']
-#            l_translations['Italian'] = attrs['Italian']
+            l_translations['Italian'] = (attrs['Italian']).encode('utf-8')
 #            l_translations['Latvian'] = attrs['Latvian']
 #            l_translations['Lithuanian'] = attrs['Lithuanian']
 ##            l_translations['Macedonian'] = (attrs['Macedonian']).encode('utf-8')
@@ -119,7 +119,7 @@ class old_product__handler(ContentHandler, utils):
 ##            l_translations['Romanian'] = (attrs['Romanian']).encode('utf-8')
 ##            l_translations['Russian'] = (attrs['Russian']).encode('utf-8')
 ##            l_translations['Serbian'] = (attrs['Serbian']).encode('utf-8')
-            l_translations['Slovak'] = (attrs['Slovak']).encode('utf-8')
+##            l_translations['Slovak'] = (attrs['Slovak']).encode('utf-8')
 #            l_translations['Slovenian'] = attrs['Slovenian']
 #            l_translations['Spanish'] = attrs['Spanish']
 #            l_translations['Swedish'] = attrs['Swedish']
