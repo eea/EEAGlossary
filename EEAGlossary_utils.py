@@ -15,7 +15,7 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossary_utils.py,v 1.4 2004/05/03 12:19:22 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.5 2004/05/03 12:56:58 finrocvs Exp $
 
 #Python imports
 from xml.sax.handler import ContentHandler
@@ -34,7 +34,6 @@ class Utils:
         pass
 
     types_list = ['term', 'abbreviation', 'phrase', 'symbol']
-    subjects_list = ['ADMLEG, ADMINISTRATION AND LEGISLATION','AGRARE, AGRICULTURE AND RURAL AREAS','AIRCHA, AIR AND CLIMATE CHANGE','CHEHEA, CHEMICALS AND HEALTH','DATINF, DATA MANAGEMENT AND INFORMATION','ECOREP, ECONOMICS AND CORPORATE REPORTING','EIO, EIONET','ENE, ENERGY','ENVIND, ENVIRONMENTAL INDICATORS','GEN, GENERAL','IMPASS, IMPACT ASSESSMENT','ENVINS, ENVIRONMENTAL INSTRUMENTS','INTASS, INTEGRATED TOOLS AND METHODOLOGIES FOR ASSESSMENT','LANUSE, LAND COVER AND LAND USE','MARENV, MARINE AND COASTAL ENVIRONMENT','NATHAZ, NATURAL AND TECHNOLOGICAL HAZARDS','NATBIO, NATURE AND BIODIVERSITY','NOI, NOISE','SCEANA, SCENARIOS AND PROSPECTIVE ANALYSIS','SOI, SOIL','TOU, TOURISM','TRA, TRANSPORT','URBENV, URBAN ENVIRONMENT','WAS, WASTE','WAT, WATER']
 
 #    def utLoadSubjects (self):
 #        """loads subjects list"""
@@ -203,46 +202,49 @@ class ini_languages_parser:
             return (None, error)
 
 
-#class languages_struct:
-#    """ """
-#    def __init__(self, lang, charset, english_name):
-#        """ """
-#        self.lang = lang
-#        self.charset = charset
-#        self.english_name = english_name
-#
-#class languages_handler(ContentHandler):
-#    """ """
-#
-#    def __init__(self):
-#        """ """
-#        self.languages = []
-#
-#    def startElement(self, name, attrs):
-#        """ """
-#        if name == 'language':
-#            self.language.append(language_struct(attrs['lang'], attrs['charset'], attrs['english_name']))
-#
-#    def endElement(self, name):
-#        """ """
-#        pass
-#
-#class ini_languages_parser:
-#    """ """
-#
-#    def __init__(self):
-#        """ """
-#        pass
-#
-#    def parseContent(self, p_content):
-#        """ """
-#        l_handler = language_handler()
-#        l_parser = make_parser()
-#        l_parser.setContentHandler(l_handler)
-#        l_inpsrc = InputSource()
-#        l_inpsrc.setByteStream(StringIO(p_content))
-#        try:
-#            l_parser.parse(l_inpsrc)
-#            return (l_handler, '')
-#        except Exception, error:
-#            return (None, error)
+
+
+
+
+class subjects_struct:
+    """ """
+    def __init__(self, code, name):
+        """ """
+        self.code = code
+        self.name = name
+
+class subjects_handler(ContentHandler):
+    """ """
+
+    def __init__(self):
+        """ """
+        self.subjects = []
+
+    def startElement(self, name, attrs):
+        """ """
+        if name == 'subjects':
+            self.subjects.append(subjects_struct(attrs['code'], attrs['name']))
+
+    def endElement(self, name):
+        """ """
+        pass
+
+class ini_subjects_parser:
+    """ """
+
+    def __init__(self):
+        """ """
+        pass
+
+    def parseContent(self, p_content):
+        """ """
+        l_handler = subjects_handler()
+        l_parser = make_parser()
+        l_parser.setContentHandler(l_handler)
+        l_inpsrc = InputSource()
+        l_inpsrc.setByteStream(StringIO(p_content))
+        try:
+            l_parser.parse(l_inpsrc)
+            return (l_handler, '')
+        except Exception, error:
+            return (None, error)
