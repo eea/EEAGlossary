@@ -1,7 +1,7 @@
 <dtml-let record_trans="REQUEST.get('trans', '')" record_technic="REQUEST.get('technic', '')">
 <p class="form-help">
 Add/Edit/Delete contact information for people that administrate the EEAGlossary and for the 
-translators of terms.
+translators of terms. Name and email are mandatory fields.
 </p>
 <table border="0" cellspacing="0" cellpadding="0" width="90%">
     <tr><td>
