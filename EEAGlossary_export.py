@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_export.py,v 1.9 2004/05/28 13:48:37 finrocvs Exp $
+#$Id: EEAGlossary_export.py,v 1.10 2004/05/28 14:22:51 finrocvs Exp $
 
 from DateTime import DateTime
 from types import UnicodeType
@@ -115,7 +115,7 @@ class glossary_export:
         results_list.extend(self.tmx_header(folder))
 
         for term in terms:
-            r_append('<tu>')
+            r_append('<tu tuid="%s">' % term.id)
             for language in self.get_english_names():
                 translation = term.get_translation_by_language(language)
                 if language in self.get_unicode_langs():
