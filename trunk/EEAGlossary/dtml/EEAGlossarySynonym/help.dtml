@@ -1,0 +1,52 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="style_css">
+</head>
+<dtml-var manage_page_header>
+<dtml-var manage_tabs>
+<br>
+
+<table width="70%" border="1" cellpadding="0" cellspacing="0">
+    <tr>
+        <td bordercolor="#CCCCCC" bgcolor="#CCCCCC" align=center>
+            <h1><font color="#244c65">Glossary Centre Help</font></h1>
+        </td>
+    </tr>
+
+   <tr>
+    <td class="TD_Child">
+     &nbsp;
+    </td>
+   </tr>
+
+    <tr>
+        <td class="TD_Child1">
+            Click the tab <b>Contents</b> to list the terms (you may also click on the left frame). Then you can inspect and change translations by clicking on the term.<br><br>
+            Click the tab <b>View</b> if you want to preview the glossary on Internet with all available information.<br><br>
+            In order to change your password click <a href="/EEAGlossary/changePassForm"><b>Change Password</b></a>.<br><br><br>
+        </td>
+    </tr>
+
+    <tr>
+        <td align=center  bordercolor="#CCCCCC" bgcolor="#CCCCCC">
+            <b><h3><font color="#244c65">Support/Contact Info</font></h3></b>
+        </td>
+    </tr>
+
+   <tr>
+    <td class="TD_Child">
+     &nbsp;
+    </td>
+   </tr>
+
+    <tr>
+        <td class="TD_Child1">
+            <p>If you have any technical problems please contact <b>Antonio De Marinis</b> on
+            <a href="mailto:antonio.de.marinis@eea.eu.int">antonio.de.marinis@eea.eu.int</a></p>
+            <p>For other issues regarding the translation please contact <b>Lorena Marcaletti</b> on <a href="mailto:lorena.marcaletti@eea.eu.int">lorena.marcaletti@eea.eu.int</a> </p>
+            <p>As this system is new we hope that you will send us any comments you might have. </p>
+            <br>
+        </td>
+    </tr>
+</table>
+
+<dtml-var manage_page_footer>
