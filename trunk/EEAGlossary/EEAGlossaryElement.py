@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.17 2004/05/04 16:38:21 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.18 2004/05/04 16:40:46 finrocvs Exp $
 
 # python imports
 import string
@@ -144,11 +144,11 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
     #   MANAGEMENT TABS #
     #####################
 
-    def manageElementProperties(self, name='', type='', source='', el_context='', comment='', used_for_1='', used_for_2='', definition='',
-        definition_source='', subjects='', disabled='', approved ='', long_definition='', QA_needed='',  definition_source_url='', REQUEST=None):
+    def manageElementProperties(self, name='', el_type='', source='', el_context='', comment='', used_for_1='', used_for_2='', definition='',
+        definition_source_url='', subjects='', disabled=0, approved =0, long_definition='', QA_needed=0, REQUEST=None):
         """ """
         self.name = name
-        self.type = type
+        self.el_type = el_type
         self.source = source
         self.el_context = el_context
         self.comment = comment
@@ -161,7 +161,6 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
         self.approved = approved
         self.long_definition = long_definition
         self.QA_needed = QA_needed
-        self.definition_source_url = definition_source_url
         self._p_changed = 1
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('manage_properties_html?save=ok')
