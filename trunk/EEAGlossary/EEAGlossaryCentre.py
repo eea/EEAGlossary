@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.42 2004/05/13 12:42:15 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.43 2004/05/13 13:19:27 finrocvs Exp $
 
 # python imports
 import string
@@ -510,12 +510,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     def searchGlossary(self, query='', size=10000, language='English', definition='*', REQUEST=None):
         """ """
         catalog = self.getGlossaryCatalog()
-        print query
-        print language
-        print definition
-
         results = self.cu_search_catalog(catalog, [EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], query, size, language, definition)
-        print results
         return (language, query, results)
 
 

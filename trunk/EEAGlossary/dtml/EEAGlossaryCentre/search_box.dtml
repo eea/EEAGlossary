@@ -35,7 +35,7 @@
             <a href="<dtml-var absolute_url>">
                 <dtml-if "lang in get_unicode_langs()"><dtml-var translation><dtml-else>
                 <dtml-var "display_unicode_langs(translation,get_language_charset(language))"></dtml-if></a><br>
-            <dtml-var definition><br>Source: <dtml-var definition_source missing><br>
+            <dtml-var definition missing><br>Source: <dtml-var definition_source missing><br>
         </td>
     </tr>
     </dtml-let>
