@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryNews.py,v 1.5 2004/05/17 11:23:15 finrocvs Exp $
+#$Id: EEAGlossaryNews.py,v 1.6 2004/05/17 12:16:56 finrocvs Exp $
 
 # Zope imports
 from Globals import DTMLFile, MessageDialog, InitializeClass
@@ -30,7 +30,7 @@ from OFS.SimpleItem import SimpleItem
 # product imports
 from EEAGlossary_constants import *
 
-manage_addGlossaryNews_html = DTMLFile('dtml/EEAGlossaryNews/add', globals())
+manage_addGlossaryNews_html = DTMLFile('dtml/EEAGlossaryNews/add_news', globals())
 
 def manage_addGlossaryNews(self, id, title='', news_date='', description='', glossary='', REQUEST=None):
     """ adds a new EEAGlossaryNews object """
