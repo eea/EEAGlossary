@@ -1,10 +1,12 @@
-<dtml-var style_console_css>
+<html>
+<dtml-var style_presentation_css>
 
-<table width="90%" border="1" cellpadding="2" cellspacing="0">
+<body>
+<table class="table-border" cellpadding="2" cellspacing="0">
     <tr><td>
-        <table width="100%" border="0" cellpadding="3" cellspacing="0">
-            <tr class="row-header">
-                <td class="cell-header">Examples of search queries</td>
+        <table class="table-normal" cellpadding="3" cellspacing="0">
+            <tr class="row-header1">
+                <td class="cell-header1">Examples of search queries:</td>
             </tr>
 
             <tr class="cellodd">
@@ -71,4 +73,6 @@
             </tr>
         </table>
     </td></tr>
+</table>
+</body>
 </table>

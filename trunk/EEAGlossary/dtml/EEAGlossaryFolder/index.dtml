@@ -4,27 +4,27 @@
 <p>
 
     <dtml-with "PARENTS[1]">
-        <a href="<dtml-var absolute_url>"><img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/element.gif<dtml-else><dtml-var icon></dtml-if>" border=0></a>
+        <a href="<dtml-var absolute_url>"><img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/element.gif<dtml-else><dtml-var icon></dtml-if>" class="img-normal"></a>
         <a href="<dtml-var absolute_url>"><dtml-var title_or_id></a>
     </dtml-with>
-    / <img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/element.gif<dtml-else><dtml-var icon></dtml-if>" border=0>&nbsp;
+    / <img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/element.gif<dtml-else><dtml-var icon></dtml-if>" class="img-normal">&nbsp;
     <dtml-var title_or_id>
 
 </p>
 
 <hr>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table class="table-normal" cellspacing="0" cellpadding="0">
     <tr>
         <td width="5%"></td>
         <td width="45%" align="left" valign="top">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-background">
+            <table cellspacing="0" cellpadding="0" class="table-background">
                 <tr>
-                    <td><img src="misc_/EEAGlossary/line.gif" width="100%" height="1"></td>
+                    <td><img src="misc_/EEAGlossary/line.gif" class="img-line"></td>
                 </tr>
                 <tr>
                     <td>
-                        <table width="100%" border="0" cellspacing="2" cellpadding="2">
+                        <table class="table-normal" cellspacing="2" cellpadding="2">
                             <tr>
                                 <td>
                                     <p><b>Description</b></p>
@@ -36,7 +36,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><img src="misc_/EEAGlossary/line.gif" width="100%" height="1"></td>
+                    <td><img src="misc_/EEAGlossary/line.gif" class="img-line"></td>
                 </tr>
             </table>
         </td>
@@ -47,37 +47,63 @@
 
 <br>
 
-<dtml-in get_object_list>
-    <dtml-if is_published>
-        <dtml-if synonyms>
-            <img src="misc_/EEAGlossary/element.gif" border=0>&nbsp;<dtml-var name>&nbsp;
-            <dtml-if QA_needed>
-                <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
-            </dtml-if>
-            <dtml-in synonyms size=1>
-                <dtml-if sequence-start>
-                    (<small>See </small>
-                </dtml-if><dtml-comment>
-                <dtml-if "_.len(_['sequence-item'])>1">
-                    <dtml-in "GlossaryCatalog(id=_['sequence-item'])">
-                        <dtml-with "getObject()">
-                            <a href="&dtml-absolute_url;"><dtml-var name_or_id></a>)
-                        </dtml-with>
+<dtml-if get_object_list>
+    <table border="0" align="center" width="80%">
+        <tr>
+            <td colspan="2">
+
+                <table border="0" align="center">
+                    <dtml-in get_object_list size=5 start=qs>
+                        <tr><td width="20%" align="center">
+                            <dtml-if is_published>
+                                <dtml-if synonyms>
+                                    <img src="misc_/EEAGlossary/element.gif" class="img-normal">&nbsp;<dtml-var name>&nbsp;
+                                    <dtml-if QA_needed>
+                                        <img src="misc_/EEAGlossary/new.gif" class="img-normal" alt="New glossary entry">
+                                    </dtml-if>
+                                    <dtml-in synonyms size=1>
+                                        <dtml-if sequence-start>
+                                            (<small>See </small>
+                                        </dtml-if><dtml-comment>
+                                        <dtml-if "_.len(_['sequence-item'])>1">
+                                            <dtml-in "GlossaryCatalog(id=_['sequence-item'])">
+                                                <dtml-with "getObject()">
+                                                    <a href="&dtml-absolute_url;"><dtml-var name_or_id></a>)
+                                                </dtml-with>
+                                            </dtml-in>
+                                        </dtml-if></dtml-comment>
+                                    </dtml-in>
+                                <dtml-else>
+                                      <a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/element.gif" class="img-normal" alt="">&nbsp;<dtml-var name>&nbsp;</a>
+                                      <dtml-if QA_needed>
+                                          <img src="misc_/EEAGlossary/new.gif" class="img-normal" alt="New glossary entry">
+                                      </dtml-if>
+                                </dtml-if>
+                            <br>
+                            </dtml-if>
+                        </td></tr>
                     </dtml-in>
-                </dtml-if></dtml-comment>
-            </dtml-in>
-        <dtml-else>
-              <a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/element.gif" border=0 alt="">&nbsp;<dtml-var name>&nbsp;</a>
-              <dtml-if QA_needed>
-                  <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
-              </dtml-if>
-        </dtml-if>
-    <br>
-    </dtml-if>
-</dtml-in>
+                </table>
+
+            </td>
+        </tr>
+        <tr>
+            <td align="right" width="50%">
+                <dtml-in get_object_list previous size=5 start=qs>
+                    <b><a href="<dtml-var absolute_url><dtml-var sequence-query>qs=<dtml-var previous-sequence-start-number>">(Previous <dtml-var previous-sequence-size> results)</a>&nbsp;&nbsp;</b>
+                </dtml-in>
+            </td>
+            <td align="left" width="50%">
+                <dtml-in get_object_list next size=5 start=qs>
+                    <b>&nbsp;&nbsp;<a href="<dtml-var absolute_url><dtml-var sequence-query>qs=<dtml-var next-sequence-start-number>">(Next <dtml-var next-sequence-size> results)</a></b>
+                </dtml-in>
+            </td>
+        </tr>
+    </table>
+<dtml-else>
+    No elemnts in this folder.
+</dtml-if>
 
 <br>
-
-
 
 <dtml-var standard_html_footer>

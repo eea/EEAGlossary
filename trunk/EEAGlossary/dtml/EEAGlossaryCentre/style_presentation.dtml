@@ -50,18 +50,78 @@ a.menulinkoff:hover
 .table-background
 {
     background: #B5DED6;
+    width:100%;
+    border:0px solid;
+}
+
+.table-normal
+{
+    border:0px solid;
+    width:100%;
+}
+
+.table-border
+{
+    border:1px solid;
+    width:90%;
+}
+
+.img-line
+{
+    border:0px solid;
+    height:1px;
+    width:100%;
+}
+
+.img-normal
+{
+    border:0px solid;
 }
 
 .header-element
 {
     background: #808080;
     color: #FFFFFF;
+    vertical-align:top;
+    width:100%;
+}
+
+.header-language
+{
+    background: #808080;
+    color: #FFFFFF;
+}
+
+.input-search
+{
+    background-color:#FFFFFF;
+    color:#000000;
+    size:40;
+}
+
+.button-search
+{
+    font-family: Verdana, Arial, Helvetica;
+    color:#000000;
+    background:#CCCCCC;
+}
 }
 
 .attention-color
 {
     color: #FF0000;
 }
+
+.row-header1
+{
+    background: #B5DED6;
+    height: 20px;
+}
+
+.cell-header1
+{
+    font-weight: bold;
+    color: #000000;
 
 .row-header
 {

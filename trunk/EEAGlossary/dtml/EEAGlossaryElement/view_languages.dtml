@@ -13,8 +13,7 @@
         <tr>
             <td colspan="2"><b>Definition:</b>&nbsp;
             <dtml-if QA_needed><img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry"></dtml-if>
-            <dtml-var definition>
-            <dtml-if "'Definition' in languagescheck">
+            <dtml-if "REQUEST.has_key('definition')">
                 <dtml-var "toutf8(definition,'iso-8859-1')">
             </dtml-if>
             <br>
@@ -36,6 +35,7 @@
         </tr>
         <dtml-in languagescheck sort=id>
             <dtml-let langid=sequence-item role="'QC '+langid">
+            <dtml-unless "ut_test_definition(langid)">
             <dtml-if sequence-odd>
                 <tr class="celleven">
                     <td align="left" valign="top" width="30%"><div><label for="cb-<dtml-var langid>"><dtml-var langid></label></div></td>
@@ -55,6 +55,7 @@
                     </td>
                 </tr>
             </dtml-if>
+            </dtml-unless>
             </dtml-let>
         </dtml-in>
     </table>
