@@ -15,7 +15,7 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossary_utils.py,v 1.3 2004/05/03 11:36:22 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.4 2004/05/03 12:19:22 finrocvs Exp $
 
 #Python imports
 from xml.sax.handler import ContentHandler
@@ -36,31 +36,38 @@ class Utils:
     types_list = ['term', 'abbreviation', 'phrase', 'symbol']
     subjects_list = ['ADMLEG, ADMINISTRATION AND LEGISLATION','AGRARE, AGRICULTURE AND RURAL AREAS','AIRCHA, AIR AND CLIMATE CHANGE','CHEHEA, CHEMICALS AND HEALTH','DATINF, DATA MANAGEMENT AND INFORMATION','ECOREP, ECONOMICS AND CORPORATE REPORTING','EIO, EIONET','ENE, ENERGY','ENVIND, ENVIRONMENTAL INDICATORS','GEN, GENERAL','IMPASS, IMPACT ASSESSMENT','ENVINS, ENVIRONMENTAL INSTRUMENTS','INTASS, INTEGRATED TOOLS AND METHODOLOGIES FOR ASSESSMENT','LANUSE, LAND COVER AND LAND USE','MARENV, MARINE AND COASTAL ENVIRONMENT','NATHAZ, NATURAL AND TECHNOLOGICAL HAZARDS','NATBIO, NATURE AND BIODIVERSITY','NOI, NOISE','SCEANA, SCENARIOS AND PROSPECTIVE ANALYSIS','SOI, SOIL','TOU, TOURISM','TRA, TRANSPORT','URBENV, URBAN ENVIRONMENT','WAS, WASTE','WAT, WATER']
 
-    def utLoadSubjects (self):
-        """loads subjects list"""
-        ret=[]
-        for line in self.subjects_list:
-            if line != '':
-                code, name = string.split(line,',')
-                ret.append(name)
-        return ret
-
-    def utListSubjects (self):
-        """loads subjects list"""
-        ret={}
-        for line1 in self.REQUEST.PARENTS[0].subjects:
-            mysub=line1
-            for line2 in self.subjects_list:
-                code, name=string.split(line2,',')
-                if name==mysub:
-                    ret[code]=name
-        return ret
+#    def utLoadSubjects (self):
+#        """loads subjects list"""
+#        ret=[]
+#        for line in self.subjects_list:
+#            if line != '':
+#                code, name = string.split(line,',')
+#                ret.append(name)
+#        return ret
+#
+#    def utListSubjects (self):
+#        """loads subjects list"""
+#        ret={}
+#        for line1 in self.REQUEST.PARENTS[0].subjects:
+#            mysub=line1
+#            for line2 in self.subjects_list:
+#                code, name=string.split(line2,',')
+#                if name==mysub:
+#                    ret[code]=name
+#        return ret
 
     def utUrlEncode(self, p_string):
         """Encode a string using url_encode"""
         return url_quote(p_string)
 
-    def toutf8(self,s='',charset=''):
+    def utIsEmptyString(self, term='',REQUEST=None):
+        """return true if a string contains only white characters"""
+        if term and len(term)>0:
+            if term.count(" ") == len(term):
+                return 1
+            return 0
+
+    def utToUTF8(self,s='',charset=''):
         ##
         ## ISO-8859-4
         ##

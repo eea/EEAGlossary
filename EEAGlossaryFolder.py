@@ -17,7 +17,7 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossaryFolder.py,v 1.2 2004/05/03 09:03:42 finrocvs Exp $
+#$Id: EEAGlossaryFolder.py,v 1.3 2004/05/03 12:19:22 finrocvs Exp $
 
 # Zope imports
 from Globals import DTMLFile, MessageDialog, InitializeClass
@@ -28,7 +28,8 @@ from Products import meta_types
 
 # product imports
 import EEAGlossaryElement
-from EEAGlossary_utils import MyUtils
+from EEAGlossary_utils import Utils
+from EEAGlossary_constants import *
 
 #constants
 manage_addEEAGlossaryFolderForm = DTMLFile('dtml/EEAGlossaryFolder_add', globals())
@@ -37,32 +38,15 @@ def manage_addEEAGlossaryFolder (self, id, title, description, REQUEST=None):
     """ Adds a new EEAGlossaryFolder object """
     ob = EEAGlossaryFolder(id, title, description)
     self._setObject(id, ob)
-
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
-class EEAGlossaryFolder(Folder,MyUtils):
+class EEAGlossaryFolder(Folder, Utils):
     """ EEAGlossaryFolder """
 
-    meta_type='EEA Glossary Folder'
+    meta_type = EEA_GLOSSARY_FOLDER_METATYPE
     product_name = 'EEAGlosary'
     icon = 'misc_/EEAGlossary/folder.gif'
-    security = ClassSecurityInfo()
-
-    _properties = (
-        {'id':'title', 'type':'string', 'mode':'w'},
-        {'id':'description', 'type':'text', 'mode':'w'},
-        )
-    def __init__(self, id, title, description):
-        """ constructor """
-        self.id = id
-        self.title = title
-        self.description = description
-
-    manage_addEEAGlossaryFolderForm = manage_addEEAGlossaryFolderForm
-    manage_addEEAGlossaryFolder = manage_addEEAGlossaryFolder
-    manage_addEEAGlossaryElementForm = EEAGlossaryElement.manage_addEEAGlossaryElementForm
-    manage_addEEAGlossaryElement = EEAGlossaryElement.manage_addEEAGlossaryElement
 
     manage_options = (
                 (Folder.manage_options[0],) +
@@ -74,36 +58,40 @@ class EEAGlossaryFolder(Folder,MyUtils):
                 {'label':'Help[OK_]',                 'action':'manageHelpF'},)
                 )
 
+    manage_addEEAGlossaryFolderForm = manage_addEEAGlossaryFolderForm
+    manage_addEEAGlossaryFolder = manage_addEEAGlossaryFolder
+    manage_addEEAGlossaryElementForm = EEAGlossaryElement.manage_addEEAGlossaryElementForm
+    manage_addEEAGlossaryElement = EEAGlossaryElement.manage_addEEAGlossaryElement
+
+    security = ClassSecurityInfo()
+
+    def __init__(self, id, title, description):
+        """ constructor """
+        self.id = id
+        self.title = title
+        self.description = description
+
     def all_meta_types(self):
         """ Supported meta_types """
-#alec        types = ['User Folder', 'Script (Python)', 'DTML Method','ZCatalog', 'ZTabs', 'Version']
         y = [
-#alec            {'name': 'EEAGlossaryFolder', 'action':'manage_addEEAGlossaryFolderForm'},
             {'name': 'EEAGlossaryElement', 'action':'manage_addEEAGlossaryElementForm'},
             {'name': 'EEAGlossarySynonym', 'action':'manage_addEEAGlossarySynonymForm'}
          ]
-#alec        for x in meta_types:
-#alec            if x['name'] in types:
-#alec                y.append(x)
         return y
 
-#alec
-    def IsEmptyFolder():
+    def IsEmptyFolder(self):
         """returns 0 if is an empty folder"""
-        for eobject in self.objectValues(['EEA Glossary Element','EEA Glossary Synonym']):
+        for eobject in self.objectValues([EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE]):
             if (eobject.approved and not eobject.disabled):
                 return 1
         return 0
-#/alec
 
-#alec
     def GlossaryFolder_parent_list(self):
         """returns parent"""
         ret='<a href="'+self.REQUEST.PARENTS[1].absolute_url()+'">' \
             +'<img src="misc_/EEAGlossary/OpenBook.gif" BORDER=0></a>&nbsp;<a href="'+ \
             self.REQUEST.PARENTS[1].absolute_url()+'">'+self.REQUEST.PARENTS[1].title_or_id()+'</a>'
         return ret
-#/alec
 
     index_html = DTMLFile('dtml/EEAGlossaryFolder_index', globals())
     preview = DTMLFile('dtml/EEAGlossaryFolder_preview', globals())

@@ -17,7 +17,7 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossaryElement.py,v 1.4 2004/05/03 11:36:22 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.5 2004/05/03 12:19:22 finrocvs Exp $
 
 # python imports
 import string
@@ -26,14 +26,34 @@ import string
 from Globals import DTMLFile, MessageDialog, InitializeClass
 from AccessControl import ClassSecurityInfo
 from OFS.SimpleItem import SimpleItem
-#from OFS.Folder import Folder
 from Products.ZCatalog.CatalogAwareness import CatalogAware
 
 # product imports
 import EEAGlossaryCentre
 from EEAGlossary_utils import Utils
 
-#constants
+class ElementBasic:
+    """ define the basic properties for EEAGlossaryElement"""
+
+    def __init__(self, name, type, source, subjects, context, comment, used_for_1, used_for_2, 
+            definition, definition_source_url, long_definition, disabled, approved, QA_needed):
+        """ constructor"""
+
+        self.name = name
+        self.type = type
+        self.source = source
+        self.subjects = subjects
+        self.context = context
+        self.comment = comment
+        self.used_for_1 = used_for_1    #????????
+        self.used_for_2 = used_for_2    #????????
+        self.definition = definition
+        self.definition_source_url = definition_source_url
+        self.disabled = disabled
+        self.approved = approved
+        self.long_definition = long_definition
+        self.QA_needed = QA_needed  #?????
+
 manage_addEEAGlossaryElementForm = DTMLFile('dtml/EEAGlossaryElement_add', globals())
 
 def manage_addEEAGlossaryElement (self, id, name='', type='', source='', subjects=[], context='', comment='', used_for_1='', used_for_2='',
@@ -82,55 +102,29 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, Utils):
         ElementBasic.__dict__['__init__'](self, name, type, source, subjects, context, comment, used_for_1, used_for_2, 
             definition, definition_source_url, long_definition, disabled, approved, QA_needed)
 
-#    def loadINI (self):
-#        """loads languages & history properties defaults"""
-#        from os.path import join
-#        try:
-#            file=open(join(SOFTWARE_HOME, 'Products','EEAGlossary','EEAGlossary.ini'), 'r')
-#            for line in file.readlines():
-#                line=string.strip(line)
-#                if line != '':
-#                    key, value = string.split(line,'=')
-#                    if key == 'History':
-#                        self.history[value]=''
-#                    if key == 'Translation':
-#                        self.all_langs_list[value]=''
-#            file.close()
-#        except:
-#            pass
-#        return 1
-
-#alec
     def isPublished (self):
         if self.approved and not self.disabled:
             return 1
         else:
             return 0
-#/alec
 
-#alec
     def isImageURL (self):
         if not self.isEmptyString(self.ImageURL) and (not 'ImageURL' in self.REQUEST.PARENTS[2].hidden_fields):
             return 1
         else:
             return 0
-#/alec
 
-#alec
     def isLong_Definition (self):
         if not self.isEmptyString(self.long_definition) and (not 'long_definition' in self.REQUEST.PARENTS[2].hidden_fields):
             return 1
         else:
             return 0
-#/alec
 
-#alec
     def isDefintion_Source (self):
         if not self.isEmptyString(self.definition_source_url) and (not 'definition_source' in self.REQUEST.PARENTS[2].hidden_fields):
             return 1
         else:
             return 0
-#/alec
 
     index_html = DTMLFile("dtml/EEAGlossaryElement_index", globals())
     preview = DTMLFile("dtml/EEAGlossaryElement_preview", globals())
@@ -142,31 +136,10 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, Utils):
     manage_properties = DTMLFile("dtml/EEAGlossaryElement_manage_properties", globals())
     viewHistory = DTMLFile("dtml/EEAGlossaryElement_viewHistory", globals())
     manageHelpE = DTMLFile('dtml/EEAGlossaryCentre_manageHelp', globals())
-#alec    new_entry_icon = DTMLFile("dtml/EEAGlossaryElement_new_entry_icon", globals())
-#alec    status_view = DTMLFile("dtml/EEAGlossaryElement_status_view", globals())
-#alec    isPublished = DTMLFile("dtml/EEAGlossaryElement_isPublished", globals())
+    new_entry_icon = DTMLFile("dtml/EEAGlossaryElement_new_entry_icon", globals())
+    status_view = DTMLFile("dtml/EEAGlossaryElement_status_view", globals())
+    isPublished = DTMLFile("dtml/EEAGlossaryElement_isPublished", globals())
 
 InitializeClass(EEAGlossaryElement)
 
 
-class ElementBasic:
-    """ define the basic properties for EEAGlossaryElement"""
-
-    def __init__(self, name, type, source, subjects, context, comment, used_for_1, used_for_2, 
-            definition, definition_source_url, long_definition, disabled, approved, QA_needed):
-        """ constructor"""
-
-        self.name = name
-        self.type = type
-        self.source = source
-        self.subjects = subjects
-        self.context = context
-        self.comment = comment
-        self.used_for_1 = used_for_1    #????????
-        self.used_for_2 = used_for_2    #????????
-        self.definition = definition
-        self.definition_source_url = definition_source_url
-        self.disabled = disabled
-        self.approved = approved
-        self.long_definition = long_definition
-        self.QA_needed = QA_needed  #?????

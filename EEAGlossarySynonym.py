@@ -17,7 +17,7 @@
 #
 # Contributor(s):
 # Anton Cupcea, Finsiel Romania
-#$Id: EEAGlossarySynonym.py,v 1.2 2004/05/03 09:03:42 finrocvs Exp $
+#$Id: EEAGlossarySynonym.py,v 1.3 2004/05/03 12:19:22 finrocvs Exp $
 
 # Zope imports
 from Globals import DTMLFile, MessageDialog, InitializeClass
@@ -26,9 +26,8 @@ from OFS.SimpleItem import SimpleItem
 #from Products.ZCatalog.CatalogAwareness import CatalogAware
 
 # product imports
-
+from constants import *
 import GlossaryElement
-#constants
 
 manage_addEEAGlossarySynonymForm = DTMLFile('dtml/EEAGlossarySynonym_add', globals())
 
@@ -36,7 +35,6 @@ def manage_addEEAGlossarySynonym (self, id, title, description, REQUEST=None):
     """ Adds a new EEAGlossaryElementSynonym object """
     ob = EEAGlossarySynonym(id, title, description)
     self._setObject(id, ob)
-
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
@@ -45,17 +43,8 @@ def manage_addEEAGlossarySynonym (self, id, title, description, REQUEST=None):
 class EEAGlossarySynonym(SimpleItem):
     """ EEAGlossaryFolder """
 
-    meta_type='EEA Glossary Synonym'
+    meta_type = EEA_GLOSSARY_SYNONYM_METATYPE
     product_name = 'EEAGlosary'
-
-    security = ClassSecurityInfo()
-
-    _properties = (
-        {'id':'title', 'type':'string', 'mode':'w'},
-        {'id':'description', 'type':'text', 'mode':'w'},
-        )
-
-    #manage_options = Folder.manage_options[:2]
 
     manage_options =(
                 (Folder.manage_options[0],) +
@@ -67,7 +56,7 @@ class EEAGlossarySynonym(SimpleItem):
                 {'label':'Help',                        'action':'manageHelp'},)
                 )
 
-    index_html = DTMLFile("dtml/EEAGlossaryFolder_index", globals())
+    security = ClassSecurityInfo()
 
     def __init__(self, id, title, description):
         """ constructor """
@@ -75,5 +64,7 @@ class EEAGlossarySynonym(SimpleItem):
         self.title = title
         self.description = description
 
+
+    index_html = DTMLFile("dtml/EEAGlossaryFolder_index", globals())
 
 InitializeClass(EEAGlossaryFolder)
