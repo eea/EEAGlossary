@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.62 2004/05/28 08:55:00 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.63 2004/05/28 10:15:13 finrocvs Exp $
 
 # python imports
 import string
@@ -63,7 +63,7 @@ def manage_addGlossaryCentre(self, id, title='', description='', REQUEST=None):
         return self.manage_main(self, REQUEST, update_menu=1)
 
 
-class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
+class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
     """ EEAGlossaryCentre """
 
     meta_type = EEA_GLOSSARY_CENTRE_METATYPE
@@ -77,6 +77,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
                 {'label':'Change Password',     'action':'change_pass_html'},
                 {'label':'XML/RDF',             'action':'glossary_terms_rdf'},
                 {'label':'All terms',           'action':'all_terms_view_html'},
+                {'label':'Export',              'action':'export_html'},
                 {'label':'Management',          'action':'management_page_html'},
                 {'label':'Help',                'action':'centre_help_html'},
                 {'label':'Undo',                'action':'manage_UndoForm'},)
@@ -800,7 +801,8 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     not_published_html = DTMLFile('dtml/EEAGlossaryCentre/administration_not_published', globals())
     published_html = DTMLFile('dtml/EEAGlossaryCentre/administration_published', globals())
     terms_stats_html = DTMLFile('dtml/EEAGlossaryCentre/administration_terms_stats', globals())
-
+    export_html = DTMLFile('dtml/EEAGlossaryCentre/administration_export', globals())
+    
     term_tip_box_html = DTMLFile('dtml/EEAGlossaryCentre/term_tip_box', globals())
     contexts_html = DTMLFile('dtml/EEAGlossaryCentre/contexts', globals())
     check_list_html = DTMLFile('dtml/EEAGlossaryCentre/checklist', globals())
