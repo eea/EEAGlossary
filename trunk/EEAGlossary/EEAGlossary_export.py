@@ -20,11 +20,14 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_export.py,v 1.6 2004/05/28 12:29:29 finrocvs Exp $
+#$Id: EEAGlossary_export.py,v 1.7 2004/05/28 12:38:13 finrocvs Exp $
 
 from DateTime import DateTime
 from types import UnicodeType
 import string
+
+#product imports
+from EEAGlossary_utils import utils
 
 class glossary_export:
     """ """
@@ -99,3 +102,73 @@ class glossary_export:
             else:
                 results.append(x)
         return '\r\n'.join(results)
+
+    def tmx_export(self, folder='/', published=0, REQUEST=None):
+        """ Exports the content of folders to a TMX file """
+        results = []
+        results_list=[]
+        terms=[]
+        r_append = results_list.append
+        if published:
+            terms.extend(self.get_published('/%s' % folder))
+        else:
+            terms.extend(self.get_all_objects('/%s' % folder))
+
+        results_list.extend(self.tmx_header(folder))
+
+        for term in terms:
+            r_append('<tu>')
+            for language in self.get_english_names():
+                translation = term.get_translation_by_language(language)
+                if language in self.get_unicode_langs():
+                    r_append('<tuv xml:lang="%s">' % language)
+                    r_append('<seg>%s</seg></tuv>' % translation)
+                else:
+                    r_append('<tuv xml:lang="%s">' % language)
+                    r_append('<seg>%s</seg></tuv>' % self.display_unicode_langs(translation,self.get_language_charset(language)))
+            r_append('</tu>')
+            r_append('')
+
+        results_list.extend(self.tmx_footer())
+        for x in results_list:
+            if type(x) is UnicodeType:
+                results.append(x.encode('utf-8'))
+            else:
+                results.append(x)
+        return '\r\n'.join(results)
+
+    def tmx_header(self, folders):
+        """ return the tmx header """
+        r=[]
+        r_append = r.append
+        if folders == '/':
+            folders='all'
+        else:
+            folders = string.split(folders, '/')[-1]
+        self.REQUEST.RESPONSE.setHeader('Content-type', 'application/data; charset=UTF-8')
+        self.REQUEST.RESPONSE.setHeader('Content-Disposition', 'attachment; filename="%s_%s.tmx"' % (self.id, folders))
+        r_append('<?xml version="1.0" encoding="utf-8"?>')
+        r_append('<!DOCTYPE tmx SYSTEM "http://www.lisa.org/tmx/tmx14.dtd">')
+        r_append('<tmx version="1.4">')
+        r_append('<header')
+        r_append('creationtool="EEAGlossary"')
+        r_append('creationtoolversion="1.x"')
+        r_append('datatype="plaintext"')
+        r_append('segtype="paragraph"')
+        r_append('adminlang="English"')
+        r_append('srclang="English"')
+        r_append('o-encoding="utf-8"')
+
+        r.append('>')
+        r.append('</header>')
+        r.append('<body>')
+        r.append('')
+        return r
+
+    def tmx_footer(self):
+        """ return the tmx footer """
+        r=[]
+        r_append = r.append
+        r_append('</body>')
+        r_append('</tmx>')
+        return r
