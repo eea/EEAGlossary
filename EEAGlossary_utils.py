@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.32 2004/05/13 14:25:19 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.33 2004/05/13 15:01:56 finrocvs Exp $
 
 #Python imports
 import string
@@ -208,7 +208,8 @@ class catalog_utils:
         except:
             pass
 
-    def cu_get_cataloged_objects(self, catalog, meta_type=None, approved=0, howmany=-1, sort_on='bobobase_modification_time', sort_order='reverse', path='/'):
+    def cu_get_cataloged_objects(self, catalog, meta_type=None, approved=0, howmany=-1, sort_on='bobobase_modification_time', 
+        sort_order='reverse', path='/'):
         results = []
         filter = {}
         if approved == 1:
