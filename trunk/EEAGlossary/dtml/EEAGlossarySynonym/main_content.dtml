@@ -1,4 +1,4 @@
-<dtml-in get_synonyms>
+<dtml-in utGetSynonyms>
     <dtml-if sequence-start>See:<br></dtml-if>
     <dtml-if "_.len(_['sequence-item'].name)>0">
         <a href="<dtml-var absolute_url>">

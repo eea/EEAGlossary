@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.36 2004/05/12 16:44:25 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.37 2004/05/12 17:21:09 finrocvs Exp $
 
 # python imports
 import string
@@ -136,15 +136,11 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         if REQUEST is not None:
             REQUEST.RESPONSE.redirect('change_pass_html?save=ok')
 
-    def folder_list(self):
-        """Return all 'EEA Glossary Folder' from a Centre"""
-        ret=''
-        lista=self.objectItems(EEA_GLOSSARY_FOLDER_METATYPE)
-        lista.sort()
-        for i in lista:
-            o=i[1]
-            ret=ret+'&nbsp;<a href="'+o.absolute_url()+'">'+o.id+'</a>&nbsp;|'
-        return ret
+    def folder_list_sorted(self):
+        """ Return all 'EEA Glossary Folder' from a Centre """
+        fld_lst = self.objectItems(EEA_GLOSSARY_FOLDER_METATYPE)
+        fld_lst.sort()
+        return fld_lst
 
     #####################
     # LOAD PROPERTIES   #

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryFolder.py,v 1.14 2004/05/10 15:23:25 finrocvs Exp $
+#$Id: EEAGlossaryFolder.py,v 1.15 2004/05/12 17:21:09 finrocvs Exp $
 
 # python imports
 import whrandom
@@ -81,6 +81,22 @@ class EEAGlossaryFolder(Folder, utils):
     manage_addGlossarySynonym_html = EEAGlossarySynonym.manage_addGlossarySynonym_html
     manage_addGlossarySynonym = EEAGlossarySynonym.manage_addGlossarySynonym
 
+
+    ##########################
+    #   OTHER FUNCTIONS #
+    ##########################
+    def get_object_list(self):
+        """return all id sorted objects from a folder"""
+        id_lst = []
+        obj_lst = []
+        for obj in self.objectValues([EEA_GLOSSARY_ELEMENT_METATYPE,EEA_GLOSSARY_SYNONYM_METATYPE]):
+            id_lst.append(obj.id)
+        id_lst.sort()
+        for term in id_lst:
+            ob = self._getOb(term)
+            obj_lst.append(ob)
+        return obj_lst
+
     ##########################
     #   META TYPES FUNCTIONS #
     ##########################
@@ -94,19 +110,8 @@ class EEAGlossaryFolder(Folder, utils):
         else:
             return self.meta_types
 
-    def get_object_list(self):
-        """return all id sorted objects from a folder"""
-        id_lst = []
-        obj_lst = []
-        for obj in self.objectValues([EEA_GLOSSARY_ELEMENT_METATYPE,EEA_GLOSSARY_SYNONYM_METATYPE]):
-            id_lst.append(obj.id)
-        id_lst.sort()
-        for term in id_lst:
-            ob = self._getOb(term)
-            obj_lst.append(ob)
-        return obj_lst
-
     def getMetaTypes(self):
+        """."""
         return [x['name'] for x in Products.meta_types]
 
     def manageSubobjects(self, REQUEST=None):
