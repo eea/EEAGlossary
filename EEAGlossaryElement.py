@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.27 2004/05/06 15:04:54 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.28 2004/05/06 15:19:24 finrocvs Exp $
 
 # python imports
 import string
@@ -134,13 +134,31 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
         else:
             return 0
 
+    ############################
+    #     SUBJECTS FUNCTIONS   #
+    ############################
     def code_in_subjects(self, code):
         """ check if code is in the list """
-        print type(self.subjects)
         for subj_info in self.subjects:
             if subj_info['code'] == code:
                 return 1
         return 0
+
+    def get_subjects(self):
+        """ get the languages """
+        self.utSortListOfDictionariesByKey(self.subjects, 'code')
+        return self.subjects
+
+    def set_subjects(self, code, name):
+        """ set the languages """
+        append = self.subjects.append
+        append({'code':code, 'name':name})
+
+    def del_subject(self, code):
+        """ remove a language from list """
+        for subj_info in self.subjects:
+            if subj_info['code'] == code:
+                self.subjects.remove(subj_info)
 
     ############################
     #  TRANSLATIONS FUNCTIONS  #
