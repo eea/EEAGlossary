@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.19 2004/05/06 14:26:15 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.20 2004/05/06 17:35:53 finrocvs Exp $
 
 #Python imports
 
@@ -97,6 +97,7 @@ class utils:
             if term.count(" ") == len(term):
                 return 1
             return 0
+        return 1
 
     def utGetROOT(self):
         """ get the ROOT object"""
