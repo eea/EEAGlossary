@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.76 2004/06/08 07:23:11 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.77 2004/06/08 15:07:32 finrocvs Exp $
 
 # python imports
 import string
@@ -259,14 +259,25 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                 results.append(subj_info)
         return results
 
+    def check_subjects_exists(self, code):
+        """ check if this language exists """
+        ret = 1
+        for l_code in self.subjects_list:
+            if l_code['code'] == code:
+                ret = 0
+        return ret
+
     def manageSubjectsProperties(self, ids=[], old_code='', code='', name='', REQUEST=None):
         """ manage subjects for EEAGlossaryCentre"""
         if self.utAddObjectAction(REQUEST):
             if string.strip(code) == '' or string.strip(name) == '':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
             else:
-                self.set_subjects_list(code, name)
-                self._p_changed = 1
+                if self.check_subjects_exists(code):
+                    self.set_subjects_list(code, name)
+                    self._p_changed = 1
+                else:
+                    return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
         elif self.utUpdateObjectAction(REQUEST):
             if string.strip(code) == '' or string.strip(name) == '':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
@@ -338,14 +349,25 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         else:
             return self.toutf8(language, charset)
 
+    def check_language_exists(self, english_name):
+        """ check if this language exists """
+        ret = 1
+        for eng_lang in self.languages_list:
+            if eng_lang['english_name'] == english_name:
+                ret = 0
+        return ret
+
     def manageLanguagesProperties(self, ids='', lang='', charset='', english_name='', old_english_name='', REQUEST=None):
         """ manage languages for EEAGlossaryCentre """
         if self.utAddObjectAction(REQUEST):
             if string.strip(lang)=='' or string.strip(charset)=='' or string.strip(english_name)=='':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=4')
             else:
-                self.set_languages_list(lang, charset, english_name)
-                self._p_changed = 1
+                if self.check_language_exists(english_name):
+                    self.set_languages_list(lang, charset, english_name)
+                    self._p_changed = 1
+                else:
+                    return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=4')
         elif self.utUpdateObjectAction(REQUEST):
             if string.strip(lang)=='' or string.strip(charset)=='' or string.strip(english_name)=='':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=4')
@@ -455,14 +477,25 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         """ remove from hidden fields list """
         self.hidden_fields.remove(value)
 
+    def check_hidden_exists(self, field):
+        """ check if this language exists """
+        ret = 1
+        for l_field in self.hidden_fields:
+            if l_field == field:
+                ret = 0
+        return ret
+
     def manageHiddenProperties(self, old_field='', field='', ids='', REQUEST=None):
         """ manage the hidden properties for EEAGlossaryCentre """
         if self.utAddObjectAction(REQUEST):
             if string.strip(field) == '':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=6')
             else:
-                self.set_hidden_list(field)
-                self._p_changed = 1
+                if self.check_hidden_exists(field):
+                    self.set_hidden_list(field)
+                    self._p_changed = 1
+                else:
+                    return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=6')
         elif self.utUpdateObjectAction(REQUEST):
             if string.strip(field) == '':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=6')
@@ -808,6 +841,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
 
         #parse the xliff information
         chandler = parser.parseHeader(file)
+
         if chandler is None:
             return MessageDialog(title = 'Parse error',
              message = 'Unable to parse XLIFF file' ,
@@ -887,6 +921,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
     published_html = DTMLFile('dtml/EEAGlossaryCentre/administration_published', globals())
     terms_stats_html = DTMLFile('dtml/EEAGlossaryCentre/administration_terms_stats', globals())
     export_html = DTMLFile('dtml/EEAGlossaryCentre/administration_export', globals())
+    all_terms_view_html = DTMLFile('dtml/EEAGlossaryCentre/all_terms', globals())
 
     import_html = DTMLFile('dtml/EEAGlossaryCentre/administration_import', globals())
 

@@ -15,5 +15,3 @@
     </tr>
 </table>
 <dtml-var standard_html_footer>
-
-

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.51 2004/06/01 13:12:54 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.52 2004/06/08 15:07:32 finrocvs Exp $
 
 # python imports
 import string
@@ -364,6 +364,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     actions_html = DTMLFile("dtml/EEAGlossaryElement/properties_actions", globals())
     basic_html = DTMLFile("dtml/EEAGlossaryElement/properties_basic", globals())
     view_languages_html = DTMLFile("dtml/EEAGlossaryElement/view_languages", globals())
+    view_elements_html = DTMLFile("dtml/EEAGlossaryElement/view_elements", globals())
     view_box_html = DTMLFile("dtml/EEAGlossaryElement/view_box", globals())
 
     element_help_html = DTMLFile("dtml/EEAGlossaryElement/help", globals())
