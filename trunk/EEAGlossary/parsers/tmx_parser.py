@@ -1,34 +1,40 @@
-# -*- coding: ISO-8859-1 -*-
-# Copyright (C) 2000-2004  Juan David Ib�ez Palomar <jdavid@itaapy.com>
-#               2003  Roberto Quero, Eduardo Corrales
-#               2004  Sren Roug
+# The contents of this file are subject to the Mozilla Public
+# License Version 1.1 (the "License"); you may not use this file
+# except in compliance with the License. You may obtain a copy of
+# the License at http://www.mozilla.org/MPL/
 #
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
+# Software distributed under the License is distributed on an "AS
+# IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or
+# implied. See the License for the specific language governing
+# rights and limitations under the License.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# The Original Code is EEAGlossary version 1.0.0
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+# The Initial Owner of the Original Code is European Environment
+# Agency (EEA).  Portions created by Finsiel Romania are
+# Copyright (C) European Environment Agency.  All
+# Rights Reserved.
+#
+# Contributor(s):
+# Alex Ghica, Finsiel Romania
+# Cornel Nitu, Finsiel Romania
+#
+#
+#$Id: tmx_parser.py,v 1.2 2004/06/01 08:28:15 finrocvs Exp $
 
 from xml.sax.handler import ContentHandler
 from xml.sax import *
-from types import StringType, UnicodeType
+from Products.EEAGlossary.EEAGlossary_utils import utils
 
 
-class HandleTMXParsing(handler.ContentHandler):
-    """ Parse a TMX file
-    """
-    def __init__(self, tu_cb, header_cb):
-        self.tu_cb = tu_cb
-        self.header_cb = header_cb
-        self.lang = ''
+class HandleTMXParsing(handler.ContentHandler, utils):
+    """ Parse a TMX file"""
+    def __init__(self):
+        self.TMXContent = {}
+        self.element = []
+        self.element_id = ''
+        self.translations = {}
+        self.language = []
         self.__data = u''
         self.elements = {
          ('header'): (self.start_header,self.end_header),
@@ -38,18 +44,10 @@ class HandleTMXParsing(handler.ContentHandler):
          ('note'): (self.start_note,self.end_note),
           }
 
-    def xmllang_attr(self, attrs):
-        """ Check attributes for xml:lang and delete it
-        """
-        if attrs.has_key("xml:lang"):
-            self.lang = attrs["xml:lang"]
-#           del attrs["xml:lang"]
-
     def startElement(self, tag, attrs):
         """ This is the method called by SAX. We simply look
             up the tag in a list and then call the coresponding method
         """
-        self.xmllang_attr(attrs)
         method = self.elements.get(tag, (None, None))[0]
         if method:
             method(tag,attrs)
@@ -68,33 +66,34 @@ class HandleTMXParsing(handler.ContentHandler):
         self.__data += text
 
     def start_header(self, tag, attrs):
-        """ Start of header info
-            We are mainly interested in the srclang info.
-            We call a callback provided when the class was initialised
-        """
-        self.header_cb(attrs)
+        """ Start of header info """
+        pass
 
     def end_header(self,tag):
-        """ Unused """
+        """ End of header info """
         pass
 
     def start_tu(self, tag, attrs):
         """ Translation unit """
-        self.tudata = {}
+        self.element = []
+        self.translations = {}
+        self.element_id = ''
 
     def end_tu(self,tag):
-        self.tu_cb(self.tudata)
+        """ Translation unit """
+        self.element.append(self.element_id)
+        self.element.append(self.translations)
+        self.TMXContent[self.element[0]] = self.element[1]
 
     def start_tuv(self, tag, attrs):
-        """ Unused """
-        pass
+        """ Translation Unit Variant """
+        self.language = []
+        if attrs.has_key("xml:lang"):
+           self.language.append(attrs["xml:lang"])
 
     def end_tuv(self,tag):
-        """ Force the language to None, as the next tuv could have no xml:lang
-            The correct way would be to stack the xml:lang so we fall back.
-            But that is not how the TMX spec sees things.
-        """
-        self.lang = '*none*'
+        """ Translation Unit Variant """
+        self.translations[self.language[0]] = self.language[1]
 
     def start_seg(self, tag, attrs):
         """ Start of segment """
@@ -102,12 +101,15 @@ class HandleTMXParsing(handler.ContentHandler):
 
     def end_seg(self,tag):
         """ End of segment """
-        self.tudata[self.lang] = self.__data
+        self.language.append(self.__data)
+        if self.language[0] == 'English' and self.language[1] != '':
+            elem_name = self.utf8_to_latin1(self.language[1])
+            self.element_id = self.ut_makeId(elem_name)
 
     def start_note(self, tag, attrs):
         """ Start of segment """
-        self.__data = u''
+        pass
 
     def end_note(self,tag):
         """ End of segment """
-        self.tudata['_note'] = self.__data
+        pass

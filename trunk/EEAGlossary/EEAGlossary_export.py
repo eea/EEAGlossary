@@ -20,13 +20,17 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_export.py,v 1.11 2004/05/31 11:58:50 finrocvs Exp $
+#$Id: EEAGlossary_export.py,v 1.12 2004/06/01 08:28:15 finrocvs Exp $
 
 from DateTime import DateTime
 from types import UnicodeType
 import string
+from xml.sax import make_parser, handler, InputSource
+from cStringIO import StringIO
 
 #product imports
+from EEAGlossary_utils import utils
+from parsers.tmx_parser import HandleTMXParsing
 
 
 class glossary_export:
@@ -171,3 +175,62 @@ class glossary_export:
         r_append('</tmx>')
         return r
 
+    def xliff_import(self):
+        """."""
+        pass
+
+    ##################
+    #   tmx import   #
+    ##################
+
+    def tmx_import(self, files, REQUEST=None):
+        """ Imports a TMX file """
+        parser = make_parser()
+        chandler = HandleTMXParsing()
+        parser.setContentHandler(chandler)
+
+        inputsrc = InputSource()
+        content = files.read()
+        inputsrc.setByteStream(StringIO(content))
+        parser.parse(inputsrc)
+
+        l_list = chandler.TMXContent.keys()
+        l_list.sort()
+        for k in l_list:
+            folder_id = self.utf8_to_latin1(string.upper(k[:1]))
+            folder = self.unrestrictedTraverse(folder_id, None)
+            if folder is None:
+                try:
+                    self.manage_addGlossaryFolder(folder_id)
+                    folder = self._getOb(folder_id)
+                except Exception, error:
+                    print error
+            elem_ob = folder._getOb(k, None)
+            if elem_ob is not None:
+                for lang,trans in chandler.TMXContent[k].items():
+                    if lang in self.get_unicode_langs():
+                        elem_ob.set_translations_list(lang, trans)
+                        elem_ob.set_history(lang, trans)
+                    else:
+                        trans = self.toutf8(trans,self.get_language_charset(lang))
+                        elem_ob.set_translations_list(lang, trans)
+                        elem_ob.set_history(lang, trans)
+                elem_ob.cu_recatalog_object(elem_ob)
+            else:
+                try:
+                    elem_name = self.utf8_to_latin1(chandler.TMXContent[k]['English'])
+                    folder.manage_addGlossaryElement(elem_name, '', '', [], '', '', '', '', '', 
+                    'dataservice, http://dataservice.eea.eu.int', '', 0, 1, 0, '', '', [], [], {})
+                except Exception, error:
+                    print error
+                elem_ob = folder._getOb(k, None)
+                if elem_ob is not None:
+                    for lang,trans in chandler.TMXContent[k].items():
+                        if lang in self.get_unicode_langs():
+                            elem_ob.set_translations_list(lang, trans)
+                            elem_ob.set_history(lang, trans)
+                        else:
+                            trans = self.toutf8(trans,self.get_language_charset(lang))
+                            elem_ob.set_translations_list(lang, trans)
+                            elem_ob.set_history(lang, trans)
+                    elem_ob.cu_recatalog_object(elem_ob)

@@ -26,7 +26,7 @@
                         </tr>
                         <tr>
                             <td align="left" valign="top"></td>
-                            <td align="left" valign="top"><div class="form-element"><input lass="form-element" type="submit" value="Add Centre"></div></td>
+                            <td align="left" valign="top"><div class="form-element"><input class="form-element" type="submit" value="Add Centre"></div></td>
                         </tr>
                     </form>
                     </table>
