@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.50 2004/05/31 11:58:50 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.51 2004/06/01 13:12:54 finrocvs Exp $
 
 # python imports
 import string
@@ -199,18 +199,15 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     def set_translations_list(self, language, translation):
         """ set the languages """
         setattr(self, language, translation)
-        self._p_changed = 1
 
     def del_translation_by_language(self, language):
         """ remove a translation from list """
         setattr(self, language, '')
-        self._p_changed = 1
 
     def load_translations_list (self):
         """ load languages """
         for lang in self.get_english_names():
             setattr(self, lang, '')
-        self._p_changed = 1
 
     def convert_element(self, synonyms=[], REQUEST=None):
         """convert element to synonym """
@@ -232,7 +229,6 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         if self.check_allowed_translations(lang_code):
             self.set_history(lang_code, translation)
             self.set_translations_list(lang_code, translation)
-            self._p_changed = 1
             self.cu_recatalog_object(self)
             if REQUEST is not None:
                 return REQUEST.RESPONSE.redirect('check_translation_html')

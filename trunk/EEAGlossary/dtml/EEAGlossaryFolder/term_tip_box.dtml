@@ -1,4 +1,6 @@
-<dtml-with "random_from_catalog('/'+absolute_url(1))">
+<dtml-let rnd_element="random_from_catalog('/'+absolute_url(1))">
+<dtml-if rnd_element>
+<dtml-with rnd_element>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="B5DED6">
         <tr> 
           <td><img src="misc_/EEAGlossary/line.gif" width="100%" height="1"></td></tr>
@@ -19,3 +21,5 @@
         </tr>
     </table>
 </dtml-with>
+</dtml-if>
+</dtml-let>
