@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossarySynonym.py,v 1.7 2004/05/05 17:14:08 finrocvs Exp $
+#$Id: EEAGlossarySynonym.py,v 1.8 2004/05/05 17:30:19 finrocvs Exp $
 
 #python imports
 import string
@@ -28,17 +28,13 @@ import string
 # Zope imports
 from Globals import DTMLFile, InitializeClass
 from AccessControl import ClassSecurityInfo
-from OFS.SimpleItem import SimpleItem
-from Products.ZCatalog.CatalogAwareness import CatalogAware
 
 # product imports
-import EEAGlossaryCentre
 from EEAGlossaryElement import EEAGlossaryElement
 from EEAGlossary_utils import utils
 from EEAGlossary_constants import *
 
 manage_addGlossarySynonym_html = DTMLFile('dtml/EEAGlossarySynonym/add', globals())
-
 def manage_addGlossarySynonym(self, id, synonyms=[], REQUEST=None):
     """ Adds a new EEAGlossaryElementSynonym object """
     ob = EEAGlossarySynonym(id, synonyms)
@@ -48,7 +44,7 @@ def manage_addGlossarySynonym(self, id, synonyms=[], REQUEST=None):
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
-class EEAGlossarySynonym(SimpleItem, CatalogAware, EEAGlossaryElement, utils):
+class EEAGlossarySynonym(EEAGlossaryElement, utils):
     """ EEAGlossaryFolder """
 
     meta_type = EEA_GLOSSARY_SYNONYM_METATYPE
@@ -57,14 +53,14 @@ class EEAGlossarySynonym(SimpleItem, CatalogAware, EEAGlossaryElement, utils):
     default_catalog = GLOSSARY_CATALOG_NAME
 
     manage_options = (
-        {'label':'All Translations [_element_]',        'action':'view_translations_html'},
-        {'label':'Check Translation',       'action':'check_translation_html'},
-        {'label':'Properties',              'action':'manage_properties_html'},
-        {'label':"View",                    'action':'preview_html'},
-        {'label':'History [_element_]',      'action':'history_html'},
-        {'label':'Help [OK]',                 'action':'help_html'},
-        {'label':'Undo [OK]',                    'action':'manage_UndoForm'},
-        {'label':'Synonym Properties [OK]',                    'action':'synonym_properties_html'},)
+        {'label':'All Translations',    'action':'view_translations_html'},
+        {'label':'Check Translation',               'action':'check_translation_html'},
+        {'label':'Properties',                      'action':'manage_properties_html'},
+        {'label':"View",                            'action':'preview_html'},
+        {'label':'History',             'action':'history_html'},
+        {'label':'Help',                       'action':'help_html'},
+        {'label':'Undo',                       'action':'manage_UndoForm'},
+        {'label':'Synonym Properties',         'action':'synonym_properties_html'},)
 
     security = ClassSecurityInfo()
 
@@ -72,7 +68,7 @@ class EEAGlossarySynonym(SimpleItem, CatalogAware, EEAGlossaryElement, utils):
         """ constructor """
         self.id = id
         self.synonyms = synonyms
-        EEAGlossaryElement.__dict__['__init__'](self, self.id, '', '', '', [], '', '', '', '', '', 
+        EEAGlossaryElement.__dict__['__init__'](self, id, '', '', '', [], '', '', '', '', '', 
             '', '', 0, 1, 0, '', '', [], [], {})
 
     #####################
@@ -103,12 +99,12 @@ class EEAGlossarySynonym(SimpleItem, CatalogAware, EEAGlossaryElement, utils):
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('synonym_properties_html')
 
-    view_translations_html = DTMLFile("dtml/EEAGlossarySynonym/view_translations", globals())
-    check_translation_html = DTMLFile("dtml/EEAGlossarySynonym/check_translation", globals())
+    #view_translations_html = DTMLFile("dtml/EEAGlossarySynonym/view_translations", globals())
+    #check_translation_html = DTMLFile("dtml/EEAGlossarySynonym/check_translation", globals())
     manage_properties_html = DTMLFile("dtml/EEAGlossarySynonym/properties", globals())
     index_html = DTMLFile("dtml/EEAGlossarySynonym/index", globals())
-    history_html = DTMLFile("dtml/EEAGlossarySynonym/history", globals())
-    help_html = DTMLFile("dtml/EEAGlossarySynonym/help", globals())
+    #history_html = DTMLFile("dtml/EEAGlossarySynonym/history", globals())
+    #help_html = DTMLFile("dtml/EEAGlossarySynonym/help", globals())
     synonym_properties_html = DTMLFile("dtml/EEAGlossarySynonym/synonym_properties", globals())
 
 InitializeClass(EEAGlossarySynonym)

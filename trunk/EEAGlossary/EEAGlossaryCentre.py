@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.17 2004/05/05 17:14:08 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.18 2004/05/05 17:30:19 finrocvs Exp $
 
 # python imports
 import string
@@ -308,6 +308,9 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
     management_page_html = DTMLFile('dtml/EEAGlossaryCentre/administration', globals())
 
     style_css = DTMLFile('dtml/EEAGlossaryCentre/style', globals())
+    help_html = DTMLFile("dtml/EEAGlossaryElement/help", globals())
+    help_contact_html = DTMLFile("dtml/EEAGlossaryElement/help_contact", globals())
+
 
     manage_utf8_header = DTMLFile('dtml/EEAGlossaryCentre/utf8_header', globals())
     manage_utf8_footer = DTMLFile('dtml/EEAGlossaryCentre/utf8_footer', globals())
