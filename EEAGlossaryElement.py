@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.53 2004/06/24 08:11:03 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.54 2004/10/01 08:12:50 finrocvs Exp $
 
 # python imports
 import string
@@ -39,8 +39,9 @@ from EEAGlossary_constants import *
 class ElementBasic:
     """ define the basic properties for EEAGlossaryElement """
 
-    def __init__(self, name, el_type, source, el_context, comment, used_for_1, used_for_2, 
-            definition, definition_source_url, long_definition):
+    def __init__(self, name, el_type, source, el_context, comment,
+            definition, definition_source_publ, definition_source_publ_year, definition_source_url, 
+            definition_source_org, definition_source_org_fullname, long_definition):
         """ constructor """
 
         self.name = name
@@ -48,22 +49,29 @@ class ElementBasic:
         self.source = source
         self.el_context = el_context
         self.comment = comment
-        self.used_for_1 = used_for_1
-        self.used_for_2 = used_for_2
         self.definition = definition
+
+        self.definition_source_publ = definition_source_publ
+        self.definition_source_publ_year = definition_source_publ_year
         self.definition_source_url = definition_source_url
+        self.definition_source_org = definition_source_org
+        self.definition_source_org_fullname = definition_source_org_fullname
+
         self.long_definition = long_definition
+
 
 manage_addGlossaryElement_html = DTMLFile('dtml/EEAGlossaryElement/add', globals())
 
 def manage_addGlossaryElement(self, name='', el_type='', source='', subjects=[], el_context='', comment='', 
-    used_for_1='', used_for_2='',definition='', definition_source_url='', long_definition='', disabled=0, 
-    approved=1, QA_needed=0, image_url='', flash_url='', links=[], actions=[], translations={}, synonym=[], REQUEST=None):
+    definition='', definition_source_publ='', definition_source_publ_year='', 
+    definition_source_url='', definition_source_org='', definition_source_org_fullname='', long_definition='', 
+    disabled=0, approved=1, QA_needed=0, image_url='', flash_url='', links=[], actions=[], translations={}, synonym=[], REQUEST=None):
     """ adds a new EEAGlossaryElement object """
     #remove the spaces from name
     id = self.ut_makeId(name)
-    ob = EEAGlossaryElement(id, name, el_type, source, subjects, el_context, comment, used_for_1, used_for_2, 
-            definition, definition_source_url, long_definition, disabled, approved, QA_needed, 
+    ob = EEAGlossaryElement(id, name, el_type, source, subjects, el_context, comment,
+            definition, definition_source_publ, definition_source_publ_year, definition_source_url, 
+            definition_source_org, definition_source_org_fullname, long_definition, disabled, approved, QA_needed, 
             image_url, flash_url, links, actions, translations, synonym)
     self._setObject(id, ob)
     element_obj = self._getOb(id)
@@ -94,8 +102,10 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
 
     security = ClassSecurityInfo()
 
-    def __init__(self, id, name, el_type, source, subjects, el_context, comment, used_for_1, used_for_2, definition, 
-        definition_source_url, long_definition, disabled, approved, QA_needed,  image_url, flash_url, links, actions, translations, synonym):
+    def __init__(self, id, name, el_type, source, subjects, el_context, comment, definition, 
+            definition_source_publ, definition_source_publ_year, definition_source_url, definition_source_org, 
+            definition_source_org_fullname, long_definition, disabled, approved, QA_needed,  image_url, flash_url, 
+            links, actions, translations, synonym):
         """ constructor """
         self.id = id
         self.image_url = image_url
@@ -109,8 +119,9 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         self.approved = approved
         self.QA_needed = QA_needed
         self.synonym = synonym
-        ElementBasic.__dict__['__init__'](self, name, el_type, source, el_context, comment, used_for_1, used_for_2, 
-            definition, definition_source_url, long_definition)
+        ElementBasic.__dict__['__init__'](self, name, el_type, source, el_context, comment, 
+            definition, definition_source_publ, definition_source_publ_year, definition_source_url, 
+            definition_source_org, definition_source_org_fullname, long_definition)
 
     def is_published (self):
         """ test if current element is published """
@@ -243,21 +254,25 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     #####################
     #  BASIC PROPERTIES #
     #####################
-    def manageBasicProperties(self, name='', el_type='', source=[], el_context='', comment='', used_for_1='', used_for_2='', definition='',
-        definition_source_url='', subjects=[], disabled=0, approved =0, long_definition='', QA_needed=0, REQUEST=None):
+    def manageBasicProperties(self, name='', el_type='', source=[], el_context='', comment='', definition='', 
+            definition_source_publ='', definition_source_publ_year='', definition_source_url='', definition_source_org='', 
+            definition_source_org_fullname='', subjects=[], disabled=0, approved =0, long_definition='', QA_needed=0, REQUEST=None):
         """ manage basic properties for EEAGlossaryElement """
         self.name = name
         self.el_type = el_type
         self.source = source
         self.el_context = el_context
         self.comment = comment
-        self.used_for_1 = used_for_1
-        self.used_for_2 = used_for_2
         self.definition = definition
         self.definition_source_url = definition_source_url
         self.subjects = self.get_subject_by_codes(subjects)
         self.disabled = disabled
         self.approved = approved
+        self.definition_source_publ = definition_source_publ
+        self.definition_source_publ_year = definition_source_publ_year
+        self.definition_source_url = definition_source_url
+        self.definition_source_org = definition_source_org
+        self.definition_source_org_fullname = definition_source_org_fullname
         self.long_definition = long_definition
         self.QA_needed = QA_needed
         self._p_changed = 1

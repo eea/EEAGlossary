@@ -27,20 +27,32 @@
                     <td><textarea rows="6" cols="35" name="comment"><dtml-var comment></textarea></td>
                 </tr>
                 <tr>
-                    <td><b>Used for 1:</b></td>
-                    <td><input type="text" name="used_for_1" size="40" value="<dtml-var used_for_1>"></td>
-                </tr>
-                <tr>
-                    <td><b>Used for 2:</b></td>
-                    <td><input type="text" name="used_for_2" size="40" value="<dtml-var used_for_2>"></td>
-                </tr>
-                <tr>
                     <td><b>Definition:</b></td>
                     <td><textarea rows="6" cols="35" name="definition"><dtml-var definition></textarea></td>
                 </tr>
                 <tr>
-                    <td><b>Definition source:</b></td>
-                    <td><input type="text" name="definition_source_url" size="40" value="<dtml-var definition_source_url>"></td>
+                    <td align="left" valign="top"><label for="cb-definition_source_publ"><b>Publication:</b></label></td>
+                    <td align="left" valign="top"><input type="text" name="definition_source_publ:string" size="35" value="<dtml-var definition_source_publ>"></td>
+                </tr>
+
+                <tr>
+                    <td align="left" valign="top"><label for="cb-definition_source_publ_year"><b>Publication year:</b></label></td>
+                    <td align="left" valign="top"><input type="text" name="definition_source_publ_year:string" size="35" value="<dtml-var definition_source_publ_year>"></td>
+                </tr>
+
+                <tr>
+                    <td align="left" valign="top"><label for="cb-definition_source"><b>Definition source:</b></label></td>
+                    <td align="left" valign="top"><input type="text" name="definition_source_url:string" size="35" value="<dtml-var definition_source_url>"></td>
+                </tr>
+
+                <tr>
+                    <td align="left" valign="top"><label for="cb-definition_source_org"><b>Organisation:</b></label></td>
+                    <td align="left" valign="top"><input type="text" name="definition_source_org:string" size="35" value="<dtml-var definition_source_org>"></td>
+                </tr>
+
+                <tr>
+                    <td align="left" valign="top"><label for="cb-definition_source_org_fullname"><b>Organisation fullname:</b></label></td>
+                    <td align="left" valign="top"><input type="text" name="definition_source_org_fullname:string" size="35" value="<dtml-var definition_source_org_fullname>"></td>
                 </tr>
                 <tr>
                     <td><b>Subjects:</b></td>

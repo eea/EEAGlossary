@@ -1,100 +1,142 @@
 <dtml-var style_console_css>
 
-<table cellspacing="0" cellpadding="0" border="1" width="80%">
-    <tr><td>
-        <table cellspacing="0" cellpadding="2" border="0" width="100%">
-            <tr class="row-header"><td class="cell-header" colspan="3">Add EEAGlossary Element</td></tr>
-
-            <tr class="row-odd">
-                <td align="left" valign="top"><b>Name</b></td>
-                <td align="left" valign="top"><b>Value</b></td>
-                <td align="left" valign="top"><b>Type</b></td>
-            </tr>
-
-            <form action="manage_addGlossaryElement">
-            <tr>
-                <td align="left" valign="top"><label for="cb-name"><b>Term name:</b></label></td>
-                <td align="left" valign="top"><input type="text" name="name:string" size="35" value=""></td>
-                <td align="left" valign="top">string</td>
-            </tr>
-
-            <tr>
-                <td align="left" valign="top"><label for="cb-type"><b>Type:</b></label></td>
-                <td align="left" valign="top">
-                   <select name="el_type">
-                       <dtml-in get_types_list>  
-                           <OPTION VALUE="<dtml-var sequence-item>"><dtml-var sequence-item></OPTION>
-                       </dtml-in>
-                   </select>
-                </td>
-                <td align="left" valign="top">selection</td>
-            </tr>
-
-            <tr>
-                <td align="left" valign="top"><label for="cb-source"><b>Source:</b></label></td>
-                <td align="left" valign="top"><input type="text" name="source:string" size="35" value=""></td>
-                <td align="left" valign="top">string</td>
-            </tr>
-
-            <tr>
-                <td align="left" valign="top"><label for="cb-context"><b>Context:</b></label></td>
-                <td align="left" valign="top"><input type="text" name="el_context:string" size="35" value=""></td>
-                <td align="left" valign="top">string</td>
-            </tr>
-
-            <tr>
-                <td align="left" valign="top"><label for="cb-comment"><b>Comment:</b></label></td>
-                <td align="left" valign="top"><textarea name="comment:text" rows="6" cols="35"></textarea></td>
-                <td align="left" valign="top">text</td>
-            </tr>
-
-            <tr>
-                <td align="left" valign="top"><label for="cb-used_for_1"><b>Used_for_1:</b></label></td>
-                <td align="left" valign="top"><input type="text" name="used_for_1:string" size="35" value=""></td>
-                <td align="left" valign="top">string</td>
-            </tr>
-
-            <tr>
-                <td align="left" valign="top"><label for="cb-used_for_2"><b>Used_for_2:</b></label></td>
-                <td align="left" valign="top"><input type="text" name="used_for_2:string" size="35" value=""></td>
-                <td align="left" valign="top">string</td>
-            </tr>
-
-            <tr>
-                <td align="left" valign="top"><label for="cb-definition"><b>Definition:</b></label></td>
-                <td align="left" valign="top"><textarea name="definition:text" rows="6" cols="35"></textarea></td>
-                <td align="left" valign="top">text</td>
-            </tr>
-
-            <tr>
-                <td align="left" valign="top"><label for="cb-definition_source"><b>Definition_source:</b></label></td>
-                <td align="left" valign="top"><input type="text" name="definition_source_url:string" size="35" value=""></td>
-                <td align="left" valign="top">string</td>
-            </tr>
-
-            <tr>
-                <td align="left" valign="top"><label for="cb-subjects"><b>Subjects:</b></label></td>
-                <td align="left" valign="top">
-                    <select size=10 multiple name="subjects">
-                            <dtml-in get_subjects_list>
-                                <dtml-let record="_['sequence-item']">
-                                <option value="<dtml-var "record['code']">"><dtml-var "record['name']"></option>
-                                </dtml-let>
-                            </dtml-in>
-                    </select>
-                </td>
-                <td align="left" valign="top">multiple selection</td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td>
-                    <input type=submit value=" Add ">
-                </td>
-                <td></td>
-            </tr>
-            </form>
-
-        </table>
-    </td></tr>
+<table cellspacing="0" cellpadding="0" border="0" width="80%">
+    <tr class="row-header">
+        <td class="cell-header" colspan="3">Add EEAGlossary Element</td>
+    </tr>
+    <tr>
 </table>
+
+<form action="manage_addGlossaryElement">
+
+<table width="70%" cellpadding=0 cellspacing=3>
+<tr>
+    <td>
+    <fieldset>
+        <legend>Generals</legend>
+        <table cellspacing="0" cellpadding="2" border="0" width="100%">
+        <tr>
+            <td align="left" valign="top"><label for="cb-name"><b>Term name:</b></label></td>
+            <td align="left" valign="top"><input type="text" name="name:string" size="35" value=""></td>
+            <td align="left" valign="top">string</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top"><label for="cb-definition"><b>Definition:</b></label></td>
+            <td align="left" valign="top"><textarea name="definition:text" rows="6" cols="35"></textarea></td>
+            <td align="left" valign="top">text</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top"><label for="cb-type"><b>Type:</b></label></td>
+            <td align="left" valign="top">
+               <select name="el_type">
+                   <dtml-in get_types_list>  
+                       <OPTION VALUE="<dtml-var sequence-item>"><dtml-var sequence-item></OPTION>
+                   </dtml-in>
+               </select>
+            </td>
+            <td align="left" valign="top">selection</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top"><label for="cb-source"><b>Source:</b></label></td>
+            <td align="left" valign="top"><input type="text" name="source:string" size="35" value=""></td>
+            <td align="left" valign="top">string</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top"><label for="cb-context"><b>Context:</b></label></td>
+            <td align="left" valign="top"><input type="text" name="el_context:string" size="35" value=""></td>
+            <td align="left" valign="top">string</td>
+        </tr>
+        <tr>
+            <td align="left" valign="top"><label for="cb-comment"><b>Comment:</b></label></td>
+            <td align="left" valign="top"><textarea name="comment:text" rows="6" cols="35"></textarea></td>
+            <td align="left" valign="top">text</td>
+        </tr>
+        </table>
+    </fieldset>
+
+<dtml-comment>
+    <fieldset>
+        <legend>Synonims</legend>
+        <table>
+        <tr>
+            <td align="left" valign="top"><label for="cb-used_for_1"><b>Used_for_1:</b></label></td>
+            <td align="left" valign="top"><input type="text" name="used_for_1:string" size="35" value=""></td>
+            <td align="left" valign="top">string</td>
+        </tr>
+
+        <tr>
+            <td align="left" valign="top"><label for="cb-used_for_2"><b>Used_for_2:</b></label></td>
+            <td align="left" valign="top"><input type="text" name="used_for_2:string" size="35" value=""></td>
+            <td align="left" valign="top">string</td>
+        </tr>
+        </table>
+    </fieldset>
+</dtml-comment>
+
+    <fieldset>
+        <legend>Subjects</legend>
+        <table>
+        <tr>
+            <td align="left" valign="top"><label for="cb-subjects"><b>Subjects:</b></label></td>
+            <td align="left" valign="top">
+                <select size=10 multiple name="subjects">
+                        <dtml-in get_subjects_list>
+                            <dtml-let record="_['sequence-item']">
+                            <option value="<dtml-var "record['code']">"><dtml-var "record['name']"></option>
+                            </dtml-let>
+                        </dtml-in>
+                </select>
+            </td>
+            <td align="left" valign="top">multiple selection</td>
+        </tr>
+        </table>
+    </fieldset>
+
+    <fieldset><legend>Definition source details</legend>
+        <table>
+        <tr>
+            <td align="left" valign="top"><label for="cb-definition_source_publ"><b>Publication:</b></label></td>
+            <td align="left" valign="top"><input type="text" name="definition_source_publ:string" size="35" value=""></td>
+            <td align="left" valign="top">string</td>
+        </tr>
+
+        <tr>
+            <td align="left" valign="top"><label for="cb-definition_source_publ_year"><b>Publication year:</b></label></td>
+            <td align="left" valign="top"><input type="text" name="definition_source_publ_year:string" size="35" value=""></td>
+            <td align="left" valign="top">string</td>
+        </tr>
+
+        <tr>
+            <td align="left" valign="top"><label for="cb-definition_source"><b>Definition source:</b></label></td>
+            <td align="left" valign="top"><input type="text" name="definition_source_url:string" size="35" value=""></td>
+            <td align="left" valign="top">string</td>
+        </tr>
+
+        <tr>
+            <td align="left" valign="top"><label for="cb-definition_source_org"><b>Organisation:</b></label></td>
+            <td align="left" valign="top"><input type="text" name="definition_source_org:string" size="35" value=""></td>
+            <td align="left" valign="top">string</td>
+        </tr>
+
+        <tr>
+            <td align="left" valign="top"><label for="cb-definition_source_org_fullname"><b>Organisation fullname:</b></label></td>
+            <td align="left" valign="top"><input type="text" name="definition_source_org_fullname:string" size="35" value=""></td>
+            <td align="left" valign="top">string</td>
+        </tr>
+        </table>
+    </fieldset>
+    </td>
+</tr>
+</table>
+
+<table>
+<tr>
+    <td>&nbsp;</td>
+    <td>
+        <input type=submit value=" Add ">
+    </td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+</form>
