@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.19 2004/05/05 17:38:20 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.20 2004/05/05 17:44:32 finrocvs Exp $
 
 # python imports
 import string
@@ -97,18 +97,6 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
 
     manage_addGlossaryFolder_html = EEAGlossaryFolder.manage_addGlossaryFolder_html
     manage_addGlossaryFolder = EEAGlossaryFolder.manage_addGlossaryFolder
-
-    def get_subjects_list (self):
-        """gets subjects list in alphabetical order """
-        subjects_values = self.subjects_list.values()
-        subjects_values.sort()
-        return subjects_values
-
-    def get_languages_list(self):
-        """ """
-        languages_values = self.languages_list.keys()
-        languages_values.sort()
-        return languages_values
 
     ##########################
     #   MANAGEMENT FUNCTIONS #
@@ -266,6 +254,18 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
             self._p_changed = 1
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=1&save=ok')
+
+    def get_subjects_list (self):
+        """gets subjects list in alphabetical order """
+        subjects_values = self.subjects_list.values()
+        subjects_values.sort()
+        return subjects_values
+
+    def get_languages_list(self):
+        """ """
+        languages_values = self.languages_list.keys()
+        languages_values.sort()
+        return languages_values
 
     def get_language_charset(self, language):
         """ get the charset for a specific language """

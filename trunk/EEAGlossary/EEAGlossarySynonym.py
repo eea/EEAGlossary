@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossarySynonym.py,v 1.8 2004/05/05 17:30:19 finrocvs Exp $
+#$Id: EEAGlossarySynonym.py,v 1.9 2004/05/05 17:44:32 finrocvs Exp $
 
 #python imports
 import string
@@ -99,12 +99,8 @@ class EEAGlossarySynonym(EEAGlossaryElement, utils):
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('synonym_properties_html')
 
-    #view_translations_html = DTMLFile("dtml/EEAGlossarySynonym/view_translations", globals())
-    #check_translation_html = DTMLFile("dtml/EEAGlossarySynonym/check_translation", globals())
     manage_properties_html = DTMLFile("dtml/EEAGlossarySynonym/properties", globals())
     index_html = DTMLFile("dtml/EEAGlossarySynonym/index", globals())
-    #history_html = DTMLFile("dtml/EEAGlossarySynonym/history", globals())
-    #help_html = DTMLFile("dtml/EEAGlossarySynonym/help", globals())
     synonym_properties_html = DTMLFile("dtml/EEAGlossarySynonym/synonym_properties", globals())
 
 InitializeClass(EEAGlossarySynonym)
