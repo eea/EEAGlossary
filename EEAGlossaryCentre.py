@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.82 2004/06/24 15:58:21 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.83 2004/06/24 16:00:19 finrocvs Exp $
 
 # python imports
 import string
@@ -241,7 +241,6 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
 
     def get_contact_persons(self):
         """ return the technic persons list"""
-        print 'La afisare: %s' % self.contact_technic
         return self.contact_technic
 
     def get_translation_persons(self):
@@ -251,13 +250,11 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
     def manageTechnicProperties(self, ids=[], old_email='', email='', phone='', name='', REQUEST=None):
         """ manage tecnical contacts for EEAGlossaryEngine """
         if self.utAddObjectAction(REQUEST):
-            print 'Date vechi: %s' % self.contact_technic
             if string.strip(email) == '' or string.strip(name) == '':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=7')
             else:
                 self.contact_technic[email] = (name, phone)
                 self._p_changed = 1
-                print 'Date noi: %s' % self.contact_technic
         elif self.utUpdateObjectAction(REQUEST):
             if string.strip(email) == '' or string.strip(name) == '':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=7')
