@@ -166,7 +166,7 @@
                 <td width="100%" valign="top" bgcolor="#FFFFFF" colspan="3">
                     <dtml-let alec=ListSubjects>
                     <dtml-in "alec.keys()">
-                        <b><dtml-var sequence-item></b>: <dtml-var "alec[_['sequence-item']]">
+                        <b>{<dtml-var sequence-item>}</b>: <dtml-var "alec[_['sequence-item']]">
                         <br>
                     </dtml-in>
                     </dtml-let>
