@@ -48,11 +48,7 @@
                                 <dtml-unless translation>
                                     &nbsp;
                                 </dtml-unless>
-                                <dtml-if "language in get_unicode_langs()">
-                                   <dtml-var translation>
-                               <dtml-else>
-                                  <dtml-var "display_unicode_langs(translation,get_language_charset(language))"><br>
-                               </dtml-if>
+                                <dtml-var translation>
                             </td>
                         </tr>
                         <dtml-else>
@@ -62,11 +58,7 @@
                                 <dtml-unless translation>
                                     &nbsp;
                                 </dtml-unless>
-                                <dtml-if "language in get_unicode_langs()">
-                                   <dtml-var translation>
-                               <dtml-else>
-                                  <dtml-var "display_unicode_langs(translation,get_language_charset(language))"><br>
-                               </dtml-if>
+                                <dtml-var translation>
                             </td>
                         </tr>
                         </dtml-if>

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.46 2004/06/01 15:27:36 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.47 2004/06/07 11:15:29 finrocvs Exp $
 
 #Python imports
 import string
@@ -36,8 +36,35 @@ from EEAGlossary_constants import *
 class utils:
 
     def __init__(self):
-        pass
-
+        self.win_cp1252 = {
+                128: 8364, # euro sign
+                130: 8218, # single low-9 quotation mark
+                131:  402, # latin small letter f with hook
+                132: 8222, # double low-9 quotation mark
+                133: 8230, # horizontal ellipsis
+                134: 8224, # dagger
+                135: 8225, # double dagger
+                136:  710, # modifier letter circumflex accent
+                137: 8240, # per mille sign
+                138:  352, # latin capital letter s with caron
+                139: 8249, # single left-pointing angle quotation mark
+                140:  338, # latin capital ligature oe
+                142:  381, # latin capital letter z with caron
+                145: 8216, # left single quotation mark
+                146: 8217, # right single quotation mark
+                147: 8220, # left double quotation mark
+                148: 8221, # right double quotation mark
+                149: 8226, # bullet
+                150: 8211, # en dash
+                151: 8212, # em dash
+                152:  732, # small tilde
+                153: 8482, # trade mark sign
+                154:  353, # latin small letter s with caron
+                155: 8250, # single right-pointing angle quotation mark
+                156:  339, # latin small ligature oe
+                158:  382, # latin small letter z with caron
+                159:  376} # latin capital letter y with diaeresis
+        
     def ut_test_even(self, p_number):
         """ return true if even """
         return not(p_number%2)
@@ -191,12 +218,6 @@ class utils:
         
     encodeISO88592, decodeISO88592 = codecs.lookup('iso-8859-2')[:2]
     
-    def utf8_to_iso_8859_2(self, s):
-        return self.encodeISO88592(self.decodeUTF8(s)[0])[0]
-        
-    def iso88595_toutf8(self, s):
-        return unicode(s, 'iso-8859-5').encode('utf-8')
-        
     def debug(self, error):
         """ """
         import sys
@@ -205,10 +226,16 @@ class utils:
     def convertValToHex(self, val):
         return unichr(int(val.group()[2:-1]))
 
-    def convertTermToHex(self, term):
+    def convertHTMLCodesToHex(self, term):
         import re
         return re.sub('&#[0-9]+;', self.convertValToHex, term)
 
+    def convertWinCodesToHTMLCodes(self, term):
+        for i in range(len(term)-1,-1,-1):
+            if ord(term[i]) in self.win_cp1252.keys():
+                term=term[0:i] + "&#" + str(self.win_cp1252[ord(term[i])]) + ";" + term[i+1:]
+        return term      
+                
 class catalog_utils:
 
     def __init__(self):
@@ -236,7 +263,8 @@ class catalog_utils:
         """ catalog an object """
         catalog = self.getGlossaryCatalog()
         try:
-            catalog.catalog_object(ob, self.__build_catalog_path(ob))
+            ob_path = self.__build_catalog_path(ob)
+            catalog.catalog_object(ob, ob_path)
         except Exception, error:
             print self.debug(error)
 
@@ -250,14 +278,14 @@ class catalog_utils:
 
     def cu_recatalog_object(self, ob):
         """ recatalog an object """
-        catalog = self.getGlossaryCatalog()
         try:
+            catalog = self.getGlossaryCatalog()
             ob_path = self.__build_catalog_path(ob)
             catalog.uncatalog_object(ob_path)
             self.cu_catalog_object(ob)
         except Exception, error:
             print self.debug(error)
-
+            
     def cu_getIndexes(self):
         """ return a list with all ZCatalog indexes """
         catalog = self.getGlossaryCatalog()

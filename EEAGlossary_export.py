@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_export.py,v 1.13 2004/06/01 12:47:08 finrocvs Exp $
+#$Id: EEAGlossary_export.py,v 1.14 2004/06/07 11:15:29 finrocvs Exp $
 
 from DateTime import DateTime
 from types import UnicodeType
@@ -77,6 +77,7 @@ class glossary_export:
 
     def xliff_export(self, folder='/', language='', published=0, REQUEST=None):
         """ Exports the content to an XLIFF file """
+        from types import UnicodeType
         results_list = []
         results = []
         terms = []
@@ -87,6 +88,8 @@ class glossary_export:
             terms.extend(self.get_all_objects('/%s' % folder))
         results_list.extend(self.xliff_header(folder, language))
         for term in terms:
+            term.get_translation_by_language('English')
+            #translation = term.get_translation_by_language(language)
             if language in self.get_unicode_langs():
                 translation = term.get_translation_by_language(language)
             else:

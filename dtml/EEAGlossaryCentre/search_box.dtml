@@ -7,12 +7,12 @@
 <table border=1 cellpadding=1 cellspacing=1 width="100%">
     <tr>
         <td align=left>Query Term</td>
-        <td align=left>
+        <td align=left><dtml-var term><dtml-comment>
             <dtml-if "lang in get_unicode_langs()">
                 <dtml-var term>
             <dtml-else>
                 <dtml-var "display_unicode_langs(term,get_language_charset(lang))">
-            </dtml-if>
+            </dtml-if></dtml-comment>
         </td>
     </tr>
     <tr>
@@ -33,8 +33,10 @@
     <tr>
         <td colspan="2"><img src="misc_/EEAGlossary/element.gif" border=0>&nbsp;
             <a href="<dtml-var absolute_url>">
+                <dtml-var translation>
+                <dtml-comment>
                 <dtml-if "lang in get_unicode_langs()"><dtml-var translation><dtml-else>
-                <dtml-var "display_unicode_langs(translation,get_language_charset(language))"></dtml-if></a><br>
+                <dtml-var "display_unicode_langs(translation,get_language_charset(language))"></dtml-if></dtml-comment></a><br>
             <dtml-var definition missing><br>Source: <dtml-var definition_source missing><br>
         </td>
     </tr>
