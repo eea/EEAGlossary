@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryFolder.py,v 1.22 2004/05/28 12:29:29 finrocvs Exp $
+#$Id$
 
 # python imports
 import whrandom
@@ -83,9 +83,9 @@ class EEAGlossaryFolder(Folder, utils, catalog_utils):
     manage_addGlossarySynonym = EEAGlossarySynonym.manage_addGlossarySynonym
 
 
-    ##########################
-    #   OTHER FUNCTIONS #
-    ##########################
+    #######################
+    #   DISPLAY FUNCTIONS #
+    #######################
     def get_object_list(self):
         """ return all id sorted objects from a folder """
         id_lst = []

@@ -47,25 +47,30 @@
                     <tr>
                         <td>
                             <table>
-                                <dtml-in get_object_list size=5 start=qs>
+                                <dtml-in get_object_list>
                                     <tr><td width="20%">
                                         <dtml-if is_published>
                                             <dtml-if synonyms>
-                                                <img src="misc_/EEAGlossary/element.gif" class="img-normal" alt="">&nbsp;<dtml-var name>&nbsp;
+                                                <img src="misc_/EEAGlossary/synonym.gif" class="img-normal" alt="">&nbsp;<dtml-var name>&nbsp;
                                                 <dtml-if QA_needed>
                                                     <img src="misc_/EEAGlossary/new.gif" class="img-normal" alt="New glossary entry">
                                                 </dtml-if>
                                                 <dtml-in synonyms size=1>
-                                                    <dtml-if sequence-start>
-                                                        (<small>See </small>
-                                                    </dtml-if><dtml-comment>
+                        <dtml-in utGetSynonyms>
+                            <dtml-if sequence-start>(<small>See </small></dtml-if>
+                            <dtml-if "_.len(_['sequence-item'].name)>1">
+                                <a href="<dtml-var absolute_url>/manage_workspace"><dtml-var title_or_id></a>)
+                            </dtml-if>
+                        </dtml-in>
+                                                    <dtml-comment>
                                                     <dtml-if "_.len(_['sequence-item'])>1">
                                                         <dtml-in "GlossaryCatalog(id=_['sequence-item'])">
                                                             <dtml-with "getObject()">
                                                                 <a href="&dtml-absolute_url;"><dtml-var name_or_id></a>)
                                                             </dtml-with>
                                                         </dtml-in>
-                                                    </dtml-if></dtml-comment>
+                                                    </dtml-if>
+                                                    </dtml-comment>
                                                 </dtml-in>
                                             <dtml-else>
                                                 <a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/element.gif" class="img-normal" alt="">&nbsp;<dtml-var name>&nbsp;</a>
@@ -78,16 +83,6 @@
                                     </td></tr>
                                 </dtml-in>
                             </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <dtml-in get_object_list previous size=5 start=qs>
-                                <b><a href="<dtml-var absolute_url><dtml-var sequence-query>qs=<dtml-var previous-sequence-start-number>">(Previous <dtml-var previous-sequence-size> results)</a>&nbsp;&nbsp;</b>
-                            </dtml-in>&nbsp;
-                            <dtml-in get_object_list next size=5 start=qs>
-                                <b>&nbsp;&nbsp;<a href="<dtml-var absolute_url><dtml-var sequence-query>qs=<dtml-var next-sequence-start-number>">(Next <dtml-var next-sequence-size> results)</a></b>
-                            </dtml-in>
                         </td>
                     </tr>
                 </table>
