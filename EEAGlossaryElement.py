@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.11 2004/05/04 10:18:49 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.12 2004/05/04 13:24:44 finrocvs Exp $
 
 # python imports
 import string
@@ -62,14 +62,16 @@ manage_addGlossaryElement_html = DTMLFile('dtml/EEAGlossaryElement/add', globals
 
 def manage_addGlossaryElement(self, id, name='', type='', source='', subjects=[], context='', comment='', 
     used_for_1='', used_for_2='',definition='', definition_source_url='', long_definition='', disabled=0, 
-    approved=1, QA_needed=0, image_url='', flash_url='', links=[], actions=[], REQUEST=None):
+    approved=1, QA_needed=0, image_url='', flash_url='', links=[], actions=[], translations={}, REQUEST=None):
 
     """ Adds a new EEAGlossaryElement object """
 
     ob = EEAGlossaryElement(id, name, type, source, subjects, context, comment, used_for_1, used_for_2, 
             definition, definition_source_url, long_definition, disabled, approved, QA_needed, 
-            image_url, flash_url, links, actions)
+            image_url, flash_url, links, actions, translations)
     self._setObject(id, ob)
+    element_obj = self._getOb(id)
+    element_obj.load_translations_list()
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
@@ -97,13 +99,14 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
     security = ClassSecurityInfo()
 
     def __init__(self, id, name, type, source, subjects, context, comment, used_for_1, used_for_2, definition, 
-        definition_source_url, long_definition, disabled, approved, QA_needed,  image_url, flash_url, links, actions):
+        definition_source_url, long_definition, disabled, approved, QA_needed,  image_url, flash_url, links, actions, translations):
         """ constructor """
         self.id = id
         self.image_url = image_url
         self.flash_url = flash_url
         self.links = links
         self.actions = actions
+        self.translations = translations
         self.all_langs_list= {}
         self.history={}
         ElementBasic.__dict__['__init__'](self, name, type, source, subjects, context, comment, used_for_1, used_for_2, 
@@ -132,6 +135,12 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
             return 1
         else:
             return 0
+
+    def load_translations_list (self):
+        print 'Trans: DEF'
+        for lang in self.REQUEST.PARENTS[0].languages_list.keys():
+            print 'Trans: LOAD'
+            self.translations[lang] = ''
 
     #####################
     #   MANAGEMENT TABS #

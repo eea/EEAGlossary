@@ -116,7 +116,12 @@
                 </td>
             </tr>
         </dtml-if>
-
+ALEC
+<dtml-let alec="self.translations.keys()">
+<dtml-in "self.translations.keys()">
+</dtml-in>
+</dtml-let>
+ALEC
         <dtml-if "(not 'translations' in PARENTS[2].hidden_fields)">
             <tr>
                 <td colspan=3 width="100%" valign="top" bgcolor="#808080">
