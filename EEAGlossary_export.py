@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_export.py,v 1.17 2004/06/08 15:07:32 finrocvs Exp $
+#$Id$
 
 from DateTime import DateTime
 from types import UnicodeType, StringType
@@ -32,6 +32,7 @@ from Globals import MessageDialog
 #product imports
 from EEAGlossary_utils import utils
 from parsers.tmx_parser import tmx_parser
+from parsers.old_product_parser import old_product_parser
 
 class glossary_export:
     """ """
@@ -230,3 +231,29 @@ class glossary_export:
                         elem_ob.set_translations_list(lang, trans.encode('utf-8'))
                         elem_ob.set_history(lang, trans.encode('utf-8'))
                     elem_ob.cu_recatalog_object(elem_ob)
+
+
+    ##########################
+    #   old product import   #
+    ##########################
+
+    def old_product_import(self, file, REQUEST=None):
+        """ Imports a XML (old product format) file """
+
+        from types import UnicodeType, StringType
+        import string
+        from xml.sax import make_parser, handler, InputSource
+        from cStringIO import StringIO
+
+        parser = old_product_parser()
+
+        #parse the xml information
+        chandler = parser.parseContent(file)
+
+        if chandler is None:
+            return MessageDialog(title = 'Parse error',
+             message = 'Unable to parse file' ,  action = 'manage_main',)
+
+        print chandler.folders
+        return ''
+

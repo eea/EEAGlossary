@@ -4,7 +4,7 @@
 
 <table border=0 cellpadding=3 cellspacing=0 width="90%">
     <tr>
-        <td><fieldset><legend>Import terms and translations from XLIFF file</legend>
+        <td><fieldset><legend><b>Import terms and translations from <font color="#000099">XLIFF</font> format</b></legend>
             <p class="form-help">XLIFF is the XML Localization Interchange File Format
              designed by a group of software providers.<br>
             You can import terms and their translations from XLIFF files.<br>
@@ -26,7 +26,7 @@
         </td>
     </tr>
     <tr>
-        <td><fieldset><legend>Import terms and translations from TMX format</legend>
+        <td><fieldset><legend><b>Import terms and translations from <font color="#000099">TMX</font> format</b></legend>
             <p class="form-help">TMX stands for Translation Memory eXchange. The purpose of a translation memory
             is to gather thousands of translations. Whenever you need a term such as
             <i>abatement</i>&nbsp; for your glossary chances are it is already translated, and all
@@ -36,6 +36,26 @@
             <form action="tmx_import" method="post" name="frmTMXImport" enctype="multipart/form-data">
                 <tr>
                     <td>Choose the TMX file</td>
+                </tr>
+                <tr>
+                    <td><input type="file" name="file"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Import"></td>
+                </tr>
+            </form>
+            </table>
+            </fieldset>
+        </td>
+    </tr>
+    <tr>
+        <td><fieldset><legend><b>Import terms and translations from <font color="#000099">old ZClasses product export</font> format</b></legend>
+            <p class="form-help">Imports the content of the old ZClasses product.   <br>
+            Enter the filename and click the <b>Import</b>&nbsp;button.</p>
+            <table border=0 cellpadding=2 cellspacing=0 width="100%">
+            <form action="old_product_import" method="post" name="frmOldProductImport" enctype="multipart/form-data">
+                <tr>
+                    <td>Choose the XML file</td>
                 </tr>
                 <tr>
                     <td><input type="file" name="file"></td>
