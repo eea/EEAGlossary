@@ -162,12 +162,10 @@
 
             <tr>
                 <td width="100%" valign="top" bgcolor="#FFFFFF" colspan="3">
-                    <dtml-let subj=utListSubjects>
-                    <dtml-in "subj.keys()">
-                        <b><dtml-var sequence-item></b>: <dtml-var "subj[_['sequence-item']]">
+                    <dtml-in utListSubjects>
+                        <b><dtml-var sequence-key></b>: <dtml-var sequence-item>
                         <br>
                     </dtml-in>
-                    </dtml-let>
                     <br>
                     Words between "{" in translations are used as short names for contexts (or subjects). These codes are used when there is no exact equivalence between the source and the target language. In this case several translations are supplied and tagged with a context code.
                     <a href="contexts_table">See all context/subject codes</a>.<p>&nbsp;

@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.15 2004/05/04 13:32:26 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.16 2004/05/05 08:35:38 finrocvs Exp $
 
 #Python imports
 
@@ -46,14 +46,21 @@ class utils:
 #        return ret
 
     def utListSubjects (self):
-        """loads subjects list"""
-        ret={}
-        for line1 in self.REQUEST.PARENTS[0].subjects:
-            ut_subj=line1
-            for line2 in self.subjects_list:
-                code, name=string.split(line2,',')
-                if name==ut_subj:
-                    ret[code]=name
+        """loads element subjects list if match"""
+        ret = []
+        keys_list = []
+        ord_dict = []
+        alph_list = self.subjects
+        alph_list.sort()
+        for a in self.REQUEST.PARENTS[0].subjects_list.keys():
+            keys_list.append(a)
+        keys_list.sort()
+        for b in keys_list:
+            ord_dict.append((b,self.REQUEST.PARENTS[0].subjects_list[b]))
+        for x,y in ord_dict:
+            if y in alph_list:
+                ret.append((x,y))
+        print ret
         return ret
 
     def utAddObjectAction(self, REQUEST=None):
@@ -114,15 +121,6 @@ class utils:
             if term.count(" ") == len(term):
                 return 1
             return 0
-
-    def utListSubjects (self):
-        """loads subjects list if match"""
-        ret={}
-        for line1 in self.REQUEST.PARENTS[0].subjects_list.keys():
-            for line2 in self.subjects:
-                if line2==self.REQUEST.PARENTS[0].subjects_list[line1]:
-                    ret[line1]=line2
-        return ret
 
     def utOpenFile(self, path, mode='r'):
         file = open(path, mode)
