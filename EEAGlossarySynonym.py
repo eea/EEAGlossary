@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossarySynonym.py,v 1.5 2004/05/05 13:44:35 finrocvs Exp $
+#$Id: EEAGlossarySynonym.py,v 1.6 2004/05/05 17:13:08 finrocvs Exp $
 
 #python imports
 import string
@@ -33,7 +33,7 @@ from Products.ZCatalog.CatalogAwareness import CatalogAware
 
 # product imports
 import EEAGlossaryCentre
-import EEAGlossaryElement
+from EEAGlossaryElement import EEAGlossaryElement
 from EEAGlossary_utils import utils
 from EEAGlossary_constants import *
 
@@ -48,7 +48,7 @@ def manage_addGlossarySynonym(self, id, synonyms=[], REQUEST=None):
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
-class EEAGlossarySynonym(SimpleItem, CatalogAware, utils):
+class EEAGlossarySynonym(SimpleItem, CatalogAware, EEAGlossaryElement, utils):
     """ EEAGlossaryFolder """
 
     meta_type = EEA_GLOSSARY_SYNONYM_METATYPE
@@ -57,11 +57,11 @@ class EEAGlossarySynonym(SimpleItem, CatalogAware, utils):
     default_catalog = GLOSSARY_CATALOG_NAME
 
     manage_options = (
-        {'label':'All Translations',        'action':'view_translations_html'},
+        {'label':'All Translations [_element_]',        'action':'view_translations_html'},
         {'label':'Check Translation',       'action':'check_translation_html'},
         {'label':'Properties',              'action':'manage_properties_html'},
         {'label':"View",                    'action':'preview_html'},
-        {'label':'History',      'action':'history_html'},
+        {'label':'History [_element_]',      'action':'history_html'},
         {'label':'Help [OK]',                 'action':'help_html'},
         {'label':'Undo [OK]',                    'action':'manage_UndoForm'},
         {'label':'Synonym Properties [OK]',                    'action':'synonym_properties_html'},)
@@ -72,6 +72,8 @@ class EEAGlossarySynonym(SimpleItem, CatalogAware, utils):
         """ constructor """
         self.id = id
         self.synonyms = synonyms
+        EEAGlossaryElement.__dict__['__init__'](self, self.id, '', '', '', [], '', '', '', '', '', 
+            '', '', 0, 1, 0, '', '', [], [], {})
 
     #####################
     #   MANAGEMENT TABS #
@@ -104,7 +106,7 @@ class EEAGlossarySynonym(SimpleItem, CatalogAware, utils):
     view_translations_html = DTMLFile("dtml/EEAGlossarySynonym/view_translations", globals())
     check_translation_html = DTMLFile("dtml/EEAGlossarySynonym/check_translation", globals())
     manage_properties_html = DTMLFile("dtml/EEAGlossarySynonym/properties", globals())
-    preview_html = DTMLFile("dtml/EEAGlossarySynonym/preview", globals())
+    index_html = DTMLFile("dtml/EEAGlossarySynonym/index", globals())
     history_html = DTMLFile("dtml/EEAGlossarySynonym/history", globals())
     help_html = DTMLFile("dtml/EEAGlossarySynonym/help", globals())
     synonym_properties_html = DTMLFile("dtml/EEAGlossarySynonym/synonym_properties", globals())
