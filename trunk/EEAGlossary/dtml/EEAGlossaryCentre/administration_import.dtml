@@ -38,7 +38,7 @@
                     <td>Choose the TMX file</td>
                 </tr>
                 <tr>
-                    <td><input type="file" name="files"></td>
+                    <td><input type="file" name="file"></td>
                 </tr>
                 <tr>
                     <td><input type="submit" value="Import"></td>

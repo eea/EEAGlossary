@@ -83,7 +83,6 @@ a.menulinkoff:hover
     background: #808080;
     color: #FFFFFF;
     vertical-align:top;
-    width:100%;
 }
 
 .header-language

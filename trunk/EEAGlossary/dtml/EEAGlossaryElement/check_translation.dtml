@@ -59,11 +59,10 @@
                 </td>
             </tr>
         </table><br>
+        <dtml-if "lang_code != 'Nothing' and check_allowed_translations(lang_code)">
         <table cellpadding="0" cellspacing="0" border="1" width="100%">
             <tr>
                 <td>
-            <dtml-if "lang_code != 'Nothing'">
-                <dtml-if "check_allowed_translations(lang_code)">
                     <table cellspacing="0" cellpadding="3" border="0" width="100%">
                     <form action="manageTranslations" method="post">
                         <tr><td class="cellodd" align="left" valign="top"><b>Language</b></td>
@@ -72,9 +71,7 @@
                             <td class="cellodd" align="left" valign="top"><b>Translation</b></td>
                             <dtml-let result="get_translation_by_language(lang_code)">
                             <td align="left" valign="top" class="celleven">
-                                <input type="text" name="translation" size="36" 
-                                    value="<dtml-var result>"></dtml-if>"</td>
-                            </td>
+                                <input type="text" name="translation" size="36" value="<dtml-var result>"></td>
                             </dtml-let>
                         </tr>
                         <tr>
@@ -85,13 +82,14 @@
                         </tr>
                     </form>
                     </table>
-                </dtml-if>
-            <dtml-else>
-                <b class="celleven">Chosen language to check: Nothing</b>
-            </dtml-if>
                 </td>
             </tr>
         </table>
+        <dtml-elif "lang_code in get_english_names()">
+            <b class="celleven">You don't have the permission to change the translation</b>
+        <dtml-else>
+            <b class="celleven">Chosen language to check: Nothing</b>
+        </dtml-if>
         <p>
         <table cellspacing="0" cellpadding="3" border="1" width="100%">
             <tr>

@@ -20,12 +20,13 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: tmx_parser.py,v 1.2 2004/06/01 08:28:15 finrocvs Exp $
+#$Id: tmx_parser.py,v 1.3 2004/06/07 14:33:59 finrocvs Exp $
 
 from xml.sax.handler import ContentHandler
 from xml.sax import *
 from Products.EEAGlossary.EEAGlossary_utils import utils
-
+from types import StringType
+from cStringIO import StringIO
 
 class HandleTMXParsing(handler.ContentHandler, utils):
     """ Parse a TMX file"""
@@ -113,3 +114,37 @@ class HandleTMXParsing(handler.ContentHandler, utils):
     def end_note(self,tag):
         """ End of segment """
         pass
+
+class tmx_parser:
+    def __init__(self):
+        """ """
+        pass
+        
+    def parseContent(self, file):
+        # Create a parser
+        parser = make_parser()
+        chandler = HandleTMXParsing()
+        # Tell the parser to use our handler
+        parser.setContentHandler(chandler)
+        # Don't load the DTD from the Internet
+        parser.setFeature(handler.feature_external_ges, 0)
+        inputsrc = InputSource()
+
+        if type(file) is StringType:
+            inputsrc.setByteStream(StringIO(file))
+        else:
+            filecontent = file.read()
+            inputsrc.setByteStream(StringIO(filecontent))
+        parser.parse(inputsrc)
+        return chandler
+        
+        try:
+            if type(file) is StringType:
+                inputsrc.setByteStream(StringIO(file))
+            else:
+                filecontent = file.read()
+                inputsrc.setByteStream(StringIO(filecontent))
+            parser.parse(inputsrc)
+            return chandler
+        except:
+            return None        

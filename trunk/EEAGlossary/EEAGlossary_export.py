@@ -20,18 +20,18 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_export.py,v 1.14 2004/06/07 11:15:29 finrocvs Exp $
+#$Id: EEAGlossary_export.py,v 1.15 2004/06/07 14:33:59 finrocvs Exp $
 
 from DateTime import DateTime
-from types import UnicodeType
+from types import UnicodeType, StringType
 import string
 from xml.sax import make_parser, handler, InputSource
 from cStringIO import StringIO
+from Globals import MessageDialog
 
 #product imports
 from EEAGlossary_utils import utils
-from parsers.tmx_parser import HandleTMXParsing
-
+from parsers.tmx_parser import tmx_parser
 
 class glossary_export:
     """ """
@@ -151,7 +151,7 @@ class glossary_export:
         else:
             folders = string.split(folders, '/')[-1]
         self.REQUEST.RESPONSE.setHeader('Content-type', 'application/data; charset=UTF-8')
-        self.REQUEST.RESPONSE.setHeader('Content-Disposition', 'attachment; filename="%s_%s.xml"' % (self.id, folders))
+        self.REQUEST.RESPONSE.setHeader('Content-Disposition', 'attachment; filename="%s_%s.tmx"' % (self.id, folders))
         r_append('<?xml version="1.0" encoding="utf-8"?>')
         r_append('<!DOCTYPE tmx SYSTEM "http://www.lisa.org/tmx/tmx14.dtd">')
         r_append('<tmx version="1.4">')
@@ -178,25 +178,28 @@ class glossary_export:
         r_append('</tmx>')
         return r
 
-    def xliff_import(self):
-        """."""
-        pass
-
     ##################
     #   tmx import   #
     ##################
 
-    def tmx_import(self, files, REQUEST=None):
+    def tmx_import(self, file, REQUEST=None):
         """ Imports a TMX file """
-        parser = make_parser()
-        chandler = HandleTMXParsing()
-        parser.setContentHandler(chandler)
+        
+        from types import UnicodeType, StringType
+        import string
+        from xml.sax import make_parser, handler, InputSource
+        from cStringIO import StringIO
+        
+        
+        parser = tmx_parser()
 
-        inputsrc = InputSource()
-        content = files.read()
-        inputsrc.setByteStream(StringIO(content))
-        parser.parse(inputsrc)
+        #parse the tmx information
+        chandler = parser.parseContent(file)
 
+        if chandler is None:
+            return MessageDialog(title = 'Parse error',
+             message = 'Unable to parse TMX file' ,  action = 'manage_main',)
+                        
         l_list = chandler.TMXContent.keys()
         l_list.sort()
         for k in l_list:
@@ -212,14 +215,8 @@ class glossary_export:
             if elem_ob is not None:
                 for lang,trans in chandler.TMXContent[k].items():
                     if trans != '':
-                        if lang in self.get_unicode_langs():
-                            elem_ob.set_translations_list(lang, trans)
-                            elem_ob.set_history(lang, trans)
-                        else:
-                            #trans = self.toutf8(trans,self.get_language_charset(lang))
-                            trans = self.display_unicode_langs(trans, charset=self.get_language_charset(lang))
-                            elem_ob.set_translations_list(lang, trans)
-                            elem_ob.set_history(lang, trans)
+                        elem_ob.set_translations_list(lang, trans.encode('utf-8'))
+                        elem_ob.set_history(lang, trans.encode('utf-8'))
                 elem_ob.cu_recatalog_object(elem_ob)
             else:
                 try:
@@ -231,12 +228,6 @@ class glossary_export:
                 elem_ob = folder._getOb(k, None)
                 if elem_ob is not None:
                     for lang,trans in chandler.TMXContent[k].items():
-                        if lang in self.get_unicode_langs():
-                            elem_ob.set_translations_list(lang, trans)
-                            elem_ob.set_history(lang, trans)
-                        else: 
-                            #trans = self.toutf8(trans,self.get_language_charset(lang))
-                            trans = self.display_unicode_langs(trans, charset=self.get_language_charset(lang))
-                            elem_ob.set_translations_list(lang, trans)
-                            elem_ob.set_history(lang, trans)
+                        elem_ob.set_translations_list(lang, trans.encode('utf-8'))
+                        elem_ob.set_history(lang, trans.encode('utf-8'))
                     elem_ob.cu_recatalog_object(elem_ob)
