@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryEngine.py,v 1.19 2004/06/08 15:11:14 finrocvs Exp $
+#$Id: EEAGlossaryEngine.py,v 1.20 2004/06/24 15:58:21 finrocvs Exp $
 
 import string
 
@@ -348,6 +348,14 @@ class EEAGlossaryEngine(SimpleItem, utils):
     ##########################
     #   CONTACT  FUNCTIONS   #
     ##########################
+    def get_translation_persons(self):
+        """ gets the traslations persons """
+        return self.trans_contact
+
+    def get_contact_persons(self):
+        """ gets the contact persons """
+        return self.technic_contact
+
     def manageTechnicProperties(self, ids=[], old_email='', email='', phone='', name='', REQUEST=None):
         """ manage tecnical contacts for EEAGlossaryEngine """
         if self.utAddObjectAction(REQUEST):

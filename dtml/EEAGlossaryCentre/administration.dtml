@@ -19,6 +19,7 @@
 <tr class="cellodd"><td width="2%"></td><td width="*"><li><a href="not_published_html">Show not published (not approved or disabled)</a></li></td></tr>
 <tr class="celleven"><td width="2%"></td><td width="*"><li><a href="published_html">Show all published (approved and not disabled)</a></li></td></tr>
 <tr class="cellodd"><td width="2%"></td><td width="*"><li><a href="terms_stats_html">Show basic Glossary statistics (nr of published, unpublished ...)</a></li></td></tr>
+<tr class="celleven"><td width="2%"></td><td width="*"><li><a href="all_terms_view_html">All terms</a></li></td></tr>
 </table>
 </td></tr>
 </table>
