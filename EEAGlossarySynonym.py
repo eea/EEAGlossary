@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossarySynonym.py,v 1.10 2004/05/06 07:47:22 finrocvs Exp $
+#$Id: EEAGlossarySynonym.py,v 1.11 2004/05/06 10:16:41 finrocvs Exp $
 
 #python imports
 import string
@@ -53,7 +53,7 @@ class EEAGlossarySynonym(EEAGlossaryElement, utils):
     default_catalog = GLOSSARY_CATALOG_NAME
 
     manage_options = (
-        {'label':'All Translations',    'action':'view_translations_html'},
+        {'label':'All Translations',    'action':'all_translations_html'},
         {'label':'Check Translation',               'action':'check_translation_html'},
         {'label':'Properties',                      'action':'manage_properties_html'},
         {'label':"View",                            'action':'preview_html'},
@@ -69,7 +69,7 @@ class EEAGlossarySynonym(EEAGlossaryElement, utils):
         self.id = id
         self.synonyms = synonyms
         EEAGlossaryElement.__dict__['__init__'](self, id, '', '', '', [], '', '', '', '', '', 
-            '', '', 0, 1, 0, '', '', [], [], {})
+            '', '', 0, 0, 0, '', '', [], [], {})
 
     #####################
     #   MANAGEMENT TABS #
@@ -98,6 +98,14 @@ class EEAGlossarySynonym(EEAGlossaryElement, utils):
             self._p_changed = 1
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('synonym_properties_html')
+
+    def manageSynonymOtherProperties(self, name, disabled=0, approved=0, REQUEST=None):
+        """ manage other synonym properties for EEAGlossarySynonym """
+        self.name = name
+        self.disabled = disabled
+        self.approved = approved
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?save=ok')
 
     manage_properties_html = DTMLFile("dtml/EEAGlossarySynonym/properties", globals())
     index_html = DTMLFile("dtml/EEAGlossarySynonym/index", globals())
