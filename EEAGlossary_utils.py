@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.41 2004/05/19 12:42:55 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.42 2004/05/25 08:36:41 finrocvs Exp $
 
 #Python imports
 import string
@@ -259,6 +259,7 @@ class catalog_utils:
 
     def cu_search_catalog(self, meta_type=None, query='', size=10000, language='English', definition=''):
         """ search catalog """
+        catalog = self.getGlossaryCatalog()
         command= "catalog(meta_type=" + str(meta_type) + ", " + language + "='" + query + "', definition='" + definition + "')"
         results = eval(command)
         return self.__get_objects(results)
