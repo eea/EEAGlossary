@@ -20,13 +20,13 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossarySynonym.py,v 1.6 2004/05/05 17:13:08 finrocvs Exp $
+#$Id: EEAGlossarySynonym.py,v 1.7 2004/05/05 17:14:08 finrocvs Exp $
 
 #python imports
 import string
 
 # Zope imports
-from Globals import DTMLFile, MessageDialog, InitializeClass
+from Globals import DTMLFile, InitializeClass
 from AccessControl import ClassSecurityInfo
 from OFS.SimpleItem import SimpleItem
 from Products.ZCatalog.CatalogAwareness import CatalogAware

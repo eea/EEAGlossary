@@ -1,3 +1,95 @@
-<dtml-var manage_page_header>
-    <dtml-var manage_tabs>
-<dtml-var manage_page_footer>
+<dtml-var manage_utf8_header>
+<dtml-var manage_tabs>
+
+<dtml-if "not _.has_key('lang_code')">
+    <dtml-call "REQUEST.set('lang_code','Nothing')">
+</dtml-if>
+
+<p class="form-help">
+    <b>Welcome</b> to the management tool of <b>EEA glossary database.</b><br>
+<br>
+
+<table border=1 width="100%">
+<tr>
+    <td width="30%">
+        <table cellpadding="1" cellspacing="1" border=1 width="100%">
+            <tr>
+                <td colspan="2" align="left">User Info</td>
+            </tr>
+            <tr>
+                <td>User :</td>
+                <td><dtml-var getAuthenticatedUser></td>
+            </tr>
+            <tr>
+                <td valign="top">Roles :</td>
+                <td><dtml-in getAuthenticatedUserRoles><dtml-var sequence-item><br></dtml-in></td>
+            </tr>
+        </table>
+
+        <form action="&dtml-URL;" method="get">
+        <table cellpadding="2" cellspacing="2" border=1 width="100%">
+            <tr>
+                <td colspan="2">You have the permission to check and change the following languages. Pick the language to check.</td>
+            </tr>
+            <tr>
+                <td><select name="lang_code">
+                        <option> Select Language </option>
+                        <dtml-in get_translations_languages>
+                            <dtml-let lang_id="_['sequence-item']">
+                            <dtml-if "check_allowed_translations(lang_id)">
+                                <option <dtml-if "lang_code==lang_id"> selected </dtml-if>>
+                                    <dtml-var lang_id>
+                                </option>
+                            </dtml-if>
+                            </dtml-let>
+                        </dtml-in></select>
+                </td>
+                <td><input class="form-element" type="submit" value="Check Translation"></td>
+            </tr>
+        </table>
+        </form>
+        <dtml-if "lang_code != 'Nothing'">
+            <dtml-if "check_allowed_translations(lang_code)">
+                <form action="transChange" method="post">
+                <table cellspacing="1" cellpadding="2" border="1" width="100%">
+                    <tr><td align="left" valign="top">Language</td>
+                        <td align="left" valign="top"><dtml-var lang_code></td>
+                    </tr>
+                        <td align="left" valign="top">Translation</td>
+                        <dtml-let result="get_translations_result(lang_code)">
+                        <td align="left" valign="top">
+                            <input type="text" name="translation" size="36" 
+                                value="<dtml-if "result in get_unicode_langs()"><dtml-var result>
+                                       <dtml-else><dtml-var "display_unicode_langs(result)"></dtml-if>"</td>
+                        </td>
+                        </dtml-let>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="left">
+                                <input name="lang_code" type="hidden" value="<dtml-var lang_code>"/> 
+                                <input name="editTrans" type="submit" value="Save Changes" />
+                        </td>
+                    </tr>
+                </table>
+                </form>
+            </dtml-if>
+        <dtml-else>
+            <b>Chosen language to check: Nothing</b>
+        </dtml-if>
+    </td>
+    <td width="*" valign="top">
+        <table border=1 width="100%">
+            <tr>
+                <td><b>Support/Contact Info</b></td>
+            </tr>
+            <tr>
+                <td><dtml-var help_contact_html></td>
+            </tr>
+            <tr>
+                <td>In order to <b>change your password</b> click <a href="/EEAGlossary/changePassForm">here</a></td>
+            </tr>
+        </table>
+    </td>
+</tr>
+</table>
+<dtml-var manage_utf8_footer>

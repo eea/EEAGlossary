@@ -1,0 +1,7 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<dtml-call "RESPONSE.setHeader('Content-Type','text/html; charset=UTF-8')">
+<title><dtml-var title_or_id></title>
+</head>
+<body>

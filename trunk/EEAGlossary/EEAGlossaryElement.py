@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.21 2004/05/05 13:44:35 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.22 2004/05/05 17:14:08 finrocvs Exp $
 
 # python imports
 import string
@@ -134,9 +134,40 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
         else:
             return 0
 
+    def check_allowed_translations(self, language):
+        """ check if the authenticated user has the permission to change the translation"""
+        role = 'QC ' + language
+        if (role in self.getAuthenticatedUserRoles()) or self.REQUEST.AUTHENTICATED_USER.has_role(role, self):
+            return 1
+        return 0
+
     def load_translations_list (self):
         for lang in self.REQUEST.PARENTS[0].languages_list.keys():
             self.translations[lang] = ''
+
+    def get_translations_languages(self):
+        """ """
+        languages = self.translations.keys()
+        languages.sort()
+        return languages
+
+    def get_translations_result(self, language):
+        """ """
+        try:
+            return self.translations[language]
+        except KeyError, error:
+            print error
+
+    def get_unicode_langs(self):
+        """ """
+        return self.getGlossaryEngine().unicode_langs
+
+    def display_unicode_langs(self, language, charset=""):
+        """ """
+        if charset=="":
+            return self.utToUTF8(language, self.get_language_charset(language))
+        else:
+            return self.utToUTF8(language, charset)
 
     #####################
     #   MANAGEMENT TABS #
@@ -232,6 +263,7 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
     synonym_html = DTMLFile("dtml/EEAGlossaryElement/synonym", globals())
     history_html = DTMLFile("dtml/EEAGlossaryElement/history", globals())
     help_html = DTMLFile("dtml/EEAGlossaryElement/help", globals())
+    help_contact_html = DTMLFile("dtml/EEAGlossaryElement/help_contact", globals())
     index_html = DTMLFile("dtml/EEAGlossaryElement/index", globals())
     main_content_html = DTMLFile("dtml/EEAGlossaryElement/main_content", globals())
 
