@@ -161,17 +161,28 @@ def exportGlossaryElement(p_item):
 ##    l_temp += ' Greek="%s"' % to_utf8(p_item.Greek, 'iso-8859-7')
 ##    l_temp += ' Greek="%s"' % p_item.Greek
 #
-    l_temp += ' Hungarian="%s"' % utXmlEncode(p_item.Hungarian, 'utf-8', 0) # - D
+#    l_temp += ' Hungarian="%s"' % utXmlEncode(p_item.Hungarian, 'utf-8', 0) # - D
 ##    l_temp += ' Hungarian="%s"' % to_utf8(p_item.Hungarian, 'iso-8859-2')
 ##    l_temp += ' Hungarian="%s"' % (unicode(p_item.Hungarian, 'iso-8859-2')).encode('utf-8')
 #
+##    l_temp += ' Icelandic="%s"' % to_utf8(p_item.Icelandic, 'iso-8859-1') # - X
+##    l_temp += ' Icelandic="%s"' % utXmlEncode(p_item.Icelandic, 'utf-8', 0)
 ##    l_temp += ' Icelandic="%s"' % to_utf8(p_item.Icelandic, 'iso-8859-1')
+##    l_temp += ' Icelandic="%s"' % (unicode(p_item.Icelandic, 'iso-8859-1')).encode('utf-8')
+##    l_temp += ' Icelandic="%s"' % p_item.Icelandic
 #
-##    l_temp += ' Italian="%s"' % to_utf8(p_item.Italian, 'iso-8859-1')
+##    l_temp += ' Italian="%s"' % to_utf8(p_item.Italian, 'iso-8859-1') # - X
+##    l_temp += ' Italian="%s"' % (unicode(p_item.Italian, 'iso-8859-1')).encode('utf-8')
+##    l_temp += ' Italian="%s"' % p_item.Italian
 #
-##    l_temp += ' Latvian="%s"' % to_utf8(p_item.Latvian, 'iso-8859-4')
+##    l_temp += ' Latvian="%s"' % to_utf8(p_item.Latvian, 'iso-8859-4') # - X
+##    l_temp += ' Latvian="%s"' % (unicode(p_item.Latvian, 'iso-8859-4')).encode('utf-8')
+##    l_temp += ' Latvian="%s"' % unicode(utHtmlEncode(p_item.Latvian, 0), 'iso-8859-4').encode('utf-8')
 #
-##    l_temp += ' Lithuanian="%s"' % to_utf8(p_item.Lithuanian, 'iso-8859-4')
+##    l_temp += ' Lithuanian="%s"' % to_utf8(p_item.Lithuanian, 'iso-8859-4') # - X
+##    l_temp += ' Lithuanian="%s"' % (unicode(p_item.Lithuanian, 'iso-8859-4')).encode('utf-8')
+#    l_temp += ' Lithuanian="%s"' % unicode(utHtmlEncode(p_item.Lithuanian, 0), 'iso-8859-4').encode('utf-8')
+#    l_temp += ' Lithuanian1="%s"' % utHtmlEncode(p_item.Lithuanian, 0)
 #
 #    l_temp += ' Macedonian="%s"' % utHtmlEncode(p_item.Macedonian) # - E D
 ##    l_temp += ' Macedonian="%s"' % to_utf8(p_item.Macedonian, 'iso-8859-5')
@@ -179,9 +190,15 @@ def exportGlossaryElement(p_item):
 #    l_temp += ' Maltese="%s"' % utXmlEncode(p_item.Maltese, 'iso-8859-3', 0) # - D
 ##    l_temp += ' Maltese="%s"' % to_utf8(p_item.Maltese, 'iso-8859-3')
 #
-##    l_temp += ' Norwegian="%s"' % to_utf8(p_item.Norwegian, 'iso-8859-1')
+##    l_temp += ' Norwegian="%s"' % to_utf8(p_item.Norwegian, 'iso-8859-1') # - X
+##    l_temp += ' Norwegian="%s"' % (unicode(p_item.Norwegian, 'iso-8859-1')).encode('utf-8')
+##    l_temp += ' Norwegian="%s"' % unicode(utHtmlEncode(p_item.Norwegian, 0), 'iso-8859-1').encode('utf-8')
+#    l_temp += ' Norwegian="%s"' % p_item.Norwegian
 #
-##    l_temp += ' Polish="%s"' % to_utf8(p_item.Polish, 'iso-8859-2')
+##    l_temp += ' Polish="%s"' % to_utf8(p_item.Polish, 'iso-8859-2') # - X
+##    l_temp += ' Polish="%s"' % (unicode(p_item.Polish, 'iso-8859-2')).encode('utf-8')
+##    l_temp += ' Polish="%s"' % unicode(utHtmlEncode(p_item.Polish, 0), 'iso-8859-2').encode('utf-8')
+    l_temp += ' Polish="%s"' % utHtmlEncode(p_item.Polish, 0)
 #
 ##    l_temp += ' Portuguese="%s"' % to_utf8(p_item.Portuguese, 'iso-8859-1')
 #
