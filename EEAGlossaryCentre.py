@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.26 2004/05/07 15:57:23 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.27 2004/05/10 09:38:07 finrocvs Exp $
 
 # python imports
 import string
@@ -29,7 +29,6 @@ import string
 from Globals import DTMLFile, MessageDialog, InitializeClass
 from AccessControl import ClassSecurityInfo
 from OFS.Folder import Folder
-from Products.ZCatalog.CatalogAwareness import CatalogAware
 import AccessControl.User
 from Products.ZCatalog.ZCatalog import ZCatalog
 
@@ -51,7 +50,7 @@ def manage_addGlossaryCentre(self, id, title='', description='', REQUEST=None):
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
-class EEAGlossaryCentre(Folder, CatalogAware, utils):
+class EEAGlossaryCentre(Folder, utils):
     """ EEAGlossaryCentre """
 
     meta_type = EEA_GLOSSARY_CENTRE_METATYPE
@@ -98,8 +97,9 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
     def random_from_catalog(self,rand_type=''):
         """a random element"""
         elements=[]
+        catalog = self.getGlossaryCatalog()
         if rand_type=='all':
-            for obj in self.GlossaryCatalog(metatype=EEA_GLOSSARY_ELEMENT_METATYPE):
+            for obj in self.catalog(metatype=EEA_GLOSSARY_ELEMENT_METATYPE):
                 if obj.is_published:
                     elements.append(eobject)
                 if len(elements) > 0:
@@ -107,7 +107,7 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
                 else:
                     return None
         else:
-            for obj in self.GlossaryCatalog(metatype=EEA_GLOSSARY_ELEMENT_METATYPE, path=absolute_url):
+            for obj in self.catalog(metatype=EEA_GLOSSARY_ELEMENT_METATYPE, path=absolute_url):
                 if obj.is_published:
                     elements.append(eobject)
                 if len(elements) > 0:
@@ -120,9 +120,10 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
     #####################
     def addCatalog(self):
         """ add the default catalog """
-        glossary_catalog = ZCatalog(GLOSSARY_CATALOG_NAME)
-        self._setObject(GLOSSARY_CATALOG_NAME, glossary_catalog)
-        catalog_obj = self._getOb(GLOSSARY_CATALOG_NAME)
+        id_catalog = EEA_GLOSSARY_CATALOG_NAME
+        glossary_catalog = ZCatalog(id_catalog)
+        self._setObject(id_catalog, glossary_catalog)
+        catalog_obj = self._getOb(id_catalog)
 
         #create indexes
         for lang in self.get_english_names():
@@ -169,8 +170,10 @@ class EEAGlossaryCentre(Folder, CatalogAware, utils):
     # BASIC FUNCTIONS   #
     #####################
     def getGlossaryEngine(self):
-        """ """
         return self.unrestrictedTraverse(EEA_GLOSSARY_ENGINE_NAME, None)
+
+    def getGlossaryCatalog(self):
+        return self._getOb(EEA_GLOSSARY_CATALOG_NAME)
 
     def getAuthenticatedUser(self):
         """ return the authenticated user """

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.30 2004/05/07 13:43:28 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.31 2004/05/10 09:38:07 finrocvs Exp $
 
 # python imports
 import string
@@ -29,10 +29,10 @@ import string
 from Globals import DTMLFile, MessageDialog, InitializeClass
 from AccessControl import ClassSecurityInfo
 from OFS.SimpleItem import SimpleItem
-from Products.ZCatalog.CatalogAwareness import CatalogAware
 
 # product imports
 from EEAGlossary_utils import utils
+from EEAGlossary_utils import catalog_utils
 from EEAGlossary_constants import *
 
 class ElementBasic:
@@ -73,13 +73,12 @@ def manage_addGlossaryElement(self, id, name='', el_type='', source='', subjects
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
-class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
+class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     """ EEAGlossaryElement """
 
     meta_type = EEA_GLOSSARY_ELEMENT_METATYPE
     product_name = EEA_GLOSSARY_PRODUCT_NAME
     icon = 'misc_/EEAGlossary/element.gif'
-    default_catalog = GLOSSARY_CATALOG_NAME
 
     manage_options = (
         {'label':'All Translations',        'action':'all_translations_html'},
@@ -104,7 +103,7 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
         self.actions = actions
         self.translations = []
         self.all_langs_list= {}
-        self.history={}
+        self.history=[]
         ElementBasic.__dict__['__init__'](self, name, el_type, source, [], el_context, comment, used_for_1, used_for_2, 
             definition, definition_source_url, long_definition, disabled, approved, QA_needed)
 
@@ -147,11 +146,29 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
                 self.subjects.remove(subj_info)
 
     ############################
+    #     HISTORY FUNCTIONS    #
+    ############################
+    def get_history(self):
+        """ get the languages """
+        self.utSortListOfDictionariesByKey(self.history, 'lang')
+        return self.history
+
+    def set_history(self, lang, translation):
+        """ set the languages """
+        self.history.append({'lang':lang, 'trans':translation,'time':self.utISOFormat(), 'user':self.getAuthenticatedUser()})
+
+    def del_history(self, lang):
+        """ remove a language from history list """
+        for hist_info in self.history:
+            if hist_info['lang'] == lang:
+                self.history.remove(hist_info)
+
+    ############################
     #  TRANSLATIONS FUNCTIONS  #
     ############################
     def check_allowed_translations(self, language):
         """ check if the authenticated user has the permission to change the translation"""
-        role = 'QC ' + language
+        role = EEA_GLOSSARY_ROLES_PREFIX + language
         if (role in self.getAuthenticatedUserRoles()) or self.REQUEST.AUTHENTICATED_USER.has_role(role, self):
             return 1
         return 0
@@ -213,6 +230,19 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
             if REQUEST is not None:
                 return REQUEST.RESPONSE.redirect('convert_to_synonym_html')
 
+    def saveTranslations(self, lang_code='', translation='', REQUEST=None):
+        """ save translation for a language"""
+        if not lang_code:
+            return 
+        if self.check_allowed_translations(lang_code):
+            charset = self.get_language_charset(translation)
+            encode_translation = self.display_unicode_langs(translation, charset)
+            #self.set_history(lang_code, encode_translation)
+            self.set_translations_list(lang_code, encode_translation)
+            self._p_changed = 1
+            print self.translations
+            if REQUEST is not None:
+                return REQUEST.RESPONSE.redirect('check_translation_html')
 
     #####################
     #  BASIC PROPERTIES #
@@ -317,6 +347,16 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
             self._p_changed = 1
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2&save=ok')
+
+    def manage_afterAdd(self, item, container):
+        """ This method is called, whenever _setObject in ObjectManager gets called."""
+        SimpleItem.inheritedAttribute('manage_afterAdd')(self, item, container)
+        self.cu_catalog_object(self.getGlossaryCatalog(), self)
+
+    def manage_beforeDelete(self, item, container):
+        """ This method is called, when the object is deleted. """
+        SimpleItem.inheritedAttribute('manage_beforeDelete')(self, item, container)
+        self.cu_uncatalog_object(self.getGlossaryCatalog(), self)
 
     #####################
     #   MANAGEMENT TABS #

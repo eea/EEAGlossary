@@ -34,11 +34,11 @@
             <tr>
                 <td><select name="lang_code">
                         <option> Select Language </option>
-                        <dtml-in get_translations_list>
+                        <dtml-in get_english_names>
                             <dtml-let lang_id="_['sequence-item']">
-                            <dtml-if "check_allowed_translations(lang_id['language'])">
-                                <option <dtml-if "lang_code==lang_id['language']"> selected </dtml-if>>
-                                    <dtml-var "lang_id['language']">
+                            <dtml-if "check_allowed_translations(lang_id)">
+                                <option <dtml-if "lang_code==lang_id"> selected </dtml-if>>
+                                    <dtml-var "lang_id">
                                 </option>
                             </dtml-if>
                             </dtml-let>
@@ -50,7 +50,7 @@
         </form>
         <dtml-if "lang_code != 'Nothing'">
             <dtml-if "check_allowed_translations(lang_code)">
-                <form action="#" method="post">
+                <form action="saveTranslations" method="post">
                 <table cellspacing="1" cellpadding="2" border="1" width="100%">
                     <tr><td align="left" valign="top">Language</td>
                         <td align="left" valign="top"><dtml-var lang_code></td>

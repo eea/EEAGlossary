@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossarySynonym.py,v 1.12 2004/05/06 14:17:35 finrocvs Exp $
+#$Id: EEAGlossarySynonym.py,v 1.13 2004/05/10 09:38:07 finrocvs Exp $
 
 #python imports
 import string
@@ -51,7 +51,6 @@ class EEAGlossarySynonym(EEAGlossaryElement, utils):
     meta_type = EEA_GLOSSARY_SYNONYM_METATYPE
     product_name = EEA_GLOSSARY_PRODUCT_NAME
     icon = 'misc_/EEAGlossary/synonym.gif'
-    default_catalog = GLOSSARY_CATALOG_NAME
 
     manage_options = (
         {'label':'All Translations',    'action':'all_translations_html'},
