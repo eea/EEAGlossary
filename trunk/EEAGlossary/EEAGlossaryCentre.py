@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.61 2004/05/26 13:35:01 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.62 2004/05/28 08:55:00 finrocvs Exp $
 
 # python imports
 import string
@@ -40,6 +40,7 @@ import EEAGlossaryFolder
 from EEAGlossary_utils import utils
 from toutf8 import toUTF8
 from EEAGlossary_utils import catalog_utils
+from EEAGlossary_export import glossary_export
 from EEAGlossary_constants import *
 
 
@@ -98,6 +99,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         self.alpha_list = list(string.uppercase + string.digits)
         utils.__dict__['__init__'](self)
         toUTF8.__dict__['__init__'](self)
+        glossary_export.__dict__['__init__'](self)
 
     def all_meta_types(self, interfaces=None):
         """ Can contain any kind of objects plus EWFolder """
@@ -649,9 +651,9 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
                 if string.upper(col) == EEA_TINYTABLE_ENTRY:
                     col_info = eval("item.%s" % col)
                     #Replace danish characters to the old ones.
-                    entry = string.replace(col_info,'æ','ae')
-                    entry = string.replace(entry,'å','aa')
-                    entry = string.replace(entry,'ø','oe')
+                    #entry = string.replace(col_info,'ï¿½,'ae')
+                    #entry = string.replace(entry,'ï¿½,'aa')
+                    #entry = string.replace(entry,'','oe')
                     obj.entry = col_info
                     if obj.entry != '':
                         #Set default values to empty string.
@@ -727,9 +729,9 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
                 if string.upper(col) == EEA_TINYTABLE_ENTRY or cap_col == 'English' or low_col == 'en':
                     col_info = eval("item.%s" % col)
                     #Replace danish characters to the old ones.
-                    entry = string.replace(col_info,'æ','ae')
-                    entry = string.replace(entry,'å','aa')
-                    entry = string.replace(entry,'ø','oe')
+                    #entry = string.replace(col_info,'ï¿½,'ae')
+                    #entry = string.replace(entry,'ï¿½,'aa')
+                    #entry = string.replace(entry,'','oe')
                     obj.entry = col_info
                     if obj.entry != '':
                         #Set default values to empty string.
