@@ -53,5 +53,16 @@ a.menulinkoff:hover
     color: #000000;
     background: #EEEEEE;
 }
-
+.cell
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 11px;
+    color: #000000;
+    background: #FFFFFF;
+}
+td
+{
+    font-size: 11px;
+    font-family: Verdana, Arial, Helvetica;
+}
 </style>
