@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.33 2004/05/13 15:01:56 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.34 2004/05/13 20:51:07 finrocvs Exp $
 
 #Python imports
 import string
@@ -146,6 +146,10 @@ class utils:
         """ get the ROOT object"""
         return self.unrestrictedTraverse(('',))
 
+    def utGetObject(self, url):
+        """ get an object given the url"""
+        return self.unrestrictedTraverse(url, None)
+
     def utOpenFile(self, path, mode='r'):
         file = open(path, mode)
         content = file.read()
@@ -207,6 +211,14 @@ class catalog_utils:
             catalog.catalog_object(ob, ob_path)
         except:
             pass
+
+    def cu_getIndexes(self, catalog):
+        """Return a list with all ZCatalog indexes"""
+        return catalog.index_objects()
+
+    def cu_reindexCatalogIndex(self, catalog, name, REQUEST):
+        """Reindex an index from ZCatalog"""
+        catalog.reindexIndex(name, REQUEST)
 
     def cu_get_cataloged_objects(self, catalog, meta_type=None, approved=0, howmany=-1, sort_on='bobobase_modification_time', 
         sort_order='reverse', path='/'):
