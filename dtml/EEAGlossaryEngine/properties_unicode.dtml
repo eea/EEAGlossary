@@ -4,9 +4,9 @@ Manage the list of languages for which the translation of terms is displayed in 
 using the encoding of the language.
 </p>
 
-<table border="1" cellspacing="0" cellpadding="0" width="90%">
+<table border="1" cellspacing="0" cellpadding="3" width="90%">
     <tr><td>
-        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <table border="0" cellspacing="0" cellpadding="2" width="100%">
         <form name="frmSearch" action="manageUnicodeProperties" method="post">
             <tr class="row-header">
                 <td class="cell-header" width="1%">&nbsp;</td>

@@ -71,7 +71,7 @@
                 </dtml-if></dtml-comment>
             </dtml-in>
         <dtml-else>
-              <a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/element.gif" border=0>&nbsp;<dtml-var name>&nbsp;
+              <a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/element.gif" border=0 alt="">&nbsp;<dtml-var name>&nbsp;</a>
               <dtml-if QA_needed>
                   <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
               </dtml-if>
