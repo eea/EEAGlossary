@@ -1,6 +1,6 @@
 <dtml-in get_synonyms>
     <dtml-if sequence-start>See:<br></dtml-if>
-    <dtml-if "_.len(_['sequence-item'].name)>1">
+    <dtml-if "_.len(_['sequence-item'].name)>0">
         <a href="<dtml-var absolute_url>">
         <dtml-var title_or_id>
         </a><br>

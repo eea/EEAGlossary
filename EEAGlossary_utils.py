@@ -18,7 +18,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.26 2004/05/10 17:42:14 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.27 2004/05/11 11:36:35 finrocvs Exp $
 
 #Python imports
 import string
@@ -38,6 +38,10 @@ class utils:
     def utIsSynonym(self):
         """."""
         return self.meta_type==EEA_GLOSSARY_SYNONYM_METATYPE
+
+    def utCompare(self, x, y):
+        """."""
+        return cmp(string.lower(x[0]), string.lower(y[0]))
 
     def utAddObjectAction(self, REQUEST=None):
         """Check if adding an object"""
