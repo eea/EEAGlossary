@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: xliff_parser.py,v 1.4 2004/06/07 11:15:29 finrocvs Exp $
+#$Id: xliff_parser.py,v 1.5 2004/06/07 14:33:59 finrocvs Exp $
 
 from xml.sax.handler import ContentHandler
 from xml.sax import *
@@ -164,6 +164,7 @@ class xliff_parser:
                 filecontent = file.read()
                 inputsrc.setByteStream(StringIO(filecontent))
             parser.parse(inputsrc)
+            print inputsrc
             return chandler
         except:
             return None

@@ -48,13 +48,12 @@
 <br>
 
 <dtml-if get_object_list>
-    <table border="0" align="center" width="80%">
+    <table border="0" width="80%">
         <tr>
-            <td colspan="2">
-
-                <table border="0" align="center">
+            <td>
+                <table border="0">
                     <dtml-in get_object_list size=5 start=qs>
-                        <tr><td width="20%" align="center">
+                        <tr><td width="20%">
                             <dtml-if is_published>
                                 <dtml-if synonyms>
                                     <img src="misc_/EEAGlossary/element.gif" class="img-normal">&nbsp;<dtml-var name>&nbsp;
@@ -84,16 +83,13 @@
                         </td></tr>
                     </dtml-in>
                 </table>
-
             </td>
         </tr>
         <tr>
-            <td align="right" width="50%">
+            <td>
                 <dtml-in get_object_list previous size=5 start=qs>
                     <b><a href="<dtml-var absolute_url><dtml-var sequence-query>qs=<dtml-var previous-sequence-start-number>">(Previous <dtml-var previous-sequence-size> results)</a>&nbsp;&nbsp;</b>
-                </dtml-in>
-            </td>
-            <td align="left" width="50%">
+                </dtml-in>&nbsp;
                 <dtml-in get_object_list next size=5 start=qs>
                     <b>&nbsp;&nbsp;<a href="<dtml-var absolute_url><dtml-var sequence-query>qs=<dtml-var next-sequence-start-number>">(Next <dtml-var next-sequence-size> results)</a></b>
                 </dtml-in>

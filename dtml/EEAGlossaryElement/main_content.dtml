@@ -1,151 +1,155 @@
 <dtml-if is_published>
 
-    <table class="table-normal" cellpadding="2">
+    <table class="table-normal" cellpadding="2" border=0>
         <tr>
-            <td colspan=3 class="header-element">
+            <td class="header-element">
                 <b>Definition (english only)</b>
             </td>
         </tr>
 
         <dtml-if is_image_url>
             <tr>
-                <td colspan=3 valign="top" width="100%">
+                <td valign="top" width="100%">
                     <img src="<dtml-var image_url>" class="img-normal">
                 </td>
             </tr>
         </dtml-if>
 
         <tr>
-            <td colspan=3 valign="top" width="100%">
+            <td valign="top" width="100%">
                 <dtml-var "display_unicode_langs(definition,charset='iso-8859-1')">
             </td>
         </tr>
-
+        
         <dtml-if is_long_definition>
-                <tr>
-                    <td colspan=3 class="header-element">
-                        <b>Long definition (english only)</b>
-                    </td>
-                </tr>
+        <tr>
+            <td class="header-element">
+                <b>Long definition (english only)</b>
+            </td>
+        </tr>
 
-                <tr>
-                    <td colspan=3 valign="top" width="100%">
-                        <dtml-var "display_unicode_langs(long_definition,charset='iso-8859-1')">
-                    </td>
-                </tr>
+        <tr>
+            <td valign="top" width="100%">
+                <dtml-var "display_unicode_langs(long_definition,charset='iso-8859-1')">
+            </td>
+        </tr>
         </dtml-if>
 
         <dtml-if is_definition_source>
-            <tr>
-                <td colspan="3" class="header-element">
-                    <b>Definition source</b>
-                </td>
-            </tr>
+        <tr>
+            <td class="header-element">
+                <b>Definition source</b>
+            </td>
+        </tr>
 
-            <tr>
-                <td width="100%" valign="top" colspan="3">
-                    <dtml-var definition_source_url>
-                </td>
-            </tr>
+        <tr>
+            <td width="100%" valign="top">
+                <dtml-var definition_source_url>
+            </td>
+        </tr>
         </dtml-if>
 
         <dtml-if "not ('actions' in hidden_fields)">
-            <tr>
-                <td colspan="3" class="header-element">
-                    <b>Additional info, actions and links</b>
-                </td>
-            </tr>
+        <tr>
+            <td class="header-element">
+                <b>Additional info, actions and links</b>
+            </td>
+        </tr>
 
-            <tr>
-                <td width="100%" valign="top" colspan="3">
-                    <dtml-if "_.len(get_links())>0 and _.len(get_actions())>0">
-                        <dtml-in get_links>
-                            <li>&nbsp;
-                                <a href="<dtml-var sequence-item>">
-                                    <dtml-var "actions[_['sequence-index']]">
+        <tr>
+            <td width="100%" valign="top">
+                <dtml-if "_.len(get_links())>0 and _.len(get_actions())>0">
+                    <dtml-in get_links>
+                        <li>&nbsp;
+                            <a href="<dtml-var sequence-item>">
+                                <dtml-var "actions[_['sequence-index']]">
+                            </a>
+                        </li>
+                    </dtml-in>
+                <br>
+                </dtml-if>
+                <dtml-if "_.string.find(URL,'EEAGlossary_Complete')<0">
+                    <table class="table-normal" border="0">
+                        <tr>
+                            <td width="5%">
+                                <img src="misc_/EEAGlossary/img_search_small.gif" class="img-normal">
+                            </td>
+                            <td>
+                                Search for "<b><dtml-var name></b>" in:
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                <a href="http://www.google.com/custom?q=<dtml-in "_.string.split(name)"><dtml-var "utUrlEncode(_['sequence-item'])">+</dtml-in>&as=Google+Search&domains=eea.eu.int%3Beionet.eu.int&sitesearch=eea.eu.int&cof=GIMP%3A%23FF9900%3BT%3A%23000000%3BALC%3A%23006666%3BL%3Ahttp%3A%2F%2Fwww.eea.eu.int%2Fimages%2Feeabanner%3BGFNT%3A%23808080%3BLC%3A%23003366%3BBGC%3A%23FFFFFF%3BAH%3Aleft%3BVLC%3A%23993300%3BGL%3A0%3BS%3Ahttp%3A%2F%2Fwww.eea.eu.int&config=&restrict=&exclude=&page=">
+                                    <b><i>entire EEA website</i></b>
                                 </a>
-                            </li>
-                        </dtml-in>
-                    </dtml-if>
-                    <br>
-                    <dtml-if "_.string.find(URL,'EEAGlossary_Complete')<0">
-                        <table class="table-normal">
-                            <tr>
-                                <td>
-                                    <img src="misc_/EEAGlossary/img_search_small.gif" class="img-normal">
-                                </td>
-                                <td>
-                                    Search for "<b><dtml-var name></b>" in:
-                                </td>
-                            </tr>
+                            </td>
+                        </tr>
 
-                            <tr>
-                                <td>
-                                    &nbsp;
-                                </td>
-                                <td>
-                                    <a href="http://www.google.com/custom?q=<dtml-in "_.string.split(name)"><dtml-var "utUrlEncode(_['sequence-item'])">+</dtml-in>&as=Google+Search&domains=eea.eu.int%3Beionet.eu.int&sitesearch=eea.eu.int&cof=GIMP%3A%23FF9900%3BT%3A%23000000%3BALC%3A%23006666%3BL%3Ahttp%3A%2F%2Fwww.eea.eu.int%2Fimages%2Feeabanner%3BGFNT%3A%23808080%3BLC%3A%23003366%3BBGC%3A%23FFFFFF%3BAH%3Aleft%3BVLC%3A%23993300%3BGL%3A0%3BS%3Ahttp%3A%2F%2Fwww.eea.eu.int&config=&restrict=&exclude=&page=">
-                                        <b><i>entire EEA website</i></b>
-                                    </a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                <a href="http://www.google.com/custom?q=<dtml-in "_.string.split(name)"><dtml-var "utUrlEncode(_['sequence-item'])">+</dtml-in>&as=Google+Search&domains=eea.eu.int%3Breports.eea.eu.int%3Bthemes.eea.eu.int%3Borg.eea.eu.int%3Bdataservice.eea.eu.int%3Beionet.eu.int%3Bewindows.eu.org&sitesearch=reports.eea.eu.int&cof=GIMP%3A%23FF9900%3BT%3A%23000000%3BALC%3A%23006666%3BL%3Ahttp%3A%2F%2Fwww.eea.eu.int%2Fimages%2Feeabanner%3BGFNT%3A%23808080%3BLC%3A%23003366%3BBGC%3A%23FFFFFF%3BAH%3Aleft%3BVLC%3A%23993300%3BGL%3A0%3BS%3Ahttp%3A%2F%2Fwww.eea.eu.int&config=&restrict=&exclude=&page=">
+                                    <b><i>EEA reports</i></b>
+                                </a>
+                            </td>
+                        </tr>
 
-                            <tr>
-                                <td>
-                                    &nbsp;
-                                </td>
-                                <td>
-                                    <a href="http://www.google.com/custom?q=<dtml-in "_.string.split(name)"><dtml-var "utUrlEncode(_['sequence-item'])">+</dtml-in>&as=Google+Search&domains=eea.eu.int%3Breports.eea.eu.int%3Bthemes.eea.eu.int%3Borg.eea.eu.int%3Bdataservice.eea.eu.int%3Beionet.eu.int%3Bewindows.eu.org&sitesearch=reports.eea.eu.int&cof=GIMP%3A%23FF9900%3BT%3A%23000000%3BALC%3A%23006666%3BL%3Ahttp%3A%2F%2Fwww.eea.eu.int%2Fimages%2Feeabanner%3BGFNT%3A%23808080%3BLC%3A%23003366%3BBGC%3A%23FFFFFF%3BAH%3Aleft%3BVLC%3A%23993300%3BGL%3A0%3BS%3Ahttp%3A%2F%2Fwww.eea.eu.int&config=&restrict=&exclude=&page=">
-                                        <b><i>EEA reports</i></b>
-                                    </a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    &nbsp;
-                                </td>
-                                <td>
-                                    <a href="http://www.google.com/custom?q=<dtml-in "_.string.split(name)"><dtml-var "utUrlEncode(_['sequence-item'])">+</dtml-in>&as=Google+Search&domains=eea.eu.int%3Breports.eea.eu.int%3Bthemes.eea.eu.int%3Borg.eea.eu.int%3Bdataservice.eea.eu.int%3Beionet.eu.int%3Bewindows.eu.org&sitesearch=eionet.eu.int&cof=GIMP%3A%23FF9900%3BT%3A%23000000%3BALC%3A%23006666%3BL%3Ahttp%3A%2F%2Fwww.eea.eu.int%2Fimages%2Feeabanner%3BGFNT%3A%23808080%3BLC%3A%23003366%3BBGC%3A%23FFFFFF%3BAH%3Aleft%3BVLC%3A%23993300%3BGL%3A0%3BS%3Ahttp%3A%2F%2Fwww.eea.eu.int&config=&restrict=&exclude=&page=">
-                                        <b><i>EIONET</i></b>
-                                    </a>
-                                </td>
-                            </tr>
-                        </table>
-                    </dtml-if>
-                </td>
-            </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                <a href="http://www.google.com/custom?q=<dtml-in "_.string.split(name)"><dtml-var "utUrlEncode(_['sequence-item'])">+</dtml-in>&as=Google+Search&domains=eea.eu.int%3Breports.eea.eu.int%3Bthemes.eea.eu.int%3Borg.eea.eu.int%3Bdataservice.eea.eu.int%3Beionet.eu.int%3Bewindows.eu.org&sitesearch=eionet.eu.int&cof=GIMP%3A%23FF9900%3BT%3A%23000000%3BALC%3A%23006666%3BL%3Ahttp%3A%2F%2Fwww.eea.eu.int%2Fimages%2Feeabanner%3BGFNT%3A%23808080%3BLC%3A%23003366%3BBGC%3A%23FFFFFF%3BAH%3Aleft%3BVLC%3A%23993300%3BGL%3A0%3BS%3Ahttp%3A%2F%2Fwww.eea.eu.int&config=&restrict=&exclude=&page=">
+                                    <b><i>EIONET</i></b>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </dtml-if>
+            </td>
+        </tr>
         </dtml-if>
 
         <dtml-if "(not 'translations' in hidden_fields) and (check_if_no_translations())">
-            <tr>
-                <td colspan=3 class="header-element">
-                    <b>Translations of "<dtml-var name>":</b>
-                </td>
-            </tr>
-
-            <dtml-in get_english_names>
-                <dtml-let language="_['sequence-item']" translation="get_translation_by_language(language)">
-                    <dtml-if "translation!=''">
-                            <tr>
-                                <td class="header-element"><dtml-var language>:</td>
-                                <td><dtml-var translation></td>
-                            </tr>
-                        </dtml-if>
-                </dtml-let>
-            </dtml-in>
+        <tr>
+            <td>
+                <table border=0 width="100%">
+                    <tr>
+                        <td class="header-element" colspan="2">
+                            <b>Translations of "<dtml-var name>":</b>
+                        </td>
+                    </tr>
+                    <dtml-in get_english_names>
+                        <dtml-let language="_['sequence-item']" translation="get_translation_by_language(language)">
+                            <dtml-if "translation!=''">
+                                    <tr>
+                                        <td class="header-element" width="10%"><dtml-var language>:</td>
+                                        <td width="*" nowrap><dtml-var translation></td>
+                                    </tr>
+                                </dtml-if>
+                        </dtml-let>
+                    </dtml-in>
+                </table>
+            </td>
+        </tr>
         </dtml-if>
-
 
         <dtml-if get_subjects>
             <tr>
-                <td colspan="3" class="header-element">
+                <td class="header-element">
                     <b>Contexts / Subjects</b>
                 </td>
             </tr>
 
             <tr>
-                <td width="100%" valign="top" colspan="3">
+                <td width="100%" valign="top">
                     <dtml-in get_subjects>
                     <dtml-let record="_['sequence-item']">
                         <b><dtml-var "record['code']"></b>: <dtml-var "record['name']">

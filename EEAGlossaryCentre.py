@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.74 2004/06/07 11:15:29 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.75 2004/06/07 14:33:59 finrocvs Exp $
 
 # python imports
 import string
@@ -44,7 +44,7 @@ from EEAGlossary_utils import catalog_utils
 from EEAGlossary_export import glossary_export
 from EEAGlossary_constants import *
 from parsers.xliff_parser import xliff_parser
-from parsers.tmx_parser import HandleTMXParsing
+
 try:
     from Products.TextIndexNG2 import TextIndexNG
     TNG2_exists = 1
@@ -135,13 +135,9 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
          
          #create indexes
         for lang in self.get_english_names():
-            if lang in self.get_unicode_langs():
-                encoding = 'utf-8'
-            else:
-                encoding = self.get_language_charset(lang)
             if TNG2_exists:
                 index_extra = record()
-                index_extra.default_encoding = encoding
+                index_extra.default_encoding = 'utf-8'
                 try:    catalog_obj.manage_addIndex(lang, 'TextIndexNG2',index_extra)
                 except:    pass
             else:
@@ -762,14 +758,13 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                 elif low_col in self.get_language_codes():
                     col_info = eval("item.%s" % col)
                     lang = self.get_language_by_code(low_col)
-                    print "intra"
                     obj.translations[lang] = self.display_unicode_langs(col_info,self.get_language_charset(lang))
             if obj.entry != '':
                 elem_ob = folder._getOb(self.ut_makeId(obj.entry), None)
                 if elem_ob is not None:
                     for k,v in obj.translations.items():
-                        elem_ob.set_translations_list(k, v)
-                        elem_ob.set_history(k, v)
+                        elem_ob.set_translations_list(k, v.encode('utf-8'))
+                        elem_ob.set_history(k, v.encode('utf-8'))
                     elem_ob.cu_recatalog_object(elem_ob)
                 else:
                     try:
@@ -790,14 +785,14 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                             #print buf2
                             #print type(buf2)
                             #print buf2
-                            #buf3 = buf2.encode('utf-8')
+                            #buf3 = v.encode('utf-8')
                             #print buf3
                             #print type(buf3)
                             #print buf2
                             #print buf3
                             #print buf3
-                            elem_ob.set_translations_list(k, v)
-                            #elem_ob.set_history(k, buf3)
+                            elem_ob.set_translations_list(k, v.encode('utf-8'))
+                            elem_ob.set_history(k, v.encode('utf-8'))
                         elem_ob.cu_recatalog_object(elem_ob)
             obj.emptyObject()
         if REQUEST is not None:
@@ -838,7 +833,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                     obj.entry = self.utf8_to_latin1(translation['source'])
                     obj.translations[target_language] = translation['target']
                     #self.display_unicode_langs(translation['target'],self.get_language_charset(target_language))
-                    charset = self.get_language_charset(target_language)
+                    #charset = self.get_language_charset(target_language)
                 if obj.entry!='':
                     elem_ob = folder._getOb(self.ut_makeId(obj.entry), None)
                     if elem_ob is not None:
