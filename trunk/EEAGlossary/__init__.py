@@ -19,7 +19,7 @@
 # Alex Ghica, Finsiel Romania
 # Cornel Nitu, Finsiel Romania
 #
-#$Id: __init__.py,v 1.6 2004/05/04 13:32:26 finrocvs Exp $
+#$Id: __init__.py,v 1.7 2004/05/05 10:24:52 finrocvs Exp $
 
 from ImageFile import ImageFile
 
@@ -48,8 +48,6 @@ def initialize(context):
             pass
         Engine = getattr(app, EngineID)
         Engine.load_roles_list()
-        Engine.load_languages_list()
-        Engine.load_subjects_list()
     assert Engine is not None
 
     # Folder for the Glossary
