@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryFolder.py,v 1.9 2004/05/07 13:43:28 finrocvs Exp $
+#$Id: EEAGlossaryFolder.py,v 1.10 2004/05/07 15:57:23 finrocvs Exp $
 
 # python imports
 import whrandom
@@ -92,20 +92,6 @@ class EEAGlossaryFolder(Folder, utils):
             ob = self._getOb(term)
             obj_lst.append(ob)
         return obj_lst
-
-    def term_tip(self):
-        """Return a random 'EEA Glossary Element'"""
-        elements=[]
-        ob = self.aq_parent
-        for fobject in ob.objectValues('EEA Glossary Folder'):
-            for eobject in fobject.objectValues('EEA Glossary Element'):
-                if eobject.is_published:
-                   elements.append(eobject)
-        if len(elements) > 0:
-            return whrandom.choice(elements)
-        else:
-            return None
-
 
     ##########################
     #   META TYPES FUNCTIONS #
