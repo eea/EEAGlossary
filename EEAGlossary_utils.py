@@ -20,10 +20,11 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.43 2004/05/28 10:53:13 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.44 2004/05/31 11:58:50 finrocvs Exp $
 
 #Python imports
 import string
+import codecs
 
 #Zope imports
 from Products.PythonScripts.standard import url_quote
@@ -178,7 +179,16 @@ class utils:
         """ encode a iven value to utf-8 """
         return unicode(str(p_value), 'latin-1').encode('utf8')
 
+    def utf8_to_latin1(self, s):
+        return self.encodeLatin1(self.decodeUTF8(s)[0])[0]
+    encodeLatin1, decodeLatin1 = codecs.lookup('latin1')[:2]
+    encodeUTF8, decodeUTF8 = codecs.lookup('UTF8')[:2]
 
+    def debug(self, error):
+        """ """
+        import sys
+        return str(error) + ' at line ' + str(sys.exc_info()[2].tb_lineno)
+        
 class catalog_utils:
 
     def __init__(self):
@@ -207,16 +217,16 @@ class catalog_utils:
         catalog = self.getGlossaryCatalog()
         try:
             catalog.catalog_object(ob, self.__build_catalog_path(ob))
-        except:
-            pass
+        except Exception, error:
+            print error
 
     def cu_uncatalog_object(self, ob):
         """ uncatalog an object """
         catalog = self.getGlossaryCatalog()
         try:
             catalog.uncatalog_object(self.__build_catalog_path(ob))
-        except:
-            pass
+        except Exception, error:
+            print self.debug(error)
 
     def cu_recatalog_object(self, ob):
         """ recatalog an object """
@@ -225,8 +235,8 @@ class catalog_utils:
             ob_path = self.__build_catalog_path(ob)
             catalog.uncatalog_object(ob_path)
             catalog.catalog_object(ob, ob_path)
-        except:
-            pass
+        except Exception, error:
+            print self.debug(error)
 
     def cu_getIndexes(self):
         """ return a list with all ZCatalog indexes """

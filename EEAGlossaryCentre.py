@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.67 2004/05/28 13:48:37 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.68 2004/05/31 11:58:50 finrocvs Exp $
 
 # python imports
 import string
@@ -42,7 +42,8 @@ from toutf8 import toUTF8
 from EEAGlossary_utils import catalog_utils
 from EEAGlossary_export import glossary_export
 from EEAGlossary_constants import *
-
+from parsers.xliff_parser import xliff_parser
+from parsers.tmx_parser import HandleTMXParsing
 
 manage_addGlossaryCentre_html = DTMLFile('dtml/EEAGlossaryCentre/add', globals())
 def manage_addGlossaryCentre(self, id, title='', description='', REQUEST=None):
@@ -78,6 +79,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                 {'label':'XML/RDF',             'action':'glossary_terms_rdf'},
                 {'label':'All terms',           'action':'all_terms_view_html'},
                 {'label':'Export',              'action':'export_html'},
+                {'label':'Import',              'action':'import_html'},
                 {'label':'Management',          'action':'management_page_html'},
                 {'label':'Help',                'action':'centre_help_html'},
                 {'label':'Undo',                'action':'manage_UndoForm'},)
@@ -514,6 +516,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         for obj in self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order=''):
             if (not obj.approved):
                 append(obj)
+        print lst_not_approved
         return lst_not_approved
 
     def get_approved(self):
@@ -765,6 +768,64 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         if REQUEST is not None:
             REQUEST.RESPONSE.redirect('update_trans_html')
 
+    def xliff_import(self, file, REQUEST=None):
+        """ XLIFF is the XML Localization Interchange File Format
+            designed by a group of software providers.
+            It is specified by www.oasis-open.org
+        """
+
+        parser = xliff_parser()
+
+        #parse the xliff information
+        chandler = parser.parseHeader(file)
+        if chandler is None:
+            return MessageDialog(title = 'Parse error',
+             message = 'Unable to parse XLIFF file' ,
+             action = 'manage_main',)
+
+        header_info = chandler.getFileTag()
+        #get the target language
+        target_language = [x for x in header_info if x[0]=='target-language'][0][1]
+
+        body_info = chandler.getBody() #return a dictionary {id: (source, target)}
+        obj = mapTiny()
+        for elem_id, translation in body_info.items():
+            if elem_id!='':
+                folder_id = self.utf8_to_latin1(string.upper(elem_id[:1]))
+                folder = self.unrestrictedTraverse(folder_id, None)
+                if folder is None:
+                    try:
+                        self.manage_addGlossaryFolder(folder_id)
+                        folder = self._getOb(folder_id)
+                    except Exception, error:
+                        print error
+                if target_language in self.get_english_names():
+                    obj.entry = self.utf8_to_latin1(translation['source'])
+                    obj.translations[target_language] = translation['target']#self.display_unicode_langs(translation['target'],self.get_language_charset(target_language))    
+                if obj.entry!='':
+                    elem_ob = folder._getOb(self.ut_makeId(obj.entry), None)
+                    if elem_ob is not None:
+                        for k,v in obj.translations.items():
+                            elem_ob.set_translations_list(k, v)
+                            elem_ob.set_history(k, v)
+                        elem_ob.cu_recatalog_object(elem_ob)
+                    else:
+                        try:
+                            folder.manage_addGlossaryElement(obj.entry, '', '', [], '', '', '', '', '', 
+                            'dataservice, http://dataservice.eea.eu.int', '', 0, 1, 0, '', '', [], [], {})
+                        except Exception, error:
+                            print error
+                        elem_ob = folder._getOb(self.ut_makeId(obj.entry), None)
+                        if elem_ob is not None:
+                            for k,v in obj.translations.items():
+                                elem_ob.set_translations_list(k, v)
+                                elem_ob.set_history(k, v)
+                            elem_ob.cu_recatalog_object(elem_ob)
+            obj.emptyObject()
+        if REQUEST is not None:
+             return MessageDialog(title = 'Messages imported', message = 'Terms successfully imported' ,
+             action = 'import_html',)
+
     def style_console_css(self):
         """ return the css file from EEAGlossaryEngine """
         return self.getGlossaryEngine().style_console_css.read()
@@ -793,6 +854,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
     published_html = DTMLFile('dtml/EEAGlossaryCentre/administration_published', globals())
     terms_stats_html = DTMLFile('dtml/EEAGlossaryCentre/administration_terms_stats', globals())
     export_html = DTMLFile('dtml/EEAGlossaryCentre/administration_export', globals())
+    import_html = DTMLFile('dtml/EEAGlossaryCentre/administration_import', globals())
     
     term_tip_box_html = DTMLFile('dtml/EEAGlossaryCentre/term_tip_box', globals())
     contexts_html = DTMLFile('dtml/EEAGlossaryCentre/contexts', globals())

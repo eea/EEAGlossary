@@ -1,7 +1,7 @@
 # -*- coding: ISO-8859-1 -*-
-# Copyright (C) 2000-2004  Juan David Ibáñez Palomar <jdavid@itaapy.com>
+# Copyright (C) 2000-2004  Juan David Ibï¿½ez Palomar <jdavid@itaapy.com>
 #               2003  Roberto Quero, Eduardo Corrales
-#               2004  Søren Roug
+#               2004  Sren Roug
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -32,7 +32,7 @@ _PHASE_ATTRS = ['phase-name', 'process-name', 'tool', 'date', 'contact-name',
           'contact-email', 'company-name']
 
 
-class XLIFFHandler(ContentHandler):
+class xliff_handler(ContentHandler):
     """ This is used to parse the xliff file
     """
 
@@ -122,16 +122,16 @@ class XLIFFHandler(ContentHandler):
         if currentTag in ( 'source', 'target', 'note'):
             self.__data.append(content)
 
-class HandleXliffParsing:
+class xliff_parser:
     """ class for parse xliff files """
 
     def __init__(self):
         """ """
         pass
 
-    def parseXLIFFSTring(self, xml_string):
+    def parseContent(self, xml_string):
         """ """
-        chandler = XLIFFHandler()
+        chandler = xliff_handler()
         parser = make_parser()
         # Tell the parser to use our handler
         parser.setContentHandler(chandler)
@@ -145,10 +145,10 @@ class HandleXliffParsing:
         except:
             return None
 
-    def parseXLIFFFile(self, file):
+    def parseHeader(self, file):
         # Create a parser
         parser = make_parser()
-        chandler = XLIFFHandler()
+        chandler = xliff_handler()
         # Tell the parser to use our handler
         parser.setContentHandler(chandler)
         # Don't load the DTD from the Internet

@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.49 2004/05/26 13:35:02 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.50 2004/05/31 11:58:50 finrocvs Exp $
 
 # python imports
 import string
@@ -68,6 +68,9 @@ def manage_addGlossaryElement(self, name='', el_type='', source='', subjects=[],
     self._setObject(id, ob)
     element_obj = self._getOb(id)
     element_obj.subjects = self.get_subject_by_codes(subjects)
+    element_obj.load_translations_list()
+    element_obj.set_translations_list('English', element_obj.name)
+
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
 
@@ -196,15 +199,18 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     def set_translations_list(self, language, translation):
         """ set the languages """
         setattr(self, language, translation)
+        self._p_changed = 1
 
     def del_translation_by_language(self, language):
         """ remove a translation from list """
         setattr(self, language, '')
+        self._p_changed = 1
 
     def load_translations_list (self):
         """ load languages """
         for lang in self.get_english_names():
             setattr(self, lang, '')
+        self._p_changed = 1
 
     def convert_element(self, synonyms=[], REQUEST=None):
         """convert element to synonym """
@@ -345,8 +351,6 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     def manage_afterAdd(self, item, container):
         """ this method is called, whenever _setObject in ObjectManager gets called """
         SimpleItem.inheritedAttribute('manage_afterAdd')(self, item, container)
-        item.load_translations_list()
-        item.set_translations_list('English', item.name)
         self.cu_catalog_object(self)
 
     def manage_beforeDelete(self, item, container):

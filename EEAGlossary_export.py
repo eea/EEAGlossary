@@ -20,14 +20,14 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_export.py,v 1.10 2004/05/28 14:22:51 finrocvs Exp $
+#$Id: EEAGlossary_export.py,v 1.11 2004/05/31 11:58:50 finrocvs Exp $
 
 from DateTime import DateTime
 from types import UnicodeType
 import string
 
 #product imports
-from EEAGlossary_utils import utils
+
 
 class glossary_export:
     """ """
@@ -72,7 +72,7 @@ class glossary_export:
         return results
 
     def xliff_export(self, folder='/', language='', published=0, REQUEST=None):
-        """ Exports the content of the EEAGlossary to an XLIFF file """
+        """ Exports the content to an XLIFF file """
         results_list = []
         results = []
         terms = []
@@ -102,7 +102,7 @@ class glossary_export:
         return '\r\n'.join(results)
 
     def tmx_export(self, folder='/', published=0, REQUEST=None):
-        """ Exports the content of folders to a TMX file """
+        """ Exports the content to a TMX file """
         results = []
         results_list=[]
         terms=[]
@@ -171,5 +171,3 @@ class glossary_export:
         r_append('</tmx>')
         return r
 
-    def xliff_import(self):
-        pass
