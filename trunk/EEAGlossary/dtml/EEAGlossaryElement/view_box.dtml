@@ -1,0 +1,56 @@
+<table border="0" width="501" cellpadding="2">
+    <tr>
+        <td colspan="3"><img src="misc_/EEAGlossary/element.gif"><b><dtml-var name></b></td>
+    </tr>
+
+    <tr>
+        <td colspan=3  valign="top" width="100%" valign="top" bgcolor="#808080">
+            <b><font color="#FFFFFF">Definition (english only)</font></b>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan=3 valign="top" width="100%" valign="top" bordercolor="#000000" bgcolor="#FFFFFF" >
+            <dtml-var "display_unicode_langs(definition,charset='iso-8859-1')">
+        </td>
+    </tr>
+
+    <dtml-if is_definition_source>
+        <tr>
+            <td width="100%" valign="top" bgcolor="#808080" colspan="3">
+                <b><font color="#FFFFFF">Definition source</font></b>
+            </td>
+        </tr>
+
+        <tr>
+            <td width="100%" valign="top" bgcolor="#FFFFFF" colspan="3">
+                <dtml-var definition_source_url>
+            </td>
+        </tr>
+    </dtml-if>
+
+    <dtml-if "(not 'translations' in hidden_fields) and (check_if_no_translations())">
+        <tr>
+            <td colspan=3 width="100%" valign="top" bgcolor="#808080">
+                <b><font color="#FFFFFF">Translations of "<dtml-var name>":</font></b>
+            </td>
+        </tr>
+
+        <dtml-in get_english_names>
+            <dtml-let language="_['sequence-item']" translation="get_translation_by_language(language)">
+                <dtml-if "translation!=''">
+                        <tr>
+                            <td bgcolor="#808080"><font color="#FFFFFF"><dtml-var language>:</font></td>
+                            <td>
+                                <dtml-if "language in get_unicode_langs()">
+                                    <dtml-var translation>
+                                <dtml-else>
+                                    <dtml-var "display_unicode_langs(translation,get_language_charset(language))">
+                                </dtml-if>
+                            </td>
+                        </tr>
+                    </dtml-if>
+            </dtml-let>
+        </dtml-in>
+    </dtml-if>
+</table>

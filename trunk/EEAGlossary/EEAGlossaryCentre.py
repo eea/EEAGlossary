@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.40 2004/05/13 11:05:00 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.41 2004/05/13 11:41:23 finrocvs Exp $
 
 # python imports
 import string
@@ -142,6 +142,12 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         fld_lst.sort()
         return fld_lst
 
+    def all_objects (self):
+        """ return sorted objects by name """
+        obj_lst = []
+        obj_lst = self.cu_get_cataloged_objects(self.getGlossaryCatalog(), meta_type=[EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], sort_on='id', sort_order='')
+        return obj_lst
+
     #####################
     # LOAD PROPERTIES   #
     #####################
@@ -243,7 +249,6 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     def get_subjects_list(self):
         """ get the languages """
         self.utSortListOfDictionariesByKey(self.subjects_list, 'code')
-        print self.subjects_list
         return self.subjects_list
 
     def set_subjects_list(self, code, name):
@@ -537,7 +542,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     check_list_html = DTMLFile('dtml/EEAGlossaryCentre/checklist', globals())
     change_pass_html = DTMLFile('dtml/EEAGlossaryCentre/changepassword', globals())
     glossary_terms_rdf = ''
-    all_terms_html = DTMLFile('dtml/EEAGlossaryCentre/all_terms', globals())
+    all_terms_html = DTMLFile('dtml/EEAGlossaryCentre/all_terms_view', globals())
     management_page_html = DTMLFile('dtml/EEAGlossaryCentre/administration', globals())
 
     help_html = DTMLFile("dtml/EEAGlossaryCentre/help", globals())

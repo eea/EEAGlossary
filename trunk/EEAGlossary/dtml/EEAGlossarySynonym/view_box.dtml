@@ -1,0 +1,18 @@
+<table border="0" width="501" cellpadding="2">
+    <tr>
+        <td colspan="3"><img src="misc_/EEAGlossary/synonym.gif"><b><dtml-var name></b></td>
+    </tr>
+
+    <tr>
+        <td width="100%" valign="top" bgcolor="#808080" colspan="3">
+            <b><font color="#FFFFFF">Translations of "<dtml-var name>":</font></b>
+        </td>
+    </tr>
+
+    <tr>
+        <td bgcolor="#808080"><font color="#FFFFFF">English:</font></td>
+        <td>
+            <dtml-var name>
+        </td>
+    </tr>
+</table>
