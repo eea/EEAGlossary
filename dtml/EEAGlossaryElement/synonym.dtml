@@ -2,7 +2,7 @@
 <dtml-var style_console_css>
 <dtml-var manage_tabs>
 
-<table width="70%" border="1" cellpadding="0" cellspacing="0">
+<table width="90%" border="1" cellpadding="0" cellspacing="0">
     <tr><td>
         <table width="100%" border="0" cellpadding="2" cellspacing="0">
             <tr class="row-header"><td class="cell-header">Convert "<dtml-var id>" to Synonym:</td></tr>
@@ -11,14 +11,18 @@
                 <table cellpadding="2" cellspacing="0" width="100%" border="0">
                 <form action="convert_element" method="post">
                 <tr>
-                  <td align="left" valign="top"><b>Synonym of (use CTRL for multiple selection)</b></td>
+                  <td align="left" valign="top"><b>Synonym of</b></td>
                   <td align="left" valign="top">
-                    <select name="synonyms" size=10 multiple>
-                        <dtml-in get_all_elements_by_type>
-                            <option  value="<dtml-var sequence-key>">
-                                <dtml-var sequence-key size=40><dtml-unless sequence-item> NOT PUBLISHED</dtml-unless>
-                            </option>
-                        </dtml-in>
+                    <select name="synonyms" size=10>
+                        <dtml-let record=id>
+                            <dtml-in get_all_elements_by_type>
+                                <dtml-unless "is_duplicate(_['record'])">
+                                    <option  value="<dtml-var "absolute_url(1)">">
+                                        <dtml-var name><dtml-unless is_published> NOT PUBLISHED</dtml-unless>
+                                    </option>
+                                </dtml-unless>
+                            </dtml-in>
+                        </dtml-let>
                     </select>
                   </td>
                 </tr>

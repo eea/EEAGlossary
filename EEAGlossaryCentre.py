@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.80 2004/06/16 13:12:04 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.81 2004/06/24 08:11:03 finrocvs Exp $
 
 # python imports
 import string
@@ -668,16 +668,9 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
 
     def get_all_elements_by_type(self):
         """ return sorted elements by name """
-        my_el=[]
-        name_lst=[]
-        my_el = self.cu_get_cataloged_objects(meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, sort_on='id', sort_order='')
-        for ob in my_el:
-            if ob.approved and (not ob.disabled):
-                name_lst.append((ob.name,1))
-            else:
-                name_lst.append((ob.name,0))
-        name_lst.sort(self.utCompare)
-        return name_lst
+        elem_lst=[]
+        elem_lst = self.cu_get_cataloged_objects(meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, sort_on='id', sort_order='')
+        return elem_lst
 
     def reindexCatalog(self, REQUEST=None):
         """ reindex the catalog """

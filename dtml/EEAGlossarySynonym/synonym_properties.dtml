@@ -5,56 +5,36 @@
 Change the synonyms propertie of this synonym.
 </p>
 
-<dtml-let record_code="REQUEST.get('code', '')">
-
-<table border="1" cellspacing="0" cellpadding="2" width="70%">
+<table width="70%" border="1" cellpadding="0" cellspacing="0">
     <tr><td>
-        <table border="0" cellspacing="0" cellpadding="3" width="100%">
-        <form name="frmSynonym" action="manageSynonymProperties" method="post">
-            <tr class="row-header">
-                <td class="cell-header" width="1%">&nbsp;</td>
-                <td class="cell-header"><b>Element list:</b></td>
-                <td class="cell-header">&nbsp;</td>
-            </tr>
-            <dtml-in synonyms>
-            <dtml-if sequence-odd>
-                <dtml-call "REQUEST.set('cellclass', 'cellodd')">
-            <dtml-else>
-                <dtml-call "REQUEST.set('cellclass', 'celleven')">
-            </dtml-if>
-            <dtml-if "record_code == _['sequence-item']">
-            <tr>
-                <td class="<dtml-var cellclass>" width="1%"><input type="hidden" name="old_synonym" value="<dtml-var sequence-item html_quote>"></td>
-                <td class="<dtml-var cellclass>"><input type="text" name="new_synonym" size="30" value="<dtml-var sequence-item html_quote>"></td>
-                <td class="<dtml-var cellclass>"><input type="submit" name="update" value="Update"></td>
-            </tr>
-            <dtml-else>
-            <tr>
-                <td class="<dtml-var cellclass>" width="1%"><input type="checkbox" name="ids" value="<dtml-var sequence-item html_quote>"></td>
-                <td class="<dtml-var cellclass>"><a class="itemlink" href="synonym_properties_html?pagetab=2&amp;code=<dtml-var sequence-item url_quote>"><dtml-var sequence-item html_quote></a></td>
-                <td class="<dtml-var cellclass>">&nbsp;</td>
-            </tr>
-            </dtml-if>
-            <dtml-else>
+        <table width="100%" border="0" cellpadding="2" cellspacing="0">
+            <tr class="row-header"><td class="cell-header">Element list</td></tr>
+
+            <tr><td>
+                <table cellpadding="2" cellspacing="0" width="100%" border="0">
+                <form action="manageSynonymProperties" method="post">
+                <tr>
+                  <td align="left" valign="top"><b>Synonym of</b></td>
+                  <td align="left" valign="top">
+                    <select name="new_synonym" size=10>
+                        <dtml-in get_all_elements_by_type>
+                            <dtml-let record=sequence-item>
+                                <option  value="<dtml-var "absolute_url(1)">" <dtml-if "checksynonym(record)">SELECTED</dtml-if>>
+                                    <dtml-var name size=40><dtml-unless is_published> NOT PUBLISHED</dtml-unless>
+                                </option>
+                            </dtml-let>
+                        </dtml-in>
+                    </select>
+                  </td>
+                </tr>
+
                 <tr>
                     <td>&nbsp;</td>
-                    <td colspan="2"><b>No synonyms</b></td>
+                    <td><input type="submit" name="SUBMIT" value="Save"></td>
                 </tr>
-            </dtml-in>
-            <dtml-if "record_code==''">
-            <tr>
-                <td class="cell" width="1%">&nbsp;</td>
-                <td class="cell"><input type="text" name="new_synonym" size="30" value=""></td>
-                <td class="cell"><input type="submit" name="add" value="Add"></td>
-            </tr>
-            </dtml-if>
-            <tr>
-                <td class="cell" width="1%">&nbsp;</td>
-                <td class="cell" colspan="4"><input type="submit" name="delete" value="Delete"></td>
-            </tr>
-        </form>
+                </form>
+                </table>
+            </td></tr>
         </table>
     </td></tr>
 </table>
-
-</dtml-let>

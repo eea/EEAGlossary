@@ -1,23 +1,61 @@
 <dtml-var manage_utf8_header>
-
 <dtml-var manage_tabs>
 
-<span><dtml-var title></span>
-<p>
-<span>General Information</span><br>
-<b>Glossary Link:</b><br>http://glossary.eea.eu.int/<br>
-<b>Description:</b><br><dtml-var description><br>
-<b>Publisher:</b><br>EEA (European Environment Agency)<br>
-<b>Manager:</b><br>Tarja Porkka (mailto:Tarja.Porkka@eea.eu.int)<br>
-</p>
+<dtml-if "REQUEST.has_key('at_name')">
 
-<table width="100%">
-<dtml-comment>Insert only those terms with definition not empty.</dtml-comment>
-    <dtml-in folder_list_sorted>
-        <dtml-in element_list_sorted>
-               <tr><td><dtml-var view_elements_html></td></tr>
+    <span><dtml-var title></span>
+    <p>
+    <span>General Information</span><br>
+    <b>Glossary Link:</b><br>http://glossary.eea.eu.int/<br>
+    <b>Description:</b><br><dtml-var description><br>
+    <b>Publisher:</b><br>EEA (European Environment Agency)<br>
+    <b>Manager:</b><br>Tarja Porkka (mailto:Tarja.Porkka@eea.eu.int)<br>
+    </p>
+
+    <table width="100%">
+    <dtml-comment>Insert only those terms with definition not empty.</dtml-comment>
+        <dtml-in folder_list_sorted>
+            <dtml-in element_list_sorted>
+                   <tr><td><dtml-var view_elements_html></td></tr>
+            </dtml-in>
         </dtml-in>
-    </dtml-in>
-</table>
+    </table>
+
+<dtml-else>
+
+    <fieldset><legend>Select properties to view:</legend>
+
+        <table width="100%">
+            <form action="<dtml-var URL0>" method="post">
+                <tr>
+                    <td valign="top" width="50%">Including image URL&nbsp;<input type="checkbox" name="at_image_url:boolean" value="1"></td>
+                    <td valign="top" width="50%">Including flash URL&nbsp;<input type="checkbox" name="at_flash_url:boolean" value="1"></td>
+                </tr>
+                <tr>
+                    <td valign="top" width="50%">Including subjects&nbsp;<input type="checkbox" name="at_subjects:boolean" value="1"></td>
+                    <td valign="top" width="50%">Including status&nbsp;<input type="checkbox" name="at_status:boolean" value="1"></td>
+                </tr>
+                <tr>
+                    <td valign="top" width="50%">Including name&nbsp;<input type="checkbox" name="at_name:boolean" value="1" checked></td>
+                    <td valign="top" width="50%">Including source&nbsp;<input type="checkbox" name="at_source:boolean" value="1"></td>
+                </tr>
+                <tr>
+                    <td valign="top" width="50%">Including definition&nbsp;<input type="checkbox" name="at_definition:boolean" value="1"></td>
+                    <td valign="top" width="50%">Including definition source URL&nbsp;<input type="checkbox" name="at_definition_source_url:boolean" value="1"></td>
+                </tr>
+                <tr>
+                    <td valign="top" width="50%">Including long definiton&nbsp;<input type="checkbox" name="at_long_definiton:boolean" value="1"></td>
+                    <td valign="top" width="50%">Including translations&nbsp;<input type="checkbox" name="at_translations:boolean" value="1"></td>
+                </tr>
+                <tr>
+                    <td valign="bottom"><input type="submit" name="SUBMIT" value="View all terms"></td>
+                    <td>&nbsp;</td>
+                </tr>
+            </form>
+        </table>
+
+    </fieldset>
+
+</dtml-if>
 
 <dtml-var manage_utf8_footer>

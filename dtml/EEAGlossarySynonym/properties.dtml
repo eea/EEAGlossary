@@ -8,8 +8,8 @@ The definiton and definition source cannot be changed. You have to go to the Glo
 <b>The original english term is:<br></b><dtml-var name><br><br>
 <dtml-in utGetSynonyms>
     <dtml-if sequence-start><b>For definition and other properties see:</b><br></dtml-if>
-    <dtml-if "_.len(_['sequence-item'].name)>1">
-        <a href="<dtml-var absolute_url>/manage_workspace"><dtml-var title_or_id></a><br><br>
+    <dtml-if "_.len(_['sequence-item'].name)">
+        <a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a><br><br>
     </dtml-if>
 </dtml-in>
 
@@ -20,39 +20,38 @@ Saved changes. (<dtml-var ZopeTime>)
 </dtml-if>
 
 <dtml-if isManager>
+    <table width="50%" border="1" cellpadding="2" cellspacing="0">
+        <tr><td>
+            <table width="100%" border="0" cellpadding="3" cellspacing="0">
+                <form action="manageSynonymOtherProperties" method="post">
+                    <tr class="row-header"><td class="cell-header" colspan="2">You can only change the following properties for a synonym.</td></tr>
 
-<table width="50%" border="1" cellpadding="2" cellspacing="0">
-    <tr><td>
-        <table width="100%" border="0" cellpadding="3" cellspacing="0">
-            <form action="manageSynonymOtherProperties" method="post">
-                <tr class="row-header"><td class="cell-header" colspan="2">You can only change the following properties for a synonym.</td></tr>
+                    <tr>
+                      <td width="20%" align="left" valign="top"><label for="cb-name"><b>Name:</b></label></td>
+                      <td width="*" align="left" valign="top"><input type="text" name="name:string" size="35" value="<dtml-var name>"></td>
+                    </tr>
 
-                <tr>
-                  <td width="20%" align="left" valign="top"><label for="cb-name"><b>Name:</b></label></td>
-                  <td width="*" align="left" valign="top"><input type="text" name="name:string" size="35" value="<dtml-var name>"></td>
-                </tr>
+                    <tr>
+                      <td width="20%" align="left" valign="top"><label for="cb-disabled"><b>Disabled:</b></label></td>
+                      <td width="*" align="left" valign="top"><input type="checkbox" name="disabled:boolean" size="35" <dtml-if disabled>CHECKED</dtml-if>></td>
+                    </tr>
 
-                <tr>
-                  <td width="20%" align="left" valign="top"><label for="cb-disabled"><b>Disabled:</b></label></td>
-                  <td width="*" align="left" valign="top"><input type="checkbox" name="disabled:boolean" size="35" <dtml-if disabled>CHECKED</dtml-if>></td>
-                </tr>
+                    <tr>
+                      <td width="20%" align="left" valign="top"><label for="cb-approved"><b>Approved:</b></label></td>
+                      <td width="*" align="left" valign="top"><input type="checkbox" name="approved" size="35" <dtml-if approved>CHECKED</dtml-if>></td>
+                    </tr>
 
-                <tr>
-                  <td width="20%" align="left" valign="top"><label for="cb-approved"><b>Approved:</b></label></td>
-                  <td width="*" align="left" valign="top"><input type="checkbox" name="approved" size="35" <dtml-if approved>CHECKED</dtml-if>></td>
-                </tr>
-
-                <tr>
-                  <td width="20%" ></td>
-                  <td width="*" align="left" valign="top">
-                    <input name="DestinationURL" type="hidden" value="manage_properties" />
-                    <input type="submit" value="Save Changes" />
-                  </td>
-                </tr>
-            </form>
-        </table>
-    </td></tr>
-</table>
+                    <tr>
+                      <td width="20%" ></td>
+                      <td width="*" align="left" valign="top">
+                        <input name="DestinationURL" type="hidden" value="manage_properties" />
+                        <input type="submit" value="Save Changes" />
+                      </td>
+                    </tr>
+                </form>
+            </table>
+        </td></tr>
+    </table>
 </dtml-if>
 
 <dtml-var manage_page_footer>
