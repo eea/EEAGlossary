@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_utils.py,v 1.44 2004/05/31 11:58:50 finrocvs Exp $
+#$Id: EEAGlossary_utils.py,v 1.45 2004/06/01 13:12:54 finrocvs Exp $
 
 #Python imports
 import string
@@ -177,13 +177,26 @@ class utils:
 
     def utUtf8Encode(self, p_value):
         """ encode a iven value to utf-8 """
-        return unicode(str(p_value), 'latin-1').encode('utf8')
+        return unicode(p_value, 'utf-8')
+
+    def latin1_to_utf8(self, s):
+        return unicode(s, 'latin1').encode('utf-8')
 
     def utf8_to_latin1(self, s):
         return self.encodeLatin1(self.decodeUTF8(s)[0])[0]
+    
     encodeLatin1, decodeLatin1 = codecs.lookup('latin1')[:2]
     encodeUTF8, decodeUTF8 = codecs.lookup('UTF8')[:2]
 
+        
+    encodeISO88592, decodeISO88592 = codecs.lookup('iso-8859-2')[:2]
+    
+    def utf8_to_iso_8859_2(self, s):
+        return self.encodeISO88592(self.decodeUTF8(s)[0])[0]
+        
+    def iso88595_toutf8(self, s):
+        return unicode(s, 'iso-8859-5').encode('utf-8')
+        
     def debug(self, error):
         """ """
         import sys
@@ -218,7 +231,7 @@ class catalog_utils:
         try:
             catalog.catalog_object(ob, self.__build_catalog_path(ob))
         except Exception, error:
-            print error
+            print self.debug(error)
 
     def cu_uncatalog_object(self, ob):
         """ uncatalog an object """
@@ -233,8 +246,11 @@ class catalog_utils:
         catalog = self.getGlossaryCatalog()
         try:
             ob_path = self.__build_catalog_path(ob)
+            print 'path [%s]' % ob_path
             catalog.uncatalog_object(ob_path)
-            catalog.catalog_object(ob, ob_path)
+            print '@@@@'
+            self.cu_catalog_object(ob)
+            print '#####'
         except Exception, error:
             print self.debug(error)
 

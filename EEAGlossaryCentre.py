@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.69 2004/06/01 08:28:15 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.70 2004/06/01 13:12:54 finrocvs Exp $
 
 # python imports
 import string
@@ -34,6 +34,7 @@ from OFS.Folder import Folder
 import AccessControl.User
 from Products.ZCatalog.ZCatalog import ZCatalog
 import Products
+from ZPublisher.HTTPRequest import record
 
 # product imports
 import EEAGlossaryFolder
@@ -44,6 +45,11 @@ from EEAGlossary_export import glossary_export
 from EEAGlossary_constants import *
 from parsers.xliff_parser import xliff_parser
 from parsers.tmx_parser import HandleTMXParsing
+try:
+    from Products.TextIndexNG2 import TextIndexNG
+    TNG2_exists = 1
+except:
+    TNG2_exists = 0
 
 manage_addGlossaryCentre_html = DTMLFile('dtml/EEAGlossaryCentre/add', globals())
 def manage_addGlossaryCentre(self, id, title='', description='', REQUEST=None):
@@ -126,11 +132,21 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         glossary_catalog = ZCatalog(id_catalog)
         self._setObject(id_catalog, glossary_catalog)
         catalog_obj = self._getOb(id_catalog)
-
+         
          #create indexes
         for lang in self.get_english_names():
-            try: catalog_obj.addIndex(lang, 'TextIndex')
-            except: pass
+            if lang in self.get_unicode_langs():
+                encoding = 'utf-8'
+            else:
+                encoding = self.get_language_charset(lang)
+            if TNG2_exists:
+                index_extra = record()
+                index_extra.default_encoding = encoding
+                try:    catalog_obj.manage_addIndex(lang, 'TextIndexNG2',index_extra)
+                except:    pass
+            else:
+                try: catalog_obj.addIndex(lang, 'TextIndex')
+                except: pass
         try: catalog_obj.addIndex('approved', 'FieldIndex')
         except: pass
         try: catalog_obj.addIndex('bobobase_modification_time', 'FieldIndex')
@@ -790,6 +806,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         body_info = chandler.getBody() #return a dictionary {id: (source, target)}
         obj = mapTiny()
         for elem_id, translation in body_info.items():
+            print elem_id
             if elem_id!='':
                 folder_id = self.utf8_to_latin1(string.upper(elem_id[:1]))
                 folder = self.unrestrictedTraverse(folder_id, None)
@@ -801,14 +818,14 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                         print error
                 if target_language in self.get_english_names():
                     obj.entry = self.utf8_to_latin1(translation['source'])
-                    obj.translations[target_language] = translation['target']#self.display_unicode_langs(translation['target'],self.get_language_charset(target_language))    
+                    obj.translations[target_language] = translation['target']
+                    #self.display_unicode_langs(translation['target'],self.get_language_charset(target_language))    
                 if obj.entry!='':
                     elem_ob = folder._getOb(self.ut_makeId(obj.entry), None)
                     if elem_ob is not None:
                         for k,v in obj.translations.items():
                             elem_ob.set_translations_list(k, v)
                             elem_ob.set_history(k, v)
-                        elem_ob.cu_recatalog_object(elem_ob)
                     else:
                         try:
                             folder.manage_addGlossaryElement(obj.entry, '', '', [], '', '', '', '', '', 
@@ -820,7 +837,8 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                             for k,v in obj.translations.items():
                                 elem_ob.set_translations_list(k, v)
                                 elem_ob.set_history(k, v)
-                            elem_ob.cu_recatalog_object(elem_ob)
+                    print elem_ob
+                    self.cu_recatalog_object(elem_ob)
             obj.emptyObject()
         if REQUEST is not None:
              return MessageDialog(title = 'Messages imported', message = 'Terms successfully imported' ,
