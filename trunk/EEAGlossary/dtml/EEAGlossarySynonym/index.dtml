@@ -1,16 +1,9 @@
 <dtml-var standard_html_header>
+<dtml-var style_presentation_css>
 
 <p>
     <dtml-with "PARENTS[1]">
-        <a href="<dtml-var absolute_url>">
-            <img src="<dtml-if "getId() in _.string.split(URL,'/')">
-                            misc_/EEAGlossary/element.gif
-                        <dtml-else>
-                            misc_/EEAGlossary/synonym.gif
-                        </dtml-if>
-                     " border=0>
-            &nbsp;<dtml-var title_or_id>
-        </a>
+        <a href="<dtml-var absolute_url>"><img src="<dtml-if "getId() in _.string.split(URL,'/')">misc_/EEAGlossary/element.gif<dtml-else>misc_/EEAGlossary/synonym.gif</dtml-if>" border=0><dtml-var title_or_id></a>
     </dtml-with>
     &nbsp;/&nbsp;
     <img src="<dtml-if "getId() in _.string.split(URL,'/')">

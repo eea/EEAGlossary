@@ -1,4 +1,5 @@
 <dtml-var standard_html_header>
+<dtml-var style_presentation_css>
 
 <p>
     <IMG SRC="<dtml-var icon>" BORDER=0>&nbsp;<dtml-var title_or_id>
@@ -13,27 +14,25 @@
 
 <br>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="B5DED6">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-background">
     <tr>
-        <td>
-            <img src="misc_/EEAGlossary/line.gif" width="100%" height="1">
-        </td>
+        <td><img src="misc_/EEAGlossary/line.gif" width="100%" height="1"></td>
     </tr>
 
     <tr>
         <td>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="B5DED6">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                     <td>
                         <p>
-                            &nbsp;<img src="misc_/EEAGlossary/img_search_med.gif" border=0 alt="Search for a term">&nbsp;<span>Search for terms</span>
+                            &nbsp;<img src="misc_/EEAGlossary/img_search_med.gif" border=0 alt="Search for a term">&nbsp;<span><b>Search for terms</b></span>
                         </p>
                         <p>
                         <form action="search_html" method="post" name="frmSearch">
-                        <table border=0 cellpadding=0 cellspacing=0 width="100%">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
                             <tr>
-                                <th>Term</th>
-                                <td align="left" valign="top">
+                                <td width="15%"><b>Term:</b></td>
+                                <td align="left" valign="top"  width="*">
                                         <input type="text" name="query" size="40" value="">
                                         <dtml-let src_langs="get_search_langs()">
                                         <select 
@@ -48,13 +47,13 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th >Definition</th>
+                                <td><b>Definition:</b></td>
                                 <td align="left" valign="top">
                                         <input type="text" name="definition" size="40" value="">
                                 </td>
                             </tr>
                             <tr>
-                                <th>Show per page</th>
+                                <td><b>Show per page:</b></td>
                                 <td align="left" valign="top">
                                     <select type="text" name="size">
                                         <option selected>10</option>
@@ -76,9 +75,7 @@
     </tr>
 
     <tr>
-        <td>
-            <img src="misc_/EEAGlossary/line.gif" width="100%" height="1">
-        </td>
+        <td><img src="misc_/EEAGlossary/line.gif" width="100%" height="1"></td>
     </tr>
 </table>
 

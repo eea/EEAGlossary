@@ -20,14 +20,15 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.60 2004/05/19 12:42:55 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.61 2004/05/26 13:35:01 finrocvs Exp $
 
 # python imports
 import string
 import whrandom
+from os.path import join
 
 # Zope imports
-from Globals import DTMLFile, MessageDialog, InitializeClass
+from Globals import DTMLFile, MessageDialog, InitializeClass, package_home
 from AccessControl import ClassSecurityInfo
 from OFS.Folder import Folder
 import AccessControl.User
@@ -50,6 +51,12 @@ def manage_addGlossaryCentre(self, id, title='', description='', REQUEST=None):
     obj = self._getOb(id)
     obj.loadProperties()
     obj.addCatalog()
+
+    style_css = open(join(package_home(globals()),'dtml','EEAGlossaryCentre','style_presentation.dtml'))
+    content = style_css.read()
+    style_css.close()
+    ob.manage_addDTMLMethod('style_presentation_css', title='', file=content)
+
     obj._p_changed = 1
     if REQUEST is not None:
         return self.manage_main(self, REQUEST, update_menu=1)
@@ -767,10 +774,6 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     def style_console_css(self):
         """ return the css file from EEAGlossaryEngine """
         return self.getGlossaryEngine().style_console_css.read()
-
-    def style_presentation_css(self):
-        """ return the css file from EEAGlossaryEngine """
-        return self.getGlossaryEngine().style_presentation_css.read()
 
     #####################
     #   MANAGEMENT TABS #

@@ -2,34 +2,34 @@
 
     <table border="0" width="501" cellpadding="2">
         <tr>
-            <td colspan=3  valign="top" width="100%" valign="top" bgcolor="#808080">
-                <b><font color="#FFFFFF">Definition (english only)</font></b>
+            <td colspan=3  valign="top" width="100%" valign="top" class="header-element">
+                <b>Definition (english only)</b>
             </td>
         </tr>
 
         <dtml-if is_image_url>
             <tr>
-                <td colspan=3 valign="top" width="100%" valign="top" bordercolor="#000000" bgcolor="#FFFFFF" >
+                <td colspan=3 valign="top" width="100%" valign="top">
                     <img src="<dtml-var image_url>">
                 </td>
             </tr>
         </dtml-if>
 
         <tr>
-            <td colspan=3 valign="top" width="100%" valign="top" bordercolor="#000000" bgcolor="#FFFFFF" >
+            <td colspan=3 valign="top" width="100%" valign="top">
                 <dtml-var "display_unicode_langs(definition,charset='iso-8859-1')">
             </td>
         </tr>
 
         <dtml-if is_long_definition>
                 <tr>
-                    <td colspan=3  valign="top" width="100%" valign="top" bgcolor="#808080">
-                        <b><font color="#FFFFFF">Long definition (english only)</font></b>
+                    <td colspan=3  valign="top" width="100%" valign="top" class="header-element">
+                        <b>Long definition (english only)</b>
                     </td>
                 </tr>
 
                 <tr>
-                    <td colspan=3 valign="top" width="100%" valign="top" bordercolor="#000000" bgcolor="#FFFFFF">
+                    <td colspan=3 valign="top" width="100%" valign="top">
                         <dtml-var "display_unicode_langs(long_definition,charset='iso-8859-1')">
                     </td>
                 </tr>
@@ -37,13 +37,13 @@
 
         <dtml-if is_definition_source>
             <tr>
-                <td width="100%" valign="top" bgcolor="#808080" colspan="3">
-                    <b><font color="#FFFFFF">Definition source</font></b>
+                <td width="100%" valign="top" colspan="3" class="header-element">
+                    <b>Definition source</b>
                 </td>
             </tr>
 
             <tr>
-                <td width="100%" valign="top" bgcolor="#FFFFFF" colspan="3">
+                <td width="100%" valign="top" colspan="3">
                     <dtml-var definition_source_url>
                 </td>
             </tr>
@@ -51,17 +51,17 @@
 
         <dtml-if "not ('actions' in hidden_fields)">
             <tr>
-                <td width="100%" valign="top" bgcolor="#808080" colspan="3">
-                    <b><font color="#FFFFFF">Additional info, actions and links</font></b>
+                <td width="100%" valign="top" colspan="3" class="header-element">
+                    <b>Additional info, actions and links</b>
                 </td>
             </tr>
 
             <tr>
-                <td width="100%" valign="top" bgcolor="#FFFFFF" colspan="3">
+                <td width="100%" valign="top" colspan="3">
                     <dtml-if "_.len(get_links())>0 and _.len(get_actions())>0">
                         <dtml-in get_links>
                             <li>&nbsp;
-                                <a href="&dtml-sequence-item;">
+                                <a href="<dtml-var sequence-item>">
                                     <dtml-var "actions[_['sequence-index']]">
                                 </a>
                             </li>
@@ -72,7 +72,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <img src="misc_/EEAGlossary/img_search_small.gif" BORDER=0>
+                                    <img src="misc_/EEAGlossary/img_search_small.gif" border="0">
                                 </td>
                                 <td>
                                     Search for "<b><dtml-var name></b>" in:
@@ -119,8 +119,8 @@
 
         <dtml-if "(not 'translations' in hidden_fields) and (check_if_no_translations())">
             <tr>
-                <td colspan=3 width="100%" valign="top" bgcolor="#808080">
-                    <b><font color="#FFFFFF">Translations of "&dtml-name;":</font></b>
+                <td colspan=3 width="100%" valign="top" class="header-element">
+                    <b>Translations of "<dtml-var name>":</b>
                 </td>
             </tr>
 
@@ -128,7 +128,7 @@
                 <dtml-let language="_['sequence-item']" translation="get_translation_by_language(language)">
                     <dtml-if "translation!=''">
                             <tr>
-                                <td bgcolor="#808080"><font color="#FFFFFF"><dtml-var language>:</font></td>
+                                <td class="header-element"><dtml-var language>:</td>
                                 <td>
                                     <dtml-if "language in get_unicode_langs()">
                                         <dtml-var translation>
@@ -145,13 +145,13 @@
 
         <dtml-if get_subjects>
             <tr>
-                <td width="100%" valign="top" bgcolor="#808080" colspan="3">
-                    <b><font color="#FFFFFF">Contexts / Subjects</font></b>
+                <td width="100%" valign="top" colspan="3" class="header-element">
+                    <b>Contexts / Subjects</b>
                 </td>
             </tr>
 
             <tr>
-                <td width="100%" valign="top" bgcolor="#FFFFFF" colspan="3">
+                <td width="100%" valign="top" colspan="3">
                     <dtml-in get_subjects>
                     <dtml-let record="_['sequence-item']">
                         <b><dtml-var "record['code']"></b>: <dtml-var "record['name']">

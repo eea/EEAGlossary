@@ -1,13 +1,10 @@
 <dtml-var standard_html_header>
+<dtml-var style_presentation_css>
 
 <p>
 
     <dtml-with "PARENTS[1]">
-        <a href="&dtml-absolute_url;">
-            <img src="misc_/EEAGlossary/element.gif" border=0>
-            &nbsp;
-            <dtml-var title_or_id>
-        </a>
+        <a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/element.gif" border=0><dtml-var title_or_id></a>
     </dtml-with>
 
     &nbsp;/&nbsp;
@@ -19,7 +16,7 @@
     <dtml-if QA_needed>
         <img border=0 src="misc_/EEAGlossary/new.gif" alt='New glossary entry'>
         <p>
-            <span style="color:red;">Translations under validation</span>
+            <span class="attention-color">Translations under validation</span>
         </p>
     </dtml-if>
 </p>

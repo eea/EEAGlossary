@@ -1,15 +1,11 @@
 <dtml-var standard_html_header>
+<dtml-var style_presentation_css>
 
 <p>
 
     <dtml-with "PARENTS[1]">
-        <a href="<dtml-var absolute_url>">
-            <img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/element.gif<dtml-else><dtml-var icon></dtml-if>" border=0>
-            &nbsp;
-        </a>
-        <a href="<dtml-var absolute_url>">
-            <dtml-var title_or_id>
-        </a>
+        <a href="<dtml-var absolute_url>"><img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/element.gif<dtml-else><dtml-var icon></dtml-if>" border=0></a>
+        <a href="<dtml-var absolute_url>"><dtml-var title_or_id></a>
     </dtml-with>
     / <img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/element.gif<dtml-else><dtml-var icon></dtml-if>" border=0>&nbsp;
     <dtml-var title_or_id>
@@ -22,7 +18,7 @@
     <tr>
         <td width="1"></td>
         <td width="256" align="left" valign="top">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="B5DED6">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-background">
                 <tr>
                     <td><img src="misc_/EEAGlossary/line.gif" width="100%" height="1"></td>
                 </tr>
@@ -31,7 +27,7 @@
                         <table width="100%" border="0" cellspacing="2" cellpadding="2">
                             <tr>
                                 <td>
-                                    <p>Description</p>
+                                    <p><b>Description</b></p>
                                     <p>Here you see the list of terms found in <b><dtml-var title_or_id></b>-folder. Click
                                     on the term to see the details like definition, translations etc..</p>
                                 </td>

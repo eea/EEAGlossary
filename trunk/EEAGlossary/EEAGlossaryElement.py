@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.48 2004/05/18 08:25:59 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.49 2004/05/26 13:35:02 finrocvs Exp $
 
 # python imports
 import string
@@ -283,20 +283,20 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         """ manage actions properties for EEAGlossaryElement """
         if self.utAddObjectAction(REQUEST):
             if string.strip(link) == '':
-                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2')
             else:
                 self.set_link(link)
                 self._p_changed = 1
         elif self.utUpdateObjectAction(REQUEST):
             if string.strip(link) == '':
-                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2')
             else:
                 self.del_link(old_link)
                 self.set_link(link)
                 self._p_changed = 1
         elif self.utDeleteObjectAction(REQUEST):
             if not ids or len(ids) == 0:
-                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2')
             for link in self.utConvertToList(ids):
                 self.del_link(link)
             self._p_changed = 1
@@ -322,20 +322,20 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         """ manage actions properties for EEAGlossaryElement """
         if self.utAddObjectAction(REQUEST):
             if string.strip(action) == '':
-                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2')
             else:
                 self.set_action(action)
                 self._p_changed = 1
         elif self.utUpdateObjectAction(REQUEST):
             if string.strip(action) == '':
-                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2')
             else:
                 self.del_action(old_action)
                 self.set_action(action)
                 self._p_changed = 1
         elif self.utDeleteObjectAction(REQUEST):
             if not ids or len(ids) == 0:
-                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=2')
             for action in self.utConvertToList(ids):
                 self.del_action(action)
             self._p_changed = 1
