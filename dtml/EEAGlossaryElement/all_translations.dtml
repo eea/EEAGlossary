@@ -1,75 +1,54 @@
 <dtml-var manage_utf8_header>
 
 <dtml-var manage_tabs>
-
+<dtml-comment>
 <table style="border: 1px solid #ddaaaa;" cellpadding="2" cellspacing="2" ><tr><td width="400" align=left valign=top>
-<p class="form-help">
-<b>Welcome</b> to the management tool of <b>EEA glossary database.</b><br>
-<br>
-<b>User Info</b><br>
-User :&nbsp;<b><dtml-var "_.SecurityGetUser().getUserName()"></b><br>
-Roles:&nbsp;<dtml-in "_.SecurityGetUser().getRoles()">
-<b><dtml-var sequence-item></b><dtml-if sequence-end>.<dtml-else>,&nbsp;</dtml-if>
-</dtml-in><br>
-<br>
-</p>
+    <p class="form-help">
+    <b>Welcome</b> to the management tool of <b>EEA glossary database.</b><br>
+    <br>
+    <b>User Info</b><br>
+    User :&nbsp;<b><dtml-var "_.SecurityGetUser().getUserName()"></b><br>
+    Roles:&nbsp;
+    <dtml-in "_.SecurityGetUser().getRoles()">
+        <b><dtml-var sequence-item></b><dtml-if sequence-end>.<dtml-else>,&nbsp;</dtml-if>
+    </dtml-in>
+    <br>
+    <br>
+    </p>
+
 <table cellspacing="0" cellpadding="2" border="0">
-<tr class="list-header">
-  <td align="left" valign="top" width="16">
-  &nbsp;
-  </td>
-  <td align="left" valign="top">
-  <div class="form-label">
-  Language
-  </div>
-  </td>
-  <td align="left" valign="top">
-  <div class="form-label">
-  Translation
-  </div>
-  </td>
-  <td align="left" valign="top">
-  <div class="form-label">
-  Type
-  </div>
-  </td>
-</tr>
-<dtml-in "propertysheets.Translations.propertyIds()" sort=id>
-<dtml-let langid=sequence-item role="'QC '+langid">
+    <tr class="list-header">
+        <td align="left" valign="top" width="16">&nbsp;</td>
+        <td align="left" valign="top"><div class="form-label">Language</div></td>
+        <td align="left" valign="top"><div class="form-label">Translation</div></td>
+        <td align="left" valign="top"><div class="form-label">Type</div></td>
+    </tr>
 
-<dtml-in "langcharsets(englishname=langid)">
-<tr>
-  <td align="left" valign="top" width="16">
-      </td>
-  <td align="left" valign="top">
-  <div class="form-label">
-  <label for="cb-&dtml-langid;">&dtml-langid;</label>
-  </div>
-  </td>
-  <td align="left" valign="top">
-<dtml-if "langid in unicode_langs"><dtml-var "_[langid]"><dtml-else>
-<dtml-var "toutf8(_[langid],charset)"><br>
-</dtml-if>
-      </td>
-  <td align="left" valign="top">
-  <div class="list-item">
-  text
-  </div>
-  </td>
-</tr>
+    <dtml-in "propertysheets.Translations.propertyIds()" sort=id>
+        <dtml-let langid=sequence-item role="'QC '+langid">
+            <dtml-in "langcharsets(englishname=langid)">
+            <tr>
+                <td align="left" valign="top" width="16"></td>
+                <td align="left" valign="top"><div class="form-label"><label for="cb-&dtml-langid;">&dtml-langid;</label></div></td>
+                <td align="left" valign="top">
+                    <dtml-if "langid in unicode_langs">
+                       dtml-var "_[langid]">
+                   <dtml-else>
+                      <dtml-var "toutf8(_[langid],charset)"><br>
+                   </dtml-if>
+                </td>
+                <td align="left" valign="top"><div class="list-item">text</div></td>
+            </tr>
+            </dtml-in>
+        </dtml-let>
+    </dtml-in>
 
-</dtml-in>
-
-</dtml-let>
-</dtml-in>
-<tr>
-  <td colspan="2">&nbsp;</td>
-  <td align="left" valign="top">
-  <div class="form-element">
-  <td>&nbsp;</td>
-  </td>
-</tr>
+    <tr>
+        <td colspan="2">&nbsp;</td>
+        <td align="left" valign="top"><div class="form-element"><td>&nbsp;</td>
+    </tr>
 </table>
+
 </td>
 <td  style="border: 1px dashed #ddaaaa;" cellpadding="2" cellspacing="2" class="form-help" align=left valign=top>
 <p><b>Support/Contact Info</b></p>
@@ -82,3 +61,4 @@ Roles:&nbsp;<dtml-in "_.SecurityGetUser().getRoles()">
 </table>
 
 <dtml-var manage_utf8_footer>
+</dtml-comment>
