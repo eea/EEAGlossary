@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_export.py,v 1.12 2004/06/01 08:28:15 finrocvs Exp $
+#$Id: EEAGlossary_export.py,v 1.13 2004/06/01 12:47:08 finrocvs Exp $
 
 from DateTime import DateTime
 from types import UnicodeType
@@ -148,7 +148,7 @@ class glossary_export:
         else:
             folders = string.split(folders, '/')[-1]
         self.REQUEST.RESPONSE.setHeader('Content-type', 'application/data; charset=UTF-8')
-        self.REQUEST.RESPONSE.setHeader('Content-Disposition', 'attachment; filename="%s_%s.tmx"' % (self.id, folders))
+        self.REQUEST.RESPONSE.setHeader('Content-Disposition', 'attachment; filename="%s_%s.xml"' % (self.id, folders))
         r_append('<?xml version="1.0" encoding="utf-8"?>')
         r_append('<!DOCTYPE tmx SYSTEM "http://www.lisa.org/tmx/tmx14.dtd">')
         r_append('<tmx version="1.4">')
@@ -208,13 +208,15 @@ class glossary_export:
             elem_ob = folder._getOb(k, None)
             if elem_ob is not None:
                 for lang,trans in chandler.TMXContent[k].items():
-                    if lang in self.get_unicode_langs():
-                        elem_ob.set_translations_list(lang, trans)
-                        elem_ob.set_history(lang, trans)
-                    else:
-                        trans = self.toutf8(trans,self.get_language_charset(lang))
-                        elem_ob.set_translations_list(lang, trans)
-                        elem_ob.set_history(lang, trans)
+                    if trans != '':
+                        if lang in self.get_unicode_langs():
+                            elem_ob.set_translations_list(lang, trans)
+                            elem_ob.set_history(lang, trans)
+                        else:
+                            #trans = self.toutf8(trans,self.get_language_charset(lang))
+                            trans = self.display_unicode_langs(trans, charset=self.get_language_charset(lang))
+                            elem_ob.set_translations_list(lang, trans)
+                            elem_ob.set_history(lang, trans)
                 elem_ob.cu_recatalog_object(elem_ob)
             else:
                 try:
@@ -229,8 +231,9 @@ class glossary_export:
                         if lang in self.get_unicode_langs():
                             elem_ob.set_translations_list(lang, trans)
                             elem_ob.set_history(lang, trans)
-                        else:
-                            trans = self.toutf8(trans,self.get_language_charset(lang))
+                        else: 
+                            #trans = self.toutf8(trans,self.get_language_charset(lang))
+                            trans = self.display_unicode_langs(trans, charset=self.get_language_charset(lang))
                             elem_ob.set_translations_list(lang, trans)
                             elem_ob.set_history(lang, trans)
                     elem_ob.cu_recatalog_object(elem_ob)
