@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: toutf8.py,v 1.3 2004/05/17 08:54:19 finrocvs Exp $
+#$Id: toutf8.py,v 1.4 2004/06/01 17:06:49 finrocvs Exp $
 
 #Python imports
 
@@ -91,6 +91,8 @@ class toUTF8:
         """transfer to Unicode"""
         strlist = list(s)
         res = ""
+        print 'INTRAAAAAAAAAAAAAA'
+        print charset
         if (charset == 'iso-8859-7'):
             for ch in strlist:
                 if ord(ch) >= 0xb4:
@@ -107,9 +109,12 @@ class toUTF8:
 
         elif (charset == 'iso-8859-4'):
             for ch in strlist:
-                if ord(ch) >= 0xa0:
+                print ord(ch)
+                if ord(ch) >= 0x80:
+                    print 'pune $#'
                     res = res + "&#" + `self.iso8859_4[ord(ch) - 0xa0]` + ";"
                 else:
+                    print 'nu pune'
                     res = res + ch
         elif (charset == 'iso-8859-2'):
             for ch in strlist:

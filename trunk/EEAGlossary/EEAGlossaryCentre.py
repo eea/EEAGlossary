@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.71 2004/06/01 15:27:36 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.72 2004/06/01 17:06:49 finrocvs Exp $
 
 # python imports
 import string
@@ -776,9 +776,15 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                     elem_ob = folder._getOb(self.ut_makeId(obj.entry), None)
                     if elem_ob is not None:
                         for k,v in obj.translations.items():
-                            buf = self.convertTermToHex(v).encode('utf8')
-                            elem_ob.set_translations_list(k, buf)
-                            elem_ob.set_history(k, buf)
+                            #print self.get_language_charset(k)
+                            buf1 = self.display_unicode_langs(v, self.get_language_charset(k))
+                            #print buf1
+                            buf2 = self.convertTermToHex(buf1)
+                            #print buf2
+                            buf3 = buf2.encode('utf8')
+                            #print buf3
+                            elem_ob.set_translations_list(k, buf3)
+                            elem_ob.set_history(k, buf3)
                         elem_ob.cu_recatalog_object(elem_ob)
             obj.emptyObject()
         if REQUEST is not None:
