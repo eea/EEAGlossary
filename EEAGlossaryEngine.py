@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryEngine.py,v 1.13 2004/05/19 08:00:17 finrocvs Exp $
+#$Id: EEAGlossaryEngine.py,v 1.14 2004/05/19 12:42:55 finrocvs Exp $
 
 import string
 
@@ -395,7 +395,6 @@ class EEAGlossaryEngine(SimpleItem, utils):
     subjects_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_subjects", globals())
     contact_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_contact", globals())
     search_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_search", globals())
-    style_css = DTMLFile('dtml/EEAGlossaryEngine/style', globals())
     style_console_css = DTMLFile('dtml/EEAGlossaryEngine/style_console', globals())
     style_presentation_css = DTMLFile('dtml/EEAGlossaryEngine/style_presentation', globals())
 

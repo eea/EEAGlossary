@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.59 2004/05/19 11:46:34 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.60 2004/05/19 12:42:55 finrocvs Exp $
 
 # python imports
 import string
@@ -746,6 +746,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
                 if elem_ob is not None:
                     for k,v in obj.translations.items():
                         elem_ob.set_translations_list(k, v)
+                        elem_ob.set_history(k, v)
                     elem_ob.cu_recatalog_object(elem_ob)
                 else:
                     try:
@@ -770,10 +771,6 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     def style_presentation_css(self):
         """ return the css file from EEAGlossaryEngine """
         return self.getGlossaryEngine().style_presentation_css.read()
-
-    def style_css(self):
-        """ return the css file from EEAGlossaryEngine """
-        return self.getGlossaryEngine().style_css.read()
 
     #####################
     #   MANAGEMENT TABS #
