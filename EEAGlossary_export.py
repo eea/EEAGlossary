@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_export.py,v 1.16 2004/06/08 07:23:11 finrocvs Exp $
+#$Id: EEAGlossary_export.py,v 1.17 2004/06/08 15:07:32 finrocvs Exp $
 
 from DateTime import DateTime
 from types import UnicodeType, StringType
@@ -189,8 +189,7 @@ class glossary_export:
         import string
         from xml.sax import make_parser, handler, InputSource
         from cStringIO import StringIO
-        
-        
+
         parser = tmx_parser()
 
         #parse the tmx information

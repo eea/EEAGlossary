@@ -15,7 +15,7 @@
 <dtml-comment>Insert only those terms with definition not empty.</dtml-comment>
     <dtml-in folder_list_sorted>
         <dtml-in element_list_sorted>
-               <tr><td><dtml-var view_languages_html></td></tr>
+               <tr><td><dtml-var view_elements_html></td></tr>
         </dtml-in>
     </dtml-in>
 </table>

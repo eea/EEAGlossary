@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryEngine.py,v 1.17 2004/05/27 06:41:35 finrocvs Exp $
+#$Id: EEAGlossaryEngine.py,v 1.18 2004/06/08 15:07:32 finrocvs Exp $
 
 import string
 
@@ -256,14 +256,25 @@ class EEAGlossaryEngine(SimpleItem, utils):
             if lang_info['lang'] == lang:
                 self.__languages_list.remove(lang_info)
 
+    def check_language_exists(self, english_name):
+        """ check if this language exists """
+        ret = 1
+        for eng_lang in self.__languages_list:
+            if eng_lang['english_name'] == english_name:
+                ret = 0
+        return ret
+
     def manageLanguagesProperties(self, ids='', lang='', charset='', english_name='', old_lang='', REQUEST=None):
         """ manage languages for EEAGlossaryEngine """
         if self.utAddObjectAction(REQUEST):
             if string.strip(lang)=='' or string.strip(charset)=='' or string.strip(english_name)=='':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=4')
             else:
-                self.set_languages_list(lang, charset, english_name)
-                self._p_changed = 1
+                if self.check_language_exists(english_name):
+                    self.set_languages_list(lang, charset, english_name)
+                    self._p_changed = 1
+                else:
+                    return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=4')
         elif self.utUpdateObjectAction(REQUEST):
             if string.strip(lang)=='' or string.strip(charset)=='' or string.strip(english_name)=='':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=4')
@@ -299,14 +310,25 @@ class EEAGlossaryEngine(SimpleItem, utils):
             if subj_info['code'] == code:
                 self.__subjects_list.remove(subj_info)
 
+    def check_subjects_exists(self, code):
+        """ check if this language exists """
+        ret = 1
+        for l_code in self.__subjects_list:
+            if l_code['code'] == code:
+                ret = 0
+        return ret
+
     def manageSubjectsProperties(self, ids=[], old_code='', code='', name='', REQUEST=None):
         """ manage subjects for EEAGlossaryEngine """
         if self.utAddObjectAction(REQUEST):
             if string.strip(code) == '' or string.strip(name) == '':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
             else:
-                self.set_subjects_list(code, name)
-                self._p_changed = 1
+                if self.check_subjects_exists(code):
+                    self.set_subjects_list(code, name)
+                    self._p_changed = 1
+                else:
+                    return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
         elif self.utUpdateObjectAction(REQUEST):
             if string.strip(code) == '' or string.strip(name) == '':
                 return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=3')
