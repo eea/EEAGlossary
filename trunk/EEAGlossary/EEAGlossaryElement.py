@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.10 2004/05/04 08:33:06 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.11 2004/05/04 10:18:49 finrocvs Exp $
 
 # python imports
 import string
@@ -109,6 +109,33 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
         ElementBasic.__dict__['__init__'](self, name, type, source, subjects, context, comment, used_for_1, used_for_2, 
             definition, definition_source_url, long_definition, disabled, approved, QA_needed)
 
+    def is_published (self):
+        if self.approved and not self.disabled:
+            return 1
+        else:
+            return 0
+
+    def is_image_url (self):
+        if not self.utIsEmptyString(self.image_url) and (not 'image_url' in self.REQUEST.PARENTS[2].hidden_fields):
+            return 1
+        else:
+            return 0
+
+    def is_long_definition (self):
+        if not self.utIsEmptyString(self.long_definition) and (not 'long_definition' in self.REQUEST.PARENTS[2].hidden_fields):
+            return 1
+        else:
+            return 0
+
+    def is_defintion_source (self):
+        if not self.utIsEmptyString(self.definition_source_url) and (not 'definition_source' in self.REQUEST.PARENTS[2].hidden_fields):
+            return 1
+        else:
+            return 0
+
+    #####################
+    #   MANAGEMENT TABS #
+    #####################
 
     all_translations_html = DTMLFile("dtml/EEAGlossaryElement/all_translations", globals())
     check_translation_html = DTMLFile("dtml/EEAGlossaryElement/check_translation", globals())

@@ -1,4 +1,4 @@
-<dtml-if isPublished>
+<dtml-if is_published>
 
     <table border="0" width="501" cellpadding="2">
         <tr>
@@ -7,21 +7,21 @@
             </td>
         </tr>
 
-        <dtml-if isImageURL>
+        <dtml-if is_image_url>
             <tr>
                 <td colspan=3 vallign="top" width="100%" valign="top" bordercolor="#000000" bgcolor="#FFFFFF" >
-                    <img src="<dtml-var ImageURL>">
+                    <img src="<dtml-var image_url>">
                 </td>
             </tr>
         </dtml-if>
 
         <tr>
             <td colspan=3 vallign="top" width="100%" valign="top" bordercolor="#000000" bgcolor="#FFFFFF" >
-                <dtml-var "toutf8(definition,'iso-8859-1')">
+                <dtml-var "utToUTF8(definition,'iso-8859-1')">
             </td>
         </tr>
 
-        <dtml-if isLong_Definition>
+        <dtml-if is_long_definition>
                 <tr>
                     <td colspan=3  vallign="top" width="100%" valign="top" bgcolor="#808080">
                         <b><font color="#FFFFFF">Long definition (english only)</font></b>
@@ -30,12 +30,12 @@
 
                 <tr>
                     <td colspan=3 vallign="top" width="100%" valign="top" bordercolor="#000000" bgcolor="#FFFFFF">
-                        <dtml-var "toutf8(long_definition,'iso-8859-1')">
+                        <dtml-var "utToUTF8(long_definition,'iso-8859-1')">
                     </td>
                 </tr>
         </dtml-if>
 
-        <dtml-if isDefintion_Source>
+        <dtml-if is_defintion_source>
             <tr>
                 <td width="100%" valign="top" bgcolor="#808080" colspan="3">
                     <b><font color="#FFFFFF">Definition source</font></b>
@@ -44,7 +44,7 @@
 
             <tr>
                 <td width="100%" valign="top" bgcolor="#FFFFFF" colspan="3">
-                    <dtml-var definition_source>
+                    <dtml-var definition_source_url>
                 </td>
             </tr>
         </dtml-if>
@@ -58,11 +58,11 @@
 
             <tr>
                 <td width="100%" valign="top" bgcolor="#FFFFFF" colspan="3">
-                    <dtml-if "_.len(Links)>0 and _.len(Links[0])>0">
+                    <dtml-if "_.len(links)>0 and _.len(links[0])>0">
                         <dtml-in Links>
                             <li>&nbsp;
                                 <a href="&dtml-sequence-item;">
-                                    <dtml-var "Actions[_['sequence-index']]">
+                                    <dtml-var "actions[_['sequence-index']]">
                                 </a>
                             </li>
                         </dtml-in>
@@ -84,7 +84,7 @@
                                     &nbsp;
                                 </td>
                                 <td>
-                                    <a href="http://www.google.com/custom?q=<dtml-in "_.string.split(name)"><dtml-var "MyUrlEncode(_['sequence-item'])">+</dtml-in>&as=Google+Search&domains=eea.eu.int%3Beionet.eu.int&sitesearch=eea.eu.int&cof=GIMP%3A%23FF9900%3BT%3A%23000000%3BALC%3A%23006666%3BL%3Ahttp%3A%2F%2Fwww.eea.eu.int%2Fimages%2Feeabanner%3BGFNT%3A%23808080%3BLC%3A%23003366%3BBGC%3A%23FFFFFF%3BAH%3Aleft%3BVLC%3A%23993300%3BGL%3A0%3BS%3Ahttp%3A%2F%2Fwww.eea.eu.int&config=&restrict=&exclude=&page=">
+                                    <a href="http://www.google.com/custom?q=<dtml-in "_.string.split(name)"><dtml-var "utUrlEncode(_['sequence-item'])">+</dtml-in>&as=Google+Search&domains=eea.eu.int%3Beionet.eu.int&sitesearch=eea.eu.int&cof=GIMP%3A%23FF9900%3BT%3A%23000000%3BALC%3A%23006666%3BL%3Ahttp%3A%2F%2Fwww.eea.eu.int%2Fimages%2Feeabanner%3BGFNT%3A%23808080%3BLC%3A%23003366%3BBGC%3A%23FFFFFF%3BAH%3Aleft%3BVLC%3A%23993300%3BGL%3A0%3BS%3Ahttp%3A%2F%2Fwww.eea.eu.int&config=&restrict=&exclude=&page=">
                                         <b><i>entire EEA website</i></b>
                                     </a>
                                 </td>
@@ -95,7 +95,7 @@
                                     &nbsp;
                                 </td>
                                 <td>
-                                    <a href="http://www.google.com/custom?q=<dtml-in "_.string.split(name)"><dtml-var "MyUrlEncode(_['sequence-item'])">+</dtml-in>&as=Google+Search&domains=eea.eu.int%3Breports.eea.eu.int%3Bthemes.eea.eu.int%3Borg.eea.eu.int%3Bdataservice.eea.eu.int%3Beionet.eu.int%3Bewindows.eu.org&sitesearch=reports.eea.eu.int&cof=GIMP%3A%23FF9900%3BT%3A%23000000%3BALC%3A%23006666%3BL%3Ahttp%3A%2F%2Fwww.eea.eu.int%2Fimages%2Feeabanner%3BGFNT%3A%23808080%3BLC%3A%23003366%3BBGC%3A%23FFFFFF%3BAH%3Aleft%3BVLC%3A%23993300%3BGL%3A0%3BS%3Ahttp%3A%2F%2Fwww.eea.eu.int&config=&restrict=&exclude=&page=">
+                                    <a href="http://www.google.com/custom?q=<dtml-in "_.string.split(name)"><dtml-var "utUrlEncode(_['sequence-item'])">+</dtml-in>&as=Google+Search&domains=eea.eu.int%3Breports.eea.eu.int%3Bthemes.eea.eu.int%3Borg.eea.eu.int%3Bdataservice.eea.eu.int%3Beionet.eu.int%3Bewindows.eu.org&sitesearch=reports.eea.eu.int&cof=GIMP%3A%23FF9900%3BT%3A%23000000%3BALC%3A%23006666%3BL%3Ahttp%3A%2F%2Fwww.eea.eu.int%2Fimages%2Feeabanner%3BGFNT%3A%23808080%3BLC%3A%23003366%3BBGC%3A%23FFFFFF%3BAH%3Aleft%3BVLC%3A%23993300%3BGL%3A0%3BS%3Ahttp%3A%2F%2Fwww.eea.eu.int&config=&restrict=&exclude=&page=">
                                         <b><i>EEA reports</i></b>
                                     </a>
                                 </td>
@@ -106,7 +106,7 @@
                                     &nbsp;
                                 </td>
                                 <td>
-                                    <a href="http://www.google.com/custom?q=<dtml-in "_.string.split(name)"><dtml-var "MyUrlEncode(_['sequence-item'])">+</dtml-in>&as=Google+Search&domains=eea.eu.int%3Breports.eea.eu.int%3Bthemes.eea.eu.int%3Borg.eea.eu.int%3Bdataservice.eea.eu.int%3Beionet.eu.int%3Bewindows.eu.org&sitesearch=eionet.eu.int&cof=GIMP%3A%23FF9900%3BT%3A%23000000%3BALC%3A%23006666%3BL%3Ahttp%3A%2F%2Fwww.eea.eu.int%2Fimages%2Feeabanner%3BGFNT%3A%23808080%3BLC%3A%23003366%3BBGC%3A%23FFFFFF%3BAH%3Aleft%3BVLC%3A%23993300%3BGL%3A0%3BS%3Ahttp%3A%2F%2Fwww.eea.eu.int&config=&restrict=&exclude=&page=">
+                                    <a href="http://www.google.com/custom?q=<dtml-in "_.string.split(name)"><dtml-var "utUrlEncode(_['sequence-item'])">+</dtml-in>&as=Google+Search&domains=eea.eu.int%3Breports.eea.eu.int%3Bthemes.eea.eu.int%3Borg.eea.eu.int%3Bdataservice.eea.eu.int%3Beionet.eu.int%3Bewindows.eu.org&sitesearch=eionet.eu.int&cof=GIMP%3A%23FF9900%3BT%3A%23000000%3BALC%3A%23006666%3BL%3Ahttp%3A%2F%2Fwww.eea.eu.int%2Fimages%2Feeabanner%3BGFNT%3A%23808080%3BLC%3A%23003366%3BBGC%3A%23FFFFFF%3BAH%3Aleft%3BVLC%3A%23993300%3BGL%3A0%3BS%3Ahttp%3A%2F%2Fwww.eea.eu.int&config=&restrict=&exclude=&page=">
                                         <b><i>EIONET</i></b>
                                     </a>
                                 </td>
@@ -117,7 +117,7 @@
             </tr>
         </dtml-if>
 
-        <dtml-if "(not 'Translations' in PARENTS[2].hidden_fields)">
+        <dtml-if "(not 'translations' in PARENTS[2].hidden_fields)">
             <tr>
                 <td colspan=3 width="100%" valign="top" bgcolor="#808080">
                     <b><font color="#FFFFFF">Translations of "&dtml-name;":</font></b>
@@ -164,9 +164,9 @@
 
             <tr>
                 <td width="100%" valign="top" bgcolor="#FFFFFF" colspan="3">
-                    <dtml-let alec=ListSubjects>
-                    <dtml-in "alec.keys()">
-                        <b><dtml-var sequence-item></b>: <dtml-var "alec[_['sequence-item']]">
+                    <dtml-let subj=utListSubjects>
+                    <dtml-in "subj.keys()">
+                        <b><dtml-var sequence-item></b>: <dtml-var "subj[_['sequence-item']]">
                         <br>
                     </dtml-in>
                     </dtml-let>
@@ -176,64 +176,6 @@
                 </td>
             </tr>
         </dtml-if>
-
-
-
-
-
-
-<dtml-comment>
-
-          <td width="34%" valign="top" bgcolor="#808080">
-             <b><font color="#FFFFFF">Comment</font></b></td>
-        </tr>
-        <tr>
-          
-          <td width="34%" valign="top" bgcolor="#FFFFFF">
-            <dtml-var comment><p>&nbsp;</td>
-         </tr>
-            <tr>
-          <td width="33%" valign="top" bgcolor="#808080">
-           <b><font color="#FFFFFF">Source</font></b></td>
-          <td width="33%" valign="top" bgcolor="#808080">
-            <b><font color="#FFFFFF">Used for 1</font></b></td>
-          <td width="34%" valign="top" bgcolor="#808080">
-            <b><font color="#FFFFFF">Used for 2</font></b></td>
-        </tr>
-        <tr>
-          <td width="33%" valign="top" bgcolor="#FFFFFF">
-            <dtml-var source>
-          <p>&nbsp;</td>
-          <td width="33%" valign="top" bgcolor="#FFFFFF">
-              <dtml-var used_for_1>
-           <p>&nbsp;</td>
-          <td width="34%" valign="top" bgcolor="#FFFFFF">
-               <dtml-var used_for_2>
-            <p>&nbsp;</td>
-        </tr>
-        <tr>
-          <td width="33%" valign="top" bgcolor="#808080">
-            <b><font color="#FFFFFF">Subjects</font></b></td>
-          <td width="67%" valign="top" bgcolor="#808080" colspan="2">
-        <b><font color="#FFFFFF"></font></b></td>
-        </tr>
-        <tr>
-          <td width="33%" valign="top" bgcolor="#FFFFFF">
-              &nbsp;</td>
-          <td width="33%" valign="top" bgcolor="#FFFFFF">
-              &nbsp;</td>
-          <td width="34%" valign="top" bgcolor="#FFFFFF">
-              &nbsp;</td>
-        </tr>
-
-</dtml-comment>
-
-
-
-
-
-
-
     </table>
 <dtml-else>
     <b>Sorry, this term is not published.</b>
