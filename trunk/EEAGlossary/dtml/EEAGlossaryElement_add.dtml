@@ -232,7 +232,7 @@
 
         <td align="left" valign="top">
             <select size=10 multiple name="subjects">
-                <dtml-in LoadSubjects>
+                <dtml-in LoadSubjectsList>
                     <div class="form-text">
                     <OPTION VALUE="<dtml-var sequence-item>"><dtml-var sequence-item></OPTION>
                     </div>
