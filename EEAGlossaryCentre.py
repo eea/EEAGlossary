@@ -20,11 +20,10 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.24 2004/05/07 13:29:59 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.25 2004/05/07 13:43:28 finrocvs Exp $
 
 # python imports
 import string
-import whrandom
 
 # Zope imports
 from Globals import DTMLFile, MessageDialog, InitializeClass

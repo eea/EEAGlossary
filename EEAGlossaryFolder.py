@@ -20,7 +20,10 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryFolder.py,v 1.8 2004/05/05 13:44:35 finrocvs Exp $
+#$Id: EEAGlossaryFolder.py,v 1.9 2004/05/07 13:43:28 finrocvs Exp $
+
+# python imports
+import whrandom
 
 # Zope imports
 from Globals import DTMLFile, MessageDialog, InitializeClass
@@ -36,6 +39,7 @@ from EEAGlossary_utils import utils
 from EEAGlossary_constants import *
 
 manage_addGlossaryFolder_html = DTMLFile('dtml/EEAGlossaryFolder/add', globals())
+
 def manage_addGlossaryFolder(self, id, title, description, REQUEST=None):
     """ Adds a new EEAGlossaryFolder object """
     ob = EEAGlossaryFolder(id, title, description)
@@ -58,17 +62,12 @@ class EEAGlossaryFolder(Folder, utils):
                 {'label':'Help',        'action':'manageHelpForm'},)
                 )
 
-    security = ClassSecurityInfo()
-
     meta_types = (
         {'name': EEA_GLOSSARY_ELEMENT_METATYPE, 'action': 'manage_addGlossaryElement_html', 'product': EEA_GLOSSARY_PRODUCT_NAME},
         {'name': EEA_GLOSSARY_SYNONYM_METATYPE, 'action': 'manage_addGlossarySynonym_html', 'product': EEA_GLOSSARY_PRODUCT_NAME},
         )
 
-    manage_addGlossaryElement_html = EEAGlossaryElement.manage_addGlossaryElement_html
-    manage_addGlossaryElement = EEAGlossaryElement.manage_addGlossaryElement
-    manage_addGlossarySynonym_html = EEAGlossarySynonym.manage_addGlossarySynonym_html
-    manage_addGlossarySynonym = EEAGlossarySynonym.manage_addGlossarySynonym
+    security = ClassSecurityInfo()
 
     def __init__(self, id, title, description):
         """ constructor """
@@ -77,8 +76,42 @@ class EEAGlossaryFolder(Folder, utils):
         self.description = description
         self.adt_meta_types = []
 
+    manage_addGlossaryElement_html = EEAGlossaryElement.manage_addGlossaryElement_html
+    manage_addGlossaryElement = EEAGlossaryElement.manage_addGlossaryElement
+    manage_addGlossarySynonym_html = EEAGlossarySynonym.manage_addGlossarySynonym_html
+    manage_addGlossarySynonym = EEAGlossarySynonym.manage_addGlossarySynonym
+
+    def get_object_list(self):
+        """return all id sorted objects from a folder"""
+        id_lst = []
+        obj_lst = []
+        for obj in self.objectValues([EEA_GLOSSARY_ELEMENT_METATYPE,EEA_GLOSSARY_SYNONYM_METATYPE]):
+            id_lst.append(obj.id)
+        id_lst.sort()
+        for term in id_lst:
+            ob = self._getOb(term)
+            obj_lst.append(ob)
+        return obj_lst
+
+    def term_tip(self):
+        """Return a random 'EEA Glossary Element'"""
+        elements=[]
+        ob = self.aq_parent
+        for fobject in ob.objectValues('EEA Glossary Folder'):
+            for eobject in fobject.objectValues('EEA Glossary Element'):
+                if eobject.is_published:
+                   elements.append(eobject)
+        if len(elements) > 0:
+            return whrandom.choice(elements)
+        else:
+            return None
+
+
+    ##########################
+    #   META TYPES FUNCTIONS #
+    ##########################
     def all_meta_types(self):
-        """ What can you put inside me? """
+        """ what can you put inside me """
         global metatypes 
         metatypes = self.adt_meta_types
         if len(metatypes) > 0:
@@ -97,7 +130,12 @@ class EEAGlossaryFolder(Folder, utils):
         self._p_changed = 1
         REQUEST.RESPONSE.redirect('manage_subobjects_html')
 
+    #####################
+    #   MANAGEMENT TABS #
+    #####################
     preview_html = DTMLFile('dtml/EEAGlossaryFolder/preview', globals())
+    index_html = DTMLFile('dtml/EEAGlossaryFolder/index', globals())
+    term_tip_box_html = DTMLFile('dtml/EEAGlossaryFolder/term_tip_box', globals())
     manage_properties_html = DTMLFile('dtml/EEAGlossaryFolder/properties', globals())
     manage_subobjects_html = DTMLFile('dtml/EEAGlossaryFolder/subobjects', globals())
 
