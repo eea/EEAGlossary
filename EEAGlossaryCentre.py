@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.52 2004/05/17 11:24:46 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.53 2004/05/17 13:20:42 finrocvs Exp $
 
 # python imports
 import string
@@ -608,36 +608,61 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
             self.cu_reindexCatalogIndex(catalog, index.id, REQUEST)
         return 1
 
-    #### TO BE FINISHED
     def buildGlossary(self, glossary_table, REQUEST=None):
         """ build glossary -- initial phase """
         tiny = self.unrestrictedTraverse(glossary_table, None)
         transtab = string.maketrans('/ ','__')
-        for col in string.split(tiny.cols_text(), ' '):
-            print col
-#        for col in string.split(tiny.cols_text(), ' '):
-#            if string.lower(col) = 'entry':
-#                #Replace danish characters to the old ones.
-#                entry = string.replace(col,'æ','ae')
-#                entry = string.replace(entry,'å','aa')
-#                entry = string.replace(entry,'ø','oe')
-#                id = string.translate(entry,transtab,'?&!;()<=>*#[]{}')
-#                #Set default values to empty string.
-#                folder_id = string.upper(id[:1])
-#                folder = self.unrestrictedTraverse(folder_id, None)
-#                if folder is None:
-#                    try:
-#                        self.manage_addGlossaryFolder(folder_id)
-#                        folder = self._getOb(folder_id)
-#                    except Exception, error:
-#                        print error
-#                try:
-#                    folder.manage_addGlossaryElement(item.entry, '', '', [], '', '', item.USEFOR1, 
-#                        item.USEFOR2, item.definition, 'dataservice, http://dataservice.eea.eu.int', '', 0, 0, 0, '', '', [], [], {})
-#                except Exception, error:
-#                    print error
-#        if REQUEST is not None:
-#            REQUEST.RESPONSE.redirect('build_glossary_html')
+        #return the columns names from tiny table
+        cols = string.split(tiny.cols_text(), ' ')
+        obj = mapTiny()
+        for item in tiny.getRows():
+            for col in cols:
+                if string.upper(col) == EEA_TINYTABLE_ENTRY:
+                    col_info = eval("item.%s" % col)
+                    #Replace danish characters to the old ones.
+                    entry = string.replace(col_info,'æ','ae')
+                    entry = string.replace(entry,'å','aa')
+                    entry = string.replace(entry,'ø','oe')
+                    obj.entry = col_info
+                    if obj.entry != '':
+                        #Set default values to empty string.
+                        folder_id = string.upper(obj.entry[:1])
+                        folder = self.unrestrictedTraverse(folder_id, None)
+                        if folder is None:
+                            try:
+                                self.manage_addGlossaryFolder(folder_id)
+                                folder = self._getOb(folder_id)
+                            except Exception, error:
+                                print error
+                elif string.upper(col) == EEA_TINYTABLE_DEFINITION:
+                    obj.definition = eval("item.%s" % col)
+                elif string.upper(col) == EEA_TINYTABLE_DEFINITION_SOURCE:
+                    obj.definition_source = eval("item.%s" % col)
+                elif string.upper(col) == EEA_TINYTABLE_ACRONYM:
+                    obj.acronym = eval("item.%s" % col)
+                elif string.upper(col) == EEA_TINYTABLE_ACRONYM:
+                    obj.acronym = eval("item.%s" % col)
+                elif string.upper(col) == EEA_TINYTABLE_USEFOR1:
+                    obj.used_for_1 = eval("item.%s" % col)
+                elif string.upper(col) == EEA_TINYTABLE_USEFOR2:
+                    obj.used_for_2 = eval("item.%s" % col)
+                elif string.upper(col) == EEA_TINYTABLE_ENTRY_TYPE:
+                    obj.entry_type = eval("item.%s" % col)
+                elif string.upper(col) == EEA_TINYTABLE_SOURCE:
+                    obj.source = eval("item.%s" % col)
+                elif string.upper(col) == EEA_TINYTABLE_CONTEXT:
+                    obj.context = eval("item.%s" % col)
+                elif string.upper(col) == EEA_TINYTABLE_COMMENT:
+                    obj.comment = eval("item.%s" % col)
+            if obj.entry != '':
+                try:
+                    folder.manage_addGlossaryElement(obj.entry, obj.entry_type, obj.source, [], obj.context, obj.comment, obj.used_for_1, 
+                        obj.used_for_2, obj.definition, 'dataservice, http://dataservice.eea.eu.int', '', 0, 0, 0, '', '', [], [], {})
+                except Exception, error:
+                    print error
+            obj.emptyObject()
+        if REQUEST is not None:
+            REQUEST.RESPONSE.redirect('build_glossary_html')
 
     #### TO BE FINISHED
     def updateGlossary(self, glossary_table, REQUEST=None):
@@ -706,3 +731,33 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
     manage_utf8_footer = DTMLFile('dtml/EEAGlossaryCentre/utf8_footer', globals())
 
 InitializeClass(EEAGlossaryCentre)
+
+
+class mapTiny:
+    def __init__(self):
+        """ """
+        self.entry = ''
+        self.definition = ''
+        self.acronym = ''
+        self.used_for_1 = ''
+        self.used_for_2 = ''
+        self.entry_type = ''
+        self.source = ''
+        self.context = ''
+        self.comment = ''
+        self.definition = ''
+        self.definition_source = ''
+
+    def emptyObject(self):
+        """ """
+        self.entry = ''
+        self.definition = ''
+        self.acronym = ''
+        self.used_for_1 = ''
+        self.used_for_2 = ''
+        self.entry_type = ''
+        self.source = ''
+        self.context = ''
+        self.comment = ''
+        self.definition = ''
+        self.definition_source = ''

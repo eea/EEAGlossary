@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.45 2004/05/17 08:54:19 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.46 2004/05/17 13:20:42 finrocvs Exp $
 
 # python imports
 import string
@@ -218,6 +218,11 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         """ load languages """
         for lang in self.get_english_names():
             setattr(self, lang, '')
+
+#    def load_translations_list_with_values(self, translation):
+#        """ load translations """
+#        for lang in self.get_english_names():
+#            setattr(self, lang, translation)
 
     def convert_element(self, synonyms=[], REQUEST=None):
         """convert element to synonym """
