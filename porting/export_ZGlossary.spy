@@ -150,13 +150,20 @@ def exportGlossaryElement(p_item):
 ##    l_temp += ' French="%s"' % (unicode(p_item.French, 'iso-8859-1')).encode('utf-8')
 ##    l_temp += ' French="%s"' % p_item.French
 #
-##    l_temp += ' German="%s"' % to_utf8(p_item.German, 'iso-8859-1') # - T
+##    l_temp += ' German="%s"' % to_utf8(p_item.German, 'iso-8859-1') # - X
 ##    l_temp += ' German="%s"' % (unicode(p_item.German, 'iso-8859-1')).encode('utf-8')
 ##    l_temp += ' German="%s"' % p_item.German
 #
+#    if p_item.id in ['bottom-up_approach', 'polluter_pays_principle', 'top-down_approach', 'user-pays_principle']:  # - D
+#        l_temp += ' Greek="%s"' % 'TO BE COMPLETED ...'
+#    else:
+#        l_temp += ' Greek="%s"' % utXmlEncode(p_item.Greek, 'iso-8859-7', 0)
 ##    l_temp += ' Greek="%s"' % to_utf8(p_item.Greek, 'iso-8859-7')
+##    l_temp += ' Greek="%s"' % p_item.Greek
 #
+    l_temp += ' Hungarian="%s"' % utXmlEncode(p_item.Hungarian, 'utf-8', 0) # - D
 ##    l_temp += ' Hungarian="%s"' % to_utf8(p_item.Hungarian, 'iso-8859-2')
+##    l_temp += ' Hungarian="%s"' % (unicode(p_item.Hungarian, 'iso-8859-2')).encode('utf-8')
 #
 ##    l_temp += ' Icelandic="%s"' % to_utf8(p_item.Icelandic, 'iso-8859-1')
 #
@@ -245,12 +252,14 @@ def utSpecialCharsEncode(p_string):
     l_tmp = l_tmp.replace('–', '-')
     l_tmp = l_tmp.replace('‘', "'")
     l_tmp = l_tmp.replace('’', "'")
-    l_tmp = l_tmp.replace(' ', " ")
+    l_tmp = l_tmp.replace(' ', " ") # - u'\u00a0' (english)
     l_tmp = l_tmp.replace('´', "'")
     l_tmp = l_tmp.replace("Â'", "'")
     l_tmp = l_tmp.replace('“', '&quot;')
     l_tmp = l_tmp.replace('”', '&quot;')
     l_tmp = l_tmp.replace('§', "-")
+    l_tmp = l_tmp.replace('«', "'")
+    l_tmp = l_tmp.replace('»', "'") # - u'\u00bb' (greek)
 
     return l_tmp
 
