@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_export.py,v 1.7 2004/05/28 12:38:13 finrocvs Exp $
+#$Id: EEAGlossary_export.py,v 1.8 2004/05/28 13:33:01 finrocvs Exp $
 
 from DateTime import DateTime
 from types import UnicodeType
@@ -78,10 +78,8 @@ class glossary_export:
         terms = []
         r_append = results_list.append   #alias for append function. For optimization purposes
         if not published:
-            print "1"
             terms.extend(self.get_published('/%s' % folder))
         else:
-            print "2"
             terms.extend(self.get_all_objects('/%s' % folder))
         results_list.extend(self.xliff_header(folder, language))
         for term in terms:

@@ -16,8 +16,8 @@
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
-        <td width="1"></td>
-        <td width="256" align="left" valign="top">
+        <td width="5%"></td>
+        <td width="45%" align="left" valign="top">
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-background">
                 <tr>
                     <td><img src="misc_/EEAGlossary/line.gif" width="100%" height="1"></td>
@@ -40,12 +40,8 @@
                 </tr>
             </table>
         </td>
-        <td width="21">
-            &nbsp;
-        </td>
-        <td width="272" align="left" valign="top">
-            <dtml-var term_tip_box_html>
-        </td>
+        <td width="5%"><br></td>
+        <td width="45%" align="left" valign="top"><dtml-var term_tip_box_html></td>
     </tr>
 </table>
 
