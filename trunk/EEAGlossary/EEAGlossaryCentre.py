@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.54 2004/05/17 14:08:40 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.55 2004/05/17 16:24:58 finrocvs Exp $
 
 # python imports
 import string
@@ -273,6 +273,19 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         for k in self.get_languages_list():
             results.append(k['english_name'])
         return results
+
+    def get_language_codes(self):
+        """ get the codes from languages list """
+        results = []
+        for k in self.get_languages_list():
+            results.append(k['lang'])
+        return results
+
+    def get_language_by_code(self, lang_code):
+        """ get the english name given the code """
+        for k in self.get_languages_list():
+            if k['lang'] == lang_code:
+                return k['english_name']
 
     def get_language_charset(self, language):
         """ get the charset for a specific language """
@@ -639,6 +652,8 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
                     obj.definition = eval("item.%s" % col)
                 elif string.upper(col) == EEA_TINYTABLE_DEFINITION_SOURCE:
                     obj.definition_source = eval("item.%s" % col)
+                elif string.upper(col) == EEA_TINYTABLE_LONGDEFINITION:
+                    obj.long_definition = eval("item.%s" % col)
                 elif string.upper(col) == EEA_TINYTABLE_ACRONYM:
                     obj.acronym = eval("item.%s" % col)
                 elif string.upper(col) == EEA_TINYTABLE_ACRONYM:
@@ -660,7 +675,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
                 if elem_ob is None:
                     try:
                         folder.manage_addGlossaryElement(obj.entry, obj.entry_type, obj.source, [], obj.context, obj.comment, obj.used_for_1, 
-                            obj.used_for_2, obj.definition, 'dataservice, http://dataservice.eea.eu.int', '', 0, 0, 0, '', '', [], [], {})
+                            obj.used_for_2, obj.definition, 'dataservice, http://dataservice.eea.eu.int', obj.long_definition, 0, 1, 0, '', '', [], [], {})
                     except Exception, error:
                         print error
                 else:
@@ -681,17 +696,20 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
         if REQUEST is not None:
             REQUEST.RESPONSE.redirect('build_glossary_html')
 
-    #### TO BE FINISHED
     def updateGlossary(self, glossary_table, REQUEST=None):
         """ update the glossary translations """
         tiny = self.unrestrictedTraverse(glossary_table, None)
+        catalog = self.getGlossaryCatalog()
         transtab = string.maketrans('/ ','__')
         #return the columns names from tiny table
         cols = string.split(tiny.cols_text(), ' ')
         obj = mapTiny()
+        lower = string.lower
         for item in tiny.getRows():
             for col in cols:
-                if string.upper(col) == EEA_TINYTABLE_ENTRY:
+                cap_col = string.capitalize(col)
+                low_col = string.lower(col)
+                if string.upper(col) == EEA_TINYTABLE_ENTRY or cap_col == 'English' or low_col == 'en':
                     col_info = eval("item.%s" % col)
                     #Replace danish characters to the old ones.
                     entry = string.replace(col_info,'æ','ae')
@@ -708,27 +726,31 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, toUTF8):
                                 folder = self._getOb(folder_id)
                             except Exception, error:
                                 print error
-                elif string.upper(col) == 'english':
-                    obj.definition = eval("item.%s" % col)
-                elif string.upper(col) == EEA_TINYTABLE_DEFINITION_SOURCE:
-                    obj.definition_source = eval("item.%s" % col)
-                elif string.upper(col) == EEA_TINYTABLE_ACRONYM:
-                    obj.acronym = eval("item.%s" % col)
-                elif string.upper(col) == EEA_TINYTABLE_ACRONYM:
-                    obj.acronym = eval("item.%s" % col)
-                elif string.upper(col) == EEA_TINYTABLE_USEFOR1:
-                    obj.used_for_1 = eval("item.%s" % col)
-                elif string.upper(col) == EEA_TINYTABLE_USEFOR2:
-                    obj.used_for_2 = eval("item.%s" % col)
-                elif string.upper(col) == EEA_TINYTABLE_ENTRY_TYPE:
-                    obj.entry_type = eval("item.%s" % col)
-                elif string.upper(col) == EEA_TINYTABLE_SOURCE:
-                    obj.source = eval("item.%s" % col)
-                elif string.upper(col) == EEA_TINYTABLE_CONTEXT:
-                    obj.context = eval("item.%s" % col)
-                elif string.upper(col) == EEA_TINYTABLE_COMMENT:
-                    obj.comment = eval("item.%s" % col)
-
+                elif cap_col in self.get_english_names():
+                    col_info = eval("item.%s" % col)
+                    obj.translations[cap_col] = self.display_unicode_langs(col_info,self.get_language_charset(cap_col))
+                elif low_col in self.get_language_codes():
+                    col_info = eval("item.%s" % col)
+                    lang = self.get_language_by_code(low_col)
+                    obj.translations[lang] = self.display_unicode_langs(col_info,self.get_language_charset(lang))
+            if obj.entry != '':
+                elem_ob = folder._getOb(self.ut_makeId(obj.entry), None)
+                if elem_ob is not None:
+                    for k,v in obj.translations.items():
+                        elem_ob.set_translations_list(k, v)
+                    elem_ob.cu_recatalog_object(catalog, elem_ob)
+                else:
+                    try:
+                        folder.manage_addGlossaryElement(obj.entry, '', '', [], '', '', '', '', '', 
+                        'dataservice, http://dataservice.eea.eu.int', '', 0, 1, 0, '', '', [], [], {})
+                    except Exception, error:
+                        print error
+                    elem_ob = folder._getOb(self.ut_makeId(obj.entry), None)
+                    if elem_ob is not None:
+                        for k,v in obj.translations.items():
+                            elem_ob.set_translations_list(k, v)
+                        elem_ob.cu_recatalog_object(catalog, elem_ob)
+            obj.emptyObject()
         if REQUEST is not None:
             REQUEST.RESPONSE.redirect('update_trans_html')
 
@@ -796,6 +818,8 @@ class mapTiny:
         self.comment = ''
         self.definition = ''
         self.definition_source = ''
+        self.long_definition = ''
+        self.translations = {}
 
     def emptyObject(self):
         """ """
@@ -810,3 +834,5 @@ class mapTiny:
         self.comment = ''
         self.definition = ''
         self.definition_source = ''
+        self.long_definition = ''
+        self.translations = {}
