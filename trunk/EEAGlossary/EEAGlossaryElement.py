@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.9 2004/05/04 07:23:15 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.10 2004/05/04 08:33:06 finrocvs Exp $
 
 # python imports
 import string
@@ -62,7 +62,7 @@ manage_addGlossaryElement_html = DTMLFile('dtml/EEAGlossaryElement/add', globals
 
 def manage_addGlossaryElement(self, id, name='', type='', source='', subjects=[], context='', comment='', 
     used_for_1='', used_for_2='',definition='', definition_source_url='', long_definition='', disabled=0, 
-    approved=0, QA_needed=0, image_url='', flash_url='', links=[], actions=[], REQUEST=None):
+    approved=1, QA_needed=0, image_url='', flash_url='', links=[], actions=[], REQUEST=None):
 
     """ Adds a new EEAGlossaryElement object """
 
@@ -91,8 +91,8 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
         {'label':'Actions',                 'action':'actions_html'},
         {'label':'Convert to Synonym',      'action':'synonym_html'},
         {'label':'History',                 'action':'history_html'},
-        {'label':'Undo',                    'action':'manage_UndoForm'},
-        {'label':'Help',                    'action':'help_html'},)
+        {'label':'Undo [OK]',                    'action':'manage_UndoForm'},
+        {'label':'Help [OK]',                    'action':'help_html'},)
 
     security = ClassSecurityInfo()
 
@@ -120,5 +120,7 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
     synonym_html = DTMLFile("dtml/EEAGlossaryElement/synonym", globals())
     history_html = DTMLFile("dtml/EEAGlossaryElement/history", globals())
     help_html = DTMLFile("dtml/EEAGlossaryElement/help", globals())
+    index_html = DTMLFile("dtml/EEAGlossaryElement/index", globals())
+    main_content_html = DTMLFile("dtml/EEAGlossaryElement/main_content", globals())
 
 InitializeClass(EEAGlossaryElement)
