@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryElement.py,v 1.16 2004/05/04 15:23:01 finrocvs Exp $
+#$Id: EEAGlossaryElement.py,v 1.17 2004/05/04 16:38:21 finrocvs Exp $
 
 # python imports
 import string
@@ -120,9 +120,9 @@ class EEAGlossaryElement(SimpleItem, CatalogAware, ElementBasic, utils):
 
     def is_image_url (self):
         if not self.utIsEmptyString(self.image_url) and (not 'image_url' in self.REQUEST.PARENTS[2].hidden_fields):
-            return 1
-        else:
             return 0
+        else:
+            return 1
 
     def is_long_definition (self):
         if not self.utIsEmptyString(self.long_definition) and (not 'long_definition' in self.REQUEST.PARENTS[2].hidden_fields):

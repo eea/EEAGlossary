@@ -175,7 +175,6 @@
             </tr>
         </dtml-if>
     </table>
-
 <dtml-else>
     <b>Sorry, this term is not published.</b>
 </dtml-if>
