@@ -1,4 +1,4 @@
-# The contents of this file are subject to the Mozilla Public
+# The contents of this file are subject to the Mozilla PublicloadINI
 # License Version 1.1 (the "License"); you may not use this file
 # except in compliance with the License. You may obtain a copy of
 # the License at http://www.mozilla.org/MPL/
@@ -17,7 +17,7 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
-#$Id: EEAGlossaryCentre.py,v 1.4 2004/05/03 12:19:22 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.5 2004/05/03 12:56:58 finrocvs Exp $
 
 # python imports
 import string
@@ -114,6 +114,21 @@ class EEAGlossaryCentre(Folder, CatalogAware):
             self.history = english_name
             print self.translations
             print self.history
+
+    def LoadSubjectsList (self):
+        """loads languages & history properties defaults"""
+        from os.path import join
+        file = open(join(SOFTWARE_HOME, 'Products','EEAGlossary','subjects.xml'), 'r')
+        content = file.read()
+        file.close()
+        languages_handler, error = forms_parser.parseContent(content)
+        for code in subjects_handler.subjects:
+            self.subjects = name
+            print code
+#            self.translations = english_name
+#            self.history = english_name
+#            print self.translations
+#            print self.history
 
     def changePass(self, REQUEST=None):
         """."""
