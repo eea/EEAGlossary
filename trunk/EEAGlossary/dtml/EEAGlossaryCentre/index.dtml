@@ -24,7 +24,7 @@
             <table class="table-normal" cellpadding="0" cellspacing="0">
                 <form action="search_html" method="post" name="frmSearch">
                 <tr>
-                    <td colspan="2"><img src="misc_/EEAGlossary/img_search_med.gif" class="img-normal" alt="Search for a term" align="absmiddle">&nbsp;<span><b>Search for terms</b></span>
+                    <td colspan="2"><img src="search_img" class="img-normal" alt="Search for a term" align="absmiddle">&nbsp;<span><b>Search for terms</b></span>
                     </td>
                 </tr>
                 <tr>

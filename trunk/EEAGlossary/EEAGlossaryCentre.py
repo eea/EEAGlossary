@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryCentre.py,v 1.78 2004/06/08 15:11:14 finrocvs Exp $
+#$Id: EEAGlossaryCentre.py,v 1.79 2004/06/09 08:30:14 finrocvs Exp $
 
 # python imports
 import string
@@ -64,6 +64,14 @@ def manage_addGlossaryCentre(self, id, title='', description='', REQUEST=None):
     content = style_css.read()
     style_css.close()
     ob.manage_addDTMLMethod('style_presentation_css', title='', file=content)
+
+    file = open(join(SOFTWARE_HOME, 'Products', 'EEAGlossary', 'www', 'img_search_med.gif'), 'rb')
+    content = file.read()
+    file.close()
+    ob.manage_addImage(id='search_img', title='Search Image - you can upload it from here', file='')
+    img_ob = ob._getOb('search_img')
+    img_ob.update_data(data=content)
+
 
     obj._p_changed = 1
     if REQUEST is not None:
