@@ -89,7 +89,7 @@ class old_product__handler(ContentHandler, utils):
         if name == 'GElement':
             #GlossaryElement's translations
             l_translations = {}
-#            l_translations['Bulgarian'] = attrs['Bulgarian']
+            l_translations['Bulgarian'] = (attrs['Bulgarian']).encode('utf-8')
 #            l_translations['Crotian'] = attrs['Crotian']
             l_translations['Czech'] = (attrs['Czech']).encode('utf-8')
 #            l_translations['Danish'] = attrs['Danish']

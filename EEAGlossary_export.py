@@ -306,5 +306,4 @@ class glossary_export:
 
             elif l_item.glossary_type == 'synonym':
                 pass
-        print 'gata'
-        return ''
+        print 'done'
