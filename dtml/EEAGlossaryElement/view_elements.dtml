@@ -3,92 +3,103 @@
 <table border="0" cellpadding="3" cellspacing="0" width="60%">
 <tr>
     <td>
-    <fieldset><legend><b><a href="<dtml-var absolute_url>"><dtml-var name></a></b></legend>
+    <fieldset>
+        <legend><b><a href="<dtml-var absolute_url>"><dtml-var name></a></b></legend>
 
-    <table border="0" cellpadding="2" cellspacing="0" width="100%">
-        <dtml-if "REQUEST.has_key('at_status')">
-            <tr>
-                <td colspan="2"><b>Status:</b>&nbsp;<dtml-unless is_published>Not </dtml-unless>Published</td>
-            </tr>
-        </dtml-if>
+        <table border="0" cellpadding="2" cellspacing="0" width="100%">
+            <dtml-if "REQUEST.has_key('at_status')">
+                <tr>
+                    <td colspan="2"><b>Status:</b>&nbsp;<dtml-unless is_published>Not </dtml-unless>Published</td>
+                </tr>
+            </dtml-if>
 
-        <dtml-if "REQUEST.has_key('at_definition')">
-            <tr>
-                <td colspan="2"><b>Definition:</b>&nbsp;
-                <dtml-if QA_needed><img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry"></dtml-if>
-                <dtml-var "toutf8(definition,'iso-8859-1')">
-                <br>
-                <dtml-if utIsSynonym>
-                    <dtml-in synonyms size=1>
-                        <dtml-if sequence-start>See </dtml-if>
-                        <dtml-if "_.len(_['sequence-item'])>0">
-                            <dtml-let record=sequence-item obj="utGetObject(record)">
-                                    <a href="<dtml-var "obj.absolute_url()">/manage_workspace"><dtml-var "obj.name"></a>
+            <dtml-if "REQUEST.has_key('at_definition')">
+                <tr>
+                    <td colspan="2"><b>Definition:</b>&nbsp;
+                        <dtml-if QA_needed><img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry"></dtml-if>
+                        <dtml-var "toutf8(definition,'iso-8859-1')">
+                        <br>
+                        <dtml-if utIsSynonym>
+                            <dtml-in synonyms size=1>
+                                <dtml-if sequence-start>See </dtml-if>
+                                <dtml-if "_.len(_['sequence-item'])>0">
+                                    <dtml-let record=sequence-item obj="utGetObject(record)">
+                                            <a href="<dtml-var "obj.absolute_url()">/manage_workspace"><dtml-var "obj.name"></a>
+                                    </dtml-let>
+                                </dtml-if>
+                            </dtml-in>
+                        </dtml-if>
+                    </td>
+                </tr>
+            </dtml-if>
+            
+            <dtml-if "REQUEST.has_key('at_definition_source_url')">
+                <tr>
+                    <td colspan="2"><b>Definition source URL:</b>&nbsp;<dtml-var definition_source_url></td>
+                </tr>
+            </dtml-if>
+
+            <dtml-if "REQUEST.has_key('at_source')">
+                <tr>
+                    <td colspan="2"><b>Source:</b>&nbsp;<r source></td>
+                </tr>
+            </dtml-if>
+
+            <dtml-if "REQUEST.has_key('at_long_definition')">
+                <tr>
+                    <td colspan="2"><b>Long definition:</b>&nbsp;<dtml-var long_definition></td>
+                </tr>
+            </dtml-if>
+
+            <dtml-if "REQUEST.has_key('at_image_url')">
+                <tr>
+                    <td colspan="2"><b>Image URL:</b>&nbsp;<dtml-var image_url></td>
+                </tr>
+            </dtml-if>
+
+            <dtml-if "REQUEST.has_key('at_flash_url')">
+                <tr>
+                    <td colspan="2"><b>Flash URL:</b>&nbsp;<dtml-var flash_url></td>
+                </tr>
+            </dtml-if>
+
+            <dtml-if "REQUEST.has_key('at_subjects')">
+                <tr>
+                        <td colspan="2"><b>Subjects:</b>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td width="100%" valign="top" colspan="2">
+                        <ul>
+                        <dtml-in get_subjects>
+                            <dtml-let record="_['sequence-item']">
+                                <b><dtml-var "record['code']"></b>: <dtml-var "record['name']">
+                                <br>
                             </dtml-let>
-                        </dtml-if>
-                    </dtml-in>
-                </dtml-if>
-                </td>
-            </tr>
-        </dtml-if>
+                        </dtml-in>
+                        </ul>
+                    </td>
+                </tr>
+            </dtml-if>
 
-        <dtml-if "REQUEST.has_key('at_definition_source_url')">
-            <td colspan="2"><b>Definition source URL:</b>&nbsp;<dtml-var definition_source_url></td>
-        </dtml-if>
-
-        <dtml-if "REQUEST.has_key('at_source')">
-            <td colspan="2"><b>Source:</b>&nbsp;<dtml-var source></td>
-        </dtml-if>
-
-        <dtml-if "REQUEST.has_key('at_long_definition')">
-            <td colspan="2"><b>Long definition:</b>&nbsp;<dtml-var long_definition></td>
-        </dtml-if>
-
-        <dtml-if "REQUEST.has_key('at_image_url')">
-            <td colspan="2"><b>Image URL:</b>&nbsp;<dtml-var image_url></td>
-        </dtml-if>
-
-        <dtml-if "REQUEST.has_key('at_flash_url')">
-            <td colspan="2"><b>Flash URL:</b>&nbsp;<dtml-var flash_url></td>
-        </dtml-if>
-
-        <dtml-if "REQUEST.has_key('at_subjects')">
-            <tr>
-                <td colspan="2"><b>Subjects:</b>&nbsp;</td>
-            </tr>
-            <tr>
-                <td width="100%" valign="top">
-                    <ul>
-                    <dtml-in get_subjects>
-                        <dtml-let record="_['sequence-item']">
-                            <b><dtml-var "record['code']"></b>: <dtml-var "record['name']">
-                            <br>
-                        </dtml-let>
-                    </dtml-in>
-                    </ul>
-                </td>
-            </tr>
-        </dtml-if>
-
-        <dtml-if "REQUEST.has_key('at_translations')">
-            <tr>
-                <td class="header-element" align="left" valign="top" width="10%"><div><b>Language</b></div></td>
-                <td class="header-element" align="left" valign="top" width="*"><div><b>Translation</b></div></td>
-            </tr>
-
-            <dtml-in get_english_names>
-                <dtml-let language="_['sequence-item']" translation="get_translation_by_language(language)">
-                    <dtml-if "translation!=''">
-                            <tr>
-                                <td class="header-element" width="10%"><dtml-var language>:</td>
-                                <td width="*" nowrap><dtml-var translation></td>
-                            </tr>
-                        </dtml-if>
-                </dtml-let>
-            </dtml-in>
-        </dtml-if>
-    </table>
-
-    </fieldset>
-</td></tr>
+            <dtml-if "REQUEST.has_key('at_translations')">
+                <tr>
+                    <td class="header-element" align="left" valign="top" width="10%"><div><b>Language</b></div></td>
+                    <td class="header-element" align="left" valign="top" width="*"><div><b>Translation</b></div></td>
+                </tr>
+    
+                <dtml-in get_english_names>
+                    <dtml-let language="_['sequence-item']" translation="get_translation_by_language(language)">
+                        <dtml-if "translation!=''">
+                                <tr>
+                                    <td class="header-element" width="10%"><dtml-var language>:</td>
+                                    <td width="*" nowrap><dtml-var translation></td>
+                                </tr>
+                            </dtml-if>
+                    </dtml-let>
+                </dtml-in>
+            </dtml-if>
+        </table>
+        </fieldset>
+    </td>
+</tr>
 </table>

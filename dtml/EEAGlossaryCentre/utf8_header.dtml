@@ -15,3 +15,4 @@
 <title><dtml-var title_or_id></title>
 </head>
 <body>
+<link rel="stylesheet" type="text/css" href="/manage_page_style.css">

@@ -24,6 +24,8 @@
 <dtml-else>
 
     <fieldset><legend><b>Select properties to view:</b></legend>
+        <p class="form-help">List all elements and their properties according to your selection bellow.<br>
+        <b>Warning:</b> This operation could take several minutes to complete.</p>
 
         <table width="100%">
             <form action="<dtml-var URL0>" method="post">
