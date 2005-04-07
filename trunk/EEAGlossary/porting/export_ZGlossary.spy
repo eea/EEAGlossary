@@ -73,11 +73,8 @@ def exportGlossaryElement(p_item):
     l_temp += ' used_for_1="%s"' % utXmlEncode(p_item.used_for_1)
     l_temp += ' used_for_2="%s"' % utXmlEncode(p_item.used_for_2)
 
+    #bad character: u'\u00a0'
     if p_item.id == 'broadleaved_woodland':
-        #l_def = p_item.definition
-        #l_def = unicode(l_def, 'latin-1')
-        #l_def = l_def.replace(u'\u00a0', ' ')
-        #l_def.encode('latin-1')
         l_temp += ' definition="%s"' % 'Wooded land on which more than 75 % of the tree crown cover consists of broadleaved species.'
     elif p_item.id == 'coniferous_woodland':
         l_temp += ' definition="%s"' % 'Coniferous woodland is defined as wooded land on which more than 75 % of the tree crown cover consists of coniferous species.'
@@ -103,7 +100,7 @@ def exportGlossaryElement(p_item):
     else:
         l_temp += ' definition_source="%s"' % utXmlEncode(p_item.definition_source)
 
-    l_temp += ' subjects="%s"' % utXmlEncode(p_item.subjects) #multiple select
+    l_temp += ' subjects="%s"' % utXmlEncode(utJoinToString(p_item.subjects)) #multiple select
     l_temp += ' disabled="%s"' % utXmlEncode(p_item.disabled) #boolean
     l_temp += ' approved="%s"' % utXmlEncode(p_item.approved) #boolean
     l_temp += ' long_definition="%s"' % utXmlEncode(p_item.long_definition)
@@ -127,7 +124,7 @@ def exportGlossaryElement(p_item):
 
     l_temp += ' English="%s"' % utXmlEncode(p_item.English)
 
-    l_temp += ' Estonian="%s"' % utXmlEncode(p_item.Estonian, 'utf-8', 0)
+    l_temp += ' Estonian="%s"' % unicode(utHtmlEncode(p_item.Estonian, 0), 'utf-8').encode('utf-8')
 
     l_temp += ' Finnish="%s"' % utXmlEncode(p_item.Finnish, 'iso-8859-1', 0)
 
@@ -239,8 +236,17 @@ def exportGlossarySynonym(p_item):
     l_temp+=' />'
     return l_temp
 
+def utConvertToList(something):
+    """ """
+    if something == '':  return ''
+    else:  return something
+
+def utJoinToString(something, separator=','):
+    """ get a list [value1, values...], and returns a string like value1<separator>value2... """
+    return separator.join(utConvertToList(something))
+
 def utXmlEncode(p_string, p_charset = 'latin-1', p_special = 1):
-    """Encode some special chars"""
+    """ encode special chars """
     l_tmp = str(p_string)
 
     l_tmp = utEncodeHtml(l_tmp)
@@ -328,6 +334,7 @@ def utEncodeHtml(p_string):
     l_tmp = l_tmp.replace('&laquo;', '«')
     l_tmp = l_tmp.replace('&raquo;', '»')
     l_tmp = l_tmp.replace('&para;', '¶')
+    l_tmp = l_tmp.replace('&curren;', '¤')
     l_tmp = l_tmp.replace('&ndash;', '–')
     l_tmp = l_tmp.replace('&mdash;', '—')
     l_tmp = l_tmp.replace('&lsquo;', '‘')
@@ -366,6 +373,7 @@ def utSpecialCharsEncode(p_string):
     l_tmp = l_tmp.replace('“', '&quot;')
     l_tmp = l_tmp.replace('”', '&quot;')
     l_tmp = l_tmp.replace('§', "-")
+    l_tmp = l_tmp.replace('¤', " ")
     l_tmp = l_tmp.replace('«', "'")
     l_tmp = l_tmp.replace('»', "'")
     l_tmp = l_tmp.replace('…', "...")

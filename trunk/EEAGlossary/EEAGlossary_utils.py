@@ -88,6 +88,17 @@ class utils:
         lista.sort()
         return lista
 
+    def utConvertToInt(self, p_string):
+        """ """
+        if len(p_string) == 0:  return 0
+        elif len(p_string) == 1:  return int(p_string)
+        else:  return 1
+
+    def utSplitToList(self, something, separator='/'):
+        """ get a string like value1<separator>value2..., and returns a list [value1, values...] """
+        if something == '':  return []
+        else:  return string.split(something, separator)
+
     def utGetSynonyms(self):
         """ return elements found in synonyms """
         results=[]
