@@ -374,8 +374,8 @@ def utSpecialCharsEncode(p_string):
     l_tmp = l_tmp.replace('”', '&quot;')
     l_tmp = l_tmp.replace('§', "-")
     l_tmp = l_tmp.replace('¤', " ")
-    l_tmp = l_tmp.replace('«', "'")
-    l_tmp = l_tmp.replace('»', "'")
+    l_tmp = l_tmp.replace('«', "&quot;")
+    l_tmp = l_tmp.replace('»', "&quot;")
     l_tmp = l_tmp.replace('…', "...")
     l_tmp = l_tmp.replace('•', "* ")
 

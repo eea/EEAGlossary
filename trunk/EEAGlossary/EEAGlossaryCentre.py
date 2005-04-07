@@ -131,6 +131,9 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
     manage_addGlossaryFolder_html = EEAGlossaryFolder.manage_addGlossaryFolder_html
     manage_addGlossaryFolder = EEAGlossaryFolder.manage_addGlossaryFolder
 
+    def getCenterId(self):
+        """ """
+        return self.id
 
     #####################
     # LOAD PROPERTIES   #
