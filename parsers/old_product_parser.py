@@ -95,35 +95,50 @@ class old_product__handler(ContentHandler, utils):
         if name == 'GElement':
             #GlossaryElement's translations
             l_translations = {}
-##            l_translations['Bulgarian'] = (attrs['Bulgarian']).encode('utf-8')
-##            l_translations['Crotian'] = (attrs['Crotian']).encode('utf-8')
-##            l_translations['Czech'] = (attrs['Czech']).encode('utf-8')
-#            l_translations['Danish'] = attrs['Danish']
-#            l_translations['Dutch'] = attrs['Dutch']
+            l_translations['Bulgarian'] = (attrs['Bulgarian']).encode('utf-8')
+            l_translations['Croatian'] = (attrs['Croatian']).encode('utf-8')
+            l_translations['Czech'] = (attrs['Czech']).encode('utf-8')
+            l_translations['Danish'] = (attrs['Danish']).encode('utf-8')
+            l_translations['Dutch'] = (attrs['Dutch']).encode('utf-8')
             l_translations['English'] = (attrs['English']).encode('utf-8')
-##            l_translations['Estonian'] = (attrs['Estonian']).encode('utf-8')
-#            l_translations['Finnish'] = attrs['Finnish']
-#            l_translations['French'] = attrs['French']
-#            l_translations['German'] = attrs['German']
-##            l_translations['Greek'] = (attrs['Greek']).encode('utf-8')
-##            l_translations['Hungarian'] = (attrs['Hungarian']).encode('utf-8')
-#            l_translations['Icelandic'] = attrs['Icelandic']
+            l_translations['Estonian'] = (attrs['Estonian']).encode('utf-8')
+            l_translations['Finnish'] = (attrs['Finnish']).encode('utf-8')
+            l_translations['French'] = (attrs['French']).encode('utf-8')
+            l_translations['German'] = (attrs['German']).encode('utf-8')
+            l_translations['Greek'] = (attrs['Greek']).encode('utf-8')
+            l_translations['Hungarian'] = (attrs['Hungarian']).encode('utf-8')
+            l_translations['Icelandic'] = (attrs['Icelandic']).encode('utf-8')
             l_translations['Italian'] = (attrs['Italian']).encode('utf-8')
-#            l_translations['Latvian'] = attrs['Latvian']
-#            l_translations['Lithuanian'] = attrs['Lithuanian']
-##            l_translations['Macedonian'] = (attrs['Macedonian']).encode('utf-8')
-##            l_translations['Maltese'] = (attrs['Maltese']).encode('utf-8')
-#            l_translations['Norwegian'] = attrs['Norwegian']
-##            l_translations['Polish'] = (attrs['Polish']).encode('utf-8')
-#            l_translations['Portuguese'] = attrs['Portuguese']
-##            l_translations['Romanian'] = (attrs['Romanian']).encode('utf-8')
-##            l_translations['Russian'] = (attrs['Russian']).encode('utf-8')
-##            l_translations['Serbian'] = (attrs['Serbian']).encode('utf-8')
-##            l_translations['Slovak'] = (attrs['Slovak']).encode('utf-8')
-#            l_translations['Slovenian'] = attrs['Slovenian']
-#            l_translations['Spanish'] = attrs['Spanish']
-#            l_translations['Swedish'] = attrs['Swedish']
-#            l_translations['Turkish'] = attrs['Turkish']
+            try:
+                l_translations['Latvian'] = (attrs['Latvian']).encode('utf-8')
+            except:
+                l_translations['Latvian'] = (attrs['Latvian_trunkated']).encode('utf-8')
+            try:
+                l_translations['Lithuanian'] = (attrs['Lithuanian']).encode('utf-8')
+            except:
+                l_translations['Lithuanian'] = (attrs['Lithuanian_trunkated']).encode('utf-8')
+            l_translations['Macedonian'] = (attrs['Macedonian']).encode('utf-8')
+            l_translations['Maltese'] = (attrs['Maltese']).encode('utf-8')
+            l_translations['Norwegian'] = (attrs['Norwegian']).encode('utf-8')
+            l_translations['Polish'] = (attrs['Polish']).encode('utf-8')
+            l_translations['Portuguese'] = (attrs['Portuguese']).encode('utf-8')
+            l_translations['Romanian'] = (attrs['Romanian']).encode('utf-8')
+            l_translations['Russian'] = (attrs['Russian']).encode('utf-8')
+            l_translations['Serbian'] = (attrs['Serbian']).encode('utf-8')
+            try:
+                l_translations['Slovak'] = (attrs['Slovak']).encode('utf-8')
+            except:
+                l_translations['Slovak'] = (attrs['Slovak_trunkated']).encode('utf-8')
+            try:
+                l_translations['Slovenian'] = (attrs['Slovenian']).encode('utf-8')
+            except:
+                l_translations['Slovenian'] = (attrs['Slovenian_trunkated']).encode('utf-8')
+            l_translations['Spanish'] = (attrs['Spanish']).encode('utf-8')
+            l_translations['Swedish'] = (attrs['Swedish']).encode('utf-8')
+            try:
+                l_translations['Turkish'] = (attrs['Turkish']).encode('utf-8')
+            except:
+                l_translations['Turkish'] = (attrs['Turkish_trunkated']).encode('utf-8')
 
             self.content.append(element_struct(
                             #GlossaryElement's descriptors

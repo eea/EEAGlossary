@@ -313,6 +313,15 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
             if subj_info['code'] == code:
                 self.subjects_list.remove(subj_info)
 
+    def get_subject_by_name(self, names):
+        """ return corresponding codes """
+        results = []
+        names = self.utConvertToList(names)
+        for subj_info in self.subjects_list:
+            if subj_info['name'] in names:
+                results.append(subj_info['code'])
+        return results
+
     def get_subject_by_codes(self, codes):
         """ return the subjects list """
         results = []

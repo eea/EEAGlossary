@@ -260,7 +260,7 @@ class glossary_export:
         l_content = chandler.content
 
         for l_item in l_content:
-            
+
             if l_item.glossary_type == 'folder':
                 try:
                     self.manage_addGlossaryFolder(l_item.id, l_item.title, l_item.description)
@@ -275,7 +275,7 @@ class glossary_export:
                                 l_item.translations['English'],
                                 l_item.type,
                                 l_item.source,
-                                l_item.subjects,
+                                self.get_subject_by_name(self.utSplitToList(l_item.subjects, ',')),
                                 l_item.context,
                                 l_item.comment,
                                 l_item.definition,
@@ -285,9 +285,9 @@ class glossary_export:
                                 l_item.definition_source_org,
                                 l_item.definition_source_org_full_name,
                                 l_item.long_definition,
-                                l_item.disabled,
-                                l_item.approved,
-                                l_item.QA_needed,
+                                self.utConvertToInt(l_item.disabled),
+                                self.utConvertToInt(l_item.approved),
+                                self.utConvertToInt(l_item.QA_needed),
                                 '', #image_url
                                 '', #flash_url
                                 [], #links
