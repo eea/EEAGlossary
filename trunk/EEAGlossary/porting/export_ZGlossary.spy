@@ -110,6 +110,14 @@ def exportGlossaryElement(p_item):
     l_temp += ' definition_source_org="%s"' % utXmlEncode(p_item.definition_source_org)
     l_temp += ' definition_source_org_full_name="%s"' % utXmlEncode(p_item.definition_source_org_full_name)
 
+    #media properties
+    l_temp += ' image_url="%s"' % utXmlEncode(p_item.ImageURL)
+    l_temp += ' flash_url="%s"' % utXmlEncode(p_item.FlashURL)
+
+    #actions properties
+    l_temp += ' links="%s"' % utXmlEncode(utJoinToString(p_item.Links, ';'))
+    l_temp += ' actions="%s"' % utXmlEncode(utJoinToString(p_item.Actions, ';'))
+
 
     #elements translations
     l_temp += ' Bulgarian="%s"' % utHtmlEncode(p_item.Bulgarian, 0)
@@ -244,6 +252,19 @@ def utConvertToList(something):
 def utJoinToString(something, separator=','):
     """ get a list [value1, values...], and returns a string like value1<separator>value2... """
     return separator.join(utConvertToList(something))
+
+def utConvertLinesToList(value):
+    """ takes a value from a textarea control and returns a list of values """
+    import string
+    if value == '':
+        return []
+    else:
+        value = str(value)
+        values = []
+        for v in value.split('\r\n'):
+            if v != '':
+                values.append(v)
+    return values
 
 def utXmlEncode(p_string, p_charset = 'latin-1', p_special = 1):
     """ encode special chars """
