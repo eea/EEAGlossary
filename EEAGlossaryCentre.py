@@ -701,7 +701,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
             if not obj.disabled:
                 not_disabled_terms += 1
         return [published_terms, published_concepts, not_disabled_terms, not_disabled_concepts]
-
+ 
 
     ######################################
     # GLOSSARY FUNCTIONALITIES FUNCTIONS #
