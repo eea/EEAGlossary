@@ -66,14 +66,14 @@ def manage_addGlossaryElement(self, name='', el_type='', source='', subjects=[],
     comment='', definition='', definition_source_publ='', definition_source_publ_year='', 
     definition_source_url='', definition_source_org='', definition_source_org_fullname='',
     long_definition='', disabled=0, approved=1, QA_needed=0, image_url='', flash_url='',
-    links=[], actions=[], translations={}, synonym=[], id='', REQUEST=None):
+    links=[], actions=[], translations={}, synonym=[], id='', bad_translations=[], REQUEST=None):
     """ adds a new EEAGlossaryElement object """
     #remove the spaces from name
     if id == '':  id = self.ut_makeId(name)
     ob = EEAGlossaryElement(id, name, el_type, source, subjects, el_context, comment,
             definition, definition_source_publ, definition_source_publ_year, definition_source_url, 
             definition_source_org, definition_source_org_fullname, long_definition, disabled, approved, QA_needed, 
-            image_url, flash_url, links, actions, translations, synonym)
+            image_url, flash_url, links, actions, translations, synonym, bad_translations)
     self._setObject(id, ob)
     element_obj = self._getOb(id)
     element_obj.subjects = self.get_subject_by_codes(subjects)
@@ -106,7 +106,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     def __init__(self, id, name, el_type, source, subjects, el_context, comment, definition, 
             definition_source_publ, definition_source_publ_year, definition_source_url, definition_source_org, 
             definition_source_org_fullname, long_definition, disabled, approved, QA_needed,  image_url, flash_url, 
-            links, actions, translations, synonym):
+            links, actions, translations, synonym, bad_translations):
         """ constructor """
         self.id = id
         self.image_url = image_url
@@ -120,6 +120,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         self.approved = approved
         self.QA_needed = QA_needed
         self.synonym = synonym
+        self.bad_translations = bad_translations
         ElementBasic.__dict__['__init__'](self, name, el_type, source, el_context, comment, 
             definition, definition_source_publ, definition_source_publ_year, definition_source_url, 
             definition_source_org, definition_source_org_fullname, long_definition)

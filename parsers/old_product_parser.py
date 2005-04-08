@@ -43,7 +43,7 @@ class element_struct:
                        used_for_1, used_for_2, definition, definition_source, subjects,
                        disabled, approved, long_definition, QA_needed, definition_source_url,
                        definition_source_year, definition_source_org, definition_source_org_full_name,
-                       translations):
+                       translations, bad_translations):
         """ """
         self.glossary_type = glossary_type
         self.id_folder = id_folder
@@ -66,6 +66,7 @@ class element_struct:
         self.definition_source_org = definition_source_org
         self.definition_source_org_full_name = definition_source_org_full_name
         self.translations = translations
+        self.bad_translations = bad_translations
 
 class synonym_struct:
     """ """
@@ -95,6 +96,7 @@ class old_product__handler(ContentHandler, utils):
         if name == 'GElement':
             #GlossaryElement's translations
             l_translations = {}
+            l_bad_translations = []
             l_translations['Bulgarian'] = (attrs['Bulgarian']).encode('utf-8')
             l_translations['Croatian'] = (attrs['Croatian']).encode('utf-8')
             l_translations['Czech'] = (attrs['Czech']).encode('utf-8')
@@ -113,10 +115,12 @@ class old_product__handler(ContentHandler, utils):
                 l_translations['Latvian'] = (attrs['Latvian']).encode('utf-8')
             except:
                 l_translations['Latvian'] = (attrs['Latvian_trunkated']).encode('utf-8')
+                l_bad_translations.append('Latvian')
             try:
                 l_translations['Lithuanian'] = (attrs['Lithuanian']).encode('utf-8')
             except:
                 l_translations['Lithuanian'] = (attrs['Lithuanian_trunkated']).encode('utf-8')
+                l_bad_translations.append('Lithuanian')
             l_translations['Macedonian'] = (attrs['Macedonian']).encode('utf-8')
             l_translations['Maltese'] = (attrs['Maltese']).encode('utf-8')
             l_translations['Norwegian'] = (attrs['Norwegian']).encode('utf-8')
@@ -129,16 +133,19 @@ class old_product__handler(ContentHandler, utils):
                 l_translations['Slovak'] = (attrs['Slovak']).encode('utf-8')
             except:
                 l_translations['Slovak'] = (attrs['Slovak_trunkated']).encode('utf-8')
+                l_bad_translations.append('Slovak')
             try:
                 l_translations['Slovenian'] = (attrs['Slovenian']).encode('utf-8')
             except:
                 l_translations['Slovenian'] = (attrs['Slovenian_trunkated']).encode('utf-8')
+                l_bad_translations.append('Slovenian')
             l_translations['Spanish'] = (attrs['Spanish']).encode('utf-8')
             l_translations['Swedish'] = (attrs['Swedish']).encode('utf-8')
             try:
                 l_translations['Turkish'] = (attrs['Turkish']).encode('utf-8')
             except:
                 l_translations['Turkish'] = (attrs['Turkish_trunkated']).encode('utf-8')
+                l_bad_translations.append('Turkish')
 
             self.content.append(element_struct(
                             #GlossaryElement's descriptors
@@ -166,7 +173,8 @@ class old_product__handler(ContentHandler, utils):
                             (attrs['definition_source_org_full_name']).encode('utf-8'),
 
                             #GlossaryElement's translations
-                            l_translations))
+                            l_translations,
+                            l_bad_translations))
         if name == 'GSynonym':
             self.content.append(synonym_struct(
                             #GlossarySynonym's descriptors
