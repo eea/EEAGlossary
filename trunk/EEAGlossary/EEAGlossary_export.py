@@ -294,7 +294,8 @@ class glossary_export:
                                 [], #actions
                                 {}, #translations
                                 [], #synonym
-                                l_item.id)
+                                l_item.id,
+                                l_item.bad_translations)
 
                     #translations
                     elem_ob = l_parent_folder._getOb(l_item.id, None)
