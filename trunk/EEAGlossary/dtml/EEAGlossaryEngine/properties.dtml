@@ -23,6 +23,7 @@ Saved changes. (<dtml-var ZopeTime>)
         &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='3'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=3">Subjects</a>
         &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='4'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=4">Languages</a>
         &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='5'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=5">Searchable languages</a>
+        &nbsp;|&nbsp;<a class="<dtml-if "pagetab=='5'">menulinkon<dtml-else>menulinkoff</dtml-if>" href="manage_properties_html?pagetab=6">Stop words</a>
         &nbsp;
     </td></tr>
 </table>
@@ -39,6 +40,8 @@ Saved changes. (<dtml-var ZopeTime>)
     <dtml-var languages_prop_html>
 <dtml-elif "pagetab=='5'">
     <dtml-var search_prop_html>
+<dtml-elif "pagetab=='6'">
+    <dtml-var stop_words_html>
 </dtml-if>
 
 </dtml-let>

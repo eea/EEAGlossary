@@ -1,0 +1,5 @@
+<dtml-let words_list="get_stop_words_list()">
+    <dtml-in words_list>
+        <dtml-var sequence-item><br />
+    </dtml-in>
+</dtml-let>

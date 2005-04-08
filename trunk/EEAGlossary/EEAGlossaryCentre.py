@@ -107,6 +107,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         self.description = description
         self.types_list = []
         self.languages_list = []
+        self.stop_words_list = []
         self.subjects_list = []
 
         self.search_langs = []
@@ -189,6 +190,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         from copy import copy
         engine = self.getGlossaryEngine()
         self.languages_list = copy(engine.get_languages_list())
+        self.stop_words_list = copy(engine.get_stop_words_list())
         self.subjects_list = copy(engine.get_subjects_list())
         self.types_list = copy(engine.get_types_list())
         self.search_langs = copy(engine.get_searchable_langs())
@@ -297,6 +299,19 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
             self._p_changed = 1
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=7&save=ok')
+
+    #########################
+    #   STOP WORD FUNCTIONS #
+    #########################
+    def get_stop_words_list(self):
+        """ get the stop words """
+        self.utSortListOfDictionariesByKey(self.stop_words_list, 'stop_word')
+        word_list = []
+        for word in self.stop_words_list:
+            word_list.append(word['stop_word'])
+        return word_list
+        #return self.stop_words_list
+
 
     ##########################
     #   SUBJECTS FUNCTIONS   #
@@ -1036,6 +1051,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
     prop_search_html = DTMLFile('dtml/EEAGlossaryCentre/properties_search', globals())
     prop_hidden_html = DTMLFile('dtml/EEAGlossaryCentre/properties_hidden', globals())
     prop_contact_html = DTMLFile("dtml/EEAGlossaryCentre/properties_contact", globals())
+    prop_stop_words_html = DTMLFile("dtml/EEAGlossaryCentre/properties_stop_words", globals())
 
     preview_html = DTMLFile('dtml/EEAGlossaryCentre/preview', globals())
     index_html = DTMLFile('dtml/EEAGlossaryCentre/index', globals())
