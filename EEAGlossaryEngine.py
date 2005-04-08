@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossaryEngine.py,v 1.20 2004/06/24 15:58:21 finrocvs Exp $
+#$Id$
 
 import string
 
@@ -35,6 +35,7 @@ from EEAGlossary_utils import utils
 from parsers.languages_parser import languages_parser
 from parsers.subjects_parser import subjects_parser
 from parsers.roles_parser import roles_parser
+from parsers.stop_words_parser import stop_words_parser
 
 EngineID = EEA_GLOSSARY_ENGINE_NAME
 
@@ -60,6 +61,7 @@ class EEAGlossaryEngine(SimpleItem, utils):
         self.__types_list = []
         self.trans_contact = {}
         self.technic_contact = {}
+        self.__stop_words_list = []
 
     def load_roles_list(self):
         """ load the role list  """
@@ -88,6 +90,18 @@ class EEAGlossaryEngine(SimpleItem, utils):
                 self.set_unicode_langs(lang.english_name)
             if int(lang.searchable):
                 self.set_searchable_langs(lang.english_name)
+        self._p_changed = 1
+
+    def load_stop_words_list(self):
+        """ loads stop words properties defaults """
+
+        from os.path import join
+        stop_word_obj = stop_words_parser()
+        content = self.utOpenFile(join(SOFTWARE_HOME, 'Products','EEAGlossary', 'config', 'stop_words.xml'))
+        stop_words_handler, error = stop_word_obj.parseContent(content)
+
+        for word in stop_words_handler.stop_words:
+            self.set_stop_words_list(word.text)
         self._p_changed = 1
 
     def load_subjects_list (self):
@@ -291,6 +305,62 @@ class EEAGlossaryEngine(SimpleItem, utils):
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=4&save=ok')
 
+
+    ##########################
+    #   STOP WORDS FUNCTIONS #
+    ##########################
+
+    def get_stop_words_list(self):
+        """ get the stop words """
+        self.utSortListOfDictionariesByKey(self.__stop_words_list, 'stop_word')
+        return self.__stop_words_list
+
+    def set_stop_words_list(self, text):
+        """ set the stop words """
+        append = self.__stop_words_list.append
+        append({'stop_word':text})
+
+    def del_stop_words_from_list(self, stop_word):
+        """ remove a stop word from list """
+        for word in self.__stop_words_list:
+            if word['stop_word'] == stop_word:
+                self.__stop_words_list.remove(word)
+
+    def check_stop_words_exists(self, text):
+        """ check if this stop word exists """
+        ret = 1
+        for stop_word in self.__stop_words_list:
+            if stop_word['stop_word'] == text:
+                ret = 0
+        return ret
+
+    def manageStopWordsProperties(self, ids='', stop_word='', old_stop_word='', REQUEST=None):
+        """ manage stop words for EEAGlossaryEngine """
+        if self.utAddObjectAction(REQUEST):
+            if string.strip(stop_word)=='':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=6')
+            else:
+                if self.check_stop_words_exists(stop_word):
+                    self.set_stop_words_list(stop_word)
+                    self._p_changed = 1
+                else:
+                    return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=6')
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(stop_word)=='':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=6')
+            else:
+                self.del_stop_words_from_list(old_stop_word)
+                self.set_stop_words_list(stop_word)
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=6')
+            for word in self.utConvertToList(ids):
+                self.del_stop_words_from_list(word)
+                self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=6&save=ok')
+
     ######################
     # SUBJECTS FUNCTIONS #
     ######################
@@ -413,6 +483,7 @@ class EEAGlossaryEngine(SimpleItem, utils):
         SimpleItem.inheritedAttribute('manage_afterAdd')(self, item, container)
         item.load_roles_list()
         item.load_languages_list()
+        item.load_stop_words_list()
         item.load_subjects_list()
 
     def manage_beforeDelete(self, item, container):
@@ -428,6 +499,7 @@ class EEAGlossaryEngine(SimpleItem, utils):
     unicode_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_unicode", globals())
     types_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_types", globals())
     languages_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_languages", globals())
+    stop_words_html = DTMLFile("dtml/EEAGlossaryEngine/properties_stop_words", globals())
     subjects_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_subjects", globals())
     contact_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_contact", globals())
     search_prop_html = DTMLFile("dtml/EEAGlossaryEngine/properties_search", globals())

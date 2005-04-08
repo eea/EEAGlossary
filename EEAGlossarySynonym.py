@@ -67,7 +67,7 @@ class EEAGlossarySynonym(EEAGlossaryElement, utils):
         self.id = id
         self.synonyms = self.utConvertToList(synonyms)
         EEAGlossaryElement.__dict__['__init__'](self, id, '', '', '', [], '', '', '', '', '', '', '', 
-            '', '', 0, 0, 0, '', '', [], [], {}, [])
+            '', '', 0, 0, 0, '', '', [], [], {}, [], [])
 
     def checksynonym(self, p_synonym):
         """."""
