@@ -8,12 +8,14 @@
 <table class="table-border" cellpadding="1" cellspacing="1">
     <tr>
         <td align=left>Query Term</td>
-        <td align=left><dtml-var term><dtml-comment>
-            <dtml-if "lang in get_unicode_langs()">
-                <dtml-var term>
-            <dtml-else>
-                <dtml-var "display_unicode_langs(term,get_language_charset(lang))">
-            </dtml-if></dtml-comment>
+        <td align=left><dtml-var term>
+            <dtml-comment>
+                <dtml-if "lang in get_unicode_langs()">
+                    <dtml-var term>
+                <dtml-else>
+                    <dtml-var "display_unicode_langs(term,get_language_charset(lang))">
+                </dtml-if>
+            </dtml-comment>
         </td>
     </tr>
     <tr>
@@ -37,7 +39,9 @@
                 <dtml-var translation>
                 <dtml-comment>
                 <dtml-if "lang in get_unicode_langs()"><dtml-var translation><dtml-else>
-                <dtml-var "display_unicode_langs(translation,get_language_charset(language))"></dtml-if></dtml-comment></a><br>
+                <dtml-var "display_unicode_langs(translation,get_language_charset(language))"></dtml-if>
+                </dtml-comment>
+            </a><br>
             <dtml-var definition missing><br>Source: <dtml-var definition_source missing><br>
         </td>
     </tr>

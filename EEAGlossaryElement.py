@@ -138,7 +138,8 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
 
     def is_definition_source(self):
         """ test if the current element has a definition source """
-        return not (self.utIsEmptyString(self.definition_source_url) or 'definition_source_url' in self.get_hidden_list())
+        return not self.utIsEmptyString(self.definition_source_publ)
+        #return not (self.utIsEmptyString(self.definition_source_url) or 'definition_source_url' in self.get_hidden_list())
 
     def is_duplicate(self, p_id):
         """test if is the same element"""
@@ -403,6 +404,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     history_html = DTMLFile("dtml/EEAGlossaryElement/history", globals())
     index_html = DTMLFile("dtml/EEAGlossaryElement/index", globals())
     main_content_html = DTMLFile("dtml/EEAGlossaryElement/main_content", globals())
+    show_related_html = DTMLFile("dtml/EEAGlossaryElement/show_related", globals())
 
     definition_html = DTMLFile("dtml/EEAGlossaryElement/definition", globals())
 

@@ -305,10 +305,16 @@ class utils:
     def utElementSynDel(self):
         """for deleting a synonym"""
         if self.synonyms != []:
-            fld_id = string.upper(self.synonyms[0][0])
-            fld_ob = self.unrestrictedTraverse(fld_id, None)
-            elem = fld_ob.unrestrictedTraverse(self.synonyms[0], None)
+            elem = self.unrestrictedTraverse(self.synonyms[0], None)
             elem.synonym.remove(self.absolute_url(1))
+
+#    def utElementSynDel(self):
+#        """for deleting a synonym"""
+#        if self.synonyms != []:
+#            fld_id = string.upper(self.synonyms[0][0])
+#            fld_ob = self.unrestrictedTraverse(fld_id, None)
+#            elem = fld_ob.unrestrictedTraverse(self.synonyms[0], None)
+#            elem.synonym.remove(self.absolute_url(1))
 
 #    def utSynonymElRename(self):
 #        """."""
@@ -321,6 +327,12 @@ class utils:
         for l_syn_id in self.synonym:
             syn = self.unrestrictedTraverse(l_syn_id, None)
             syn.synonyms = []
+
+#    def utSynonymElDel(self):
+#        """for deleting an element"""
+#        for l_syn_id in self.synonym:
+#            syn = self.unrestrictedTraverse(l_syn_id, None)
+#            syn.synonyms = []
 
 
 class catalog_utils:
@@ -409,5 +421,3 @@ class catalog_utils:
         command= "catalog(meta_type=" + str(meta_type) + ", " + language + "='" + query + "', definition='" + definition + "')"
         results = eval(command)
         return self.__get_objects(results)
-
-
