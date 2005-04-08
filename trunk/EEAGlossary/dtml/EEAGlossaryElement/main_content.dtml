@@ -44,7 +44,7 @@
 
         <tr>
             <td width="100%" valign="top">
-                <dtml-var definition_source_url>
+                <dtml-var definition_source_publ>
             </td>
         </tr>
         </dtml-if>
@@ -58,6 +58,9 @@
 
         <tr>
             <td width="100%" valign="top">
+            <table class="table-normal" border=0>
+                <tr>
+                <td width="50%" valign="top">
                 <dtml-if "_.len(get_links())>0 and _.len(get_actions())>0">
                     <dtml-in get_links>
                         <li>&nbsp;
@@ -113,6 +116,12 @@
                         </tr>
                     </table>
                 </dtml-if>
+                </td>
+                <td width="*">
+                    <dtml-var show_related_html>
+                </td>
+                </tr>
+                </table>
             </td>
         </tr>
         </dtml-if>
