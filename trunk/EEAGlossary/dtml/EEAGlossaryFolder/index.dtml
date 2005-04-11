@@ -4,10 +4,10 @@
 <h1>
 <dtml-with "PARENTS[1]">
     <a href="<dtml-var absolute_url>"><img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/glossary.gif<dtml-else><dtml-var icon></dtml-if>" class="img-normal" alt=""></a>
-    <a href="<dtml-var absolute_url>"><dtml-var title_or_id></a>
+    <a href="<dtml-var absolute_url>"><span style="font-weight: bold; font-size: 18px;"><dtml-var title_or_id></span></a>
 </dtml-with>
 / <img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/folder.gif<dtml-else><dtml-var icon></dtml-if>" class="img-normal" alt="">&nbsp;
-<dtml-var title_or_id>
+<span style="font-weight: bold; font-size: 18px;"><dtml-var title_or_id></span>
 </h1>
 
 <hr>
