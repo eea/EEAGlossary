@@ -1,13 +1,13 @@
 <dtml-var standard_html_header>
 <dtml-var style_presentation_css>
 
-<p>
+<h1>
     <img src="misc_/EEAGlossary/glossary.gif" class="img-normal" alt="">&nbsp;<dtml-var title_or_id>
-</p>
+</h1>
 
 <div align=center>
     <dtml-in folder_list_sorted>
-        &nbsp;<a href="<dtml-var absolute_url>"><dtml-var id></a>&nbsp;|
+        &nbsp;<a style="font-weight: bold;" href="<dtml-var absolute_url>"><dtml-var id></a>&nbsp;
     </dtml-in>
     <br><hr>
 </div>
@@ -24,12 +24,12 @@
             <table class="table-normal" cellpadding="0" cellspacing="0">
                 <form action="<dtml-var "getCenterURL('search_html')">" method="post" name="frmSearch">
                 <tr>
-                    <td colspan="2"><img src="search_img" class="img-normal" alt="Search for a term" align="absmiddle">&nbsp;<span><b>Search for terms</b></span>
+                    <td colspan="2" style="padding-left: 5px; padding-bottom: 3px;"><img src="search_img" class="img-normal" alt="Search for a term" align="absmiddle">&nbsp;<span><b>Search for terms</b></span>
                     </td>
                 </tr>
                 <tr>
-                    <td width="15%"><b>Term:</b></td>
-                    <td align="left" valign="top"  width="*">
+                    <th width="15%" align="left" style="padding-left: 5px; padding-bottom: 3px;">Term:</th>
+                    <td align="left" valign="top" style="padding-bottom: 3px;" width="*">
                             <input type="text" name="query_gloss" value="">
                             <dtml-let src_langs="get_search_langs()">
                             <select 
@@ -43,17 +43,18 @@
                             </dtml-in>
                             </select>&nbsp;
                             </dtml-let>
+                            <span>&lt;- select language</span>
                     </td>
                 </tr>
                 <tr>
-                    <td><b>Definition:</b></td>
-                    <td align="left" valign="top">
+                    <th align="left" style="padding-left: 5px; padding-bottom: 3px;">Definition:</th>
+                    <td align="left" valign="top" style="padding-bottom: 3px;">
                             <input type="text" name="definition" value="">
                     </td>
                 </tr>
                 <tr>
-                    <td><b>Show per page:</b></td>
-                    <td align="left" valign="top">
+                    <th align="left" style="padding-left: 5px; padding-bottom: 3px;">Show per page:</th>
+                    <td align="left" valign="top" style="padding-bottom: 3px;">
                         <select type="text" name="size">
                             <option selected>10</option>
                             <option>20</option>
@@ -64,7 +65,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2"><a href="search_help_html" target="_new"><b>Search Help<b></a>
+                    <td colspan="2" style="padding-left: 5px; padding-bottom: 3px;"><a href="search_help_html" target="_new"><b>Search Help<b></a>
                     </td>
                 </tr>
                 </form>

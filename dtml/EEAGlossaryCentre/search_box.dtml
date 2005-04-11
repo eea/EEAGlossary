@@ -1,7 +1,7 @@
 <dtml-var standard_html_header>
 <dtml-var style_presentation_css>
 
-<p>Search Results for</p>
+<h1>Search Results for</h1>
 <dtml-let query="REQUEST.get('query_gloss', '')"
           size="REQUEST.get('size', '')"
           language="REQUEST.get('language','')"
@@ -13,7 +13,7 @@
 
 <table class="table-border" cellpadding="1" cellspacing="1">
     <tr>
-        <th align=left>Query Term</th>
+        <th align=left width="15%">Query Term</th>
         <td align=left><dtml-var query>
             <dtml-comment>
                 <dtml-if "lang in get_unicode_langs()">
@@ -35,6 +35,9 @@
     <tr>
         <th align=left>Show Max</th>
         <td align=left><dtml-var size></td>
+    </tr>
+    <tr>
+        <td  colspan="2"><hr /></td>
     </tr>
 <dtml-in res>
     <dtml-if is_published>
