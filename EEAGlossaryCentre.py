@@ -136,6 +136,10 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         """ """
         return self.id
 
+    def getCenterURL(self, p_method):
+        """ """
+        return self.absolute_url(0) + '/' + p_method
+
     #####################
     # LOAD PROPERTIES   #
     #####################

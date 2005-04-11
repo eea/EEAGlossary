@@ -2,12 +2,18 @@
 <dtml-var style_presentation_css>
 
 <p>Search Results for</p>
-<dtml-let query="REQUEST.get('query', '')" size="REQUEST.get('size', '')" language="REQUEST.get('language','')" definition="REQUEST.get('definition', '')"
-        results="searchGlossary(query, size, language, definition)" lang="results[0]" term="results[1]" res="results[2]"> 
+<dtml-let query="REQUEST.get('query', '')"
+          size="REQUEST.get('size', '')"
+          language="REQUEST.get('language','')"
+          definition="REQUEST.get('definition', '')"
+          results="searchGlossary(query, size, language, definition)"
+          lang="results[0]"
+          term="results[1]"
+          res="results[2]">
 
 <table class="table-border" cellpadding="1" cellspacing="1">
     <tr>
-        <td align=left>Query Term</td>
+        <th align=left>Query Term</td>
         <td align=left><dtml-var term>
             <dtml-comment>
                 <dtml-if "lang in get_unicode_langs()">
@@ -19,15 +25,15 @@
         </td>
     </tr>
     <tr>
-        <td align=left>Language</td>
+        <th align=left>Language</td>
         <td align=left><dtml-var lang></td>
     </tr>
     <tr>
-        <td align=left>Definition</td>
-        <td align=left><dtml-var definition></td>
+        <th align=left>Definition</td>
+        <th align=left><dtml-var definition></td>
     </tr>
     <tr>
-        <td align=left>Show Max</td>
+        <th align=left>Show Max</td>
         <td align=left><dtml-var size></td>
     </tr>
 <dtml-in res>

@@ -432,4 +432,4 @@ class catalog_utils:
         results_name = eval(command_name)
         res = self.__get_objects(results)
         res.extend(self.__get_objects(results_name))
-        return self.utEliminateDuplicates(res)
+        return self.utEliminateDuplicates(res)[:int(size)]
