@@ -751,7 +751,11 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
 
     def folder_list_sorted(self):
         """ Return all the folders, sorted"""
-        return self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_FOLDER_METATYPE], sort_on='id', sort_order='')
+        results = []
+        for l_folder in self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_FOLDER_METATYPE], sort_on='id', sort_order=''):
+            if len(l_folder.objectValues([EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE])) > 0:
+                results.append(l_folder)
+        return results
 
     def get_all_objects (self, path=''):
         """ return sorted objects by name """
