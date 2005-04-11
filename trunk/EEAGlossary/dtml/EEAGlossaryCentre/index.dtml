@@ -22,7 +22,7 @@
     <tr>
         <td>
             <table class="table-normal" cellpadding="0" cellspacing="0">
-                <form action="search_html" method="post" name="frmSearch">
+                <form action="<dtml-var "getCenterURL('search_html')">" method="post" name="frmSearch">
                 <tr>
                     <td colspan="2"><img src="search_img" class="img-normal" alt="Search for a term" align="absmiddle">&nbsp;<span><b>Search for terms</b></span>
                     </td>
