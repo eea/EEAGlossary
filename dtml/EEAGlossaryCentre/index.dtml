@@ -30,7 +30,7 @@
                 <tr>
                     <td width="15%"><b>Term:</b></td>
                     <td align="left" valign="top"  width="*">
-                            <input type="text" name="query" value="">
+                            <input type="text" name="query_gloss" value="">
                             <dtml-let src_langs="get_search_langs()">
                             <select 
                                 <dtml-if "_.len(src_langs)<2">

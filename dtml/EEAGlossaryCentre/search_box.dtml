@@ -2,7 +2,7 @@
 <dtml-var style_presentation_css>
 
 <p>Search Results for</p>
-<dtml-let query="REQUEST.get('query', '')"
+<dtml-let query="REQUEST.get('query_gloss', '')"
           size="REQUEST.get('size', '')"
           language="REQUEST.get('language','')"
           definition="REQUEST.get('definition', '')"
@@ -13,8 +13,8 @@
 
 <table class="table-border" cellpadding="1" cellspacing="1">
     <tr>
-        <th align=left>Query Term</td>
-        <td align=left><dtml-var term>
+        <th align=left>Query Term</th>
+        <td align=left><dtml-var query>
             <dtml-comment>
                 <dtml-if "lang in get_unicode_langs()">
                     <dtml-var term>
@@ -25,15 +25,15 @@
         </td>
     </tr>
     <tr>
-        <th align=left>Language</td>
+        <th align=left>Language</th>
         <td align=left><dtml-var lang></td>
     </tr>
     <tr>
-        <th align=left>Definition</td>
-        <th align=left><dtml-var definition></td>
+        <th align=left>Definition</th>
+        <td align=left><dtml-var definition></td>
     </tr>
     <tr>
-        <th align=left>Show Max</td>
+        <th align=left>Show Max</th>
         <td align=left><dtml-var size></td>
     </tr>
 <dtml-in res>

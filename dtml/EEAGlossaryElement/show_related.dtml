@@ -11,7 +11,7 @@
 </dtml-in>
 
 <dtml-let query=term_filtered
-          size="REQUEST.get('size', '15')"
+          size="REQUEST.get('size', '10')"
           language="'English'"
           definition="''"
           results="searchGlossary(query, size, language, definition)"
