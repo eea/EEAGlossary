@@ -97,6 +97,8 @@ class EEAGlossarySynonym(EEAGlossaryElement, utils):
         self.name = name
         self.disabled = disabled
         self.approved = approved
+        self._p_changed = 1
+        self.cu_recatalog_object(self)
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('manage_properties_html?save=ok')
 

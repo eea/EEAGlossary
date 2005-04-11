@@ -19,13 +19,21 @@
 
     <dtml-in res>
         <dtml-if "approved and id!=myid">
-        <dtml-let translation="get_translation_by_language(language)">
-        <dtml-if "not firstitem">
-            <dtml-call "REQUEST.set('firstitem',1)">
-            <h3>Possibly related terms:</h3>
+        <dtml-if synonyms>
+            <dtml-if "not firstitem">
+                <dtml-call "REQUEST.set('firstitem',1)">
+                <h3>Possibly related terms:</h3>
+            </dtml-if>
+            <li><a href="<dtml-var absolute_url>"><dtml-var name></a></li><br/>
+        <dtml-else>
+            <dtml-let translation="get_translation_by_language(language)">
+            <dtml-if "not firstitem">
+                <dtml-call "REQUEST.set('firstitem',1)">
+                <h3>Possibly related terms:</h3>
+            </dtml-if>
+            <li><a href="<dtml-var absolute_url>"><dtml-var translation></a></li><br/>
+            </dtml-let>
         </dtml-if>
-        <li><a href="<dtml-var absolute_url>"><dtml-var translation></a></li><br/>
-        </dtml-let>
         </dtml-if>
     </dtml-in>
 
