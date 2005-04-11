@@ -414,10 +414,22 @@ class catalog_utils:
             results = results[:howmany]
         results = self.__get_objects(results)
         return results
-        
+
+    def utEliminateDuplicates(self, p_objects):
+        """Eliminate duplicates from a list of objects (with ids)"""
+        dict = {}
+        for l_object in p_objects:
+            dict[l_object.id] = l_object
+        return dict.values()
+
+
     def cu_search_catalog(self, meta_type=None, query='', size=10000, language='English', definition=''):
         """ search catalog """
         catalog = self.getGlossaryCatalog()
         command= "catalog(meta_type=" + str(meta_type) + ", " + language + "='" + query + "', definition='" + definition + "')"
+        command_name= "catalog(meta_type=" + str(meta_type) + ", " + language + "='" + "" + "', definition='" + definition + "', name='" + query + "')"
         results = eval(command)
-        return self.__get_objects(results)
+        results_name = eval(command_name)
+        res = self.__get_objects(results)
+        res.extend(self.__get_objects(results_name))
+        return self.utEliminateDuplicates(res)

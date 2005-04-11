@@ -32,20 +32,31 @@
     </tr>
 <dtml-in res>
     <dtml-if is_published>
-     <dtml-let translation="get_translation_by_language(language)">
-    <tr>
-        <td colspan="2"><img src="misc_/EEAGlossary/element.gif" class="img-normal">&nbsp;
-            <a href="<dtml-var absolute_url>">
-                <dtml-var translation>
-                <dtml-comment>
-                <dtml-if "lang in get_unicode_langs()"><dtml-var translation><dtml-else>
-                <dtml-var "display_unicode_langs(translation,get_language_charset(language))"></dtml-if>
-                </dtml-comment>
-            </a><br>
-            <dtml-var definition missing><br>Source: <dtml-var definition_source missing><br>
-        </td>
-    </tr>
-    </dtml-let>
+    <dtml-if synonyms>
+        <tr>
+            <td colspan="2"><img src="misc_/EEAGlossary/synonym.gif" class="img-normal">&nbsp;
+                <a href="<dtml-var absolute_url>">
+                    <dtml-var name>
+                </a><br>
+                <dtml-var definition missing><br>Source: <dtml-var definition_source missing><br>
+            </td>
+        </tr>
+    <dtml-else>
+        <dtml-let translation="get_translation_by_language(language)">
+        <tr>
+            <td colspan="2"><img src="misc_/EEAGlossary/element.gif" class="img-normal">&nbsp;
+                <a href="<dtml-var absolute_url>">
+                    <dtml-var translation>
+                    <dtml-comment>
+                    <dtml-if "lang in get_unicode_langs()"><dtml-var translation><dtml-else>
+                    <dtml-var "display_unicode_langs(translation,get_language_charset(language))"></dtml-if>
+                    </dtml-comment>
+                </a><br>
+                <dtml-var definition missing><br>Source: <dtml-var definition_source missing><br>
+            </td>
+        </tr>
+        </dtml-let>
+    </dtml-if>
     </dtml-if>
 </dtml-in>
     
