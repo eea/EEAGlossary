@@ -3,19 +3,19 @@
 
 <p>
     <dtml-with "PARENTS[1]">
-        <a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/folder.gif" class="img-normal" alt=""><dtml-var title_or_id></a>
+        <a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/folder.gif" class="img-normal" alt=""><span style="font-weight: bold; font-size: 18px;"><dtml-var title_or_id></span></a>
     </dtml-with>
 
     &nbsp;/&nbsp;
     <img src="misc_/EEAGlossary/element.gif" class="img-normal" alt="">
 
-    <dtml-var name>
+    <span style="font-weight: bold; font-size: 18px;"><dtml-var name></span>
 
     &nbsp;
     <dtml-if QA_needed>
         <img src="misc_/EEAGlossary/new.gif" class="img-normal" alt='New glossary entry'>
         <p>
-            <span class="attention-color">Translations under validation</span>
+            <span class="attention-color"><strong>Translations under validation</strong></span>
         </p>
     </dtml-if>
 </p>
