@@ -103,7 +103,6 @@ class utils:
         """ return elements found in synonyms """
         results=[]
         if len(self.synonyms) != 0:
-            print self.synonyms
             results.append(self.unrestrictedTraverse(self.synonyms[0], None))
         return results
 
