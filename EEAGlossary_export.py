@@ -321,7 +321,7 @@ class glossary_export:
 
                     #synonym relations
                     synonym_ob = l_parent_folder._getOb(l_item.id, None)
-                    l_synonyms = self.getCenterId() + '/' + string.upper(l_item.synonyms[0]) + '/' + l_item.synonyms
+                    l_synonyms = string.upper(l_item.synonyms[0]) + '/' + l_item.synonyms
                     if string.strip(l_item.synonyms) != '':
                         synonym_ob.manageSynonymProperties(l_synonyms)
 

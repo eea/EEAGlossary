@@ -1041,12 +1041,6 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         return self.getGlossaryEngine().style_console_css.read()
 
 
-    #######################################
-    #   IMPORT FROM OLD_PRODUCT FUNCTIONS #
-    #######################################
-
-
-
     #####################
     #   MANAGEMENT TABS #
     #####################
