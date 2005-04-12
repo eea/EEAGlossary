@@ -103,6 +103,7 @@ class utils:
         """ return elements found in synonyms """
         results=[]
         if len(self.synonyms) != 0:
+            print self.synonyms
             results.append(self.unrestrictedTraverse(self.synonyms[0], None))
         return results
 
@@ -262,31 +263,6 @@ class utils:
     #   Synonym Linking  #
     ######################
 
-#    def utElementSynAdd(self, p_old_id, p_syn_au):
-#        """for convert or when change synonyms property"""
-#        if len(p_syn_au) != 0:
-#            fld_id = string.upper(p_syn_au[0])
-#            fld_ob = self.unrestrictedTraverse(fld_id, None)
-#            syn = fld_ob.unrestrictedTraverse(p_syn_au, None)
-#
-#            fld_id = string.upper(syn.synonyms[0][0])
-#            fld_ob = self.unrestrictedTraverse(fld_id, None)
-#            elem = fld_ob.unrestrictedTraverse(syn.synonyms[0])
-#            elem.synonym.append(syn.absolute_url(1))
-#        else:
-#            fld_id = string.upper(self.synonyms[0][0])
-#            fld_ob = self.unrestrictedTraverse(fld_id, None)
-#            elem = fld_ob.unrestrictedTraverse(self.synonyms[0], None)
-#            elem.synonym.append(self.absolute_url(1))
-#            print elem.synonym
-#        elem._p_changed = 1
-#        if len(p_old_id) != 0:
-#            fld_id = string.upper(p_old_id[0][0])
-#            fld_ob = self.unrestrictedTraverse(fld_id, None)
-#            elem_old = fld_ob.unrestrictedTraverse(p_old_id[0], None)
-#            elem_old.synonym.remove(self.absolute_url(1))
-#            elem_old._p_changed = 1
-
     def utElementSynAdd(self, p_old_id, p_syn_au):
         """for convert or when change synonyms property"""
         if len(p_syn_au) != 0:
@@ -295,26 +271,33 @@ class utils:
             elem.synonym.append(syn.absolute_url(1))
         else:
             elem = self.unrestrictedTraverse(self.synonyms[0], None)
-            elem.synonym.append(self.absolute_url(1))
+            elem.synonym.append(string.upper(self.id[0])+'/'+self.id)
         elem._p_changed = 1
         if len(p_old_id) != 0:
             elem_old = self.unrestrictedTraverse(p_old_id[0], None)
             elem_old.synonym.remove(self.absolute_url(1))
             elem_old._p_changed = 1
 
+#    def utElementSynAdd(self, p_old_id, p_syn_au):
+#        """for convert or when change synonyms property"""
+#        if len(p_syn_au) != 0:
+#            syn = self.unrestrictedTraverse(p_syn_au, None)
+#            elem = self.unrestrictedTraverse(syn.synonyms[0])
+#            elem.synonym.append(syn.absolute_url(1))
+#        else:
+#            elem = self.unrestrictedTraverse(self.synonyms[0], None)
+#            elem.synonym.append(self.absolute_url(1))
+#        elem._p_changed = 1
+#        if len(p_old_id) != 0:
+#            elem_old = self.unrestrictedTraverse(p_old_id[0], None)
+#            elem_old.synonym.remove(self.absolute_url(1))
+#            elem_old._p_changed = 1
+
     def utElementSynDel(self):
         """for deleting a synonym"""
         if self.synonyms != []:
             elem = self.unrestrictedTraverse(self.synonyms[0], None)
-            elem.synonym.remove(self.absolute_url(1))
-
-#    def utElementSynDel(self):
-#        """for deleting a synonym"""
-#        if self.synonyms != []:
-#            fld_id = string.upper(self.synonyms[0][0])
-#            fld_ob = self.unrestrictedTraverse(fld_id, None)
-#            elem = fld_ob.unrestrictedTraverse(self.synonyms[0], None)
-#            elem.synonym.remove(self.absolute_url(1))
+            elem.synonym.remove(string.upper(self.id[0])+'/'+self.id)
 
 #    def utSynonymElRename(self):
 #        """."""
@@ -327,12 +310,6 @@ class utils:
         for l_syn_id in self.synonym:
             syn = self.unrestrictedTraverse(l_syn_id, None)
             syn.synonyms = []
-
-#    def utSynonymElDel(self):
-#        """for deleting an element"""
-#        for l_syn_id in self.synonym:
-#            syn = self.unrestrictedTraverse(l_syn_id, None)
-#            syn.synonyms = []
 
 
 class catalog_utils:
