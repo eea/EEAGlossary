@@ -140,7 +140,7 @@
                             <dtml-if "translation!=''">
                                     <tr>
                                         <td class="header-element" width="10%"><dtml-var language>:</td>
-                                        <td width="*" nowrap><dtml-var translation></td>
+                                        <td width="*"><dtml-var translation></td>
                                     </tr>
                                 </dtml-if>
                         </dtml-let>
