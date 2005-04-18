@@ -94,6 +94,7 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                 {'label':'Export',              'action':'export_html'},
                 {'label':'Import',              'action':'import_html'},
                 {'label':'Management',          'action':'management_page_html'},
+                {'label':'Translations',          'action':'translations_html'},
                 {'label':'Help',                'action':'centre_help_html'},
                 {'label':'Undo',                'action':'manage_UndoForm'},)
                 )
@@ -1138,6 +1139,9 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
     centre_help_html = DTMLFile("dtml/EEAGlossaryCentre/centre_help", globals())
     help_html = DTMLFile("dtml/EEAGlossaryCentre/help", globals())
     help_contact_html = DTMLFile("dtml/EEAGlossaryCentre/help_contact", globals())
+
+    translations_list_html = DTMLFile("dtml/EEAGlossaryCentre/administration_translations_list", globals())
+    translations_html = DTMLFile("dtml/EEAGlossaryCentre/administration_translations", globals())
 
     manage_utf8_header = DTMLFile('dtml/EEAGlossaryCentre/utf8_header', globals())
     manage_utf8_footer = DTMLFile('dtml/EEAGlossaryCentre/utf8_footer', globals())
