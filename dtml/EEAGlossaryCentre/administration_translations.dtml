@@ -1,0 +1,88 @@
+<dtml-var manage_page_header>
+<dtml-var style_console_css>
+<dtml-var manage_tabs>
+
+<p class="form-help">Translations management page</p>
+<table width="100%" border="1" cellpadding="3" cellspacing="0">
+    <tr>
+        <td>
+        <table width="100%" border="0" cellpadding="3" cellspacing="0">
+            <tr class="row-header">
+                <td class="cell-header" colspan="2">&nbsp;EEA multilingual environmental glossary Translations management page</td>
+            </tr>
+
+            <tr>
+            <form action="translations_list_html" name="frmTranslations" method="post">
+                <td valign="top" width="50%">
+                    <table border="0" width="70%" align="center">
+                        <tr>
+                            <th>
+                                Choose your selection
+                                <hr />
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="empty" size="35"/>
+                            <label for="cb-approved"><b>Empty</b></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="bad" size="35"/>
+                            <label for="cb-approved"><b>Bad</b></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="tobe" size="35"/>
+                            <label for="cb-approved"><b>All witch need translation</b></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="good" size="35"/>
+                            <label for="cb-approved"><b>Good</b></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="all" size="35" CHECKED/>
+                            <label for="cb-approved"><b>All</b></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <input type="submit" value="show translarions" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+                <td width="50%">
+                <table border="0" width="70%" align="center">
+                    <tr>
+                        <th>Select language<hr /></th>
+                    </tr>
+                    <tr class="cellodd"><td>
+                        <input type="checkbox" name="All" size="35" CHECKED/>
+                        <label for="cb-approved"><b style="color: blue;">All languages</b></label>
+                    </td></tr>
+                <dtml-in get_english_names>
+                    <tr <dtml-if sequence-odd>class="cellodd"<dtml-else>class="celleven</dtml-if>"><td>
+                        <dtml-let language="_['sequence-item']">
+                        <input type="checkbox" name="<dtml-var language>" size="35"/>
+                        <label for="cb-approved"><b><dtml-var language></b></label>
+                        </dtml-let>
+                    </td></tr>
+                </dtml-in>
+                </table>
+                </td>
+            </form>
+            </tr>
+
+        </table>
+        </td>
+    </tr>
+</table>
+<dtml-var  manage_page_footer>
