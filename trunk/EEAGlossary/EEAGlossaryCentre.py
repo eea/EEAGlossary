@@ -310,11 +310,61 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
     def get_stop_words_list(self):
         """ get the stop words """
         self.utSortListOfDictionariesByKey(self.stop_words_list, 'stop_word')
+        return self.stop_words_list
+
+    def get_stop_words(self):
+        """ return the words list """
         word_list = []
-        for word in self.stop_words_list:
+        l_list = self.get_stop_words_list()
+        for word in l_list:
             word_list.append(word['stop_word'])
         return word_list
-        #return self.stop_words_list
+
+    def set_stop_words_list(self, text):
+        """ set the stop words """
+        append = self.stop_words_list.append
+        append({'stop_word':text})
+
+    def del_stop_words_from_list(self, stop_word):
+        """ remove a stop word from list """
+        for word in self.stop_words_list:
+            if word['stop_word'] == stop_word:
+                self.stop_words_list.remove(word)
+
+    def check_stop_words_exists(self, text):
+        """ check if this stop word exists """
+        ret = 1
+        for stop_word in self.stop_words_list:
+            if stop_word['stop_word'] == text:
+                ret = 0
+        return ret
+
+    def manageStopWordsProperties(self, ids='', stop_word='', old_stop_word='', REQUEST=None):
+        """ manage stop words for EEAGlossaryEngine """
+        if self.utAddObjectAction(REQUEST):
+            if string.strip(stop_word)=='':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=8')
+            else:
+                if self.check_stop_words_exists(stop_word):
+                    self.set_stop_words_list(stop_word)
+                    self._p_changed = 1
+                else:
+                    return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=8')
+        elif self.utUpdateObjectAction(REQUEST):
+            if string.strip(stop_word)=='':
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=8')
+            else:
+                self.del_stop_words_from_list(old_stop_word)
+                self.set_stop_words_list(stop_word)
+                self._p_changed = 1
+        elif self.utDeleteObjectAction(REQUEST):
+            if not ids or len(ids) == 0:
+                return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=8')
+            for word in self.utConvertToList(ids):
+                self.del_stop_words_from_list(word)
+                self._p_changed = 1
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=8&save=ok')
 
 
     ##########################
