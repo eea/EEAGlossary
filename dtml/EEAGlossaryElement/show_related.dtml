@@ -1,7 +1,7 @@
 <dtml-call "REQUEST.set('myid',id)">
 <dtml-call "REQUEST.set('firstitem',0)">
 <dtml-call "REQUEST.set('term_filtered',' ')">
-<dtml-let words_list="get_stop_words_list()">
+<dtml-let words_list="get_stop_words()">
 <dtml-call "REQUEST.set('stopwords',words_list)">
 
 <dtml-in "_.string.split(English)">
