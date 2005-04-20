@@ -1091,6 +1091,13 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         """ return the css file from EEAGlossaryEngine """
         return self.getGlossaryEngine().style_console_css.read()
 
+    #########################
+    #   TRANSLATIONS TABS   #
+    #########################
+    def showExcelFormat(self, REQUEST=None):
+        """redirect to Excel format view"""
+        if REQUEST is not None:
+            return REQUEST.RESPONSE.redirect('translations_list_html?view=excel')
 
     #####################
     #   MANAGEMENT TABS #

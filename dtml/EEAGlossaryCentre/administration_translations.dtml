@@ -12,7 +12,7 @@
             </tr>
 
             <tr>
-            <form action="translations_list_html" name="frmTranslations" method="post">
+            <form action="" name="frmTranslations" method="post">
                 <td valign="top" width="50%">
                     <table border="0" width="70%" align="center">
                         <tr>
@@ -24,25 +24,25 @@
                         <tr>
                             <td>
                             <input type="checkbox" name="empty" size="35"/>
-                            <label for="cb-approved"><b>Empty</b></label>
+                            <label for="cb-approved"><b>Mark empty</b></label>
                             </td>
                         </tr>
                         <tr>
                             <td>
                             <input type="checkbox" name="bad" size="35"/>
-                            <label for="cb-approved"><b>Bad</b></label>
+                            <label for="cb-approved"><b>Mark bad</b></label>
                             </td>
                         </tr>
                         <tr>
                             <td>
                             <input type="checkbox" name="tobe" size="35"/>
-                            <label for="cb-approved"><b>All witch need translation</b></label>
+                            <label for="cb-approved"><b>Show all witch need translation</b></label>
                             </td>
                         </tr>
                         <tr>
                             <td>
                             <input type="checkbox" name="good" size="35"/>
-                            <label for="cb-approved"><b>Good</b></label>
+                            <label for="cb-approved"><b>Show good</b></label>
                             </td>
                         </tr>
                         <tr>
@@ -53,7 +53,8 @@
                         </tr>
                         <tr>
                             <td align="center">
-                                <input type="submit" value="show translarions" />
+                                <input type="submit" value="Show translations" onclick="document.frmTranslations.action='translations_list_html';" />
+                                <input type="submit" value="Excel compatible format" onclick="document.frmTranslations.action='showExcelFormat';" />
                             </td>
                         </tr>
                     </table>
