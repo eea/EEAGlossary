@@ -2,8 +2,25 @@
 <dtml-var style_console_css>
 <dtml-var manage_tabs>
 
+<style type="text/css">
+#translations_management span
+    {
+    float: left;
+    }
+
+#translations_management select
+    {
+    float: right;
+    }
+
+#translations_management hr
+    {
+    clear: both;
+    }
+</style>
+
 <p class="form-help">Translations management page</p>
-<table width="100%" border="1" cellpadding="3" cellspacing="0">
+<table width="100%" border="1" cellpadding="3" cellspacing="0" id="translations_management">
     <tr>
         <td>
         <table width="100%" border="0" cellpadding="3" cellspacing="0">
@@ -14,7 +31,7 @@
             <tr>
             <form action="" name="frmTranslations" method="post">
                 <td valign="top" width="50%">
-                    <table border="0" width="70%" align="center">
+                    <table border="0" width="90%" align="center">
                         <tr>
                             <th>
                                 Choose your selection
@@ -23,38 +40,66 @@
                         </tr>
                         <tr>
                             <td>
-                            <input type="checkbox" name="empty" size="35"/>
-                            <label for="cb-approved"><b>Mark empty</b></label>
+                            <span><b>Mark empty</b> translations cells with: </span>
+                            <select name="empty_color">
+                                <option value="none">white</option>
+                                <option value="green">green</option>
+                                <option value="red">red</option>
+                                <option value="yellow">yellow</option>
+                            </select>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                            <input type="checkbox" name="bad" size="35"/>
-                            <label for="cb-approved"><b>Mark bad</b></label>
+                            <span><b>Mark bad</b> translations cells with: </span>
+                            <select name="bad_color">
+                                <option value="none">white</option>
+                                <option value="green">green</option>
+                                <option value="red">red</option>
+                                <option value="yellow">yellow</option>
+                            </select>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                            <input type="checkbox" name="tobe" size="35"/>
-                            <label for="cb-approved"><b>Show all witch need translation</b></label>
+                            <span><b>Mark valid</b> translations cells with: </span>
+                            <select name="valid_color">
+                                <option value="none">white</option>
+                                <option value="green">green</option>
+                                <option value="red">red</option>
+                                <option value="yellow">yellow</option>
+                            </select>
+                            <hr />
                             </td>
                         </tr>
                         <tr>
                             <td>
-                            <input type="checkbox" name="good" size="35"/>
-                            <label for="cb-approved"><b>Show good</b></label>
+                            <input type="checkbox" name="show_bad" size="35"/>
+                            <label for="show_bad"><b>Show bad</b> translations (otherwise replaced with blanck space)</label>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                            <input type="checkbox" name="all" size="35" CHECKED/>
-                            <label for="cb-approved"><b>All</b></label>
+                            <input type="checkbox" name="show_empty" size="35"/>
+                            <label for="show_empty"><b>Show empty</b> translations (represented by &curren;)</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="show_valid" size="35"/>
+                            <label for="show_valid"><b>Show valid</b> translations (otherwise replaced with blanck space)</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="show_all" size="35" CHECKED/>
+                            <label for="show_all"><b>Show all</b> translations</label>
                             </td>
                         </tr>
                         <tr>
                             <td align="center">
-                                <input type="submit" value="Show translations" onclick="document.frmTranslations.action='translations_list_html';" />
-                                <input type="submit" value="Excel compatible format" onclick="document.frmTranslations.action='showExcelFormat';" />
+                                <input type="submit" name="view" value="Show translations" onclick="document.frmTranslations.action='translations_list_html';" />
+                                <input type="submit" name="view" value="Excel compatible format" onclick="document.frmTranslations.action='translations_list_html';" />
                             </td>
                         </tr>
                     </table>
@@ -63,16 +108,16 @@
                 <td width="50%">
                 <table border="0" width="70%" align="center">
                     <tr>
-                        <th>Select language<hr /></th>
+                        <th>Select languages to be displayed<hr /></th>
                     </tr>
                     <tr class="cellodd"><td>
-                        <input type="checkbox" name="All" size="35" CHECKED/>
+                        <input type="checkbox" name="checked_languages:list" value="all" size="35" CHECKED/>
                         <label for="cb-approved"><b style="color: blue;">All languages</b></label>
                     </td></tr>
                 <dtml-in get_english_names>
-                    <tr <dtml-if sequence-odd>class="cellodd"<dtml-else>class="celleven</dtml-if>"><td>
+                    <tr class="<dtml-if sequence-odd>cellodd<dtml-else>celleven</dtml-if>"><td>
                         <dtml-let language="_['sequence-item']">
-                        <input type="checkbox" name="<dtml-var language>" size="35"/>
+                        <input type="checkbox" name="checked_languages:list" value="<dtml-var language>" size="35"/>
                         <label for="cb-approved"><b><dtml-var language></b></label>
                         </dtml-let>
                     </td></tr>
