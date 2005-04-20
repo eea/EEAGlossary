@@ -1,5 +1,8 @@
 <dtml-var manage_utf8_header>
-<dtml-var manage_tabs>
+
+<dtml-unless "REQUEST.has_key('view') and REQUEST['view']=='excel'">
+    <dtml-var manage_tabs>
+</dtml-unless>
 
 <table border=1>
     <tr>
@@ -11,51 +14,32 @@
         </dtml-in>
     </tr>
 
-
-
-<dtml-comment>
-
-
-                <dtml-in get_english_names>
-                <dtml-let language="_['sequence-item']" translation="get_translation_by_language(language)">
-                    <dtml-let record=sequence-item role="'QC '+record">
-                        <dtml-if sequence-odd>
-                        <tr class="cellodd">
-                            <td width="35%" align="left" valign="top"><div><label for="cb-<dtml-var language>"><dtml-var language></label></div></td>
-                            <td width="65%" align="left" valign="top">
-                                <dtml-unless translation>
-                                    &nbsp;
-                                </dtml-unless>
-                                <dtml-var translation>
-                            </td>
-                        </tr>
-                        <dtml-else>
-                        <tr class="celleven">
-                            <td width="35%" align="left" valign="top"><div><label for="cb-<dtml-var language>"><dtml-var language></label></div></td>
-                            <td width="65%" align="left" valign="top">
-                                <dtml-unless translation>
-                                    &nbsp;
-                                </dtml-unless>
-                                <dtml-var translation>
-                            </td>
-                        </tr>
-                        </dtml-if>
-                    </dtml-let>
-                </dtml-let>
-                </dtml-in>
-
-
         <dtml-in folder_list_sorted>
+        <dtml-if "_['sequence-item'].id=='A'">
             <dtml-in element_list_sorted>
+                <dtml-if is_published>
                 <dtml-if utIsElement>
                    <tr>
                        <td><dtml-var id></td>
-                       <td><dtml-var bad_translations></td>
+                       <dtml-in get_english_names>
+                       <dtml-let language="_['sequence-item']" translation="get_translation_by_language(language)">
+                           <dtml-if "language in bad_translations">
+                               <td style="background-color: red;"><dtml-var translation></td>
+                           <dtml-else>
+                               <dtml-if "not translation">
+                                   <td style="background-color: yellow;">EMPTY</td>
+                               <dtml-else>
+                                   <td><dtml-var translation></td>
+                               </dtml-if>
+                           </dtml-if>
+                       </dtml-let>
+                       </dtml-in>
                    </tr>
                </dtml-if>
+               </dtml-if>
             </dtml-in>
+        </dtml-if>
         </dtml-in>
-</dtml-comment>
 </table>
 
 <dtml-var manage_utf8_footer>

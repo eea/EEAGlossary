@@ -125,15 +125,15 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
             definition, definition_source_publ, definition_source_publ_year, definition_source_url, 
             definition_source_org, definition_source_org_fullname, long_definition)
 
-    def is_published (self):
+    def is_published(self):
         """ test if current element is published """
         return (self.approved and (not self.disabled))
 
-    def is_image_url (self):
+    def is_image_url(self):
         """ test if the current element has an image URL """
         return not (self.utIsEmptyString(self.image_url) or 'image_url' in self.get_hidden_list())
 
-    def is_long_definition (self):
+    def is_long_definition(self):
         """ test if the current element has a long definition """
         return not (self.utIsEmptyString(self.long_definition) or 'long_definition' in self.get_hidden_list())
 
