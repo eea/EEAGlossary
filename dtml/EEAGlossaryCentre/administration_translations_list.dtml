@@ -1,15 +1,33 @@
 <dtml-var manage_utf8_header>
 
-<dtml-unless "REQUEST.has_key('view') and REQUEST['view']=='excel'">
+<dtml-unless "REQUEST.has_key('view') and REQUEST['view']=='Excel compatible format'">
     <dtml-var manage_tabs>
+    <br />
 </dtml-unless>
 
-<table border=1>
+<dtml-let checked_languages="REQUEST.get('checked_languages', [])">
+<dtml-let show_all="REQUEST.get('show_all', '')">
+<dtml-let show_bad="REQUEST.get('show_bad', '')">
+<dtml-let show_empty="REQUEST.get('show_empty', '')">
+<dtml-let show_valid="REQUEST.get('show_valid', '')">
+
+<dtml-let valid_color="REQUEST.get('valid_color', 'white')">
+<dtml-let empty_color="REQUEST.get('empty_color', 'white')">
+<dtml-let bad_color="REQUEST.get('bad_color', 'white')">
+
+<style type="text/css">
+#translations_table th
+    {
+    background-color: #f0f0f0;
+    }
+</style>
+
+<table border=1 cellspacing="0" cellpadding="0" id="translations_table">
     <tr>
         <th width="1%">ID</th>
         <dtml-in get_english_names>
             <dtml-let language="_['sequence-item']">
-            <th width="1%"><dtml-var language></th>
+            <th width="1%">&nbsp;<dtml-var language>&nbsp;</th>
             </dtml-let>
         </dtml-in>
     </tr>
@@ -20,20 +38,47 @@
                 <dtml-if is_published>
                 <dtml-if utIsElement>
                    <tr>
+                       <!-- Element's ID -->
                        <td><dtml-var id></td>
+
+                       <!-- Translations -->
                        <dtml-in get_english_names>
                        <dtml-let language="_['sequence-item']" translation="get_translation_by_language(language)">
+
+                           <!-- Bad translations -->
                            <dtml-if "language in bad_translations">
-                               <td style="background-color: red;"><dtml-var translation></td>
+                               <td style="background-color: <dtml-var bad_color>;">
+                                   <dtml-if "show_all or show_bad">
+                                       <dtml-var translation>
+                                   <dtml-else>
+                                       &nbsp;
+                                   </dtml-if>
+                               </td>
                            <dtml-else>
+                               <!-- Empty translations -->
                                <dtml-if "not translation">
-                                   <td style="background-color: yellow;">EMPTY</td>
+                                   <td style="background-color: <dtml-var empty_color>;" align="center">
+                                       <dtml-if "show_all or show_empty">
+                                           &curren;
+                                       <dtml-else>
+                                           &nbsp;
+                                       </dtml-if>
+                                   </td>
+                               <!-- Valid translations -->
                                <dtml-else>
-                                   <td><dtml-var translation></td>
+                                   <td style="background-color: <dtml-var valid_color>;">
+                                       <dtml-if "show_all or show_valid">
+                                           <dtml-var translation>
+                                       <dtml-else>
+                                           &nbsp;
+                                       </dtml-if>
+                                   </td>
                                </dtml-if>
                            </dtml-if>
+
                        </dtml-let>
                        </dtml-in>
+
                    </tr>
                </dtml-if>
                </dtml-if>
@@ -42,4 +87,12 @@
         </dtml-in>
 </table>
 
+</dtml-let>
+</dtml-let>
+</dtml-let>
+</dtml-let>
+</dtml-let>
+</dtml-let>
+</dtml-let>
+</dtml-let>
 <dtml-var manage_utf8_footer>
