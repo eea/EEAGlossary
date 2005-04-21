@@ -62,7 +62,7 @@
                                    <dtml-if "not translation">
                                        <td style="background-color: <dtml-var empty_color>;" align="center">
                                            <dtml-if "show_all or show_empty">
-                                               &curren;
+                                               <strong>&curren;</strong>
                                            <dtml-else>
                                                &nbsp;
                                            </dtml-if>
