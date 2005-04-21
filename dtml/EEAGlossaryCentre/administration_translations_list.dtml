@@ -27,13 +27,14 @@
         <th width="1%">ID</th>
         <dtml-in get_english_names>
             <dtml-let language="_['sequence-item']">
-            <th width="1%">&nbsp;<dtml-var language>&nbsp;</th>
+            <dtml-if "language in checked_languages or 'all' in checked_languages">
+                <th width="1%">&nbsp;<dtml-var language>&nbsp;</th>
+            </dtml-if>
             </dtml-let>
         </dtml-in>
     </tr>
 
         <dtml-in folder_list_sorted>
-        <dtml-if "_['sequence-item'].id=='A'">
             <dtml-in element_list_sorted>
                 <dtml-if is_published>
                 <dtml-if utIsElement>
@@ -45,34 +46,37 @@
                        <dtml-in get_english_names>
                        <dtml-let language="_['sequence-item']" translation="get_translation_by_language(language)">
 
-                           <!-- Bad translations -->
-                           <dtml-if "language in bad_translations">
-                               <td style="background-color: <dtml-var bad_color>;">
-                                   <dtml-if "show_all or show_bad">
-                                       <dtml-var translation>
-                                   <dtml-else>
-                                       &nbsp;
-                                   </dtml-if>
-                               </td>
-                           <dtml-else>
-                               <!-- Empty translations -->
-                               <dtml-if "not translation">
-                                   <td style="background-color: <dtml-var empty_color>;" align="center">
-                                       <dtml-if "show_all or show_empty">
-                                           &curren;
-                                       <dtml-else>
-                                           &nbsp;
-                                       </dtml-if>
-                                   </td>
-                               <!-- Valid translations -->
-                               <dtml-else>
-                                   <td style="background-color: <dtml-var valid_color>;">
-                                       <dtml-if "show_all or show_valid">
+
+                           <dtml-if "language in checked_languages or 'all' in checked_languages">
+                               <!-- Bad translations -->
+                               <dtml-if "language in bad_translations">
+                                   <td style="background-color: <dtml-var bad_color>;">
+                                       <dtml-if "show_all or show_bad">
                                            <dtml-var translation>
                                        <dtml-else>
                                            &nbsp;
                                        </dtml-if>
                                    </td>
+                               <dtml-else>
+                                   <!-- Empty translations -->
+                                   <dtml-if "not translation">
+                                       <td style="background-color: <dtml-var empty_color>;" align="center">
+                                           <dtml-if "show_all or show_empty">
+                                               &curren;
+                                           <dtml-else>
+                                               &nbsp;
+                                           </dtml-if>
+                                       </td>
+                                   <!-- Valid translations -->
+                                   <dtml-else>
+                                       <td style="background-color: <dtml-var valid_color>;">
+                                           <dtml-if "show_all or show_valid">
+                                               <dtml-var translation>
+                                           <dtml-else>
+                                               &nbsp;
+                                           </dtml-if>
+                                       </td>
+                                   </dtml-if>
                                </dtml-if>
                            </dtml-if>
 
@@ -83,7 +87,6 @@
                </dtml-if>
                </dtml-if>
             </dtml-in>
-        </dtml-if>
         </dtml-in>
 </table>
 
