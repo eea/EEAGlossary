@@ -81,7 +81,7 @@
                         <tr>
                             <td>
                             <input type="checkbox" name="show_empty" size="35"/>
-                            <label for="show_empty"><b>Show empty</b> translations (represented by &curren;)</label>
+                            <label for="show_empty"><b>Show empty</b> translations (represented by <strong>&curren;</strong>)</label>
                             </td>
                         </tr>
                         <tr>
