@@ -4,12 +4,16 @@
         <table cellspacing="2" cellpadding="0" border="0" width="100%">
         <form name="frmBasicProperties" action="manageBasicProperties" method="post">
             <tr>
-                <td align="left" width="15%"><b>Title:</b></td>
+                <td align="left" width="25%"><b>Title:</b></td>
                 <td><input type="text" name="title" value="<dtml-var title>" size="50"></td>
             </tr>
             <tr>
                 <td align="left" valign="top"><b>Description:</b></td>
                 <td><textarea name="description" rows="5" cols="40"><dtml-var description></textarea></td>
+            </tr>
+            <tr>
+                <td align="left" width="15%"><b>Max. related terms on page:</b></td>
+                <td><input type="text" name="max_related" value="<dtml-var max_related>" size="10"></td>
             </tr>
             <tr>
                 <td align="left"><b>Published:</b></td>
