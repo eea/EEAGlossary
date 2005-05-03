@@ -1,4 +1,4 @@
-<dtml-let rnd_element="random_from_catalog()">
+<dtml-let rnd_element="random_from_catalog(folder_list)">
 <dtml-if rnd_element>
 <dtml-with rnd_element>
     <table cellspacing="0" cellpadding="0" class="table-tips">
