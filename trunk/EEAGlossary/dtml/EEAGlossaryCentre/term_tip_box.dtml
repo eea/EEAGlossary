@@ -1,5 +1,3 @@
-<dtml-var style_presentation_css>
-
 <dtml-let rnd_element="random_from_catalog()">
 <dtml-if rnd_element>
 <dtml-with rnd_element>
