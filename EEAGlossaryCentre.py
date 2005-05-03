@@ -52,9 +52,10 @@ except:
     TNG2_exists = 0
 
 manage_addGlossaryCentre_html = DTMLFile('dtml/EEAGlossaryCentre/add', globals())
-def manage_addGlossaryCentre(self, id, title='', description='', REQUEST=None):
+def manage_addGlossaryCentre(self, id, title='', description='', max_related='', REQUEST=None):
     """ Adds a new EEAGlossaryCentre object """
-    ob = EEAGlossaryCentre(id, title, description)
+    max_related = EEA_GLOSSARY_MAX_REALTED
+    ob = EEAGlossaryCentre(id, title, description, max_related)
     self._setObject(id, ob)
     obj = self._getOb(id)
     obj.loadProperties()
@@ -99,13 +100,20 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                 {'label':'Undo',                'action':'manage_UndoForm'},)
                 )
 
+    def __setstate__(self,state):
+        """ """
+        EEAGlossaryCentre.inheritedAttribute('__setstate__')(self, state)
+        if not hasattr(self, 'max_related'):
+            self.max_related = 10
+
     security = ClassSecurityInfo()
 
-    def __init__(self, id, title, description):
+    def __init__(self, id, title, description, max_related):
         """ constructor """
         self.id = id
         self.title = title
         self.description = description
+        self.max_related = max_related
         self.types_list = []
         self.languages_list = []
         self.stop_words_list = []
@@ -236,11 +244,12 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         """ return the glossary catalog object """
         return self._getOb(EEA_GLOSSARY_CATALOG_NAME)
 
-    def manageBasicProperties(self, title='', description='', published=0, REQUEST=None):
+    def manageBasicProperties(self, title='', description='', published=0, max_related=10, REQUEST=None):
         """ manage basic properties for EEAGlossaryCentre """
         self.title = title
         self.description = description
         self.published = published
+        self.max_related = max_related
         self._p_changed = 1
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('manage_properties_html?pagetab=0&save=ok')

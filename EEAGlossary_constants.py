@@ -20,7 +20,7 @@
 # Cornel Nitu, Finsiel Romania
 #
 #
-#$Id: EEAGlossary_constants.py,v 1.12 2004/10/01 08:12:50 finrocvs Exp $
+#$Id$
 
     ##################
     #   META TYPES   #
@@ -37,6 +37,9 @@ EEA_GLOSSARY_PRODUCT_NAME = "EEAGlossary"
 EEA_GLOSSARY_ENGINE_NAME = "GlossaryEngine"
 
 EEA_GLOSSARY_ROLES_PREFIX = 'QC '
+
+#maximum number of related terms shown
+EEA_GLOSSARY_MAX_REALTED = 10
 
 #TinyTable columns names
 EEA_TINYTABLE_ENTRY = 'ENTRY'
