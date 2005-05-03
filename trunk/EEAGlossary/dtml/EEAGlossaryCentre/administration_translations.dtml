@@ -43,6 +43,7 @@
                             <span><b>Mark empty</b> translations cells with: </span>
                             <select name="empty_color">
                                 <option value="none">white</option>
+                                <option value="blue">blue</option>
                                 <option value="green">green</option>
                                 <option value="red">red</option>
                                 <option value="yellow">yellow</option>
@@ -54,6 +55,7 @@
                             <span><b>Mark bad</b> translations cells with: </span>
                             <select name="bad_color">
                                 <option value="none">white</option>
+                                <option value="blue">blue</option>
                                 <option value="green">green</option>
                                 <option value="red">red</option>
                                 <option value="yellow">yellow</option>
@@ -65,6 +67,7 @@
                             <span><b>Mark valid</b> translations cells with: </span>
                             <select name="valid_color">
                                 <option value="none">white</option>
+                                <option value="blue">blue</option>
                                 <option value="green">green</option>
                                 <option value="red">red</option>
                                 <option value="yellow">yellow</option>
