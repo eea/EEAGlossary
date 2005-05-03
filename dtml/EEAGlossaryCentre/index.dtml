@@ -5,8 +5,9 @@
     <img src="misc_/EEAGlossary/glossary.gif" class="img-normal" alt="">&nbsp;<span style="font-weight: bold; font-size: 18px;"><dtml-var title_or_id></span>
 </h1>
 
+<dtml-let folder_list="folder_list_sorted()">
 <div align=center>
-    <dtml-in folder_list_sorted>
+    <dtml-in folder_list>
         &nbsp;<a style="font-weight: bold;" href="<dtml-var absolute_url>"><dtml-var id></a>&nbsp;
     </dtml-in>
     <br><hr>
@@ -100,5 +101,6 @@
     </dtml-unless>
 </dtml-in>
 <br>
+</dtml-let>
 
 <dtml-var standard_html_footer>

@@ -781,13 +781,16 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         results = self.cu_search_catalog([EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], query, size, language, definition)
         return (language, query, results)
 
-    def random_from_catalog(self, folder=''):
+    def random_from_catalog(self, folders=''):
         """a random element from catalog """
-        if folder == '': l_howmany = -1
-        else: l_howmany = -1
+        folder = whrandom.choice(folders)
+        return self.random_from_folder('/'+folder.absolute_url(1))
+
+    def random_from_folder(self, folder=''):
+        """ a random element from a GlossaryFolder """
         elements=[]
         append = elements.append
-        for obj in self.cu_get_cataloged_objects(meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, path=folder, howmany=l_howmany):
+        for obj in self.cu_get_cataloged_objects(meta_type=EEA_GLOSSARY_ELEMENT_METATYPE, path=folder):
             if obj.is_published() and obj.definition:
                 append(obj)
         if len(elements) > 0:
@@ -808,16 +811,10 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
 
     def folder_list_sorted(self):
         """ Return all the folders, sorted"""
-        from time import time
-        t1 = time()
         results = []
         for l_folder in self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_FOLDER_METATYPE], sort_on='id', sort_order=''):
             if len(l_folder.objectValues([EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE])) > 0:
                 results.append(l_folder)
-#        for l_folder in self.cu_get_cataloged_objects(meta_type=[EEA_GLOSSARY_FOLDER_METATYPE], sort_on='id', sort_order=''):
-#            results.append(l_folder)
-        t2 = time()
-#        print t2-t1
         return results
 
     def get_all_objects (self, path=''):
