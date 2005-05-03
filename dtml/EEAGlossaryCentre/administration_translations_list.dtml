@@ -5,15 +5,15 @@
     <br />
 </dtml-unless>
 
-<dtml-let checked_languages="REQUEST.get('checked_languages', [])">
-<dtml-let show_all="REQUEST.get('show_all', '')">
-<dtml-let show_bad="REQUEST.get('show_bad', '')">
-<dtml-let show_empty="REQUEST.get('show_empty', '')">
-<dtml-let show_valid="REQUEST.get('show_valid', '')">
+<dtml-let checked_languages="REQUEST.get('checked_languages', [])"
+          show_all="REQUEST.get('show_all', '')"
+          show_bad="REQUEST.get('show_bad', '')"
+          show_empty="REQUEST.get('show_empty', '')"
+          show_valid="REQUEST.get('show_valid', '')"
 
-<dtml-let valid_color="REQUEST.get('valid_color', 'white')">
-<dtml-let empty_color="REQUEST.get('empty_color', 'white')">
-<dtml-let bad_color="REQUEST.get('bad_color', 'white')">
+          valid_color="REQUEST.get('valid_color', 'white')"
+          empty_color="REQUEST.get('empty_color', 'white')"
+          bad_color="REQUEST.get('bad_color', 'white')">
 
 <style type="text/css">
 #translations_table th
@@ -90,12 +90,5 @@
         </dtml-in>
 </table>
 
-</dtml-let>
-</dtml-let>
-</dtml-let>
-</dtml-let>
-</dtml-let>
-</dtml-let>
-</dtml-let>
 </dtml-let>
 <dtml-var manage_utf8_footer>
