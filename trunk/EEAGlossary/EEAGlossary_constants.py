@@ -22,6 +22,25 @@
 #
 #$Id$
 
+#python imports
+from os.path import join
+
+#Product name
+try:
+    EEAGLOSSARY_PATH = join(SOFTWARE_HOME, 'Products', 'EEAGlossary')
+    f = open(join(EEAGLOSSARY_PATH, 'EEAGlossaryCentre.py'), 'r')
+    f.close()
+    del f
+except IOError:
+    try:
+        EEAGLOSSARY_PATH = join(INSTANCE_HOME, 'Products', 'EEAGlossary')
+        f = open(join(EEAGLOSSARY_PATH, 'EEAGlossaryCentre.py'), 'r')
+        f.close()
+        del f
+    except IOError:
+        raise 'Cannot initialize product path', 'EEAGlossaryCentre.py'
+
+
     ##################
     #   META TYPES   #
     ##################

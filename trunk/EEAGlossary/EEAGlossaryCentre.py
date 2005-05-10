@@ -51,6 +51,7 @@ try:
 except:
     TNG2_exists = 0
 
+
 manage_addGlossaryCentre_html = DTMLFile('dtml/EEAGlossaryCentre/add', globals())
 def manage_addGlossaryCentre(self, id, title='', description='', max_related='', REQUEST=None):
     """ Adds a new EEAGlossaryCentre object """
@@ -66,7 +67,7 @@ def manage_addGlossaryCentre(self, id, title='', description='', max_related='',
     style_css.close()
     ob.manage_addDTMLMethod('style_presentation_css', title='', file=content)
 
-    file = open(join(SOFTWARE_HOME, 'Products', 'EEAGlossary', 'www', 'img_search_med.gif'), 'rb')
+    file = open(join(EEAGLOSSARY_PATH, 'www', 'img_search_med.gif'), 'rb')
     content = file.read()
     file.close()
     ob.manage_addImage(id='search_img', title='Search Image - you can upload it from here', file='')
