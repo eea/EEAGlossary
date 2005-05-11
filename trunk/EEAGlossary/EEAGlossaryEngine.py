@@ -70,7 +70,7 @@ class EEAGlossaryEngine(SimpleItem, utils):
         from os.path import join
         roles_obj = roles_parser()
         root_obj = self.utGetROOT()
-        content = self.utOpenFile(join(EEAGLOSSARY_PATH, 'Products','EEAGlossary', 'config', 'roles.xml'))
+        content = self.utOpenFile(join(EEAGLOSSARY_PATH, 'config', 'roles.xml'))
         roles_handler, error = roles_obj.parseContent(content)
         for role in roles_handler.roles:
             self.set_roles(role.name, role.permissions)
@@ -83,7 +83,7 @@ class EEAGlossaryEngine(SimpleItem, utils):
 
         from os.path import join
         languages_obj = languages_parser()
-        content = self.utOpenFile(join(EEAGLOSSARY_PATH, 'Products','EEAGlossary', 'config', 'languages.xml'))
+        content = self.utOpenFile(join(EEAGLOSSARY_PATH, 'config', 'languages.xml'))
         languages_handler, error = languages_obj.parseContent(content)
 
         for lang in languages_handler.languages:
@@ -99,7 +99,7 @@ class EEAGlossaryEngine(SimpleItem, utils):
 
         from os.path import join
         stop_word_obj = stop_words_parser()
-        content = self.utOpenFile(join(EEAGLOSSARY_PATH, 'Products','EEAGlossary', 'config', 'stop_words.xml'))
+        content = self.utOpenFile(join(EEAGLOSSARY_PATH, 'config', 'stop_words.xml'))
         stop_words_handler, error = stop_word_obj.parseContent(content)
 
         for word in stop_words_handler.stop_words:
@@ -110,7 +110,7 @@ class EEAGlossaryEngine(SimpleItem, utils):
         """ loads subjects properties defaults """
         from os.path import join
         subjects_obj = subjects_parser()
-        content = self.utOpenFile(join(EEAGLOSSARY_PATH, 'Products','EEAGlossary','config', 'subjects.xml'))
+        content = self.utOpenFile(join(EEAGLOSSARY_PATH,'config', 'subjects.xml'))
         subjects_handler, error = subjects_obj.parseContent(content)
         for code in subjects_handler.subjects:
             self.set_subjects_list(code.code, code.name)
