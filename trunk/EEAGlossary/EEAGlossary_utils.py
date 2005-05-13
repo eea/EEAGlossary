@@ -24,6 +24,7 @@
 
 #Python imports
 import string
+import whrandom
 import codecs
 
 #Zope imports
@@ -257,6 +258,16 @@ class utils:
             if ord(term[i]) in self.win_cp1252.keys():
                 term=term[0:i] + "&#" + str(self.win_cp1252[ord(term[i])]) + ";" + term[i+1:]
         return term      
+
+    def utXmlEncode(self, s):
+        """Encode some special chars"""
+        tmp = s
+        tmp = tmp.replace('&', '&amp;')
+        tmp = tmp.replace('<', '&lt;')
+        tmp = tmp.replace('"', '&quot;')
+        tmp = tmp.replace('\'', '&apos;')
+        tmp = tmp.replace('>', '&gt;')
+        return tmp
 
     ######################
     #   Synonym Linking  #

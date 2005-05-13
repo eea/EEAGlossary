@@ -51,7 +51,6 @@ try:
 except:
     TNG2_exists = 0
 
-
 manage_addGlossaryCentre_html = DTMLFile('dtml/EEAGlossaryCentre/add', globals())
 def manage_addGlossaryCentre(self, id, title='', description='', max_related='', REQUEST=None):
     """ Adds a new EEAGlossaryCentre object """
@@ -61,13 +60,14 @@ def manage_addGlossaryCentre(self, id, title='', description='', max_related='',
     obj = self._getOb(id)
     obj.loadProperties()
     obj.addCatalog()
+    obj.loadRDF()
 
     style_css = open(join(package_home(globals()),'dtml','EEAGlossaryCentre','style_presentation.dtml'))
     content = style_css.read()
     style_css.close()
     ob.manage_addDTMLMethod('style_presentation_css', title='', file=content)
 
-    file = open(join(EEAGLOSSARY_PATH, 'www', 'img_search_med.gif'), 'rb')
+    file = open(join(SOFTWARE_HOME, 'Products', 'EEAGlossary', 'www', 'img_search_med.gif'), 'rb')
     content = file.read()
     file.close()
     ob.manage_addImage(id='search_img', title='Search Image - you can upload it from here', file='')
@@ -1159,6 +1159,29 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
 
     manage_utf8_header = DTMLFile('dtml/EEAGlossaryCentre/utf8_header', globals())
     manage_utf8_footer = DTMLFile('dtml/EEAGlossaryCentre/utf8_footer', globals())
+
+    #####################
+    #   SKOS Functions  #
+    #####################
+    security.declareProtected('Manage GimmeThesaurus', 'loadRDF')
+    def loadRDF(self):
+        """ loads rdf files """
+        from os.path import join
+        from Products.PythonScripts.PythonScript import manage_addPythonScript
+
+        file_content = open(join(EEAGLOSSARY_PATH, 'rdfs', 'EEAGlossary_skos.spy'), 'r').read()
+        manage_addPythonScript(self, 'EEAGlossary_skos.rdf')
+        self._getOb('EEAGlossary_skos.rdf').write(file_content)
+
+    def GetElementsInfo(self):
+        """ """
+        result=[]
+        folder_list = self.folder_list_sorted()
+        for folder in folder_list:
+            for elem in folder.get_object_list():
+                if elem.is_published() and elem.meta_type == EEA_GLOSSARY_ELEMENT_METATYPE:
+                    result.append(elem)
+        return result
 
 InitializeClass(EEAGlossaryCentre)
 
