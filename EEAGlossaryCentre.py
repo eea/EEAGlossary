@@ -471,6 +471,12 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
             results.append(k['lang'])
         return results
 
+    def get_language_code(self, language):
+        """ get the charset for a specific language """
+        for k in self.get_languages_list():
+            if k['english_name'] == language:
+                return k['lang']
+
     def get_language_by_code(self, lang_code):
         """ get the english name given the code """
         for k in self.get_languages_list():
