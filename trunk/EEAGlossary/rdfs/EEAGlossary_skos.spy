@@ -28,7 +28,9 @@ print '''<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 
 for record in container.GetElementsInfo():
     print '<rdf:Description rdf:about="%s/%s">' % (l_container_url, record.id)
-    print '<skos:prefLabel>%s</skos:prefLabel>' % alias_container_utXmlEncode(record.get_translation_by_language('English'))
+    for language in record.get_english_names():
+        print '<skos:prefLabel xml:lang="%s">%s</skos:prefLabel>' % (record.get_language_code(language), alias_container_utXmlEncode(record.get_translation_by_language(language)))
+    print '<skos:altLabel>%s</skos:altLabel>' % ""
     if record.definition != '':
         print '<skos:definition>%s</skos:definition>' % alias_container_utXmlEncode(record.definition)
     print '</rdf:Description>'
