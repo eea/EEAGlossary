@@ -62,12 +62,12 @@ def manage_addGlossaryCentre(self, id, title='', description='', max_related='',
     obj.addCatalog()
     obj.loadRDF()
 
-    style_css = open(join(package_home(globals()),'dtml','EEAGlossaryCentre','style_presentation.dtml'))
+    style_css = open(join(EEAGLOSSARY_PATH,'dtml','EEAGlossaryCentre','style_presentation.dtml'))
     content = style_css.read()
     style_css.close()
     ob.manage_addDTMLMethod('style_presentation_css', title='', file=content)
 
-    file = open(join(SOFTWARE_HOME, 'Products', 'EEAGlossary', 'www', 'img_search_med.gif'), 'rb')
+    file = open(join(EEAGLOSSARY_PATH, 'www', 'img_search_med.gif'), 'rb')
     content = file.read()
     file.close()
     ob.manage_addImage(id='search_img', title='Search Image - you can upload it from here', file='')
