@@ -78,5 +78,24 @@ misc_ = {
     'img_search_med.gif':ImageFile('www/img_search_med.gif', globals()),
     'img_search_small.gif':ImageFile('www/img_search_small.gif', globals()),
     'news.gif':ImageFile('www/news.gif', globals()),
-    'new.gif':ImageFile('www/new.gif', globals())
+    'new.gif':ImageFile('www/new.gif', globals()),
+
+    #new glossary style
+    'ico_searchhelp.gif':ImageFile('www/ico_searchhelp.gif', globals()),
+    's_lefttop.gif':ImageFile('www/s_lefttop.gif', globals()),
+    's_lefttop.gif':ImageFile('www/s_lefttop.gif', globals()),
+    's_toplines.gif':ImageFile('www/s_toplines.gif', globals()),
+    's_righttop.gif':ImageFile('www/s_righttop.gif', globals()),
+    's_leftbottom.gif':ImageFile('www/s_leftbottom.gif', globals()),
+    's_bottomlines.gif':ImageFile('www/s_bottomlines.gif', globals()),
+    's_rightbottom.gif':ImageFile('www/s_rightbottom.gif', globals()),
+    's_bcktop.gif':ImageFile('www/s_bcktop.gif', globals()),
+    's_bckbottom.gif':ImageFile('www/s_bckbottom.gif', globals()),
+    'searchGloss_butt.gif':ImageFile('www/searchGloss_butt.gif', globals()),
+    'category.gif':ImageFile('www/category.gif', globals()),
+    'dotted.gif':ImageFile('www/dotted.gif', globals()),
+    'note_ico.gif':ImageFile('www/note_ico.gif', globals()),
+    'separ.gif':ImageFile('www/separ.gif', globals()),
+    'search_ico.gif':ImageFile('www/search_ico.gif', globals()),
+    'related_ico.gif':ImageFile('www/related_ico.gif', globals())
 }
