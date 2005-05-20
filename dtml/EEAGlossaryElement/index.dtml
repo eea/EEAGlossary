@@ -1,25 +1,32 @@
 <dtml-var standard_html_header>
 <dtml-var style_presentation_css>
 
-<p>
-    <dtml-with "PARENTS[1]">
-        <a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/folder.gif" class="img-normal" alt=""><span style="font-weight: bold; font-size: 18px;"><dtml-var title_or_id></span></a>
-    </dtml-with>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td valign="top" class="main-cell">
 
-    &nbsp;/&nbsp;
-    <img src="misc_/EEAGlossary/element.gif" class="img-normal" alt="">
+			<div class="path">
+				<dtml-with "PARENTS[1]">
+					<img src="misc_/EEAGlossary/folder.gif" alt="" align="middle" />&nbsp;<a href="<dtml-var absolute_url>"><dtml-var title_or_id></a>
+				</dtml-with>
 
-    <span style="font-weight: bold; font-size: 18px;"><dtml-var name></span>
+				<span class="separator"> | </span>
+				<img src="misc_/EEAGlossary/element.gif" alt="" align="middle" />
+				<span style="font-weight: bold; font-size: 18px;"><dtml-var name></span>
 
-    &nbsp;
-    <dtml-if QA_needed>
-        <img src="misc_/EEAGlossary/new.gif" class="img-normal" alt='New glossary entry'>
-        <p>
-            <span class="attention-color"><strong>Translations under validation</strong></span>
-        </p>
-    </dtml-if>
-</p>
+				<dtml-if QA_needed>
+					<img src="misc_/EEAGlossary/new.gif" class="img-normal" alt='New glossary entry'>
+					<p>
+						<small class="attention-color"><strong>Translations under validation</strong></small>
+					</p>
+				</dtml-if>
+			</div>
 
-<dtml-var main_content_html>
+			<dtml-var main_content_html>
+
+			<br /><br />
+		</td>
+	</tr>
+</table>
 
 <dtml-var standard_html_footer>

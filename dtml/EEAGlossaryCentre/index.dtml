@@ -1,106 +1,129 @@
 <dtml-var standard_html_header>
 <dtml-var style_presentation_css>
 
-<h1>
-    <img src="misc_/EEAGlossary/glossary.gif" class="img-normal" alt="">&nbsp;<span style="font-weight: bold; font-size: 18px;"><dtml-var title_or_id></span>
-</h1>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td valign="top" class="main-cell">
+		<!-- Title -->
+		<h1>
+			<img src="misc_/EEAGlossary/glossary.gif" alt="" align="middle" >&nbsp;<dtml-var title_or_id>
+		</h1>
 
-<dtml-let folder_list="folder_list_sorted()">
-<div align=center>
-    <dtml-in folder_list>
-        &nbsp;<a style="font-weight: bold;" href="<dtml-var absolute_url>"><dtml-var id></a>&nbsp;
-    </dtml-in>
-    <br><hr>
-</div>
+		<!-- Folder list -->
+		<dtml-let folder_list="folder_list_sorted()">
+		<div id="index_layer">
+			<dtml-in folder_list>
+				<a href="<dtml-var absolute_url>"><dtml-var id></a>
+			</dtml-in>
+		</div>
 
-<br>
+		<div class="topborder"></div>
 
-<table cellspacing="0" cellpadding="0" class="table-search">
-    <tr>
-        <td><img src="misc_/EEAGlossary/line.gif" class="img-line" alt=""></td>
-    </tr>
+		<!-- Search form box -->
+		<form action="<dtml-var "getCenterURL('search_html')">" method="post" name="frmSearch">
+		<table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td height="1" align="right" valign="middle" class="search_help">
+				<img src="misc_/EEAGlossary/ico_searchhelp.gif" align="absmiddle" ><a href="search_help_html" target="_new">Search Help Page</a>
+			</td>
+		</tr>
+		<tr>
+			<td height="20" valign="bottom">
+			<table width="100%" height="20" border="0" cellpadding="0" cellspacing="0">
+				<tr valign="bottom">
+					<td width="1" height="20" valign="bottom"><img src="misc_/EEAGlossary/s_lefttop.gif" width="46" height="20"></td>
+					<td align="center" valign="middle" nowrap class="search_title">Search for terms</td>
+					<td width="1" valign="bottom"><img src="misc_/EEAGlossary/s_toplines.gif" width="100" height="20" ></td>
+					<td width="90%" height="20" align="right" class="search_top_tr"><img src="misc_/EEAGlossary/s_righttop.gif" width="1" height="20"></td>
+				</tr>
+			</table>
+			</td>
+		</tr>
+		<tr>
+			<td class="search_middle_tr">
+			<br>
+			<table width="50%" border="0" cellspacing="0" cellpadding="6" class="search_cell">
+			<tr >
+				<td height="1" align="left">Select language</td>
+				<td height="1" align="right">
+					<dtml-let src_langs="get_search_langs()">
+					<select 
+						<dtml-if "_.len(src_langs)<2">
+							disabled
+						<dtml-else>
+							type="text"
+						</dtml-if> name="language">
+					<dtml-in src_langs>
+						<option <dtml-if "_['sequence-item']=='English'">selected</dtml-if>><dtml-var sequence-item></option>
+					</dtml-in>
+					</select>&nbsp;
+					</dtml-let>
+				</td>
+			</tr>
+			</table>
+			<table width="100%" border="0" cellspacing="0" cellpadding="6">
+				<tr class="search_cell">
+				<td width="25%" height="1" align="left">Term:</td>
+				<td width="25%" height="1" align="right"><input type="text" name="query_gloss" value="" /></td>
+				<td width="25%" height="1" align="center">Definition:</td>
+				<td width="25%" height="1" align="right"><input type="text" name="definition" value="" /></td>
+				</tr>
+			</table>
+			<table width="50%" border="0" cellspacing="0" cellpadding="6">
+				<tr class="search_cell">
+				<td height="1" align="left">Show per page:</td>
+				<td height="1" align="right">
+					<select type="text" name="size">
+						<option selected>10</option>
+						<option>20</option>
+						<option>50</option>
+						<option>100</option>
+					</select>
+				</td>
+				</tr>
+			</table></td>
+		</tr>
+		<tr>
+			<td>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr valign="top">
+					<td width="85%" align="left" class="search_bottom_tr">
+						<img src="misc_/EEAGlossary/s_leftbottom.gif" width="1" height="23" />
+					</td>
+					<td width="7%" align="right" nowrap><img src="misc_/EEAGlossary/s_bottomlines.gif" width="41" height="23" /></td>
+					<td width="8%" align="right" nowrap><input type="submit" class="search_button" name="SUBMIT" value="Find in Glossary" /></td>
+					<td width="1%" align="right" nowrap><img src="misc_/EEAGlossary/s_rightbottom.gif" width="24" height="23"></td>
+				</tr>
+			</table>
+			</td>
+		</tr>
+		</table>
+		</form>
 
-    <tr>
-        <td>
-            <table class="table-normal" cellpadding="3" cellspacing="0">
-                <form action="<dtml-var "getCenterURL('search_html')">" method="post" name="frmSearch">
-                <tr>
-                    <td colspan="2" style="padding-left: 5px; margin-bottom: 3px;"><img src="search_img" class="img-normal" alt="Search for a term" align="absmiddle">&nbsp;<span><b>Search for terms</b></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th width="15%" align="left" style="padding-left: 5px; margin-bottom: 3px;">Term:</th>
-                    <td align="left" valign="top" style="margin-bottom: 3px;" width="*">
-                            <input type="text" name="query_gloss" value="">
-                            <dtml-let src_langs="get_search_langs()">
-                            <select 
-                                <dtml-if "_.len(src_langs)<2">
-                                    disabled
-                                <dtml-else>
-                                    type="text"
-                                </dtml-if> name="language">
-                            <dtml-in src_langs>
-                                <option <dtml-if "_['sequence-item']=='English'">selected</dtml-if>><dtml-var sequence-item></option>
-                            </dtml-in>
-                            </select>&nbsp;
-                            </dtml-let>
-                            <span>&lt;- select language</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th align="left" style="padding-left: 5px; margin-bottom: 3px;">Definition:</th>
-                    <td align="left" valign="top" style="margin-bottom: 3px;">
-                            <input type="text" name="definition" value="">
-                    </td>
-                </tr>
-                <tr>
-                    <th align="left" style="padding-left: 5px; margin-bottom: 3px;">Show per page:</th>
-                    <td align="left" valign="top" style="margin-bottom: 3px;">
-                        <select type="text" name="size">
-                            <option selected>10</option>
-                            <option>20</option>
-                            <option>50</option>
-                            <option>100</option>
-                        </select>&nbsp;
-                        <input type="submit" class="button" name="SUBMIT" value="Find in Glossary">
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="padding-left: 5px; margin-bottom: 3px;"><a href="search_help_html" target="_new"><b>Search Help<b></a>
-                    </td>
-                </tr>
-                </form>
-            </table>
-        </td>
-    </tr>
+		<br>
 
-    <tr>
-        <td><img src="misc_/EEAGlossary/line.gif" class="img-line" alt=""></td>
-    </tr>
+		<!-- Random box -->
+		<table width="90%" border="0" align="center" cellpadding="17" cellspacing="0">
+			<tr>
+				<td class="term_example2">
+					<dtml-var term_tip_box_html>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+		<dtml-in element_list_sorted>
+			<dtml-unless disabled>
+				<a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/element.gif" class="img-normal" alt="">&nbsp;<dtml-var name></a>
+				<br>
+			</dtml-unless>
+		</dtml-in>
+		<br>
+
+		<br>
+		</td>
+	</tr>
 </table>
 
-<br>
-
-<table class="table-normal" cellspacing="0" cellpadding="0">
-    <tr>
-        <td width="25%"></td>
-
-        <td width="50%" align="left" valign="top">
-            <dtml-var term_tip_box_html>
-        </td>
-
-        <td width="25%"></td>
-    </tr>
-</table>
-
-<br>
-<dtml-in element_list_sorted>
-    <dtml-unless disabled>
-        <a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/element.gif" class="img-normal" alt="">&nbsp;<dtml-var name></a>
-        <br>
-    </dtml-unless>
-</dtml-in>
-<br>
 </dtml-let>
-
 <dtml-var standard_html_footer>

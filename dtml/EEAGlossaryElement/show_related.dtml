@@ -22,14 +22,14 @@
         <dtml-if synonyms>
             <dtml-if "not firstitem">
                 <dtml-call "REQUEST.set('firstitem',1)">
-                <h3>Possibly related terms:</h3>
+                <span><img src="misc_/EEAGlossary/related_ico.gif" width="20" height="11" align="absmiddle">Possibly related terms:</span>
             </dtml-if>
             <li><a href="<dtml-var absolute_url>"><dtml-var name></a></li><br/>
         <dtml-else>
             <dtml-let translation="get_translation_by_language(language)">
             <dtml-if "not firstitem">
                 <dtml-call "REQUEST.set('firstitem',1)">
-                <h3>Possibly related terms:</h3>
+                <span><img src="misc_/EEAGlossary/related_ico.gif" width="20" height="11" align="absmiddle">Possibly related terms:</span>
             </dtml-if>
             <li><a href="<dtml-var absolute_url>"><dtml-var translation></a></li><br/>
             </dtml-let>
