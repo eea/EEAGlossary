@@ -149,12 +149,48 @@ input
     color: #FF0000;
 } */
 
+.table-search-help
+{
+    border:1px solid;
+    width:90%;
+}
+
+.table-normal
+{
+    border:0px solid;
+    width:100%;
+}
+
+.search-row-header
+{
+    background: #EDF5FB;
+    height: 20px;
+}
+
+.celleven
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 12px;
+    color: #000000;
+    background: #FFFFFF;
+}
+
+.cellodd
+{
+    font-family: Verdana, Arial, Helvetica;
+    font-size: 12px;
+    color: #000000;
+    background: #EEEEEE;
+}
+
 .attention-color
 {
     color: #FF0000;
 }
 
 /* New CSS Begin */
+
+/* CSS Document */
 
 body {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -203,16 +239,20 @@ hr {
 	mergin-left: 30px;
 }
 
-.search_cell select,.search_cell input {
-	background-color: #EDF5FB;
-	border: 1px solid #6D90B0;
-	font-size: 11px;
-	height: 20px;
-	padding-top:3px;
-	vertical-align: bottom;
+.search_cell select { 
+         background-color: #EDF5FB;
+        font-size: 11px;
+        height: 20px;
+        vertical-align: bottom;
 }
 .search_cell input {
-	width: 190px;
+        background-color: #EDF5FB;
+        border: 1px solid #6D90B0;
+        font-size: 11px;
+         height: 20px;
+        padding-top:3px;
+        vertical-align: bottom;
+        width: 190px;
 }
 
 .search_title {
@@ -264,7 +304,14 @@ hr {
 
 
 /* details page*/
-
+.transl_valid {
+	margin-left: 18px;
+	margin-top: 12px;
+	font-size: 11px;
+/**/	font-weight: bold; 
+	text-indent: 20px;
+	color: #990000;
+}
 .category_subtitle {
 	height: 18px;
 	padding-top: 2px;
@@ -363,6 +410,22 @@ hr {
 	text-decoration: none;
 }
 
+.path span {
+	color: #003366;
+
+}
+.search_by {
+	display: block;
+	font-size: 12px;
+	margin: 10px 0px;
+	color: #666666
+}
+
+.search_by span {
+	background-color: #666666;
+	color: white;
+}
+
 .separator {
 	font-weight: normal;
 	font-size: 16px;
@@ -398,6 +461,7 @@ hr {
 
 .note span {
 	display: block;
+	padding-bottom: 9px;
 	margin-bottom: 12px;
 }
 
@@ -424,13 +488,63 @@ hr {
 }
 
 /* search result list */
-
-.definition_list dl{
-	margin: 0px;
-	padding: 0px;
+.definition_list {
+	margin-top: 0px;
 }
 
-/* dt, dd */
+.definition_list dl {
+	margin: 0px;
+	padding: 0px;
+	text-indent: 0px;
+}
+
+.definition_list dt {
+	margin: 0px 18px 0px 18px;
+	padding: 11px 0px 9px 0px;
+	text-indent: 23px;
+	font-size: 12px;
+	border-top: 1px solid #F1F1F1;
+}
+
+.dt_element{
+	background-image: url(misc_/EEAGlossary/definition_ico.gif);
+	background-repeat: no-repeat;
+	background-position: left 13px; 
+}
+
+.dt_sinonim{
+	background-image: url(misc_/EEAGlossary/synonym.gif);
+	background-repeat: no-repeat;
+	background-position: left 13px; 
+}
+
+.definition_list dd {
+	margin: 0px 18px 4px 18px;
+	padding: 0px 0px 0px 23px;
+	text-indent: 0px;
+	font-size: 12px;
+	padding-bottom: 3px;
+}
+
+.definition_list span {
+	display: block;
+	margin-top: 4px;
+	color: #666666;
+}
+
+
+.options_bar {
+	margin: 4px 18px 0px 18px;
+	padding: 3px 10px 0px 10px;
+	height: 18px;
+	background-color: #F1F1F1;
+	color: #003366;
+	font-size:11px;
+}
+
+.options_bar span {
+	font-weight: bold;
+}
 
 
 </style>

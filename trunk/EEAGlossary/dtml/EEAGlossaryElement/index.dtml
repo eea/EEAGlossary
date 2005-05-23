@@ -15,10 +15,8 @@
 				<span style="font-weight: bold; font-size: 18px;"><dtml-var name></span>
 
 				<dtml-if QA_needed>
-					<img src="misc_/EEAGlossary/new.gif" class="img-normal" alt='New glossary entry'>
-					<p>
-						<small class="attention-color"><strong>Translations under validation</strong></small>
-					</p>
+					<img src="misc_/EEAGlossary/new.gif" alt='New glossary entry'>
+					<div class="transl_valid">Translations under validation</div>
 				</dtml-if>
 			</div>
 

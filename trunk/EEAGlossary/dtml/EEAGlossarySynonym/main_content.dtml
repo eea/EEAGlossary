@@ -1,8 +1,10 @@
 <dtml-in utGetSynonyms>
-    <dtml-if sequence-start>See:<br></dtml-if>
+    <dtml-if sequence-start><div class="category_content">See:</div></dtml-if>
     <dtml-if "_.len(_['sequence-item'].name)>0">
+		<div class="category_content">
         <a href="<dtml-var absolute_url>">
         <dtml-var name>
-        </a><br>
+        </a>
+		</div>
     </dtml-if>
 </dtml-in>
