@@ -97,5 +97,6 @@ misc_ = {
     'note_ico.gif':ImageFile('www/note_ico.gif', globals()),
     'separ.gif':ImageFile('www/separ.gif', globals()),
     'search_ico.gif':ImageFile('www/search_ico.gif', globals()),
+    'definition_ico.gif':ImageFile('www/definition_ico.gif', globals()),
     'related_ico.gif':ImageFile('www/related_ico.gif', globals())
 }

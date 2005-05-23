@@ -1,28 +1,39 @@
 <dtml-var standard_html_header>
 <dtml-var style_presentation_css>
 
-<p>
-    <dtml-with "PARENTS[1]">
-        <a href="<dtml-var absolute_url>">
-            <img src="<dtml-if "getId() in _.string.split(URL,'/')">
-                            misc_/EEAGlossary/folder.gif
-                      <dtml-else>misc_/EEAGlossary/synonym.gif</dtml-if>" class="img-normal" alt="">
-            <dtml-var title_or_id>
-        </a>
-    </dtml-with>
-    &nbsp;/&nbsp;
-    <img src="<dtml-if "getId() in _.string.split(URL,'/')">
-                  misc_/EEAGlossary/synonym.gif
-              <dtml-else>
-                  misc_/EEAGlossary/element.gif
-              </dtml-if>
-             " class="img-normal" alt="">
-    <dtml-var name>&nbsp;
-    <dtml-if QA_needed>
-        <img src="misc_/EEAGlossary/new.gif" class="img-normal" alt="New glossary entry">
-    </dtml-if>
-</p>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td valign="top" class="main-cell">
 
-<dtml-var main_content_html>
+			<div class="path">
+				<dtml-with "PARENTS[1]">
+					<a href="<dtml-var absolute_url>">
+						<img border="0" src="<dtml-if "getId() in _.string.split(URL,'/')">
+										misc_/EEAGlossary/folder.gif
+								  <dtml-else>misc_/EEAGlossary/synonym.gif</dtml-if>" class="img-normal" alt="">
+						<dtml-var title_or_id>
+					</a>
+				</dtml-with>
+
+				<span class="separator"> | </span>
+				<img src="<dtml-if "getId() in _.string.split(URL,'/')">
+							  misc_/EEAGlossary/synonym.gif
+						  <dtml-else>
+							  misc_/EEAGlossary/element.gif
+						  </dtml-if>
+						 " class="img-normal" alt="" align="middle">
+				<span style="font-weight: bold; font-size: 18px;"><dtml-var name></span>
+
+				<dtml-if QA_needed>
+					<img src="misc_/EEAGlossary/new.gif" alt="New glossary entry">
+				</dtml-if>
+			</div>
+
+			<dtml-var main_content_html>
+
+			<br /><br />
+		</td>
+	</tr>
+</table>
 
 <dtml-var standard_html_footer>

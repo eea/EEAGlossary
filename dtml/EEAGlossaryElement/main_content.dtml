@@ -66,8 +66,8 @@
 			</div>
 
 		</div>
-		<br clear="all" style="display: block; margin-bottom: 30px;" />
-		<div style="height:20px;" />
+		<br clear="left" />
+		<div style="height:20px;"></div>
 	</dtml-if>
 
 	<dtml-if "(not 'translations' in hidden_fields) and (check_if_no_translations())">
