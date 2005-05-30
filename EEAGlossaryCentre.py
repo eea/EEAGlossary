@@ -799,8 +799,12 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
 
     def random_from_catalog(self, folders=''):
         """a random element from catalog """
-        folder = whrandom.choice(folders)
-        return self.random_from_folder('/'+folder.absolute_url(1))
+        if len(folders):
+            folder = whrandom.choice(folders)
+            return self.random_from_folder('/'+folder.absolute_url(1))
+        else: return ''
+#        folder = whrandom.choice(folders)
+#        return self.random_from_folder('/'+folder.absolute_url(1))
 
     def random_from_folder(self, folder=''):
         """ a random element from a GlossaryFolder """

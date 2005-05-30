@@ -11,11 +11,15 @@
 
 		<!-- Folder list -->
 		<dtml-let folder_list="folder_list_sorted()">
+		<dtml-if folder_list>
 		<div id="index_layer">
 			<dtml-in folder_list>
 				<a href="<dtml-var absolute_url>"><dtml-var title_or_id></a>
 			</dtml-in>
 		</div>
+		<dtml-else>
+			No folders
+		</dtml-if>
 
 		<div class="topborder"></div>
 
