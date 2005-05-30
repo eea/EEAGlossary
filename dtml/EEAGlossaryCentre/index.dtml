@@ -13,7 +13,7 @@
 		<dtml-let folder_list="folder_list_sorted()">
 		<div id="index_layer">
 			<dtml-in folder_list>
-				<a href="<dtml-var absolute_url>"><dtml-var id></a>
+				<a href="<dtml-var absolute_url>"><dtml-var title_or_id></a>
 			</dtml-in>
 		</div>
 
