@@ -55,3 +55,4 @@
 	</table>
 
 </dtml-let>
+<dtml-var standard_html_footer>
