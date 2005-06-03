@@ -29,6 +29,7 @@
 		<div class="category_content">
 
 			<div class="content_list" style="background-image: url(misc_/EEAGlossary/dotted.gif); background-repeat: repeat-y; background-position: right;">
+				
 				<dtml-if "_.len(get_links())>0 and _.len(get_actions())>0">
 					<dtml-in get_links>
 						<li>&nbsp;
@@ -59,7 +60,21 @@
 					</li>
 				</ul>
 				</dtml-if>
+				
+
+<dtml-comment>
+				<div>TopPages on EEA</div><br />
+				<ul>
+				<dtml-in "getTopPages('3861066252', id, ['1000000003'], 10)">
+					<dtml-let kuku_page=sequence-item>
+						<li><a href="<dtml-var "kuku_page['url']">" title="<dtml-var "kuku_page['title'].encode('utf-8')">"><dtml-var "kuku_page['title'].encode('utf-8')[:50]+'...'"></a></li>
+					</dtml-let>
+				</dtml-in>
+				</ul>
+</dtml-comment>
+
 			</div>
+
 
 			<div class="content_list" >
 				<dtml-var show_related_html>

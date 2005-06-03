@@ -383,6 +383,21 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         SimpleItem.inheritedAttribute('manage_beforeDelete')(self, item, container)
         self.cu_uncatalog_object(self)
 
+
+    #################
+    #   XML/RPC     #
+    #################
+    def getTopPages(self, glossary_id, glossary_elements, domains, results_number):
+        """ """
+        import xmlrpclib
+        server = xmlrpclib.ServerProxy('http://z3.finsiel.ro:8380/SpiderGlossLast/')
+        result = server.GetWebsiteIndex(glossary_id, [glossary_elements], domains, results_number)
+        for item in result['results']['TopPages']:
+            if item['DomainID'] == '1000000003':
+                top_pages = item['Pages']
+        return top_pages
+
+
     #####################
     #   MANAGEMENT TABS #
     #####################
