@@ -17,10 +17,9 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
+# Antonio De Marinis, EEA
 # Cornel Nitu, Finsiel Romania
-#
-#
-#$Id$
+
 
 from xml.sax.handler import ContentHandler
 from xml.sax import *

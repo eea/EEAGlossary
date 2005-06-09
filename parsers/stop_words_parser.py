@@ -17,10 +17,9 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
+# Antonio De Marinis, EEA
 # Cornel Nitu, Finsiel Romania
-#
-#
-#$Id: languages_parser.py 3290 2005-04-04 12:11:44Z ghicaale $
+
 
 from xml.sax.handler import ContentHandler
 from xml.sax import *

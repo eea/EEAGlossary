@@ -17,10 +17,9 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
+# Antonio De Marinis, EEA
 # Cornel Nitu, Finsiel Romania
-#
-#
-#$Id: xliff_parser.py,v 1.7 2004/06/08 15:07:32 finrocvs Exp $
+
 
 from xml.sax.handler import ContentHandler
 from xml.sax import *

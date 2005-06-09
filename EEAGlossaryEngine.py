@@ -17,13 +17,12 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
+# Antonio De Marinis, EEA
 # Cornel Nitu, Finsiel Romania
-#
-#
-#$Id$
 
+
+# python imports
 import string
-
 
 # Zope imports
 from Globals import DTMLFile, InitializeClass
