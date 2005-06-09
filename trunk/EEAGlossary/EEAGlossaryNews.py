@@ -17,10 +17,9 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
+# Antonio De Marinis, EEA
 # Cornel Nitu, Finsiel Romania
-#
-#
-#$Id: EEAGlossaryNews.py,v 1.7 2004/05/19 08:00:17 finrocvs Exp $
+
 
 # Zope imports
 from Globals import DTMLFile, MessageDialog, InitializeClass

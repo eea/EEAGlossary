@@ -17,15 +17,12 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
+# Antonio De Marinis, EEA
 # Cornel Nitu, Finsiel Romania
-#
-#
-#$Id: toutf8.py,v 1.5 2004/06/07 11:15:29 finrocvs Exp $
 
-#Python imports
 
 class toUTF8:
-    """ Class toUTF-8 """ 
+    """ Class toUTF-8 """
 
     def __init__(self):
         """ """

@@ -17,10 +17,9 @@
 #
 # Contributor(s):
 # Alex Ghica, Finsiel Romania
+# Antonio De Marinis, EEA
 # Cornel Nitu, Finsiel Romania
-#
-#
-#$Id: subjects_parser.py,v 1.3 2004/05/17 08:54:19 finrocvs Exp $
+
 
 from xml.sax.handler import ContentHandler
 from xml.sax import *
