@@ -60,9 +60,6 @@
 						<td width="15" align="left" valign="top"><img src="misc_/EEAGlossary/element.gif" alt=""></td>
 						<td width="707">
 							<a href="<dtml-var absolute_url>"><dtml-var name></a>
-							<dtml-if QA_needed>
-								<img src="misc_/EEAGlossary/new.gif" class="img-normal" alt="New glossary entry">
-							</dtml-if>
 						</td>
 						</tr>
 					</dtml-if>
