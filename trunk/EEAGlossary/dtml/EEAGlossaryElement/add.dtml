@@ -95,7 +95,7 @@
     <fieldset><legend>Definition source details</legend>
         <table>
         <tr>
-            <td align="left" valign="top"><label for="cb-definition_source_publ"><b>Publication:</b></label></td>
+            <td align="left" valign="top"><label for="cb-definition_source_publ"><b>Publication name:</b></label></td>
             <td align="left" valign="top"><input type="text" name="definition_source_publ:string" size="35" value=""></td>
             <td align="left" valign="top">string</td>
         </tr>
@@ -107,7 +107,7 @@
         </tr>
 
         <tr>
-            <td align="left" valign="top"><label for="cb-definition_source"><b>Definition source:</b></label></td>
+            <td align="left" valign="top"><label for="cb-definition_source"><b>Definition source URL:</b></label></td>
             <td align="left" valign="top"><input type="text" name="definition_source_url:string" size="35" value=""></td>
             <td align="left" valign="top">string</td>
         </tr>

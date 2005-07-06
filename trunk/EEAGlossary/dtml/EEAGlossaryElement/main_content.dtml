@@ -18,7 +18,7 @@
 	</dtml-if>
 
 	<dtml-if is_definition_source>
-		<div class="category_subtitle">Definition source</div>
+		<div class="category_subtitle">Definition source publication</div>
 		<div class="category_content">
 			<dtml-var definition_source_publ>
 		</div>

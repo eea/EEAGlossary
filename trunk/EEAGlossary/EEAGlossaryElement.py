@@ -138,8 +138,8 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
 
     def is_definition_source(self):
         """ test if the current element has a definition source """
-        return not self.utIsEmptyString(self.definition_source_publ)
-        #return not (self.utIsEmptyString(self.definition_source_url) or 'definition_source_url' in self.get_hidden_list())
+        #return not self.utIsEmptyString(self.definition_source_publ)
+        return not (self.utIsEmptyString(self.definition_source_publ) or 'definition_source_publ' in self.get_hidden_list())
 
     def is_duplicate(self, p_id):
         """test if is the same element"""

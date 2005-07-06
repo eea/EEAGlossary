@@ -31,7 +31,7 @@
                     <td><textarea rows="6" cols="35" name="definition"><dtml-var definition></textarea></td>
                 </tr>
                 <tr>
-                    <td align="left" valign="top"><label for="cb-definition_source_publ"><b>Publication:</b></label></td>
+                    <td align="left" valign="top"><label for="cb-definition_source_publ"><b>Definition source publication:</b></label></td>
                     <td align="left" valign="top"><input type="text" name="definition_source_publ:string" size="35" value="<dtml-var definition_source_publ>"></td>
                 </tr>
 
@@ -41,7 +41,7 @@
                 </tr>
 
                 <tr>
-                    <td align="left" valign="top"><label for="cb-definition_source"><b>Definition source:</b></label></td>
+                    <td align="left" valign="top"><label for="cb-definition_source"><b>Definition source URL:</b></label></td>
                     <td align="left" valign="top"><input type="text" name="definition_source_url:string" size="35" value="<dtml-var definition_source_url>"></td>
                 </tr>
 
