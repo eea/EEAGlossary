@@ -63,6 +63,10 @@
 				
 
 <dtml-comment>
+********* 
+Example how to insert a SpiderGloss Agent result by using XML-RPC method getTopPages 
+TODO: To be removed or properly enabled when SpiderGloss in production
+*********
 				<div>TopPages on EEA</div><br />
 				<ul>
 				<dtml-in "getTopPages('3861066252', id, ['1000000003'], 10)">

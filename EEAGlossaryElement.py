@@ -383,11 +383,12 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         self.cu_uncatalog_object(self)
 
 
-    #################
-    #   XML/RPC     #
-    #################
+    #################################
+    #   XML/RPC SpiderGloss Agent   #
+    #################################
     def getTopPages(self, glossary_id, glossary_elements, domains, results_number):
-        """ """
+        """ Example on how to use SpiderGloss Agent (Server-to-Server via XML-RPC). 
+        TODO: Hard-coded SpiderGloss settings values needs to be moved to ZMI. """
         import xmlrpclib
         server = xmlrpclib.ServerProxy('http://z3.finsiel.ro:8380/SpiderGlossLast/')
         result = server.GetWebsiteIndex(glossary_id, [glossary_elements], domains, results_number)
