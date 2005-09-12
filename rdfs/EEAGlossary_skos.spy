@@ -27,13 +27,17 @@ print '''<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
             xml:lang="%s">''' % langcode
 
 for record in container.GetElementsInfo():
-    print '<rdf:Description rdf:about="%s">' % (record.absolute_url(0))
+ if record.is_published() and record.meta_type=='EEA Glossary Element':
+    print '<skos:Concept rdf:about="%s">' % (record.absolute_url(0))
     for language in record.get_english_names():
         print '<skos:prefLabel xml:lang="%s">%s</skos:prefLabel>' % (record.get_language_code(language), alias_container_utXmlEncode(record.get_translation_by_language(language)))
-    print '<skos:altLabel>%s</skos:altLabel>' % ""
+    myurl=record.absolute_url(1)
+    synobjs=context.GlossaryCatalog(synonyms=myurl)
+    for syno in synobjs:
+         print '<skos:altLabel>%s</skos:altLabel>' % syno.name
     if record.definition != '':
         print '<skos:definition>%s</skos:definition>' % alias_container_utXmlEncode(record.definition)
-    print '</rdf:Description>'
+    print '</skos:Concept>'
 print '</rdf:RDF>'
 
 #return stuff
