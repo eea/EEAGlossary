@@ -144,6 +144,11 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     def is_duplicate(self, p_id):
         """test if is the same element"""
         return p_id == self.id
+        
+    def getSynonyms(self):
+        """ returns list of synonyms for this element. 
+        Also known as 'Use For' relation in thesauri system and 'alternative label' in ontology systems."""
+        #TODO: search catalog and return list synobjs=context.GlossaryCatalog(synonyms=myurl)
 
     ############################
     #     SUBJECTS FUNCTIONS   #
@@ -231,10 +236,17 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         """convert element to synonym """
         synid = self.id
         synau = self.absolute_url(1)
-        ob=self.aq_parent
-        ob.manage_delObjects(synid)
-        ob.manage_addGlossarySynonym(synid, synonyms)
-        ob.utElementSynAdd([],synau)
+        synname=self.name
+        synapproved=self.approved
+        syndisabled=self.disabled
+        folder=self.aq_parent
+        #delete old element before adding synonym with same id
+        folder.manage_delObjects(synid)
+        folder.manage_addGlossarySynonym(synid, synonyms)
+        synobject=folder._getOb(synid)
+        #preserve old element metadata
+        synobject.manageSynonymOtherProperties(synname, syndisabled, synapproved)
+        folder.utElementSynAdd([],synau)
         if synonyms == []:
             if REQUEST is not None:
                 return REQUEST.RESPONSE.redirect('convert_to_synonym_html?syn=0')
@@ -382,20 +394,20 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         SimpleItem.inheritedAttribute('manage_beforeDelete')(self, item, container)
         self.cu_uncatalog_object(self)
 
-
+#TODO: add here specific calls to ALiSS Agent
     #################################
     #   XML/RPC SpiderGloss Agent   #
     #################################
-    def getTopPages(self, glossary_id, glossary_elements, domains, results_number):
-        """ Example on how to use SpiderGloss Agent (Server-to-Server via XML-RPC). 
-        TODO: Hard-coded SpiderGloss settings values needs to be moved to ZMI. """
-        import xmlrpclib
-        server = xmlrpclib.ServerProxy('http://z3.finsiel.ro:8380/SpiderGlossLast/')
-        result = server.GetWebsiteIndex(glossary_id, [glossary_elements], domains, results_number)
-        for item in result['results']['TopPages']:
-            if item['DomainID'] == '1000000003':
-                top_pages = item['Pages']
-        return top_pages
+    #def getTopPages(self, glossary_id, glossary_elements, domains, results_number):
+    #    """ Example on how to use SpiderGloss Agent (Server-to-Server via XML-RPC). 
+    #    TODO: Hard-coded SpiderGloss settings values needs to be moved to ZMI. """
+    #    import xmlrpclib
+    #    server = xmlrpclib.ServerProxy('http://z3.finsiel.ro:8380/SpiderGlossLast/')
+    #    result = server.GetWebsiteIndex(glossary_id, [glossary_elements], domains, results_number)
+    #    for item in result['results']['TopPages']:
+    #        if item['DomainID'] == '1000000003':
+    #            top_pages = item['Pages']
+    #    return top_pages
 
 
     #####################

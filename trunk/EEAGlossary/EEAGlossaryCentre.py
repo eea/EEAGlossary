@@ -185,6 +185,8 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         except: pass
         try: catalog_obj.addIndex('title', 'TextIndex')
         except: pass
+        try: catalog_obj.addIndex('synonyms', 'KeywordIndex')
+        except: pass
 
        #create metadata
         try: catalog_obj.addColumn('id')
@@ -196,6 +198,8 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         try: catalog_obj.addColumn('bobobase_modification_time')
         except: pass
         try: catalog_obj.addColumn('summary')
+        except: pass
+        try: catalog_obj.addColumn('name')
         except: pass
 
     def loadProperties(self):
@@ -1184,17 +1188,16 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         from Products.PythonScripts.PythonScript import manage_addPythonScript
 
         file_content = open(join(EEAGLOSSARY_PATH, 'rdfs', 'EEAGlossary_skos.spy'), 'r').read()
-        manage_addPythonScript(self, 'EEAGlossary_skos.rdf')
-        self._getOb('EEAGlossary_skos.rdf').write(file_content)
+        manage_addPythonScript(self, 'skos.rdf')
+        self._getOb('skos.rdf').write(file_content)
 
     def GetElementsInfo(self):
         """ """
         result=[]
         folder_list = self.folder_list_sorted()
         for folder in folder_list:
-            for elem in folder.get_object_list():
-                if elem.is_published() and elem.meta_type == EEA_GLOSSARY_ELEMENT_METATYPE:
-                    result.append(elem)
+            elems=folder.get_object_list()
+            result.extend(elems)
         return result
 
 InitializeClass(EEAGlossaryCentre)
