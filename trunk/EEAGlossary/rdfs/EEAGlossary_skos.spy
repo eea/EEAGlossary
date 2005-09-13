@@ -34,7 +34,7 @@ for record in container.GetElementsInfo():
     myurl=record.absolute_url(1)
     synobjs=context.GlossaryCatalog(synonyms=myurl)
     for syno in synobjs:
-         print '<skos:altLabel>%s</skos:altLabel>' % syno.name
+         print '<skos:altLabel xml:lang="en">%s</skos:altLabel>' % syno.name
     if record.definition != '':
         print '<skos:definition>%s</skos:definition>' % alias_container_utXmlEncode(record.definition)
     print '</skos:Concept>'
