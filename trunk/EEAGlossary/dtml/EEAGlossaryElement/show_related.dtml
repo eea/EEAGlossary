@@ -1,41 +1,40 @@
+<html>
+<head>
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" type="text/css" href="http://template.eea.eu.int/eea.css" />
+<dtml-var style_presentation_css>
+<base target="_top"> 
+</head>
+<body>
 <dtml-call "REQUEST.set('myid',id)">
 <dtml-call "REQUEST.set('firstitem',0)">
 <dtml-call "REQUEST.set('term_filtered',' ')">
 <dtml-let words_list="get_stop_words()">
 <dtml-call "REQUEST.set('stopwords',words_list)">
-
 <dtml-in "_.string.split(English)">
     <dtml-if "not _['sequence-item'] in REQUEST['stopwords']">
       <dtml-call "REQUEST.set('term_filtered',term_filtered+' '+_['sequence-item'])">
     </dtml-if>
 </dtml-in>
-
 <dtml-let query=term_filtered
           size=max_related
           language="'English'"
           definition="''"
           results="searchGlossary(query, size, language, definition)"
           res="results[2]">
-
+          <dtml-call "REQUEST.set('relatedexists',0)">
+    <ul>
     <dtml-in res>
         <dtml-if "approved and id!=myid">
-        <dtml-if synonyms>
-            <dtml-if "not firstitem">
-                <dtml-call "REQUEST.set('firstitem',1)">
-                <span><img src="misc_/EEAGlossary/related_ico.gif" width="20" height="11" align="absmiddle">Possibly related terms:</span>
-            </dtml-if>
+        <dtml-call "REQUEST.set('relatedexists',1)">
             <li><a href="<dtml-var absolute_url>"><dtml-var name></a></li><br/>
-        <dtml-else>
-            <dtml-let translation="get_translation_by_language(language)">
-            <dtml-if "not firstitem">
-                <dtml-call "REQUEST.set('firstitem',1)">
-                <span><img src="misc_/EEAGlossary/related_ico.gif" width="20" height="11" align="absmiddle">Possibly related terms:</span>
-            </dtml-if>
-            <li><a href="<dtml-var absolute_url>"><dtml-var translation></a></li><br/>
-            </dtml-let>
-        </dtml-if>
         </dtml-if>
     </dtml-in>
-
+    </ul>
+    <dtml-if "not relatedexists">
+    <p>No related terms found.</p>
+    </dtml-if>
 </dtml-let>
 </dtml-let>
+</body>
+</html>
