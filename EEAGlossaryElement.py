@@ -149,6 +149,11 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         """ returns list of synonyms for this element. 
         Also known as 'Use For' relation in thesauri system and 'alternative label' in ontology systems."""
         #TODO: search catalog and return list synobjs=context.GlossaryCatalog(synonyms=myurl)
+        
+    def getDefinitionSource(self):
+        """ returns a human readable string describing the original source of term definitions. """
+        return self.definition_source_publ;
+        
 
     ############################
     #     SUBJECTS FUNCTIONS   #
@@ -435,5 +440,6 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     show_related_html = DTMLFile("dtml/EEAGlossaryElement/show_related", globals())
 
     definition_html = DTMLFile("dtml/EEAGlossaryElement/definition", globals())
+    
 
 InitializeClass(EEAGlossaryElement)
