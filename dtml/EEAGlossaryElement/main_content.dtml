@@ -35,10 +35,10 @@
         registerAlissKeywordsSuggestions('agentBIG','AlissSuggest','<dtml-var English>');
         </script>
         
-       <div class="LSResult">
+       <div class="LSResult AlissLeftContainer">
 		  <div class="LSShadow" id="AlissKeywordsRelated"></div>
        </div>
-       <div class="LSResult">
+       <div class="LSResult AlissRightContainer">
 		  <div class="LSShadow" id="AlissSuggest"></div>
        </div>
 
