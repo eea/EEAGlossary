@@ -30,7 +30,7 @@
         <dtml-comment>
 		********* ALiSS Agent *********
 		</dtml-comment>
-		<script>
+		<script type="text/javascript">
         registerAlissKeywordsRelated('agentBIG','AlissKeywordsRelated','<dtml-var English>');
         registerAlissKeywordsSuggestions('agentBIG','AlissSuggest','<dtml-var English>');
         </script>
