@@ -260,12 +260,29 @@ class utils:
 
     def utXmlEncode(self, s):
         """Encode some special chars"""
+        #TODO: in this function we could use the functions from porting/export_ZGlossary.spy,
+        # now I have just added some special characters replacement from there.
         tmp = s
         tmp = tmp.replace('&', '&amp;')
         tmp = tmp.replace('<', '&lt;')
         tmp = tmp.replace('"', '&quot;')
         tmp = tmp.replace('\'', '&apos;')
         tmp = tmp.replace('>', '&gt;')
+        tmp = tmp.replace('�', '-')
+        tmp = tmp.replace('�', '-')
+        tmp = tmp.replace('�', "'")
+        tmp = tmp.replace('�', "'")
+        tmp = tmp.replace('�', " ")
+        tmp = tmp.replace('�', "'")
+        tmp = tmp.replace("�'", "'")
+        tmp = tmp.replace('�', '&quot;')
+        tmp = tmp.replace('�', '&quot;')
+        tmp = tmp.replace('�', "-")
+        tmp = tmp.replace('�', " ")
+        tmp = tmp.replace('�', "&quot;")
+        tmp = tmp.replace('�', "&quot;")
+        tmp = tmp.replace('�', "...")
+        tmp = tmp.replace('�', "* ")
         return tmp
 
     ######################
