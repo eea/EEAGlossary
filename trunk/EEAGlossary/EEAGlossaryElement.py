@@ -399,22 +399,6 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
         SimpleItem.inheritedAttribute('manage_beforeDelete')(self, item, container)
         self.cu_uncatalog_object(self)
 
-#TODO: add here specific calls to ALiSS Agent
-    #################################
-    #   XML/RPC SpiderGloss Agent   #
-    #################################
-    #def getTopPages(self, glossary_id, glossary_elements, domains, results_number):
-    #    """ Example on how to use SpiderGloss Agent (Server-to-Server via XML-RPC). 
-    #    TODO: Hard-coded SpiderGloss settings values needs to be moved to ZMI. """
-    #    import xmlrpclib
-    #    server = xmlrpclib.ServerProxy('http://z3.finsiel.ro:8380/SpiderGlossLast/')
-    #    result = server.GetWebsiteIndex(glossary_id, [glossary_elements], domains, results_number)
-    #    for item in result['results']['TopPages']:
-    #        if item['DomainID'] == '1000000003':
-    #            top_pages = item['Pages']
-    #    return top_pages
-
-
     #####################
     #   MANAGEMENT TABS #
     #####################
