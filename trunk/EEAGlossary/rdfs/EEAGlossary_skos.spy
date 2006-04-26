@@ -8,18 +8,17 @@
 ##title=Labels and definitions
 ##
 
-
 #load data
 l_container_url = container.absolute_url()
-alias_container_utXmlEncode = container.utXmlEncode
-
-#set content type
-RESPONSE.setHeader('content-type', 'text/xml')
+alias_utXmlEncode = container.utXmlEncode
+alias_utCleanUpStr = container.utCleanUpStr
 
 #get the HTML request and response objects.
 request = container.REQUEST
-RESPONSE =  request.RESPONSE
+response =  request.RESPONSE
 
+#set content type
+response.setHeader('content-type', 'text/xml')
 
 #start generating rdf content
 print '<?xml version="1.0" encoding="UTF-8"?>'
@@ -32,17 +31,17 @@ for record in container.GetElementsInfo()[int(fromidx):int(toidx)]:
  if record.meta_type=='EEA Glossary Element':
     print '<skos:Concept rdf:about="%s">' % (record.absolute_url(0))
     for language in record.get_english_names():
-        print '<skos:prefLabel xml:lang="%s">%s</skos:prefLabel>' % (record.get_language_code(language), alias_container_utXmlEncode(record.get_translation_by_language(language)))
+        print '<skos:prefLabel xml:lang="%s">%s</skos:prefLabel>' % (record.get_language_code(language), alias_utXmlEncode(record.get_translation_by_language(language)))
     myurl=record.absolute_url(1)
     synobjs=container.GlossaryCatalog(synonyms=myurl)
     if record.getDefinitionSource()!='':
-        defsource=alias_container_utXmlEncode(record.getDefinitionSource())
+        defsource=record.getDefinitionSource()
     else:
         defsource=container.title
     for syno in synobjs:
         print '<skos:altLabel xml:lang="en">%s</skos:altLabel>' % syno.name
     if record.definition != '':
-        print '<skos:definition>%s (definition source: %s)</skos:definition>' % (alias_container_utXmlEncode(record.definition),defsource)
+        print '<skos:definition>%s [definition source: %s]</skos:definition>' % (alias_utCleanUpStr(record.definition), alias_utCleanUpStr(defsource))
     print '</skos:Concept>'
 print '</rdf:RDF>'
 

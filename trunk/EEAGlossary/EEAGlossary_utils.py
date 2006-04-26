@@ -1,3 +1,4 @@
+# -*- coding: latin1 -*-
 # The contents of this file are subject to the Mozilla Public
 # License Version 1.1 (the "License"); you may not use this file
 # except in compliance with the License. You may obtain a copy of
@@ -233,13 +234,11 @@ class utils:
 
     def utf8_to_latin1(self, s):
         return self.encodeLatin1(self.decodeUTF8(s)[0])[0]
-    
+
     encodeLatin1, decodeLatin1 = codecs.lookup('latin1')[:2]
     encodeUTF8, decodeUTF8 = codecs.lookup('UTF8')[:2]
-
-        
     encodeISO88592, decodeISO88592 = codecs.lookup('iso-8859-2')[:2]
-    
+
     def debug(self, error):
         """ """
         import sys
@@ -258,31 +257,39 @@ class utils:
                 term=term[0:i] + "&#" + str(self.win_cp1252[ord(term[i])]) + ";" + term[i+1:]
         return term      
 
-    def utXmlEncode(self, s):
+    def utXmlEncode(self, p_str):
         """Encode some special chars"""
-        #TODO: in this function we could use the functions from porting/export_ZGlossary.spy,
-        # now I have just added some special characters replacement from there.
-        tmp = s
+        if isinstance(p_str, unicode): tmp = p_str.encode('utf-8')
+        else: tmp = str(p_str)
         tmp = tmp.replace('&', '&amp;')
         tmp = tmp.replace('<', '&lt;')
         tmp = tmp.replace('"', '&quot;')
         tmp = tmp.replace('\'', '&apos;')
         tmp = tmp.replace('>', '&gt;')
-        tmp = tmp.replace('ï¿½', '-')
-        tmp = tmp.replace('ï¿½', '-')
-        tmp = tmp.replace('ï¿½', "'")
-        tmp = tmp.replace('ï¿½', "'")
-        tmp = tmp.replace('ï¿½', " ")
-        tmp = tmp.replace('ï¿½', "'")
-        tmp = tmp.replace("ï¿½'", "'")
-        tmp = tmp.replace('ï¿½', '&quot;')
-        tmp = tmp.replace('ï¿½', '&quot;')
-        tmp = tmp.replace('ï¿½', "-")
-        tmp = tmp.replace('ï¿½', " ")
-        tmp = tmp.replace('ï¿½', "&quot;")
-        tmp = tmp.replace('ï¿½', "&quot;")
-        tmp = tmp.replace('ï¿½', "...")
-        tmp = tmp.replace('ï¿½', "* ")
+        return tmp
+
+    def utCleanUpStr(self, p_str):
+        """Cleanup a string of the NON-ASCII chars"""
+        tmp = self.utXmlEncode(p_str)
+        tmp = tmp.replace('—', '-')
+        tmp = tmp.replace('–', '-')
+        tmp = tmp.replace('‘', '&quot;')
+        tmp = tmp.replace('’', '&quot;')
+        tmp = tmp.replace(' ', " ")
+        tmp = tmp.replace('´', '&quot;')
+        tmp = tmp.replace("Â'", '&quot;')
+        tmp = tmp.replace('“', '&quot;')
+        tmp = tmp.replace('”', '&quot;')
+        tmp = tmp.replace('§', "-")
+        tmp = tmp.replace('¤', " ")
+        tmp = tmp.replace('«', "&quot;")
+        tmp = tmp.replace('»', "&quot;")
+        tmp = tmp.replace('…', "...")
+        tmp = tmp.replace('•', "* ")
+
+        tmp=tmp.replace('é','e')
+        tmp=tmp.replace('ê','e')
+        tmp=tmp.replace('È','E')
         return tmp
 
     ######################
