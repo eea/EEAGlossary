@@ -27,20 +27,20 @@
 	<dtml-if "not ('actions' in hidden_fields)">
 		<div class="category_subtitle">Additional info, actions and links</div>
 		<div class="category_content">
-        <dtml-comment>
+		<dtml-comment>
 		********* ALiSS Agent *********
 		</dtml-comment>
 		<script type="text/javascript">
-        registerAlissKeywordsRelated('agentBIG','AlissKeywordsRelated','<dtml-var English>');
-        registerAlissKeywordsSuggestions('agentBIG','AlissSuggest','<dtml-var English>');
-        </script>
-        
-       <div class="LSResult AlissLeftContainer">
-		  <div class="LSShadow" id="AlissKeywordsRelated"></div>
-       </div>
-       <div class="LSResult AlissRightContainer">
-		  <div class="LSShadow" id="AlissSuggest"></div>
-       </div>
+		registerAlissKeywordsRelated('agentBIG','AlissKeywordsRelated','<dtml-var English>');
+		registerAlissKeywordsSuggestions('agentBIG','AlissSuggest','<dtml-var English>');
+		</script>
+
+		<div class="LSResult AlissLeftContainer">
+			<div class="LSShadow" id="AlissKeywordsRelated"></div>
+		</div>
+		<div class="LSResult AlissRightContainer">
+			<div class="LSShadow" id="AlissSuggest"></div>
+		</div>
 
 		<dtml-comment>
 		<div class="content_list" style="background-image: url(misc_/EEAGlossary/dotted.gif); background-repeat: repeat-y; background-position: right;">	
@@ -55,7 +55,7 @@
 				<br>
 				</dtml-if>
 		</div>
-        </dtml-comment>
+		</dtml-comment>
 		<div class="visual-clear" /><!-- &nbsp; --></div>
 		</div>
 		<div style="height:20px;"></div>
@@ -100,6 +100,6 @@
 	</dtml-if>
 
 <dtml-else>
-    <b>Sorry, this term is not published.</b>
+	<b>Sorry, this term is not published.</b>
 </dtml-if>
 
