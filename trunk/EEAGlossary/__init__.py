@@ -19,7 +19,7 @@
 # Alex Ghica, Finsiel Romania
 # Cornel Nitu, Finsiel Romania
 #
-#$Id: __init__.py 3695 2005-05-23 10:53:32Z ghicaale $
+#$Id$
 
 from ImageFile import ImageFile
 
