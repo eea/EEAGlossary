@@ -1,11 +1,18 @@
 EEAGlossary
 
-## to be completed ###
-
+EEAGlossary is a Zope product which allow to manage and publish a glossary on the Web.
+It can handle terms entries, synomyms/acronyms of terms, terms definition and terms translations.
 
 EEAGlossary Features
 
-### to be completed ####
+It provides several features: 
+  - Multiliguality, management of translated terms
+  - Synomyms management
+  - Export/Import in XML localisation standards like XLIFF and TMX
+  - Export in Excel
+  - Export in SKOS (usefull for Sematinc web systems)
+  - Statistics pages for Published, Unpublished, Disabled and Approved terms.
+  - Possibility to organise glossary alphabetically or by thematic groups folder.
 
 
 EEAGlossary versions
@@ -30,6 +37,9 @@ Support
   will send us any comments you might have.
 
 Installation
+
+  It has been tested and used on 2.6.4 to 2.8.1. 
+  Dependency: it requires PyXML product installed on Zope.
 
   Installation of EEAGlossary is the same as for any other Zope product. You
   just need to untar the package into the Products directory of your
@@ -80,10 +90,11 @@ Installation
   package is installed correctly; there should be a EEAGlosary directory
   under the /lib/python/Products directory of your Zope installation. Also,
   make sure that the version of Zope you are using equal or higher than
-  2.5.1.
+  2.6.4.
 
   Another check you can make is to open the Zope management interface and
   click on to the Control Panel folder.  In the control panel folder, click
   on the Product Management link. This will bring up the list of available
   products for your Zope Installation.  If EEAGlosary product is not on the
   list or appears broken, the EEAGlosary package is not installed correctly.
+  
