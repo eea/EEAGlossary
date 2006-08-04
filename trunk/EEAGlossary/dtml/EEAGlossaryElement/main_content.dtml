@@ -27,8 +27,24 @@
 	<dtml-if "not ('actions' in hidden_fields)">
 		<div class="category_subtitle">Additional info, actions and links</div>
 		<div class="category_content">
+		
+		<dtml-comment>Show manually entered actions links</dtml-comment>
+		<div class="content_list" style="background-image: url(misc_/EEAGlossary/dotted.gif); background-repeat: repeat-y; background-position: right;">	
+				<dtml-if "_.len(get_links())>0 and _.len(get_actions())>0">
+					<dtml-in get_links>
+						<li>&nbsp;
+							<a href="<dtml-var sequence-item>">
+								<dtml-var "actions[_['sequence-index']]">
+							</a>
+						</li>
+					</dtml-in>
+				<br>
+				</dtml-if>
+		</div>
+		
+		
 		<dtml-comment>
-		********* ALiSS Agent *********
+		********* ALiSS Agent - Automatic links to relevant pages *********
 		</dtml-comment>
 		<script type="text/javascript">
 		registerAlissKeywordsRelated('agentBIG','AlissKeywordsRelated','<dtml-var English>');
@@ -42,20 +58,7 @@
 			<div class="LSShadow" id="AlissSuggest"></div>
 		</div>
 
-		<dtml-comment>
-		<div class="content_list" style="background-image: url(misc_/EEAGlossary/dotted.gif); background-repeat: repeat-y; background-position: right;">	
-				<dtml-if "_.len(get_links())>0 and _.len(get_actions())>0">
-					<dtml-in get_links>
-						<li>&nbsp;
-							<a href="<dtml-var sequence-item>">
-								<dtml-var "actions[_['sequence-index']]">
-							</a>
-						</li>
-					</dtml-in>
-				<br>
-				</dtml-if>
-		</div>
-		</dtml-comment>
+
 		<div class="visual-clear" /><!-- &nbsp; --></div>
 		</div>
 		<div style="height:20px;"></div>
