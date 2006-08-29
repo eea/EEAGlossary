@@ -93,10 +93,10 @@
 			<dtml-in get_subjects>
 			<dtml-let record="_['sequence-item']">
 				<b><dtml-var "record['code']"></b>: <dtml-var "record['name']">
-				<br>
+				<br />
 			</dtml-let>
 			</dtml-in>
-			<br>
+			<br />
 			Words between "{" in translations are used as short names for contexts (or subjects). These codes are used when there is no exact equivalence between the source and the target language. In this case several translations are supplied and tagged with a context code.
 			<a href="contexts_view_html">See all context/subject codes</a>.<p>&nbsp;
 		</div>
