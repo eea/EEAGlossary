@@ -71,7 +71,7 @@
                             <td class="cellodd" align="left" valign="top"><b>Translation</b></td>
                             <dtml-let result="get_translation_by_language(lang_code)">
                             <td align="left" valign="top" class="celleven">
-                                <input type="text" name="translation:utf8:ustring" size="36" value="<dtml-var result>"></td>
+                                <input type="text" name="translation" size="36" value="<dtml-var result>"></td>
                             </dtml-let>
                         </tr>
                         <tr>

@@ -260,7 +260,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     def manageTranslations(self, lang_code='', translation='', REQUEST=None):
         """ save translation for a language """
         if not lang_code:
-            return 
+            return REQUEST.RESPONSE.redirect('check_translation_html')
         if self.check_allowed_translations(lang_code):
             self.set_history(lang_code, translation)
             self.set_translations_list(lang_code, translation)
