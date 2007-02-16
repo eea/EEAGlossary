@@ -24,13 +24,11 @@
 		</div>
 	</dtml-if>
 
-	<dtml-if "not ('actions' in hidden_fields)">
+	<dtml-if "not ('actions' in hidden_fields) and _.len(get_links())>0 and _.len(get_actions())>0">
 		<div class="category_subtitle">Additional info, actions and links</div>
 		<div class="category_content">
-		
 		<dtml-comment>Show manually entered actions links</dtml-comment>
 		<div class="content_list" style="background-image: url(misc_/EEAGlossary/dotted.gif); background-repeat: repeat-y; background-position: right;">	
-				<dtml-if "_.len(get_links())>0 and _.len(get_actions())>0">
 					<dtml-in get_links>
 						<li>&nbsp;
 							<a href="<dtml-var sequence-item>">
@@ -38,28 +36,8 @@
 							</a>
 						</li>
 					</dtml-in>
-				<br>
-				</dtml-if>
-		</div>
-		
-		
-		<dtml-comment>
-		********* ALiSS Agent - Automatic links to relevant pages *********
-		</dtml-comment>
-		<script type="text/javascript">
-		registerAlissKeywordsRelated('agentBIG','AlissKeywordsRelated','<dtml-var English>');
-		registerAlissKeywordsSuggestions('agentBIG','AlissSuggest','<dtml-var English>');
-		</script>
-
-		<div class="LSResult AlissLeftContainer">
-			<div class="LSShadow" id="AlissKeywordsRelated"></div>
-		</div>
-		<div class="LSResult AlissRightContainer">
-			<div class="LSShadow" id="AlissSuggest"></div>
-		</div>
-
-
-		<div class="visual-clear" /><!-- &nbsp; --></div>
+				<br />
+		</div>	
 		</div>
 		<div style="height:20px;"></div>
 	</dtml-if>
