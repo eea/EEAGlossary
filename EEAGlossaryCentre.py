@@ -1181,7 +1181,6 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
     #####################
     #   SKOS Functions  #
     #####################
-    security.declareProtected('Manage GimmeThesaurus', 'loadRDF')
     def loadRDF(self):
         """ loads rdf files """
         from os.path import join
@@ -1199,6 +1198,14 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
             elems=folder.get_object_list()
             result.extend(elems)
         return result
+
+    #####################
+    #   Import scripts  #
+    #####################
+    def import_acronyms(self, REQUEST=None):
+        """ import acronym list """
+        from porting.import_acronyms import import_acr
+        return import_acr(self, REQUEST)
 
 InitializeClass(EEAGlossaryCentre)
 
