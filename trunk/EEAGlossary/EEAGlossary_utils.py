@@ -26,6 +26,7 @@
 import string
 import whrandom
 import codecs
+import csv
 
 #Zope imports
 from Products.PythonScripts.standard import url_quote
@@ -80,8 +81,13 @@ class utils:
         """ generate the ID """
         transtab=string.maketrans('/ +@','____')
         p_name = unicode(p_name, 'latin-1')
-        p_name = string.lower(p_name.encode('ascii', 'replace'))
-        return string.translate(p_name,transtab,'?&!;()<=>*#[]{}^~:|\/???$?%?')
+        p_name = p_name.encode('ascii', 'replace')
+        return string.translate(p_name,transtab,"?'&!;()<=>*#[]{}^~:|\/???$?%?")
+
+    def csv_reader(self, file_path, quoting=None):
+        """ CSV reader """
+        if quoting is None: quoting = csv.excel
+        return csv.reader(open(file_path, "rb"), quoting)
 
     def element_list_sorted(self):
         """ return all 'EEA Glossary Element' from a Centre root """
@@ -197,11 +203,7 @@ class utils:
 
     def utIsEmptyString(self, term='',REQUEST=None):
         """ return true if a string contains only white characters """
-        if term and len(term)>0:
-            if term.count(" ") == len(term):
-                return 1
-            return 0
-        return 1
+        return not len(term.strip())
 
     def utGetROOT(self):
         """ get the ROOT object """
@@ -432,7 +434,6 @@ class catalog_utils:
             dict[l_object.id] = l_object
         return dict.values()
 
-
     def cu_search_catalog(self, meta_type=None, query='', size=10000, language='English', definition=''):
         """ search catalog """
         catalog = self.getGlossaryCatalog()
@@ -443,3 +444,16 @@ class catalog_utils:
         res = self.__get_objects(results)
         res.extend(self.__get_objects(results_name))
         return self.utEliminateDuplicates(res)[:int(size)]
+
+    def cu_search_synonyms(self):
+        """ return synonyms pointing to this element """
+        results = []
+        filter = {}
+
+        filter['synonyms'] = self.absolute_url(1)
+        filter['approved'] = [1, 'on']
+        filter['meta_type'] = EEA_GLOSSARY_SYNONYM_METATYPE
+
+        results = self.__searchCatalog(filter)
+        results = self.__get_objects(results)
+        return results

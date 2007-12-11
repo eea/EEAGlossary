@@ -27,11 +27,13 @@ import string
 from xml.sax import make_parser, handler, InputSource
 from cStringIO import StringIO
 from Globals import MessageDialog
+from os.path import join
 
 #product imports
 from EEAGlossary_utils import utils
 from parsers.tmx_parser import tmx_parser
 from parsers.old_product_parser import old_product_parser
+from EEAGlossary_constants import EEAGLOSSARY_PATH, EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE
 
 class glossary_export:
     """ """
@@ -331,3 +333,195 @@ class glossary_export:
                 except:
                     print 'synonym error: %s' % l_item.id
         print 'done'
+
+
+    #######################
+    #   synonyms import   #
+    #######################
+
+    def import_synonyms(self, REQUEST=None):
+        """ import synonyms list from ACRONYMS.csv """
+        report = []
+        rep_add = report.append
+        gcat = self.getGlossaryCatalog()
+        data = self.csv_reader(join(EEAGLOSSARY_PATH, 'porting', 'ACRONYMS.csv'))
+
+        for rec in data:
+            name_one = rec[0].strip()
+            name_two = rec[1].strip()
+
+            obj_one = None
+            obj_two = None
+            context_one = None
+            context_two = None
+
+            #Search for existing elem/syn
+            query_string = ''
+
+            #Search for the first term
+            query_string = name_one
+            query_string = query_string.replace(' ', ' AND ')
+            results = gcat(name=query_string)
+            for obj in map(gcat.getobject, map(getattr, results, ('data_record_id_',)*len(results))):
+                if obj.disabled or (not obj.approved):
+                    #Found '*_OLD' which are used no more
+                    continue
+                if obj.name.strip() == name_one:
+                    #Found an existing one
+                    obj_one = obj
+                    break
+                elif obj.name.lower().strip() == name_one.lower():
+                    #Found an existing one
+                    #Exception: 'PPM'
+                    if name_one != 'PPM':
+                        obj_one = obj
+                        break
+
+            #Search for the second term
+            query_string = name_two
+            query_string = query_string.replace(' ', ' AND ')
+
+            if name_two == 'Global Resources Information Database':
+                #Exception: 'Global Resources Information Database'
+                obj_two = self.unrestrictedTraverse('EEAGlossary/G/GRID_United_Nations_Environment_Programme_Global_Resources_Information_Database', None)
+            else:
+                results = gcat(name=query_string)
+                for obj in map(gcat.getobject, map(getattr, results, ('data_record_id_',)*len(results))):
+                    if obj.disabled or (not obj.approved):
+                        #Found '*_OLD' which are used no more
+                        continue
+                    if obj.name.strip() == name_two:
+                        #Found an existing one
+                        obj_two = obj
+                        break
+                    elif obj.name.lower().strip() == name_two.lower():
+                        #Found an existing one
+                        obj_two = obj
+                        break
+
+            #Get elem/syn folder context
+            context_one_id = self.utf8_to_latin1(string.upper(name_one[:1]))
+            context_one = self.unrestrictedTraverse(context_one_id, None)
+            context_two_id = self.utf8_to_latin1(string.upper(name_two[:1]))
+            context_two = self.unrestrictedTraverse(context_two_id, None)
+
+            #Set syn/elems
+            if context_one is not None and context_two is not None:
+                if obj_one is None and obj_two is None:
+                    #EXCPTION: ('DMI', 'direct material input') -> ELEM exist but is not approved
+                    try:
+                        if name_one != 'VOC':
+                            context_two.manage_addGlossaryElement(name=name_two,
+                                                        el_type='',
+                                                        source='',
+                                                        subjects=[],
+                                                        el_context='',
+                                                        comment='',
+                                                        definition='',
+                                                        definition_source_publ='',
+                                                        definition_source_publ_year='',
+                                                        definition_source_url='',
+                                                        definition_source_org='EEA',
+                                                        definition_source_org_fullname='dataservice, http://dataservice.eea.eu.int',
+                                                        long_definition='',
+                                                        disabled=0,
+                                                        approved=1,
+                                                        QA_needed=0,
+                                                        image_url='',
+                                                        flash_url='',
+                                                        links=[],
+                                                        actions=[],
+                                                        translations={},
+                                                        synonym=[],
+                                                        id='',
+                                                        bad_translations=[])
+                    except Exception, error:
+                        #LOG: error
+                        print error
+                        print (name_one, name_two)
+                        print '==========BOTH ADDED ELEM======='
+                    obj_two = context_two._getOb(self.ut_makeId(name_two))
+                    obj_two.set_translations_list('English', name_two)
+                    obj_two.set_history('English', name_two)
+                    obj_two.cu_recatalog_object(obj_two)
+
+                    try:
+                        context_one.manage_addGlossarySynonym(self.ut_makeId(name_one), [obj_two.absolute_url(1)])
+                    except Exception, error:
+                        #LOG: error
+                        print error
+                        print (name_one, name_two)
+                        print '==========BOTH ADDED SYN======='
+                    obj_one = context_one._getOb(self.ut_makeId(name_one))
+                    obj_one.manageSynonymOtherProperties(name=name_one, disabled=0, approved=1)
+
+                    #LOG: excel on added as syn
+                    #LOG: excel two added as elem
+                    #glog = "ADDED BOTH. First as SYN and second as ELEM."
+                elif obj_one is not None and obj_two is None:
+                    if obj_one.meta_type == EEA_GLOSSARY_SYNONYM_METATYPE:
+                        #NOT: ('EMAS', 'Eco-Management and Audit Scheme')
+                        #ADD?: ('GIS', 'green investment schemes') !GIS deja e da cu alta definitie
+                        #NOT: ('HELCOM', 'Helsinki Commission - Baltic Marine Environment Protection Commission')
+                        #NOT: ('IPCC', 'Intergovernmental Panel on Climate Change')
+                        #NOT: ('IPPC', 'Integrated Pollution Prevention Control')
+                        #NOT: ('JRC', 'Joint Research Centre (European Commission)')
+                        #ADD?: ('NO', 'nitrogen monoxide')
+                        #NOT: ('NUTS', 'Nomenclature of territorial units in the EU')
+                        #NOT: ('PAH', 'Polycyclic aromatic hydrocarbons')
+                        #ADD?: ('REC', 'regional environmental centre')
+                        #NOT: ('SOER', 'The European environment - State and outlook')
+                        #NOT: ('UWWT', 'Urban Waste Water Treatment')
+                        #NOT: ('WEEE', 'waste electric and electronic equipment')
+
+                        #glog = "NO ACTION (SYN case): SECOND ADDED, first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added."
+                    elif obj_one.meta_type == EEA_GLOSSARY_ELEMENT_METATYPE:
+                        try:
+                            context_two.manage_addGlossarySynonym(self.ut_makeId(name_two), [obj_one.absolute_url(1)])
+                        except Exception, error:
+                            #LOG: error
+                            print error
+                            print (name_one, name_two)
+                            print '==========SECOND ADDED======='
+                        obj_two = context_two._getOb(self.ut_makeId(name_two))
+                        obj_two.manageSynonymOtherProperties(name=name_two, disabled=0, approved=1)
+                        #glog = "SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added."
+
+                    #LOG: excel one already exists
+                    #LOG: if excel one if elem ecel two added as syn to him
+                    #LOG: if excel one is synonym we presume excel two already exists
+                elif obj_one is None and obj_two is not None:
+                    l_syn = []
+                    if obj_two.meta_type == EEA_GLOSSARY_ELEMENT_METATYPE:
+                        l_syn.append(obj_two.absolute_url(1))
+                    elif obj_two.meta_type == EEA_GLOSSARY_SYNONYM_METATYPE:
+                        l_syn.append(obj_two.synonyms[0])
+
+                    try:
+                        context_one.manage_addGlossarySynonym(self.ut_makeId(name_one), l_syn)
+                    except Exception, error:
+                        #LOG: error
+                        print error
+                        print (name_one, name_two)
+                        print '==========FIRST ADDED======='
+                    obj_one = context_one._getOb(self.ut_makeId(name_one))
+                    obj_one.manageSynonymOtherProperties(name=name_one, disabled=0, approved=1)
+
+                    #LOG: excel one added as syn
+                    #LOG: excel two already exists
+                    #glog = "FIRST ADDED as SYN and SECOND already exists. If second is ELEM first relates to him and if second is SYN first related to his syn relation."
+                elif obj_one is not None and obj_two is not None:
+                    #LOG: excel one already exists
+                    #LOG: excel two already exists
+                    #glog = 'NO ACTION. Both already exists.'
+            else:
+                #LOG: error
+                pass
+
+#            t1 = name_one
+#            if t1.find(','): t1 = '"%s"' % t1
+#            t2 = name_two
+#            if t2.find(','): t2 = '"%s"' % t2
+#            rep_add('%s,%s,%s' % (t1, t2, glog))
+#        return report
+        return 'Done.'

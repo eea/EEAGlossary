@@ -28,23 +28,78 @@ print '''<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
             xml:lang="%s">''' % langcode
 
 for record in container.GetElementsInfo()[int(fromidx):int(toidx)]:
+ isEmptyString = record.utIsEmptyString
  if record.meta_type=='EEA Glossary Element':
     print '<skos:Concept rdf:about="%s">' % (record.absolute_url(0))
+
+    #Element translations
     for language in record.get_english_names():
-        print '<skos:prefLabel xml:lang="%s">%s</skos:prefLabel>' % (record.get_language_code(language), alias_utXmlEncode(record.get_translation_by_language(language)))
-    myurl=record.absolute_url(1)
-    synobjs=container.GlossaryCatalog(synonyms=myurl)
-    if record.getDefinitionSource()!='':
-        defsource=record.getDefinitionSource()
+        elem_translation = record.get_translation_by_language(language)
+        if not isEmptyString(elem_translation):
+            print '<skos:prefLabel xml:lang="%s">%s</skos:prefLabel>' % \
+                    (record.get_language_code(language), \
+                     alias_utXmlEncode(elem_translation))
+
+    #Synonyms
+    elem_synonyms = record.getSynonyms()
+    for syn_obj in elem_synonyms:
+        print '<skos:altLabel xml:lang="en">%s</skos:altLabel>' % syn_obj.name
+
+    #Definition
+    elem_definition = record.definition
+    if isEmptyString(elem_definition) and len(elem_synonyms) > 0:
+        data = ', '.join(map(getattr, elem_synonyms, ('name',)*len(elem_synonyms)))
+        elem_definition = 'Synonyms: %s' % data
+    if not isEmptyString(record.getDefinitionSource()):
+        defsource = record.getDefinitionSource()
     else:
-        defsource=container.title
-    for syno in synobjs:
-        print '<skos:altLabel xml:lang="en">%s</skos:altLabel>' % syno.name
-    if record.definition != '':
-        print '<skos:definition>%s [definition source: %s]</skos:definition>' % (alias_utCleanUpStr(record.definition), alias_utCleanUpStr(defsource))
+        defsource = container.title
+
+    if not isEmptyString(elem_definition):
+        print '<skos:definition>%s [definition source: %s]</skos:definition>' % \
+                (alias_utCleanUpStr(elem_definition), \
+                 alias_utCleanUpStr(defsource))
+
     print '</skos:Concept>'
+
+ elif record.meta_type=='EEA Glossary Synonym':
+    #Synonym name
+    syn_name = record.name
+    if not isEmptyString(syn_name):
+        print '<skos:Concept rdf:about="%s">' % (record.absolute_url(0))
+        print '<skos:prefLabel>%s</skos:prefLabel>' % alias_utXmlEncode(syn_name)
+
+    syn_related_elem = record.utGetSynonyms()
+    if len(syn_related_elem) > 0:
+        syn_related_elem = syn_related_elem[0]
+        elem_synonyms = []
+        elem_synonyms.append(syn_related_elem)
+        elem_synonyms.extend(syn_related_elem.getSynonyms())
+        if record in elem_synonyms: elem_synonyms.remove(record)
+
+        #Synonyms
+        for syn_obj in elem_synonyms:
+            print '<skos:altLabel xml:lang="en">%s</skos:altLabel>' % syn_obj.name
+
+        #Synonym definition
+        syn_definition = ''
+        if syn_related_elem: syn_definition = syn_related_elem.definition
+
+        if isEmptyString(syn_definition) and len(elem_synonyms) > 0:
+            data = ', '.join(map(getattr, elem_synonyms, ('name',)*len(elem_synonyms)))
+            syn_definition = 'Synonyms: %s' % data
+        if not isEmptyString(syn_related_elem.getDefinitionSource()):
+            defsource = syn_related_elem.getDefinitionSource()
+        else:
+            defsource = container.title
+
+        if not isEmptyString(syn_definition):
+            print '<skos:definition>%s [definition source: %s]</skos:definition>' % \
+                    (alias_utCleanUpStr(syn_definition), \
+                     alias_utCleanUpStr(defsource))
+    print '</skos:Concept>'
+
 print '</rdf:RDF>'
 
-#return stuff
 return printed
 

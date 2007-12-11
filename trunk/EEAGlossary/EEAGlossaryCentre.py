@@ -1199,14 +1199,6 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
             result.extend(elems)
         return result
 
-    #####################
-    #   Import scripts  #
-    #####################
-    def import_acronyms(self, REQUEST=None):
-        """ import acronym list """
-        from porting.import_acronyms import import_acr
-        return import_acr(self, REQUEST)
-
 InitializeClass(EEAGlossaryCentre)
 
 
