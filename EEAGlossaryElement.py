@@ -144,16 +144,20 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
     def is_duplicate(self, p_id):
         """test if is the same element"""
         return p_id == self.id
-        
+
+    def has_synonyms(self):
+        """ test if this element has any synonym """
+        return len(self.getSynonyms())
+
     def getSynonyms(self):
         """ returns list of synonyms for this element. 
         Also known as 'Use For' relation in thesauri system and 'alternative label' in ontology systems."""
-        #TODO: search catalog and return list synobjs=context.GlossaryCatalog(synonyms=myurl)
-        
+        return self.cu_search_synonyms()
+
     def getDefinitionSource(self):
         """ returns a human readable string describing the original source of term definitions. """
         return self.definition_source_publ;
-        
+
 
     ############################
     #     SUBJECTS FUNCTIONS   #

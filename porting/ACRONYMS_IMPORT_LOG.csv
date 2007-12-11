@@ -1,0 +1,469 @@
+AAUs,assigned amount units,ADDED BOTH. First as SYN and second as ELEM.
+ACAP,Arctic Council Action Plan,ADDED BOTH. First as SYN and second as ELEM.
+ACEA,European Automobile Manufacturers' Association,ADDED BOTH. First as SYN and second as ELEM.
+ACIA,Arctic Climate Impact Assessment,ADDED BOTH. First as SYN and second as ELEM.
+ACS,automatic control stations,ADDED BOTH. First as SYN and second as ELEM.
+ADB,Asian Development Bank,ADDED BOTH. First as SYN and second as ELEM.
+AMAP,Arctic Monitoring and Assessment Programme,NO ACTION. Both already exists.
+AMD,Armenian dram,ADDED BOTH. First as SYN and second as ELEM.
+AOT40,Accumulated Ozone over a threshold of 40ppb,SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+APHEIS,Air Pollution and Health: A European Information System,ADDED BOTH. First as SYN and second as ELEM.
+API,air pollution index,ADDED BOTH. First as SYN and second as ELEM.
+AQDD,Air Quality Daughter Directives,ADDED BOTH. First as SYN and second as ELEM.
+AQFD,Air Quality Framework Directive,FIRST ADDED as SYN and SECOND already exists. If second is ELEM first relates to him and if second is SYN first related to his syn relation.
+ASCIs,Areas of Special Conservation Interest,ADDED BOTH. First as SYN and second as ELEM.
+ASCOBANS,Agreement on the Conservation of Small Cetaceans of the Baltic and North Seas,NO ACTION. Both already exists.
+ASEF,Asia-Europe Foundation,ADDED BOTH. First as SYN and second as ELEM.
+AWI,The Alfred Wegener Institute,ADDED BOTH. First as SYN and second as ELEM.
+BaP,benzo(a)pyrene,ADDED BOTH. First as SYN and second as ELEM.
+BauA,"Federal Institute for Occupational Safety and Health, Germany",ADDED BOTH. First as SYN and second as ELEM.
+BDE,bromo diphenyl ether,ADDED BOTH. First as SYN and second as ELEM.
+BeNeLux,"Belgium, the Netherlands and Luxembourg",ADDED BOTH. First as SYN and second as ELEM.
+BFRs,brominated flame retardants,ADDED BOTH. First as SYN and second as ELEM.
+BMB NEMO,Baltic Marine Biologists database on Non-indigenous Estuarine and Marine Organisms,ADDED BOTH. First as SYN and second as ELEM.
+bn,billion,ADDED BOTH. First as SYN and second as ELEM.
+BOD,biochemical oxygen demand,NO ACTION. Both already exists.
+BREF,Best Available Technology Reference Documents,ADDED BOTH. First as SYN and second as ELEM.
+BSC,Black Sea Commission,ADDED BOTH. First as SYN and second as ELEM.
+BTC,Baku-Tbilisi-Ceyhan (oil pipeline),ADDED BOTH. First as SYN and second as ELEM.
+C6H6,benzene,ADDED BOTH. First as SYN and second as ELEM.
+CAFE,Clean Air for Europe,ADDED BOTH. First as SYN and second as ELEM.
+CALM,Coordination of European Research for Advanced Transport Noise Mitigation,ADDED BOTH. First as SYN and second as ELEM.
+CAP,Common Agricultural Policy,NO ACTION. Both already exists.
+CAPACT,Capacity Building for Air Quality Management and the Application of Clean Coal Combustion Technologies in Central Asia,ADDED BOTH. First as SYN and second as ELEM.
+CARDS,"Community Assistance for Reconstruction, Development and Stabilisation",ADDED BOTH. First as SYN and second as ELEM.
+CAREAP,Regional Environmental Action Programme for Central Asia,ADDED BOTH. First as SYN and second as ELEM.
+CAREC,Regional Environmental Centre for Central Asia,ADDED BOTH. First as SYN and second as ELEM.
+CBD,Convention on Biological Diversity,ADDED BOTH. First as SYN and second as ELEM.
+CCI RF,Chamber of Commerce and Industry of the Russian Federation,ADDED BOTH. First as SYN and second as ELEM.
+CCMS,Committee on the Challenges of Modern Society,ADDED BOTH. First as SYN and second as ELEM.
+CCS,carbon capture and storage,ADDED BOTH. First as SYN and second as ELEM.
+Cd,cadmium,ADDED BOTH. First as SYN and second as ELEM.
+CDDA,Common Database on Designated Areas,NO ACTION. Both already exists.
+CDM,Clean Development Mechanism,NO ACTION. Both already exists.
+Cefic,European Chemical Industry Council,ADDED BOTH. First as SYN and second as ELEM.
+CEHAPE,Children's Environment and Health Action Plan for Europe,ADDED BOTH. First as SYN and second as ELEM.
+CEMR,Council of European Municipalities and Regions,ADDED BOTH. First as SYN and second as ELEM.
+CENEf,Center for Energy Efficiency,ADDED BOTH. First as SYN and second as ELEM.
+CEP,Caspian Environment Programme,ADDED BOTH. First as SYN and second as ELEM.
+CEPA,"Communication, Education and Public Awareness",ADDED BOTH. First as SYN and second as ELEM.
+CEPF,Critical Ecosystem Partnership Fund,ADDED BOTH. First as SYN and second as ELEM.
+CEPI,Confederation of European Paper Industries,ADDED BOTH. First as SYN and second as ELEM.
+CERA,Cambridge Energy Research Associates,ADDED BOTH. First as SYN and second as ELEM.
+CERs,certified emission reductions,ADDED BOTH. First as SYN and second as ELEM.
+CFCs,chlorofluorocarbons,ADDED BOTH. First as SYN and second as ELEM.
+CFP,Common Fisheries Policy,NO ACTION. Both already exists.
+CH4,methane,FIRST ADDED as SYN and SECOND already exists. If second is ELEM first relates to him and if second is SYN first related to his syn relation.
+CI,confidence interval,ADDED BOTH. First as SYN and second as ELEM.
+CIFAS,Cross-compliance Indicators in the context of the Farm Advisory System,ADDED BOTH. First as SYN and second as ELEM.
+CIS,Commonwealth of Independent States,ADDED BOTH. First as SYN and second as ELEM.
+CISSTAT,Interstate Statistical Committee of the Commonwealth of Independent States,ADDED BOTH. First as SYN and second as ELEM.
+CITES,Convention on International Trade in Endangered Species of Wild Fauna and Flora,NO ACTION. Both already exists.
+CLE,current legislation,ADDED BOTH. First as SYN and second as ELEM.
+CLC,Corine land cover,FIRST ADDED as SYN and SECOND already exists. If second is ELEM first relates to him and if second is SYN first related to his syn relation.
+CLRTAP,Convention on Long-range Transboundary Air Pollution,ADDED BOTH. First as SYN and second as ELEM.
+CMP,Conference of the Parties serving as the Meeting of the Parties to the Kyoto Protocol,ADDED BOTH. First as SYN and second as ELEM.
+CMR,"carcinogenic, mutagenic and repro-toxic chemicals",ADDED BOTH. First as SYN and second as ELEM.
+CMS,Convention on Migratory Species,ADDED BOTH. First as SYN and second as ELEM.
+CO,carbon monoxide,NO ACTION. Both already exists.
+CO2,carbon dioxide,NO ACTION. Both already exists.
+COAST,Conservation and Sustainable use of Biodiversity in the Dalmatian Coast through Greening Coastal Development,ADDED BOTH. First as SYN and second as ELEM.
+COD,chemical oxygen demand,NO ACTION. Both already exists.
+COMEXT,Eurostat database on trade data,ADDED BOTH. First as SYN and second as ELEM.
+COP,Conference of the Parties,ADDED BOTH. First as SYN and second as ELEM.
+COR,Committee of the Regions,ADDED BOTH. First as SYN and second as ELEM.
+Corine,Coordination of Information on the Environment,SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+CPR,continuous plankton recorder,ADDED BOTH. First as SYN and second as ELEM.
+CRF,common reporting format,ADDED BOTH. First as SYN and second as ELEM.
+CROSTAT,Central Bureau of Statistics of the Republic of Croatia,ADDED BOTH. First as SYN and second as ELEM.
+CRU,Climatic Research Unit,ADDED BOTH. First as SYN and second as ELEM.
+CSD,Commission on Sustainable Development,ADDED BOTH. First as SYN and second as ELEM.
+CSI,core set of indicators,NO ACTION. Both already exists.
+DALYs,disability-adjusted life years,ADDED BOTH. First as SYN and second as ELEM.
+dB,decibel,NO ACTION. Both already exists.
+DDE,dichlorodiphenyl dichloroethylene,ADDED BOTH. First as SYN and second as ELEM.
+DDT,dichlorodiphenyl trichloroethane,SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+DEFRA,"Department for Environment Food and Rural Affairs, United Kingdom",ADDED BOTH. First as SYN and second as ELEM.
+DEPA,Danish Environmental Protection Agency,ADDED BOTH. First as SYN and second as ELEM.
+DESD,Decade of Education for Sustainable Development,ADDED BOTH. First as SYN and second as ELEM.
+DEU,domestic extraction used,ADDED BOTH. First as SYN and second as ELEM.
+DFT,"Department for Transport, United Kingdom",ADDED BOTH. First as SYN and second as ELEM.
+DG,Directorate General,ADDED BOTH. First as SYN and second as ELEM.
+DG SANCO,Directorate General for Health and Consumer Protection,ADDED BOTH. First as SYN and second as ELEM.
+DKK,Danish krone,ADDED BOTH. First as SYN and second as ELEM.
+dl,decilitre,ADDED BOTH. First as SYN and second as ELEM.
+DMC,domestic material consumption,ADDED BOTH. First as SYN and second as ELEM.
+DMI,direct material input,ADDED BOTH. First as SYN and second as ELEM.
+DMI,Danish Meteorological Institute,NO ACTION (SYN case): SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+DOE,designated operational entity,ADDED BOTH. First as SYN and second as ELEM.
+DPSIR,driving forces - pressures - state?- impact - response,SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+DTI,"Department of Trade and Industry, United Kingdom",ADDED BOTH. First as SYN and second as ELEM.
+EAP,environment action programme,ADDED BOTH. First as SYN and second as ELEM.
+EBCC,European Bird Census Council,ADDED BOTH. First as SYN and second as ELEM.
+EBD,Environmental Burden of Disease,ADDED BOTH. First as SYN and second as ELEM.
+EBRD,European Bank for Reconstruction and Development,ADDED BOTH. First as SYN and second as ELEM.
+EC,European Commission,ADDED BOTH. First as SYN and second as ELEM.
+ECB,European Chemicals Bureau,ADDED BOTH. First as SYN and second as ELEM.
+ECCP,European Climate Change Programme,FIRST ADDED as SYN and SECOND already exists. If second is ELEM first relates to him and if second is SYN first related to his syn relation.
+ECDC,European Centre for Disease Prevention and Control,ADDED BOTH. First as SYN and second as ELEM.
+ECHO,European Commission Humanitarian Aid Office,ADDED BOTH. First as SYN and second as ELEM.
+ECMT,European Conference of Ministers of Transport,ADDED BOTH. First as SYN and second as ELEM.
+ECNC,European Centre for Nature Conservation,ADDED BOTH. First as SYN and second as ELEM.
+ECOEHIS,Development of environmental health indicators for European Union countries,ADDED BOTH. First as SYN and second as ELEM.
+ECP,ecoregional conservation plan,ADDED BOTH. First as SYN and second as ELEM.
+EE,Eastern Europe,ADDED BOTH. First as SYN and second as ELEM.
+EEA,European Environment Agency,NO ACTION. Both already exists.
+EEA-32,"32 member countries of the EEA (EU-15 + EU-10 + EFTA-4 + Romania, Bulgaria and Turkey)",ADDED BOTH. First as SYN and second as ELEM.
+EEB,European Environmental Bureau,ADDED BOTH. First as SYN and second as ELEM.
+EEC,European Economic Community,ADDED BOTH. First as SYN and second as ELEM.
+EECCA,"Eastern Europe, the Caucasus and Central Asia",ADDED BOTH. First as SYN and second as ELEM.
+EEHC,European Environment and Health Committee,ADDED BOTH. First as SYN and second as ELEM.
+EEK,Estonian kroon,ADDED BOTH. First as SYN and second as ELEM.
+EEZ,exclusive economic zone,NO ACTION. Both already exists.
+EfE,Environment for Europe,ADDED BOTH. First as SYN and second as ELEM.
+EFNCP,European Forum on Nature Conservation and Pastoralism,ADDED BOTH. First as SYN and second as ELEM.
+EFTA,European Free Trade Association,ADDED BOTH. First as SYN and second as ELEM.
+EFTA,European Free Trade Association,NO ACTION. Both already exists.
+EFTA-4,"Iceland, Liechtenstein, Norway, Switzerland",ADDED BOTH. First as SYN and second as ELEM.
+EHPR,environment and health performance review,ADDED BOTH. First as SYN and second as ELEM.
+EIA,environmental impact assessment,NO ACTION. Both already exists.
+EICTA,European Information & Communications Technology Industry Association,ADDED BOTH. First as SYN and second as ELEM.
+Eionet,European environment information and observation network,NO ACTION. Both already exists.
+EIPRO,environmental impact of products,ADDED BOTH. First as SYN and second as ELEM.
+ELOISE,European Land-Ocean Interaction Studies,ADDED BOTH. First as SYN and second as ELEM.
+EMAS,Eco-Management and Audit Scheme,NO ACTION (SYN case): SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+EM-DAT,Emergency Disasters Data Base,ADDED BOTH. First as SYN and second as ELEM.
+EMEP,Co-operative programme for the monitoring and evaluation of the long-range transmission of air pollutants in Europe (European monitoring and evaluation programme),SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+EMS,European marine strategy,ADDED BOTH. First as SYN and second as ELEM.
+ENEA,European network of environmental authorities,ADDED BOTH. First as SYN and second as ELEM.
+ENHIS,environment and health information system,ADDED BOTH. First as SYN and second as ELEM.
+ENP,European neighbourhood policy,ADDED BOTH. First as SYN and second as ELEM.
+ENTEC,Environmental and Engineering Consultancy,ADDED BOTH. First as SYN and second as ELEM.
+ENVSEC,environment and security initiative,ADDED BOTH. First as SYN and second as ELEM.
+EoI,exchange of information decision,ADDED BOTH. First as SYN and second as ELEM.
+EPA,environmental protection agency,ADDED BOTH. First as SYN and second as ELEM.
+EPER,European Pollutant Emission Register,NO ACTION. Both already exists.
+EPR,environmental performance review,ADDED BOTH. First as SYN and second as ELEM.
+EPRTR,European Pollutants Release and Transfer Register,ADDED BOTH. First as SYN and second as ELEM.
+eq,equivalent,ADDED BOTH. First as SYN and second as ELEM.
+ERUs,emission reduction units,ADDED BOTH. First as SYN and second as ELEM.
+ESD,Education for Sustainable Development,ADDED BOTH. First as SYN and second as ELEM.
+ESL,European Statistical Laboratory,ADDED BOTH. First as SYN and second as ELEM.
+ESPON,European Spatial Planning Observation Network,ADDED BOTH. First as SYN and second as ELEM.
+ETC/ACC,European Topic Centre on Air and Climate Change,NO ACTION. Both already exists.
+ETC/BD,European Topic Centre on Biological Diversity,ADDED BOTH. First as SYN and second as ELEM.
+ETC/RWM,European Topic Centre on Resource and Waste Management,ADDED BOTH. First as SYN and second as ELEM.
+ETC/WTR,European Topic Centre on Water,ADDED BOTH. First as SYN and second as ELEM.
+ETR,environmental tax reform,ADDED BOTH. First as SYN and second as ELEM.
+ETS,emissions trading scheme,ADDED BOTH. First as SYN and second as ELEM.
+EU,European Union,ADDED BOTH. First as SYN and second as ELEM.
+EU-10,"The 10 countries that joined the EU in 2004: Cyprus, the Czech Republic, Estonia, Hungary, Latvia, Lithuania, Malta, Poland, Slovakia and Slovenia. Joined the European Union on 1 May 2004",ADDED BOTH. First as SYN and second as ELEM.
+EU-15,"The 15 pre-2004 EU Member States: Austria, Belgium, Denmark, Finland, France, Germany, Greece, Ireland, Italy, Luxembourg, the Netherlands, Portugal, Spain, Sweden, the United Kingdom",ADDED BOTH. First as SYN and second as ELEM.
+EU-2,Bulgaria and Romania,ADDED BOTH. First as SYN and second as ELEM.
+EU-25,The pre-2007 EU Member States: EU-15 + EU-10,ADDED BOTH. First as SYN and second as ELEM.
+EU2CC2,"Bulgaria, Rumania and candidate countries (EU)",ADDED BOTH. First as SYN and second as ELEM.
+EUCC,European Union Coastal Conservation,ADDED BOTH. First as SYN and second as ELEM.
+EUNIS,European Nature Information System,NO ACTION. Both already exists.
+EUR,euro,ADDED BOTH. First as SYN and second as ELEM.
+EUR-A,"EU-15, EFTA and other western European countries, Croatia, the Czech Republic, Cyprus and Malta",ADDED BOTH. First as SYN and second as ELEM.
+EUR-B,"most of the Caucasus, Central Asia and south-eastern Europe, Poland and Slovakia",ADDED BOTH. First as SYN and second as ELEM.
+EUR-C,"Eastern Europe, Estonia, Latvia, Lithuania, Hungary and Kazakhstan",ADDED BOTH. First as SYN and second as ELEM.
+Eurocontrol,European Organisation for the Safety of Air Navigation,ADDED BOTH. First as SYN and second as ELEM.
+EUROPARC,Federation of Nature and National Parks of Europe,ADDED BOTH. First as SYN and second as ELEM.
+Eurostat,Statistical Office of the European Communities,ADDED BOTH. First as SYN and second as ELEM.
+EUWI MED,EU Water Initiative ? Mediterranean component,ADDED BOTH. First as SYN and second as ELEM.
+EW-MFA,economy-wide material flow accounting,ADDED BOTH. First as SYN and second as ELEM.
+FAO,Food and Agriculture Organization of the United Nations,ADDED BOTH. First as SYN and second as ELEM.
+FAOSTAT,Food and Agriculture Organization of the United Nations' Statistical Database,ADDED BOTH. First as SYN and second as ELEM.
+FEC,final energy consumption,ADDED BOTH. First as SYN and second as ELEM.
+F-gases,fluorinated gases,ADDED BOTH. First as SYN and second as ELEM.
+FISHSTAT,software for fishery statistics,ADDED BOTH. First as SYN and second as ELEM.
+FP,framework programme,ADDED BOTH. First as SYN and second as ELEM.
+FSA,Food Standards Agency,ADDED BOTH. First as SYN and second as ELEM.
+FWD,Framework Directive,ADDED BOTH. First as SYN and second as ELEM.
+g,gram,ADDED BOTH. First as SYN and second as ELEM.
+GAINS,greenhouse gas and air pollution interactions and synergies,ADDED BOTH. First as SYN and second as ELEM.
+GBP,Great Britain pound,ADDED BOTH. First as SYN and second as ELEM.
+GDP,gross domestic product,NO ACTION. Both already exists.
+GEF,global environment facility,NO ACTION. Both already exists.
+GEMS,global environment monitoring system,ADDED BOTH. First as SYN and second as ELEM.
+GEO,global environment outlook,ADDED BOTH. First as SYN and second as ELEM.
+GEOSS,Global Earth Observation System of Systems,ADDED BOTH. First as SYN and second as ELEM.
+GerES,German Environmental Survey,ADDED BOTH. First as SYN and second as ELEM.
+GFCM,General Fisheries Commission for the Mediterranean,ADDED BOTH. First as SYN and second as ELEM.
+GFN,Global Footprint Network,ADDED BOTH. First as SYN and second as ELEM.
+GHG,greenhouse gas,NO ACTION. Both already exists.
+GHS,globally harmonized system,ADDED BOTH. First as SYN and second as ELEM.
+GIS,green investment schemes,NO ACTION (SYN case): SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+GISS,Goddard Institute for Space Studies,ADDED BOTH. First as SYN and second as ELEM.
+GIWA,Global International Waters Assessments,ADDED BOTH. First as SYN and second as ELEM.
+GM crops,genetically modified crops,ADDED BOTH. First as SYN and second as ELEM.
+GMAPS,Global Model of Ambient Particulates,ADDED BOTH. First as SYN and second as ELEM.
+GMES,global monitoring for environment and security,ADDED BOTH. First as SYN and second as ELEM.
+GMOs,genetically modified organisms,ADDED BOTH. First as SYN and second as ELEM.
+GMP,global monitoring plan,ADDED BOTH. First as SYN and second as ELEM.
+GPA,global programme of action,ADDED BOTH. First as SYN and second as ELEM.
+GPP,green public procurement,ADDED BOTH. First as SYN and second as ELEM.
+GRID,Global Resources Information Database,NO ACTION. Both already exists.
+GTZ,Deutsche Gesellschaft f?r Technische Zusammenarbeit GmbH,ADDED BOTH. First as SYN and second as ELEM.
+ha,hectare,ADDED BOTH. First as SYN and second as ELEM.
+HadSST2,Hadley Centre SST data set,ADDED BOTH. First as SYN and second as ELEM.
+HBM,human biomonitoring,ADDED BOTH. First as SYN and second as ELEM.
+HC,hydrocarbon,ADDED BOTH. First as SYN and second as ELEM.
+HCB,hexachlorobenzene,ADDED BOTH. First as SYN and second as ELEM.
+HCFCs,hydrochlorofluorocarbons,ADDED BOTH. First as SYN and second as ELEM.
+HCH,hexachlorocyclohexane,ADDED BOTH. First as SYN and second as ELEM.
+HCMR,Hellenic Centre for Marine Research,ADDED BOTH. First as SYN and second as ELEM.
+HELCOM,Helsinki Commission - Baltic Marine Environment Protection Commission,NO ACTION (SYN case): SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+HFCs,hydrofluorocarbons,ADDED BOTH. First as SYN and second as ELEM.
+Hg,mercury,ADDED BOTH. First as SYN and second as ELEM.
+HNV,high nature value,ADDED BOTH. First as SYN and second as ELEM.
+HP,hydroxypyrene,ADDED BOTH. First as SYN and second as ELEM.
+HPVC,high production volume chemical,FIRST ADDED as SYN and SECOND already exists. If second is ELEM first relates to him and if second is SYN first related to his syn relation.
+IA,impact assessment,ADDED BOTH. First as SYN and second as ELEM.
+IACMST,Inter-Agency Committee on Marine Science and Technology,ADDED BOTH. First as SYN and second as ELEM.
+IAEA,International Atomic Energy Agency,ADDED BOTH. First as SYN and second as ELEM.
+ICARDA,International Centre for Agricultural Research in the Dry Areas,ADDED BOTH. First as SYN and second as ELEM.
+ICBL,International Campaign to Ban Landmines,ADDED BOTH. First as SYN and second as ELEM.
+ICCA,International Council of Chemical Associations,ADDED BOTH. First as SYN and second as ELEM.
+ICCAT,International Commission for the Conservation of Atlantic Tunas,ADDED BOTH. First as SYN and second as ELEM.
+ICCM,International Conference on Chemicals Management,ADDED BOTH. First as SYN and second as ELEM.
+ICES,International Council for the Exploration of the Sea,NO ACTION. Both already exists.
+ICLEI,International Council for Local Environmental Initiatives,ADDED BOTH. First as SYN and second as ELEM.
+ICM,integrated crop management,FIRST ADDED as SYN and SECOND already exists. If second is ELEM first relates to him and if second is SYN first related to his syn relation.
+ICZM,integrated coastal zone management,NO ACTION. Both already exists.
+IDPs,internally displaced persons,ADDED BOTH. First as SYN and second as ELEM.
+IEA,International Energy Agency,ADDED BOTH. First as SYN and second as ELEM.
+IEEP,Institute for European Environmental Policy,ADDED BOTH. First as SYN and second as ELEM.
+IES,Institute for Environment and Sustainability,ADDED BOTH. First as SYN and second as ELEM.
+IFCS,Intergovernmental Forum on Chemical Safety,ADDED BOTH. First as SYN and second as ELEM.
+IFOAM,International Federation of Organic Agriculture Movements,ADDED BOTH. First as SYN and second as ELEM.
+IHPA,International HCH and Pesticides Association,ADDED BOTH. First as SYN and second as ELEM.
+IIASA,International Institute for Applied Systems Analysis,ADDED BOTH. First as SYN and second as ELEM.
+ILO,International Labour Organisation,ADDED BOTH. First as SYN and second as ELEM.
+IMO,International Maritime Organisation,ADDED BOTH. First as SYN and second as ELEM.
+IMR,"Institute of Marine Research, Norway",ADDED BOTH. First as SYN and second as ELEM.
+INSPIRE,Infrastructure for Spatial Information in Europe,ADDED BOTH. First as SYN and second as ELEM.
+IOMC,Inter-Organization Programme for the Sound Management of Chemicals,ADDED BOTH. First as SYN and second as ELEM.
+IPCC,Intergovernmental Panel on Climate Change,NO ACTION (SYN case): SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+IPCS,International Programme on Chemical Safety,ADDED BOTH. First as SYN and second as ELEM.
+IPIECA,International Petroleum Industry Environmental Conservation Association,ADDED BOTH. First as SYN and second as ELEM.
+IPPC,Integrated Pollution Prevention Control,NO ACTION (SYN case): SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+IPSC,Institute for the Protection and Security of the Citizen,ADDED BOTH. First as SYN and second as ELEM.
+IRIN,Integrated Regional Information Networks,ADDED BOTH. First as SYN and second as ELEM.
+ISO,International Organisation for Standardization,ADDED BOTH. First as SYN and second as ELEM.
+ISS,"Central Public Health Institute, Italy",ADDED BOTH. First as SYN and second as ELEM.
+ISSCAAP,International Standard Statistical Classification of Aquatic Animals and Plants,ADDED BOTH. First as SYN and second as ELEM.
+ITOPF,International Tanker Owners Pollution Federation,ADDED BOTH. First as SYN and second as ELEM.
+IUCN,International Union for Nature Conservation,ADDED BOTH. First as SYN and second as ELEM.
+IWMI,International Water Management Institute,ADDED BOTH. First as SYN and second as ELEM.
+JAMA,Japan Automobile Manufacturers Association,ADDED BOTH. First as SYN and second as ELEM.
+JI,joint implementation,FIRST ADDED as SYN and SECOND already exists. If second is ELEM first relates to him and if second is SYN first related to his syn relation.
+JRC,Joint Research Centre (European Commission),NO ACTION (SYN case): SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+k,kilo,ADDED BOTH. First as SYN and second as ELEM.
+KAMA,Korea Automobile Manufacturers Association,ADDED BOTH. First as SYN and second as ELEM.
+KCBTA,Kyrgyz Community Based Tourism Organisation,ADDED BOTH. First as SYN and second as ELEM.
+KEO,Carpathians Environment Outlook,ADDED BOTH. First as SYN and second as ELEM.
+km,kilometre,ADDED BOTH. First as SYN and second as ELEM.
+l/L,litre,ADDED BOTH. First as SYN and second as ELEM.
+LBS,land-based sources,ADDED BOTH. First as SYN and second as ELEM.
+LCP,large combustion plant,ADDED BOTH. First as SYN and second as ELEM.
+LIFE,EU financial instrument for the environment,ADDED BOTH. First as SYN and second as ELEM.
+LMEs,large marine ecosystems,ADDED BOTH. First as SYN and second as ELEM.
+LPG,liquified petroleum gas,ADDED BOTH. First as SYN and second as ELEM.
+LTAA,long-term annual average,ADDED BOTH. First as SYN and second as ELEM.
+LULUCF,"land use, land-use change and forestry",ADDED BOTH. First as SYN and second as ELEM.
+LV,limit value,ADDED BOTH. First as SYN and second as ELEM.
+M,million,ADDED BOTH. First as SYN and second as ELEM.
+m,metre,ADDED BOTH. First as SYN and second as ELEM.
+MA,Millennium Ecosystem Assessment,ADDED BOTH. First as SYN and second as ELEM.
+MAB,Man and the Biosphere Reserves Programme,ADDED BOTH. First as SYN and second as ELEM.
+MAC,maximum allowable concentrations,ADDED BOTH. First as SYN and second as ELEM.
+MAP,Mediterranean Action Plan,NO ACTION. Both already exists.
+MARPOL,International Convention for the Prevention of Marine Pollution from Ships,ADDED BOTH. First as SYN and second as ELEM.
+MCPFE,Ministerial Conference on the Protection of Forests in Europe,ADDED BOTH. First as SYN and second as ELEM.
+MDGs,Millennium Development Goals,ADDED BOTH. First as SYN and second as ELEM.
+MED POL,Pollution Monitoring and Assessment Programme - Mediterranean Region,ADDED BOTH. First as SYN and second as ELEM.
+MEdIES,Mediterranean Education Initiative for Environment & Sustainability,ADDED BOTH. First as SYN and second as ELEM.
+MEFT,Ministry of Environment and Forestry of Turkey,ADDED BOTH. First as SYN and second as ELEM.
+MFA,material flow accounting,FIRST ADDED as SYN and SECOND already exists. If second is ELEM first relates to him and if second is SYN first related to his syn relation.
+MFA,material flow analysis,NO ACTION. Both already exists.
+MFR,maximum feasible reduction,ADDED BOTH. First as SYN and second as ELEM.
+mg,milligram,ADDED BOTH. First as SYN and second as ELEM.
+MIMAM,Ministry of Environment of Spain,ADDED BOTH. First as SYN and second as ELEM.
+MIO-ECSDE,"Mediterranean Information Office for Environment, Culture and Sustainable Development",ADDED BOTH. First as SYN and second as ELEM.
+mm,millimetre,ADDED BOTH. First as SYN and second as ELEM.
+MNP,The Netherlands Environmental Assessment Agency,ADDED BOTH. First as SYN and second as ELEM.
+MODIS,Moderate Resolution Imaging Spectroradiometer,ADDED BOTH. First as SYN and second as ELEM.
+MOP,Meeting of the Parties,ADDED BOTH. First as SYN and second as ELEM.
+MOSUS,Modelling opportunities and limits for restructuring Europe towards sustainability,ADDED BOTH. First as SYN and second as ELEM.
+MS,Member State,ADDED BOTH. First as SYN and second as ELEM.
+MSC-East,Meteorological Synthesizing Centre-East,ADDED BOTH. First as SYN and second as ELEM.
+MSD,Marine Strategy Directive,ADDED BOTH. First as SYN and second as ELEM.
+MTFR,maximum feasible technical reduction,ADDED BOTH. First as SYN and second as ELEM.
+N2O,nitrous oxide,NO ACTION. Both already exists.
+NAI,net annual increment,ADDED BOTH. First as SYN and second as ELEM.
+NAO,North Atlantic Oscillation,ADDED BOTH. First as SYN and second as ELEM.
+NASA,National Aeronautics and Space Administration,ADDED BOTH. First as SYN and second as ELEM.
+NATO,North Atlantic Treaty Organization,ADDED BOTH. First as SYN and second as ELEM.
+NC,national communication,ADDED BOTH. First as SYN and second as ELEM.
+NEAP,national environmental action plan,ADDED BOTH. First as SYN and second as ELEM.
+NEC,national emission ceilings,ADDED BOTH. First as SYN and second as ELEM.
+NECD,National Emission Ceilings Directive,FIRST ADDED as SYN and SECOND already exists. If second is ELEM first relates to him and if second is SYN first related to his syn relation.
+NEHAP,National Environment and Health Action Plan,ADDED BOTH. First as SYN and second as ELEM.
+NERI,"National Environmental Research Institute, Denmark",ADDED BOTH. First as SYN and second as ELEM.
+ng,nanogram,ADDED BOTH. First as SYN and second as ELEM.
+NGO,non-governmental organisation,ADDED BOTH. First as SYN and second as ELEM.
+NH3,ammonia,ADDED BOTH. First as SYN and second as ELEM.
+NH4,ammonium,FIRST ADDED as SYN and SECOND already exists. If second is ELEM first relates to him and if second is SYN first related to his syn relation.
+NIS,Newly Independent States,ADDED BOTH. First as SYN and second as ELEM.
+NMVOC,non-methane volatile organic compound,NO ACTION. Both already exists.
+NO,nitrogen monoxide,NO ACTION (SYN case): SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+NO2,nitrogen dioxide,ADDED BOTH. First as SYN and second as ELEM.
+NOAA,National Oceanic and Atmospheric Administration,ADDED BOTH. First as SYN and second as ELEM.
+NOBANIS,North European and Baltic Network on Invasive Alien Species,ADDED BOTH. First as SYN and second as ELEM.
+NOX,nitrogen oxides,NO ACTION. Both already exists.
+NRC,national reference centre,NO ACTION. Both already exists.
+NSIDC,National Snow and Ice Data Centre,ADDED BOTH. First as SYN and second as ELEM.
+NSR,Northern Sea Route,ADDED BOTH. First as SYN and second as ELEM.
+NUTS,Nomenclature of territorial units in the EU,NO ACTION (SYN case): SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+O2,oxygen,ADDED BOTH. First as SYN and second as ELEM.
+O3,ozone,FIRST ADDED as SYN and SECOND already exists. If second is ELEM first relates to him and if second is SYN first related to his syn relation.
+OECD,Organization for Economic Co-operation and Development,ADDED BOTH. First as SYN and second as ELEM.
+OSCE,Organisation for Security and Co-operation in Europe,ADDED BOTH. First as SYN and second as ELEM.
+OSPAR,OSPAR Commission for the Protection of the Marine Environment of the North-East Atlantic,ADDED BOTH. First as SYN and second as ELEM.
+P,phosphorus,NO ACTION. Both already exists.
+PAH,polycyclic aromatic hydrocarbon,NO ACTION. Both already exists.
+PAH,Polycyclic aromatic hydrocarbons,NO ACTION (SYN case): SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+Pb,lead,NO ACTION. Both already exists.
+PCA,priority conservation area,ADDED BOTH. First as SYN and second as ELEM.
+PCB,polychlorinated biphenyl,NO ACTION. Both already exists.
+PEBLDS,Pan-European Biological and Landscape Diversity Strategy,ADDED BOTH. First as SYN and second as ELEM.
+PEEN,Pan-European Ecological Network,ADDED BOTH. First as SYN and second as ELEM.
+PEEREA,Protocol on Energy Efficiency and Related Environmental Aspects,ADDED BOTH. First as SYN and second as ELEM.
+PFCs,perfluorocarbons,ADDED BOTH. First as SYN and second as ELEM.
+PFOA,perfluorooctanoic acid,ADDED BOTH. First as SYN and second as ELEM.
+PFOS,perfluorooctane sulfonic acid,ADDED BOTH. First as SYN and second as ELEM.
+PGM,platinum group metals,ADDED BOTH. First as SYN and second as ELEM.
+pH,hydrogen ion concentration,SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+PHARE,EU Pre-accession assistance programme,ADDED BOTH. First as SYN and second as ELEM.
+PM,particulate matter,NO ACTION. Both already exists.
+PM0.1,"particulate matter with an average aerodynamic diameter of up to 0.1??m, referred to as ultrafine particle fraction",ADDED BOTH. First as SYN and second as ELEM.
+PM10,"particulate matter with an average aerodynamic diameter of up to 10??m, i.e. the fine and coarse particle fractions combined.",SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+PM2.5,"particulate matter with an average aerodynamic diameter of up to 2.5??m, referred to as the fine particle fraction (which per definition includes the ultrafine particles)",ADDED BOTH. First as SYN and second as ELEM.
+POPs,persistent organic pollutants,ADDED BOTH. First as SYN and second as ELEM.
+ppm,parts per million,NO ACTION. Both already exists.
+PPM,primary particle matter,ADDED BOTH. First as SYN and second as ELEM.
+PPP,purchasing power parity,ADDED BOTH. First as SYN and second as ELEM.
+PRTR,Pollutant Release and Transfer Register,ADDED BOTH. First as SYN and second as ELEM.
+psu,practical salinity units,ADDED BOTH. First as SYN and second as ELEM.
+PVC,polyvinyl chloride,NO ACTION. Both already exists.
+R&D,research and development,ADDED BOTH. First as SYN and second as ELEM.
+RAC,regional activity centre,ADDED BOTH. First as SYN and second as ELEM.
+RAINS,Regional Air Pollution Information and Simulation model,ADDED BOTH. First as SYN and second as ELEM.
+RAPEX,Rapid Alert System for non-food consumer products,ADDED BOTH. First as SYN and second as ELEM.
+RASFF,Rapid Alert Systems for Food and Feed,ADDED BOTH. First as SYN and second as ELEM.
+RCEP,Royal Commission on Environmental Pollution,ADDED BOTH. First as SYN and second as ELEM.
+REACH,"registration, evaluation, authorisation and restriction of chemicals",ADDED BOTH. First as SYN and second as ELEM.
+REC,regional environmental centre,NO ACTION (SYN case): SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+REReP,Regional Environmental Reconstruction Programme,ADDED BOTH. First as SYN and second as ELEM.
+RIVM,"National Institute for Public Health and the Environment, the Netherlands",ADDED BOTH. First as SYN and second as ELEM.
+RLNP,research laboratory of nature protection,ADDED BOTH. First as SYN and second as ELEM.
+RMP,refrigeration management plan,ADDED BOTH. First as SYN and second as ELEM.
+RPG,regional priority goals,ADDED BOTH. First as SYN and second as ELEM.
+SACs,special areas of conservation,ADDED BOTH. First as SYN and second as ELEM.
+SAHFOS,Sir Alister Hardy Foundation for Ocean Sciences,ADDED BOTH. First as SYN and second as ELEM.
+SAICM,Strategic Approach to International Chemicals Management,ADDED BOTH. First as SYN and second as ELEM.
+SASI,Social and Spatial Inequalities Research,ADDED BOTH. First as SYN and second as ELEM.
+SAUP,Sea Around Us Project,ADDED BOTH. First as SYN and second as ELEM.
+SCALE,"Science, Children, Awareness, EU Legislation and Continuous Evaluation",ADDED BOTH. First as SYN and second as ELEM.
+SCIs,sites of community interest,ADDED BOTH. First as SYN and second as ELEM.
+SCP,sustainable consumption and production,ADDED BOTH. First as SYN and second as ELEM.
+SD,sustainable development,ADDED BOTH. First as SYN and second as ELEM.
+SDSs,safety data sheets,ADDED BOTH. First as SYN and second as ELEM.
+SDT,sustainable development of Tourism,ADDED BOTH. First as SYN and second as ELEM.
+SEA,strategic environmental assessment,NO ACTION. Both already exists.
+SeaWiFS,sea-viewing wide field-of-view sensor,ADDED BOTH. First as SYN and second as ELEM.
+SEBI,Streamlining European Biodiversity Indicators,ADDED BOTH. First as SYN and second as ELEM.
+SEE,South-eastern Europe,ADDED BOTH. First as SYN and second as ELEM.
+SEEA,Serbian Energy Efficiency Agency,ADDED BOTH. First as SYN and second as ELEM.
+SEIS,Shared Environmental Information System for Europe,ADDED BOTH. First as SYN and second as ELEM.
+SF6,sulphur hexafluoride,ADDED BOTH. First as SYN and second as ELEM.
+SI,sufficiency index,ADDED BOTH. First as SYN and second as ELEM.
+SI,secondary inorganic,NO ACTION (SYN case): SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+SIAM,SIDS initial assessment meeting,ADDED BOTH. First as SYN and second as ELEM.
+SIDS,screening information data set,ADDED BOTH. First as SYN and second as ELEM.
+Silesia,Southern part of Poland and neighbouring small parts of Germany and the Czech Republic,ADDED BOTH. First as SYN and second as ELEM.
+SMMR,Nimbus-7 Scanning Multichannel Microwave Radiometer,ADDED BOTH. First as SYN and second as ELEM.
+SO2,sulphur dioxide,NO ACTION. Both already exists.
+SOE,State of Environment,ADDED BOTH. First as SYN and second as ELEM.
+SOER,The European environment - State and outlook,NO ACTION (SYN case): SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+SOER-RF,State of the Environment Report - Russian Federation,ADDED BOTH. First as SYN and second as ELEM.
+SOMO35,"for ozone, the sum of means over 35?ppb (daily maximum 8-hour)",ADDED BOTH. First as SYN and second as ELEM.
+SOVEUR,Mapping of Soil and Terrain Vulnerability in Central and Eastern Europe,ADDED BOTH. First as SYN and second as ELEM.
+SOX,sulphur oxides,ADDED BOTH. First as SYN and second as ELEM.
+SPAs,special protection areas,ADDED BOTH. First as SYN and second as ELEM.
+SPECA,Special Programme for the Economies of Central Asia,ADDED BOTH. First as SYN and second as ELEM.
+SSM/I,special sensor microwave/imager,ADDED BOTH. First as SYN and second as ELEM.
+SST,sea surface temperature,ADDED BOTH. First as SYN and second as ELEM.
+ST-EP,Sustainable Tourism - Eliminating Poverty,ADDED BOTH. First as SYN and second as ELEM.
+SUTOUR,Supporting tourism enterprises for eco-labelling and environmental management,ADDED BOTH. First as SYN and second as ELEM.
+SUV,sport utility vehicle,ADDED BOTH. First as SYN and second as ELEM.
+t,tonne,ADDED BOTH. First as SYN and second as ELEM.
+T&T,travel & tourism,ADDED BOTH. First as SYN and second as ELEM.
+TAC,total allowable catch,NO ACTION. Both already exists.
+TACIS,EU assistance programme Technical Assistance to the Commonwealth of Independent States,ADDED BOTH. First as SYN and second as ELEM.
+TBT,tributyltin,NO ACTION. Both already exists.
+TEAP,Technology and Economic Assessment Panel,ADDED BOTH. First as SYN and second as ELEM.
+TEC,total energy consumption,ADDED BOTH. First as SYN and second as ELEM.
+THE PEP,"Transport, Health and Environment Pan-European Programme",ADDED BOTH. First as SYN and second as ELEM.
+TMR,total material requirement,NO ACTION. Both already exists.
+toe,tonnes of oil equivalent,ADDED BOTH. First as SYN and second as ELEM.
+TOF,tropospheric ozone forming potential,ADDED BOTH. First as SYN and second as ELEM.
+TOFP,tropospheric ozone forming potentials,ADDED BOTH. First as SYN and second as ELEM.
+TPES,total primary energy supply,ADDED BOTH. First as SYN and second as ELEM.
+TREMOVE,policy assessment model to study the effects of different transport and environment policies on the emissions of the transport sector,ADDED BOTH. First as SYN and second as ELEM.
+TSA,tourism satellite accounts,ADDED BOTH. First as SYN and second as ELEM.
+TSP,total suspended particles,ADDED BOTH. First as SYN and second as ELEM.
+TV,target value,ADDED BOTH. First as SYN and second as ELEM.
+TWC,3-way catalyst,ADDED BOTH. First as SYN and second as ELEM.
+UBA,Federal Environment Agency (Austria and Germany),ADDED BOTH. First as SYN and second as ELEM.
+UN,United Nations,ADDED BOTH. First as SYN and second as ELEM.
+UNCCD,United Nations Convention to Combat Desertification,NO ACTION. Both already exists.
+UNCLOS,United Nations Convention on the Law of the Sea,ADDED BOTH. First as SYN and second as ELEM.
+UNDP,United Nations Development Programme,ADDED BOTH. First as SYN and second as ELEM.
+UNECE,United Nations Economic Commission for Europe,ADDED BOTH. First as SYN and second as ELEM.
+UNEP,United Nations Environment Programme,ADDED BOTH. First as SYN and second as ELEM.
+UNESCAP,United Nations Economic and Social Commission for Asia and the Pacific,ADDED BOTH. First as SYN and second as ELEM.
+UNESCO,"United Nations Educational, Scientific and Cultural Organization",ADDED BOTH. First as SYN and second as ELEM.
+UNFCCC,United Nations Framework Convention on Climate Change,NO ACTION. Both already exists.
+UNHCR,United Nations High Commissioner for Refugees,ADDED BOTH. First as SYN and second as ELEM.
+UNICEF,United Nations Children's Fund,ADDED BOTH. First as SYN and second as ELEM.
+UNSD,United Nations Statistics Division,ADDED BOTH. First as SYN and second as ELEM.
+UNWTO,United Nations World Tourism Organisation,ADDED BOTH. First as SYN and second as ELEM.
+USA,United States of America,ADDED BOTH. First as SYN and second as ELEM.
+USD,United States dollar,ADDED BOTH. First as SYN and second as ELEM.
+USSR,Union of Soviet Socialist Republics,ADDED BOTH. First as SYN and second as ELEM.
+UV,ultraviolet radiation,FIRST ADDED as SYN and SECOND already exists. If second is ELEM first relates to him and if second is SYN first related to his syn relation.
+UWWT,Urban Waste Water Treatment,NO ACTION (SYN case): SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+VAT,value added tax,ADDED BOTH. First as SYN and second as ELEM.
+VOC,volatile organic compounds,NO ACTION. Both already exists.
+WAIS,West Antarctic ice sheet,ADDED BOTH. First as SYN and second as ELEM.
+WB,World Bank,ADDED BOTH. First as SYN and second as ELEM.
+WBCSD,World Business Council for Sustainable Development,ADDED BOTH. First as SYN and second as ELEM.
+WCE,Western and Central Europe,ADDED BOTH. First as SYN and second as ELEM.
+WCI,World Coal Institute,ADDED BOTH. First as SYN and second as ELEM.
+WCMC,World Conservation Monitoring Centre,ADDED BOTH. First as SYN and second as ELEM.
+WEEE,waste electric and electronic equipment,NO ACTION (SYN case): SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added.
+WEI,water exploitation index,NO ACTION. Both already exists.
+WFD,Water Framework Directive,NO ACTION. Both already exists.
+WG,working group,ADDED BOTH. First as SYN and second as ELEM.
+WGMS,World Glacier Monitoring Service,ADDED BOTH. First as SYN and second as ELEM.
+Wh,watt hour,ADDED BOTH. First as SYN and second as ELEM.
+WHO,World Health Organization,ADDED BOTH. First as SYN and second as ELEM.
+WMO,World Meteorological Organization,ADDED BOTH. First as SYN and second as ELEM.
+WSSD,World Summit on Sustainable Development,FIRST ADDED as SYN and SECOND already exists. If second is ELEM first relates to him and if second is SYN first related to his syn relation.
+WTO,World Trade Organization,ADDED BOTH. First as SYN and second as ELEM.
+WTTC,World Travel and Tourism Council,ADDED BOTH. First as SYN and second as ELEM.
+WWF,World Wildlife Fund for Nature,ADDED BOTH. First as SYN and second as ELEM.
+y/yr,year,ADDED BOTH. First as SYN and second as ELEM.

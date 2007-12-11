@@ -24,11 +24,22 @@
 		</div>
 	</dtml-if>
 
+	<dtml-if has_synonyms>
+		<div class="category_subtitle">Synonyms (english only)</div>
+		<div class="category_content">
+			<dtml-in getSynonyms>
+			<ul style="margin:0 0 0 1em; padding:0 0 0 1em;">
+				<li><dtml-var name></li>
+			</ul>
+			</dtml-in>
+		</div>
+	</dtml-if>
+
 	<dtml-if "not ('actions' in hidden_fields) and _.len(get_links())>0 and _.len(get_actions())>0">
 		<div class="category_subtitle">Additional info, actions and links</div>
 		<div class="category_content">
 		<dtml-comment>Show manually entered actions links</dtml-comment>
-		<div class="content_list" style="background-image: url(misc_/EEAGlossary/dotted.gif); background-repeat: repeat-y; background-position: right;">	
+		<div class="content_list" style="background-image: url(misc_/EEAGlossary/dotted.gif); background-repeat: repeat-y; background-position: right;">
 					<dtml-in get_links>
 						<li>&nbsp;
 							<a href="<dtml-var sequence-item>">

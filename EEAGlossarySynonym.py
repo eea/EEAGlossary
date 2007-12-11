@@ -91,9 +91,9 @@ class EEAGlossarySynonym(EEAGlossaryElement, utils):
             except:
                 pass
             self._p_changed = 1
+            self.cu_recatalog_object(self)
         if REQUEST is not None:
             return REQUEST.RESPONSE.redirect('synonym_properties_html')
-            
 
     def manageSynonymOtherProperties(self, name, disabled=0, approved=0, REQUEST=None):
         """ manage other synonym properties for EEAGlossarySynonym """

@@ -11,4 +11,5 @@
 </div>
 <dtml-var main_content_html>
 <br /><br />
+
 <dtml-var standard_html_footer>

@@ -1,35 +1,34 @@
-°C,degree Celsius,
-AAUs,assigned amount units,
-ACAP,Arctic Council Action Plan,
-ACEA,European Automobile Manufacturers' Association,
-ACIA,Arctic Climate Impact Assessment,
-ACS,automatic control stations,
-ADB,Asian Development Bank,
-AMAP,Arctic Monitoring and Assessment Programme ,
-AMD,Armenian dram,
-AOT40,Accumulated Ozone over a threshold of 40ppb,
-APHEIS,Air Pollution and Health: A European Information System,
-API,air pollution index,
-AQDD,Air Quality Daughter Directives,
-AQFD,Air Quality Framework Directive,
-ASCIs,Areas of Special Conservation Interest,
-ASCOBANS,Agreement on the Conservation of Small Cetaceans of the Baltic and North Seas,
-ASEF,Asia-Europe Foundation,
-AWI,The Alfred Wegener Institute,
-BaP,benzo(a)pyrene ,
-BauA,"Federal Institute for Occupational Safety and Health, Germany ",
-BDE,bromo diphenyl ether,
-BeNeLux,"Belgium, the Netherlands and Luxembourg",
-BFRs,brominated flame retardants,
-BMB NEMO,Baltic Marine Biologists database on Non-indigenous Estuarine and Marine Organisms,
-bn,billion,
-BOD,biochemical oxygen demand,
-BREF,Best Available Technology Reference Documents,
-BSC,Black Sea Commission,
-BTC,Baku-Tbilisi-Ceyhan (oil pipeline),
-C6H6,benzene,
-CAFE,Clean Air for Europe,
-CALM,Coordination of European Research for Advanced Transport Noise Mitigation,
+AAUs,assigned amount units
+ACAP,Arctic Council Action Plan
+ACEA,European Automobile Manufacturers' Association
+ACIA,Arctic Climate Impact Assessment
+ACS,automatic control stations
+ADB,Asian Development Bank
+AMAP,Arctic Monitoring and Assessment Programme 
+AMD,Armenian dram
+AOT40,Accumulated Ozone over a threshold of 40ppb
+APHEIS,Air Pollution and Health: A European Information System
+API,air pollution index
+AQDD,Air Quality Daughter Directives
+AQFD,Air Quality Framework Directive
+ASCIs,Areas of Special Conservation Interest
+ASCOBANS,Agreement on the Conservation of Small Cetaceans of the Baltic and North Seas
+ASEF,Asia-Europe Foundation
+AWI,The Alfred Wegener Institute
+BaP,benzo(a)pyrene 
+BauA,"Federal Institute for Occupational Safety and Health, Germany "
+BDE,bromo diphenyl ether
+BeNeLux,"Belgium, the Netherlands and Luxembourg"
+BFRs,brominated flame retardants
+BMB NEMO,Baltic Marine Biologists database on Non-indigenous Estuarine and Marine Organisms
+bn,billion
+BOD,biochemical oxygen demand
+BREF,Best Available Technology Reference Documents
+BSC,Black Sea Commission
+BTC,Baku-Tbilisi-Ceyhan (oil pipeline)
+C6H6,benzene
+CAFE,Clean Air for Europe
+CALM,Coordination of European Research for Advanced Transport Noise Mitigation
 CAP,Common Agricultural Policy
 CAPACT,Capacity Building for Air Quality Management and the Application of Clean Coal Combustion Technologies in Central Asia
 CARDS,"Community Assistance for Reconstruction, Development and Stabilisation "
@@ -97,7 +96,7 @@ DMC,domestic material consumption
 DMI,direct material input 
 DMI ,Danish Meteorological Institute
 DOE,designated operational entity
-DPSIR,driving forces — pressures — state —impact — response
+DPSIR,driving forces - pressures - state - impact - response
 DTI,"Department of Trade and Industry, United Kingdom"
 EAP,environment action programme
 EBCC,European Bird Census Council
@@ -203,7 +202,6 @@ GMAPS,Global Model of Ambient Particulates
 GMES,global monitoring for environment and security
 GMOs,genetically modified organisms
 GMP,global monitoring plan
-GOST,State standard of the Russian Federation (Russian:??????????????? ????????) 
 GPA,global programme of action
 GPP,green public procurement
 GRID,Global Resources Information Database
@@ -216,7 +214,7 @@ HCB,hexachlorobenzene
 HCFCs,hydrochlorofluorocarbons
 HCH,hexachlorocyclohexane
 HCMR,Hellenic Centre for Marine Research
-HELCOM,Helsinki Commission — Baltic Marine Environment Protection Commission
+HELCOM,Helsinki Commission - Baltic Marine Environment Protection Commission
 HFCs,hydrofluorocarbons
 Hg,mercury
 HNV,high nature value
@@ -285,7 +283,7 @@ MAP,Mediterranean Action Plan
 MARPOL,International Convention for the Prevention of Marine Pollution from Ships
 MCPFE,Ministerial Conference on the Protection of Forests in Europe
 MDGs,Millennium Development Goals
-MED POL,Pollution Monitoring and Assessment Programme — Mediterranean Region
+MED POL,Pollution Monitoring and Assessment Programme - Mediterranean Region
 MEdIES,Mediterranean Education Initiative for Environment & Sustainability
 MEFT,Ministry of Environment and Forestry of Turkey
 MFA,material flow accounting
@@ -302,22 +300,22 @@ MOSUS ,Modelling opportunities and limits for restructuring Europe towards susta
 MS,Member State
 MSC-East,Meteorological Synthesizing Centre-East
 MSD,Marine Strategy Directive
-MTFR,maximum feasible technical reduction,
-N2O,nitrous oxide,
-NAI,net annual increment,
-NAO,North Atlantic Oscillation ,
-NASA,National Aeronautics and Space Administration ,
-NATO,North Atlantic Treaty Organization ,
-NC,national communication,
-NEAP,national environmental action plan,
-NEC,national emission ceilings ,
-NECD,National Emission Ceilings Directive,
-NEHAP,National Environment and Health Action Plan ,
-NERI,"National Environmental Research Institute, Denmark",
-ng,nanogram ,
-NGO,non-governmental organisation,
-NH3,ammonia,
-NH4,ammonium,
+MTFR,maximum feasible technical reduction
+N2O,nitrous oxide
+NAI,net annual increment
+NAO,North Atlantic Oscillation 
+NASA,National Aeronautics and Space Administration 
+NATO,North Atlantic Treaty Organization 
+NC,national communication
+NEAP,national environmental action plan
+NEC,national emission ceilings 
+NECD,National Emission Ceilings Directive
+NEHAP,National Environment and Health Action Plan 
+NERI,"National Environmental Research Institute, Denmark"
+ng,nanogram 
+NGO,non-governmental organisation
+NH3,ammonia
+NH4,ammonium
 NIS,Newly Independent States
 NMVOC,non-methane volatile organic compound
 NO,nitrogen monoxide
@@ -350,22 +348,22 @@ PGM,platinum group metals
 pH,hydrogen ion concentration
 PHARE,EU Pre-accession assistance programme
 PM,particulate matter
-PM0.1,"particulate matter with an average aerodynamic diameter of up to 0.1 µm, referred to as ultrafine particle fraction",
-PM10,"particulate matter with an average aerodynamic diameter of up to 10 µm, i.e. the fine and coarse particle fractions combined.",
-PM2.5,"particulate matter with an average aerodynamic diameter of up to 2.5 µm, referred to as the fine particle fraction (which per definition includes the ultrafine particles)",
-POPs,persistent organic pollutants,
-ppm,parts per million,
-PPM,primary particle matter,
-PPP,purchasing power parity,
-PRTR,Pollutant Release and Transfer Register,
-psu,practical salinity units ,
-PVC ,polyvinyl chloride,
-R&D,research and development,
-RAC,regional activity centre ,
-RAINS,Regional Air Pollution Information and Simulation model,
-RAPEX,Rapid Alert System for non-food consumer products,
-RASFF,Rapid Alert Systems for Food and Feed,
-RCEP,Royal Commission on Environmental Pollution ,
+PM0.1,"particulate matter with an average aerodynamic diameter of up to 0.1 µm, referred to as ultrafine particle fraction"
+PM10,"particulate matter with an average aerodynamic diameter of up to 10 µm, i.e. the fine and coarse particle fractions combined."
+PM2.5,"particulate matter with an average aerodynamic diameter of up to 2.5 µm, referred to as the fine particle fraction (which per definition includes the ultrafine particles)"
+POPs,persistent organic pollutants
+ppm,parts per million
+PPM,primary particle matter
+PPP,purchasing power parity
+PRTR,Pollutant Release and Transfer Register
+psu,practical salinity units 
+PVC ,polyvinyl chloride
+R&D,research and development
+RAC,regional activity centre 
+RAINS,Regional Air Pollution Information and Simulation model
+RAPEX,Rapid Alert System for non-food consumer products
+RASFF,Rapid Alert Systems for Food and Feed
+RCEP,Royal Commission on Environmental Pollution 
 REACH,"registration, evaluation, authorisation and restriction of chemicals"
 REC,regional environmental centre
 REReP,Regional Environmental Reconstruction Programme
@@ -399,8 +397,8 @@ Silesia,Southern part of Poland and neighbouring small parts of Germany and the 
 SMMR,Nimbus-7 Scanning Multichannel Microwave Radiometer
 SO2,sulphur dioxide
 SOE,State of Environment
-SOER,The European environment — State and outlook
-SOER-RF,State of the Environment Report — Russian Federation
+SOER,The European environment - State and outlook
+SOER-RF,State of the Environment Report - Russian Federation
 SOMO35,"for ozone, the sum of means over 35 ppb (daily maximum 8-hour)"
 SOVEUR,Mapping of Soil and Terrain Vulnerability in Central and Eastern Europe
 SOX,sulphur oxides
@@ -408,7 +406,7 @@ SPAs,special protection areas
 SPECA,Special Programme for the Economies of Central Asia
 SSM/I,special sensor microwave/imager
 SST,sea surface temperature
-ST-EP,Sustainable Tourism — Eliminating Poverty
+ST-EP,Sustainable Tourism - Eliminating Poverty
 SUTOUR,Supporting tourism enterprises for eco-labelling and environmental management
 SUV,sport utility vehicle
 t,tonne
