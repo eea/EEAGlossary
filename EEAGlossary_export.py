@@ -349,6 +349,9 @@ class glossary_export:
         for rec in data:
             name_one = rec[0].strip()
             name_two = rec[1].strip()
+            detect_definition = False
+            if len(rec) == 3:
+                if rec[2].strip() == 'definition': detect_definition = True
 
             obj_one = None
             obj_two = None
@@ -405,8 +408,44 @@ class glossary_export:
             context_two_id = self.utf8_to_latin1(string.upper(name_two[:1]))
             context_two = self.unrestrictedTraverse(context_two_id, None)
 
+            #Set elems with definition
+            if detect_definition:
+                if obj_one is None and context_one is not None:
+                    try:
+                        context_one.manage_addGlossaryElement(name=name_one,
+                                                    el_type='',
+                                                    source='',
+                                                    subjects=[],
+                                                    el_context='',
+                                                    comment='',
+                                                    definition=name_two,
+                                                    definition_source_publ='',
+                                                    definition_source_publ_year='',
+                                                    definition_source_url='',
+                                                    definition_source_org='EEA',
+                                                    definition_source_org_fullname='dataservice, http://dataservice.eea.eu.int',
+                                                    long_definition='',
+                                                    disabled=0,
+                                                    approved=1,
+                                                    QA_needed=0,
+                                                    image_url='',
+                                                    flash_url='',
+                                                    links=[],
+                                                    actions=[],
+                                                    translations={},
+                                                    synonym=[],
+                                                    id='',
+                                                    bad_translations=[])
+                    except Exception, error:
+                        #LOG: error
+                        print error
+                    obj_one = context_one._getOb(self.ut_makeId(name_one))
+                    obj_one.set_translations_list('English', name_one)
+                    obj_one.set_history('English', name_one)
+                    obj_one.cu_recatalog_object(obj_one)
+                    #LOG: element with definition added
             #Set syn/elems
-            if context_one is not None and context_two is not None:
+            elif context_one is not None and context_two is not None:
                 if obj_one is None and obj_two is None:
                     #EXCPTION: ('DMI', 'direct material input') -> ELEM exist but is not approved
                     try:
@@ -438,8 +477,6 @@ class glossary_export:
                     except Exception, error:
                         #LOG: error
                         print error
-                        print (name_one, name_two)
-                        print '==========BOTH ADDED ELEM======='
                     obj_two = context_two._getOb(self.ut_makeId(name_two))
                     obj_two.set_translations_list('English', name_two)
                     obj_two.set_history('English', name_two)
@@ -450,8 +487,6 @@ class glossary_export:
                     except Exception, error:
                         #LOG: error
                         print error
-                        print (name_one, name_two)
-                        print '==========BOTH ADDED SYN======='
                     obj_one = context_one._getOb(self.ut_makeId(name_one))
                     obj_one.manageSynonymOtherProperties(name=name_one, disabled=0, approved=1)
 
@@ -461,28 +496,24 @@ class glossary_export:
                 elif obj_one is not None and obj_two is None:
                     if obj_one.meta_type == EEA_GLOSSARY_SYNONYM_METATYPE:
                         #NOT: ('EMAS', 'Eco-Management and Audit Scheme')
-                        #ADD?: ('GIS', 'green investment schemes') !GIS deja e da cu alta definitie
                         #NOT: ('HELCOM', 'Helsinki Commission - Baltic Marine Environment Protection Commission')
                         #NOT: ('IPCC', 'Intergovernmental Panel on Climate Change')
                         #NOT: ('IPPC', 'Integrated Pollution Prevention Control')
                         #NOT: ('JRC', 'Joint Research Centre (European Commission)')
-                        #ADD?: ('NO', 'nitrogen monoxide')
                         #NOT: ('NUTS', 'Nomenclature of territorial units in the EU')
                         #NOT: ('PAH', 'Polycyclic aromatic hydrocarbons')
-                        #ADD?: ('REC', 'regional environmental centre')
                         #NOT: ('SOER', 'The European environment - State and outlook')
                         #NOT: ('UWWT', 'Urban Waste Water Treatment')
                         #NOT: ('WEEE', 'waste electric and electronic equipment')
 
                         #glog = "NO ACTION (SYN case): SECOND ADDED, first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added."
+                        pass
                     elif obj_one.meta_type == EEA_GLOSSARY_ELEMENT_METATYPE:
                         try:
                             context_two.manage_addGlossarySynonym(self.ut_makeId(name_two), [obj_one.absolute_url(1)])
                         except Exception, error:
                             #LOG: error
                             print error
-                            print (name_one, name_two)
-                            print '==========SECOND ADDED======='
                         obj_two = context_two._getOb(self.ut_makeId(name_two))
                         obj_two.manageSynonymOtherProperties(name=name_two, disabled=0, approved=1)
                         #glog = "SECOND ADDED first alredy exists. If first is SYN the coresponding ELEM exists so the second will not be added."
@@ -502,8 +533,6 @@ class glossary_export:
                     except Exception, error:
                         #LOG: error
                         print error
-                        print (name_one, name_two)
-                        print '==========FIRST ADDED======='
                     obj_one = context_one._getOb(self.ut_makeId(name_one))
                     obj_one.manageSynonymOtherProperties(name=name_one, disabled=0, approved=1)
 
@@ -514,6 +543,7 @@ class glossary_export:
                     #LOG: excel one already exists
                     #LOG: excel two already exists
                     #glog = 'NO ACTION. Both already exists.'
+                    pass
             else:
                 #LOG: error
                 pass
