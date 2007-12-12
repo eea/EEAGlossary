@@ -27,6 +27,7 @@ import string
 import whrandom
 import codecs
 import csv
+import re
 
 #Zope imports
 from Products.PythonScripts.standard import url_quote
@@ -79,10 +80,16 @@ class utils:
 
     def ut_makeId(self, p_name):
         """ generate the ID """
+        res = ''
         transtab=string.maketrans('/ +@','____')
         p_name = unicode(p_name, 'latin-1')
         p_name = p_name.encode('ascii', 'replace')
-        return string.translate(p_name,transtab,"?'&!;()<=>*#[]{}^~:|\/???$?%?")
+        res = string.translate(p_name,transtab,"?'&!;,\"()<=>*#[]{}^~:|\/???$?%?")
+        p = re.compile('_+')
+        res = p.sub('_', res)
+        p = re.compile('_*-_*')
+        res = p.sub('-', res)
+        return res
 
     def csv_reader(self, file_path, quoting=None):
         """ CSV reader """
@@ -332,7 +339,11 @@ class utils:
         """for deleting a synonym"""
         if self.synonyms != []:
             elem = self.unrestrictedTraverse(self.synonyms[0], None)
-            elem.synonym.remove(string.upper(self.id[0])+'/'+self.id)
+            try:
+                elem.synonym.remove(string.upper(self.id[0])+'/'+self.id)
+                elem.cu_recatalog_object()
+            except:
+                pass
 
 #    def utSynonymElRename(self):
 #        """."""
@@ -345,6 +356,7 @@ class utils:
         for l_syn_id in self.synonym:
             syn = self.unrestrictedTraverse(l_syn_id, None)
             syn.synonyms = []
+            syn.cu_recatalog_object()
 
 
 class catalog_utils:

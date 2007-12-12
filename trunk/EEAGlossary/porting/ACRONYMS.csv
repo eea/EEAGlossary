@@ -14,22 +14,22 @@ AQFD,Air Quality Framework Directive
 ASCIs,Areas of Special Conservation Interest
 ASCOBANS,Agreement on the Conservation of Small Cetaceans of the Baltic and North Seas
 ASEF,Asia-Europe Foundation
-AWI,The Alfred Wegener Institute
-BaP,benzo(a)pyrene 
-BauA,"Federal Institute for Occupational Safety and Health, Germany "
-BDE,bromo diphenyl ether
-BeNeLux,"Belgium, the Netherlands and Luxembourg"
-BFRs,brominated flame retardants
-BMB NEMO,Baltic Marine Biologists database on Non-indigenous Estuarine and Marine Organisms
-bn,billion
-BOD,biochemical oxygen demand
-BREF,Best Available Technology Reference Documents
-BSC,Black Sea Commission
-BTC,Baku-Tbilisi-Ceyhan (oil pipeline)
-C6H6,benzene
-CAFE,Clean Air for Europe
-CALM,Coordination of European Research for Advanced Transport Noise Mitigation
-CAP,Common Agricultural Policy
+AWI,The Alfred Wegener Institute,
+BaP,benzo(a)pyrene ,
+BauA,"Federal Institute for Occupational Safety and Health, Germany ",
+BDE,bromo diphenyl ether,
+BeNeLux,"Belgium, the Netherlands and Luxembourg",definition
+BFRs,brominated flame retardants,
+BMB NEMO,Baltic Marine Biologists database on Non-indigenous Estuarine and Marine Organisms,
+bn,billion,
+BOD,biochemical oxygen demand,
+BREF,Best Available Technology Reference Documents,
+BSC,Black Sea Commission,
+BTC,Baku-Tbilisi-Ceyhan (oil pipeline),definition
+C6H6,benzene,
+CAFE,Clean Air for Europe,
+CALM,Coordination of European Research for Advanced Transport Noise Mitigation,
+CAP,Common Agricultural Policy,
 CAPACT,Capacity Building for Air Quality Management and the Application of Clean Coal Combustion Technologies in Central Asia
 CARDS,"Community Assistance for Reconstruction, Development and Stabilisation "
 CAREAP,Regional Environmental Action Programme for Central Asia
@@ -94,38 +94,38 @@ DKK,Danish krone
 dl,decilitre
 DMC,domestic material consumption
 DMI,direct material input 
-DMI ,Danish Meteorological Institute
-DOE,designated operational entity
-DPSIR,driving forces - pressures - state - impact - response
-DTI,"Department of Trade and Industry, United Kingdom"
-EAP,environment action programme
-EBCC,European Bird Census Council
-EBD,Environmental Burden of Disease
-EBRD,European Bank for Reconstruction and Development
-EC,European Commission
-ECB,European Chemicals Bureau
-ECCP,European Climate Change Programme
-ECDC,European Centre for Disease Prevention and Control
-ECHO,European Commission Humanitarian Aid Office
-ECMT,European Conference of Ministers of Transport
-ECNC,European Centre for Nature Conservation
-ECOEHIS,Development of environmental health indicators for European Union countries 
-ECP,ecoregional conservation plan
-EE,Eastern Europe
-EEA,European Environment Agency
-EEA-32,"32 member countries of the EEA (EU-15 + EU-10 + EFTA-4 + Romania, Bulgaria and Turkey)"
-EEB,European Environmental Bureau
-EEC,European Economic Community
-EECCA ,"Eastern Europe, the Caucasus and Central Asia"
-EEHC,European Environment and Health Committee
-EEK,Estonian kroon
-EEZ,exclusive economic zone
-EfE,Environment for Europe
-EFNCP,European Forum on Nature Conservation and Pastoralism
-EFTA,European Free Trade Association
-EFTA,European Free Trade Association
-EFTA-4,"Iceland, Liechtenstein, Norway, Switzerland"
-EHPR,environment and health performance review
+DMI ,Danish Meteorological Institute,
+DOE,designated operational entity,
+DPSIR,driving forces - pressures - state - impact - response,definition
+DTI,"Department of Trade and Industry, United Kingdom",
+EAP,environment action programme,
+EBCC,European Bird Census Council,
+EBD,Environmental Burden of Disease,
+EBRD,European Bank for Reconstruction and Development,
+EC,European Commission,
+ECB,European Chemicals Bureau,
+ECCP,European Climate Change Programme,
+ECDC,European Centre for Disease Prevention and Control,
+ECHO,European Commission Humanitarian Aid Office,
+ECMT,European Conference of Ministers of Transport,
+ECNC,European Centre for Nature Conservation,
+ECOEHIS,Development of environmental health indicators for European Union countries ,
+ECP,ecoregional conservation plan,
+EE,Eastern Europe,
+EEA,European Environment Agency,
+EEA-32,"32 member countries of the EEA (EU-15 + EU-10 + EFTA-4 + Romania, Bulgaria and Turkey)",definition
+EEB,European Environmental Bureau,
+EEC,European Economic Community,
+EECCA ,"Eastern Europe, the Caucasus and Central Asia",
+EEHC,European Environment and Health Committee,
+EEK,Estonian kroon,
+EEZ,exclusive economic zone,
+EfE,Environment for Europe,
+EFNCP,European Forum on Nature Conservation and Pastoralism,
+EFTA,European Free Trade Association,
+EFTA,European Free Trade Association,
+EFTA-4,"Iceland, Liechtenstein, Norway, Switzerland",
+EHPR,environment and health performance review,
 EIA,environmental impact assessment 
 EICTA,European Information & Communications Technology Industry Association
 Eionet,European environment information and observation network
@@ -133,7 +133,6 @@ EIPRO,environmental impact of products
 ELOISE,European Land-Ocean Interaction Studies
 EMAS,Eco-Management and Audit Scheme
 EM-DAT,Emergency Disasters Data Base
-EMEP,Co-operative programme for the monitoring and evaluation of the long-range transmission of air pollutants in Europe (European monitoring and evaluation programme)
 EMS,European marine strategy
 ENEA,European network of environmental authorities 
 ENHIS,environment and health information system
@@ -143,38 +142,38 @@ ENVSEC,environment and security initiative
 EoI,exchange of information decision
 EPA,environmental protection agency
 EPER,European Pollutant Emission Register
-EPR,environmental performance review 
-EPRTR,European Pollutants Release and Transfer Register
-eq,equivalent 
-ERUs,emission reduction units
-ESD,Education for Sustainable Development
-ESL,European Statistical Laboratory
-ESPON,European Spatial Planning Observation Network
-ETC/ACC,European Topic Centre on Air and Climate Change
-ETC/BD,European Topic Centre on Biological Diversity
-ETC/RWM,European Topic Centre on Resource and Waste Management
-ETC/WTR,European Topic Centre on Water
-ETR,environmental tax reform
-ETS,emissions trading scheme 
-EU,European Union
-EU-10,"The 10 countries that joined the EU in 2004: Cyprus, the Czech Republic, Estonia, Hungary, Latvia, Lithuania, Malta, Poland, Slovakia and Slovenia. Joined the European Union on 1 May 2004"
-EU-15,"The 15 pre-2004 EU Member States: Austria, Belgium, Denmark, Finland, France, Germany, Greece, Ireland, Italy, Luxembourg, the Netherlands, Portugal, Spain, Sweden, the United Kingdom"
-EU-2,Bulgaria and Romania
-EU-25,The pre-2007 EU Member States: EU-15 + EU-10
-EU2CC2,"Bulgaria, Rumania and candidate countries (EU)"
-EUCC,European Union Coastal Conservation
-EUNIS,European Nature Information System
-EUR,euro
-EUR-A,"EU-15, EFTA and other western European countries, Croatia, the Czech Republic, Cyprus and Malta"
-EUR-B,"most of the Caucasus, Central Asia and south-eastern Europe, Poland and Slovakia "
-EUR-C,"Eastern Europe, Estonia, Latvia, Lithuania, Hungary and Kazakhstan"
-Eurocontrol,European Organisation for the Safety of Air Navigation
-EUROPARC,Federation of Nature and National Parks of Europe
-Eurostat,Statistical Office of the European Communities
-EUWI MED,EU Water Initiative — Mediterranean component
-EW-MFA,economy-wide material flow accounting
-FAO,Food and Agriculture Organization of the United Nations
-FAOSTAT,Food and Agriculture Organization of the United Nations' Statistical Database
+EPR,environmental performance review ,
+EPRTR,European Pollutants Release and Transfer Register,
+eq,equivalent ,
+ERUs,emission reduction units,
+ESD,Education for Sustainable Development,
+ESL,European Statistical Laboratory,
+ESPON,European Spatial Planning Observation Network,
+ETC/ACC,European Topic Centre on Air and Climate Change,
+ETC/BD,European Topic Centre on Biological Diversity,
+ETC/RWM,European Topic Centre on Resource and Waste Management,
+ETC/WTR,European Topic Centre on Water,
+ETR,environmental tax reform,
+ETS,emissions trading scheme ,
+EU,European Union,
+EU-10,"The 10 countries that joined the EU in 2004: Cyprus, the Czech Republic, Estonia, Hungary, Latvia, Lithuania, Malta, Poland, Slovakia and Slovenia. Joined the European Union on 1 May 2004",definition
+EU-15,"The 15 pre-2004 EU Member States: Austria, Belgium, Denmark, Finland, France, Germany, Greece, Ireland, Italy, Luxembourg, the Netherlands, Portugal, Spain, Sweden, the United Kingdom",definition
+EU-2,Bulgaria and Romania,definition
+EU-25,The pre-2007 EU Member States: EU-15 + EU-10,definition
+EU2CC2,"Bulgaria, Rumania and candidate countries (EU)",definition
+EUCC,European Union Coastal Conservation,
+EUNIS,European Nature Information System,
+EUR,euro,
+EUR-A,"EU-15, EFTA and other western European countries, Croatia, the Czech Republic, Cyprus and Malta",definition
+EUR-B,"most of the Caucasus, Central Asia and south-eastern Europe, Poland and Slovakia ",definition
+EUR-C,"Eastern Europe, Estonia, Latvia, Lithuania, Hungary and Kazakhstan",definition
+Eurocontrol,European Organisation for the Safety of Air Navigation,
+EUROPARC,Federation of Nature and National Parks of Europe,
+Eurostat,Statistical Office of the European Communities,
+EUWI MED,EU Water Initiative - Mediterranean component,
+EW-MFA,economy-wide material flow accounting,
+FAO,Food and Agriculture Organization of the United Nations,
+FAOSTAT,Food and Agriculture Organization of the United Nations' Statistical Database,
 FEC,final energy consumption 
 F-gases,fluorinated gases
 FISHSTAT,software for fishery statistics
@@ -194,7 +193,6 @@ GFCM,General Fisheries Commission for the Mediterranean
 GFN,Global Footprint Network
 GHG,greenhouse gas
 GHS,globally harmonized system
-GIS,green investment schemes
 GISS,Goddard Institute for Space Studies
 GIWA,Global International Waters Assessments
 GM crops,genetically modified crops
@@ -272,22 +270,22 @@ LIFE ,EU financial instrument for the environment
 LMEs,large marine ecosystems
 LPG,liquified petroleum gas
 LTAA,long-term annual average
-LULUCF,"land use, land-use change and forestry"
-LV,limit value
-M,million
-m,metre 
-MA,Millennium Ecosystem Assessment 
-MAB,Man and the Biosphere Reserves Programme
-MAC,maximum allowable concentrations
-MAP,Mediterranean Action Plan
-MARPOL,International Convention for the Prevention of Marine Pollution from Ships
-MCPFE,Ministerial Conference on the Protection of Forests in Europe
-MDGs,Millennium Development Goals
-MED POL,Pollution Monitoring and Assessment Programme - Mediterranean Region
-MEdIES,Mediterranean Education Initiative for Environment & Sustainability
-MEFT,Ministry of Environment and Forestry of Turkey
-MFA,material flow accounting
-MFA,material flow analysis
+LULUCF,"land use, land-use change and forestry",definition
+LV,limit value,
+M,million,
+m,metre ,
+MA,Millennium Ecosystem Assessment ,
+MAB,Man and the Biosphere Reserves Programme,
+MAC,maximum allowable concentrations,
+MAP,Mediterranean Action Plan,
+MARPOL,International Convention for the Prevention of Marine Pollution from Ships,
+MCPFE,Ministerial Conference on the Protection of Forests in Europe,
+MDGs,Millennium Development Goals,
+MED POL,Pollution Monitoring and Assessment Programme - Mediterranean Region,
+MEdIES,Mediterranean Education Initiative for Environment & Sustainability,
+MEFT,Ministry of Environment and Forestry of Turkey,
+MFA,material flow accounting,
+MFA,material flow analysis,
 MFR,maximum feasible reduction
 mg,milligram
 MIMAM,Ministry of Environment of Spain
@@ -331,28 +329,27 @@ O2,oxygen
 O3,ozone
 OECD,Organization for Economic Co-operation and Development
 OSCE,Organisation for Security and Co-operation in Europe
-OSPAR,OSPAR Commission for the Protection of the Marine Environment of the North-East Atlantic
 P,phosphorus
 PAH,polycyclic aromatic hydrocarbon
 PAH,Polycyclic aromatic hydrocarbons
 Pb,lead
 PCA,priority conservation area
-PCB,polychlorinated biphenyl
-PEBLDS,Pan-European Biological and Landscape Diversity Strategy 
-PEEN,Pan-European Ecological Network
-PEEREA,Protocol on Energy Efficiency and Related Environmental Aspects
-PFCs,perfluorocarbons 
-PFOA,perfluorooctanoic acid
-PFOS,perfluorooctane sulfonic acid
-PGM,platinum group metals
-pH,hydrogen ion concentration
-PHARE,EU Pre-accession assistance programme
-PM,particulate matter
-PM0.1,"particulate matter with an average aerodynamic diameter of up to 0.1 µm, referred to as ultrafine particle fraction"
-PM10,"particulate matter with an average aerodynamic diameter of up to 10 µm, i.e. the fine and coarse particle fractions combined."
-PM2.5,"particulate matter with an average aerodynamic diameter of up to 2.5 µm, referred to as the fine particle fraction (which per definition includes the ultrafine particles)"
-POPs,persistent organic pollutants
-ppm,parts per million
+PCB,polychlorinated biphenyl,
+PEBLDS,Pan-European Biological and Landscape Diversity Strategy ,
+PEEN,Pan-European Ecological Network,
+PEEREA,Protocol on Energy Efficiency and Related Environmental Aspects,
+PFCs,perfluorocarbons ,
+PFOA,perfluorooctanoic acid,
+PFOS,perfluorooctane sulfonic acid,
+PGM,platinum group metals,
+pH,hydrogen ion concentration,
+PHARE,EU Pre-accession assistance programme,
+PM,particulate matter,
+PM0.1,"particulate matter with an average aerodynamic diameter of up to 0.1 µm, referred to as ultrafine particle fraction",definition
+PM10,"particulate matter with an average aerodynamic diameter of up to 10 µm, i.e. the fine and coarse particle fractions combined.",definition
+PM2.5,"particulate matter with an average aerodynamic diameter of up to 2.5 µm, referred to as the fine particle fraction (which per definition includes the ultrafine particles)",definition
+POPs,persistent organic pollutants,
+ppm,parts per million,
 PPM,primary particle matter
 PPP,purchasing power parity
 PRTR,Pollutant Release and Transfer Register
@@ -365,7 +362,6 @@ RAPEX,Rapid Alert System for non-food consumer products
 RASFF,Rapid Alert Systems for Food and Feed
 RCEP,Royal Commission on Environmental Pollution 
 REACH,"registration, evaluation, authorisation and restriction of chemicals"
-REC,regional environmental centre
 REReP,Regional Environmental Reconstruction Programme
 RIVM,"National Institute for Public Health and the Environment, the Netherlands "
 RLNP,research laboratory of nature protection
@@ -386,54 +382,54 @@ SEA,strategic environmental assessment
 SeaWiFS,sea-viewing wide field-of-view sensor
 SEBI,Streamlining European Biodiversity Indicators
 SEE,South-eastern Europe 
-SEEA,Serbian Energy Efficiency Agency
-SEIS,Shared Environmental Information System for Europe
-SF6,sulphur hexafluoride
-SI,sufficiency index
-SI,secondary inorganic
-SIAM,SIDS initial assessment meeting
-SIDS,screening information data set
-Silesia,Southern part of Poland and neighbouring small parts of Germany and the Czech Republic
-SMMR,Nimbus-7 Scanning Multichannel Microwave Radiometer
-SO2,sulphur dioxide
-SOE,State of Environment
-SOER,The European environment - State and outlook
-SOER-RF,State of the Environment Report - Russian Federation
-SOMO35,"for ozone, the sum of means over 35 ppb (daily maximum 8-hour)"
-SOVEUR,Mapping of Soil and Terrain Vulnerability in Central and Eastern Europe
-SOX,sulphur oxides
-SPAs,special protection areas
-SPECA,Special Programme for the Economies of Central Asia
-SSM/I,special sensor microwave/imager
-SST,sea surface temperature
-ST-EP,Sustainable Tourism - Eliminating Poverty
-SUTOUR,Supporting tourism enterprises for eco-labelling and environmental management
-SUV,sport utility vehicle
-t,tonne
-T&T,travel & tourism
-TAC,total allowable catch
-TACIS,EU assistance programme Technical Assistance to the Commonwealth of Independent States
-TBT,tributyltin
-TEAP,Technology and Economic Assessment Panel
-TEC,total energy consumption 
-THE PEP,"Transport, Health and Environment Pan-European Programme"
-TMR,total material requirement
-toe,tonnes of oil equivalent
-TOF,tropospheric ozone forming potential
-TOFP,tropospheric ozone forming potentials
-TPES,total primary energy supply
-TREMOVE,policy assessment model to study the effects of different transport and environment policies on the emissions of the transport sector
-TSA,tourism satellite accounts 
-TSP,total suspended particles
-TV,target value
-TWC,3-way catalyst
-UBA,Federal Environment Agency (Austria and Germany)
-UN,United Nations
-UNCCD,United Nations Convention to Combat Desertification
-UNCLOS,United Nations Convention on the Law of the Sea
-UNDP,United Nations Development Programme
-UNECE,United Nations Economic Commission for Europe
-UNEP,United Nations Environment Programme 
+SEEA,Serbian Energy Efficiency Agency,
+SEIS,Shared Environmental Information System for Europe,
+SF6,sulphur hexafluoride,
+SI,sufficiency index,
+SI,secondary inorganic,
+SIAM,SIDS initial assessment meeting,
+SIDS,screening information data set,
+Silesia,Southern part of Poland and neighbouring small parts of Germany and the Czech Republic,definition
+SMMR,Nimbus-7 Scanning Multichannel Microwave Radiometer,
+SO2,sulphur dioxide,
+SOE,State of Environment,
+SOER,The European environment - State and outlook,
+SOER-RF,State of the Environment Report - Russian Federation,
+SOMO35,"for ozone, the sum of means over 35 ppb (daily maximum 8-hour)",definition
+SOVEUR,Mapping of Soil and Terrain Vulnerability in Central and Eastern Europe,
+SOX,sulphur oxides,
+SPAs,special protection areas,
+SPECA,Special Programme for the Economies of Central Asia,
+SSM/I,special sensor microwave/imager,
+SST,sea surface temperature,
+ST-EP,Sustainable Tourism - Eliminating Poverty,
+SUTOUR,Supporting tourism enterprises for eco-labelling and environmental management,
+SUV,sport utility vehicle,
+t,tonne,
+T&T,travel & tourism,definition
+TAC,total allowable catch,
+TACIS,EU assistance programme Technical Assistance to the Commonwealth of Independent States,
+TBT,tributyltin,
+TEAP,Technology and Economic Assessment Panel,
+TEC,total energy consumption ,
+THE PEP,"Transport, Health and Environment Pan-European Programme",
+TMR,total material requirement,
+toe,tonnes of oil equivalent,
+TOF,tropospheric ozone forming potential,
+TOFP,tropospheric ozone forming potentials,
+TPES,total primary energy supply,
+TREMOVE,policy assessment model to study the effects of different transport and environment policies on the emissions of the transport sector,definition
+TSA,tourism satellite accounts ,
+TSP,total suspended particles,
+TV,target value,
+TWC,3-way catalyst,definition
+UBA,Federal Environment Agency (Austria and Germany),
+UN,United Nations,
+UNCCD,United Nations Convention to Combat Desertification,
+UNCLOS,United Nations Convention on the Law of the Sea,
+UNDP,United Nations Development Programme,
+UNECE,United Nations Economic Commission for Europe,
+UNEP,United Nations Environment Programme ,
 UNESCAP,United Nations Economic and Social Commission for Asia and the Pacific
 UNESCO,"United Nations Educational, Scientific and Cultural Organization"
 UNFCCC,United Nations Framework Convention on Climate Change
