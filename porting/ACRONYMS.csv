@@ -133,6 +133,7 @@ EIPRO,environmental impact of products
 ELOISE,European Land-Ocean Interaction Studies
 EMAS,Eco-Management and Audit Scheme
 EM-DAT,Emergency Disasters Data Base
+EMEP,European monitoring and evaluation programme
 EMS,European marine strategy
 ENEA,European network of environmental authorities 
 ENHIS,environment and health information system
@@ -141,7 +142,7 @@ ENTEC,Environmental and Engineering Consultancy
 ENVSEC,environment and security initiative
 EoI,exchange of information decision
 EPA,environmental protection agency
-EPER,European Pollutant Emission Register
+EPER,European Pollutant Emission Register,
 EPR,environmental performance review ,
 EPRTR,European Pollutants Release and Transfer Register,
 eq,equivalent ,
@@ -173,7 +174,7 @@ Eurostat,Statistical Office of the European Communities,
 EUWI MED,EU Water Initiative - Mediterranean component,
 EW-MFA,economy-wide material flow accounting,
 FAO,Food and Agriculture Organization of the United Nations,
-FAOSTAT,Food and Agriculture Organization of the United Nations' Statistical Database,
+FAOSTAT,Food and Agriculture Organization of the United Nations' Statistical Database
 FEC,final energy consumption 
 F-gases,fluorinated gases
 FISHSTAT,software for fishery statistics
@@ -269,7 +270,7 @@ LCP,large combustion plant
 LIFE ,EU financial instrument for the environment
 LMEs,large marine ecosystems
 LPG,liquified petroleum gas
-LTAA,long-term annual average
+LTAA,long-term annual average,
 LULUCF,"land use, land-use change and forestry",definition
 LV,limit value,
 M,million,
@@ -285,7 +286,7 @@ MED POL,Pollution Monitoring and Assessment Programme - Mediterranean Region,
 MEdIES,Mediterranean Education Initiative for Environment & Sustainability,
 MEFT,Ministry of Environment and Forestry of Turkey,
 MFA,material flow accounting,
-MFA,material flow analysis,
+MFA,material flow analysis
 MFR,maximum feasible reduction
 mg,milligram
 MIMAM,Ministry of Environment of Spain
@@ -333,7 +334,7 @@ P,phosphorus
 PAH,polycyclic aromatic hydrocarbon
 PAH,Polycyclic aromatic hydrocarbons
 Pb,lead
-PCA,priority conservation area
+PCA,priority conservation area,
 PCB,polychlorinated biphenyl,
 PEBLDS,Pan-European Biological and Landscape Diversity Strategy ,
 PEEN,Pan-European Ecological Network,
@@ -349,7 +350,7 @@ PM0.1,"particulate matter with an average aerodynamic diameter of up to 0.1 µm, 
 PM10,"particulate matter with an average aerodynamic diameter of up to 10 µm, i.e. the fine and coarse particle fractions combined.",definition
 PM2.5,"particulate matter with an average aerodynamic diameter of up to 2.5 µm, referred to as the fine particle fraction (which per definition includes the ultrafine particles)",definition
 POPs,persistent organic pollutants,
-ppm,parts per million,
+ppm,parts per million
 PPM,primary particle matter
 PPP,purchasing power parity
 PRTR,Pollutant Release and Transfer Register
@@ -381,7 +382,7 @@ SDT,sustainable development of Tourism
 SEA,strategic environmental assessment
 SeaWiFS,sea-viewing wide field-of-view sensor
 SEBI,Streamlining European Biodiversity Indicators
-SEE,South-eastern Europe 
+SEE,South-eastern Europe ,
 SEEA,Serbian Energy Efficiency Agency,
 SEIS,Shared Environmental Information System for Europe,
 SF6,sulphur hexafluoride,
@@ -429,7 +430,7 @@ UNCCD,United Nations Convention to Combat Desertification,
 UNCLOS,United Nations Convention on the Law of the Sea,
 UNDP,United Nations Development Programme,
 UNECE,United Nations Economic Commission for Europe,
-UNEP,United Nations Environment Programme ,
+UNEP,United Nations Environment Programme 
 UNESCAP,United Nations Economic and Social Commission for Asia and the Pacific
 UNESCO,"United Nations Educational, Scientific and Cultural Organization"
 UNFCCC,United Nations Framework Convention on Climate Change

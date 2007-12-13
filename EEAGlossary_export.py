@@ -423,7 +423,7 @@ class glossary_export:
                                                     definition_source_publ_year='',
                                                     definition_source_url='',
                                                     definition_source_org='EEA',
-                                                    definition_source_org_fullname='dataservice, http://dataservice.eea.eu.int',
+                                                    definition_source_org_fullname='European Environment Agency',
                                                     long_definition='',
                                                     disabled=0,
                                                     approved=1,
