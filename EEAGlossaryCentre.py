@@ -32,6 +32,7 @@ from AccessControl import ClassSecurityInfo
 from OFS.Folder import Folder
 import AccessControl.User
 from Products.ZCatalog.ZCatalog import ZCatalog
+from Products.ZCTextIndex.ZCTextIndex import manage_addLexicon
 import Products
 from ZPublisher.HTTPRequest import record
 
@@ -156,10 +157,13 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         """ add the default catalog """
         id_catalog = EEA_GLOSSARY_CATALOG_NAME
         glossary_catalog = ZCatalog(id_catalog)
-        self._setObject(id_catalog, glossary_catalog)
+        try:
+            self._setObject(id_catalog, glossary_catalog)
+            self.__addLexicon(self._getOb(id_catalog))
+        except: pass
         catalog_obj = self._getOb(id_catalog)
-         
-         #create indexes
+
+        #create indexes
         for lang in self.get_english_names():
             if TNG2_exists:
                 index_extra = record()
@@ -167,25 +171,35 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
                 try:    catalog_obj.manage_addIndex(lang, 'TextIndexNG2',index_extra)
                 except:    pass
             else:
-                try: catalog_obj.addIndex(lang, 'TextIndex')
+                try: self.__addZCTextIndex(lang, catalog_obj)
                 except: pass
+
+        try: self.__addZCTextIndex('definition', catalog_obj)
+        except: pass
+        try: self.__addZCTextIndex('name', catalog_obj)
+        except: pass
+        try: self.__addZCTextIndex('title', catalog_obj)
+        except: pass
+
         try: catalog_obj.addIndex('approved', 'FieldIndex')
         except: pass
         try: catalog_obj.addIndex('bobobase_modification_time', 'FieldIndex')
-        except: pass
-        try: catalog_obj.addIndex('definition', 'TextIndex')
         except: pass
         try: catalog_obj.addIndex('id', 'FieldIndex')
         except: pass
         try: catalog_obj.addIndex('meta_type', 'FieldIndex')
         except: pass
-        try: catalog_obj.addIndex('name', 'TextIndex')
-        except: pass
         try: catalog_obj.addIndex('path', 'PathIndex')
         except: pass
-        try: catalog_obj.addIndex('title', 'TextIndex')
-        except: pass
         try: catalog_obj.addIndex('synonyms', 'KeywordIndex')
+        except: pass
+
+        #deprecated, used for Zope 2.6.4
+        try: catalog_obj.addIndex('definition', 'TextIndex')
+        except: pass
+        try: catalog_obj.addIndex('name', 'TextIndex')
+        except: pass
+        try: catalog_obj.addIndex('title', 'TextIndex')
         except: pass
 
        #create metadata
@@ -201,6 +215,37 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
         except: pass
         try: catalog_obj.addColumn('name')
         except: pass
+
+    def __addZCTextIndex(self, name, catalog):
+        #Add a ZCTextIndex
+        p_extras = MyData()
+        p_extras.doc_attr = name
+        p_extras.index_type = 'Okapi BM25 Rank'
+        p_extras.lexicon_id = 'Lexicon'
+        catalog.addIndex(name, 'ZCTextIndex', p_extras)
+
+    def __addLexicon(self, catalog):
+        #It adds a default lexicon with 'Lexicon' id.
+        elements = []
+        wordSplitter = MyData()
+        wordSplitter.group = 'Word Splitter'
+        wordSplitter.name = 'HTML aware splitter'
+
+        caseNormalizer = MyData()
+        caseNormalizer.group = 'Case Normalizer'
+        caseNormalizer.name = 'Case Normalizer'
+
+        stopWords = MyData()
+        stopWords.group = 'Stop Words'
+        stopWords.name = 'Remove listed stop words only'
+
+        elements.append(wordSplitter)
+        elements.append(caseNormalizer)
+        elements.append(stopWords)
+        id = 'Lexicon'
+        title = 'Default Lexicon'
+
+        manage_addLexicon(catalog, id, title, elements)
 
     def loadProperties(self):
         """ load the properties from engine """
@@ -1234,3 +1279,5 @@ class mapTiny:
         self.definition_source = ''
         self.long_definition = ''
         self.translations = {}
+
+class MyData: pass
