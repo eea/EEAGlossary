@@ -842,7 +842,8 @@ class EEAGlossaryCentre(Folder, utils, catalog_utils, glossary_export, toUTF8):
     ######################################
     def searchGlossary(self, query='', size=10000, language='English', definition='*', REQUEST=None):
         """ search glossary """
-        results = self.cu_search_catalog([EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE], query, size, language, definition)
+        results = self.cu_search_catalog([EEA_GLOSSARY_ELEMENT_METATYPE, EEA_GLOSSARY_SYNONYM_METATYPE],
+                                         self.utToUtf8(query), size, language, self.utToUtf8(definition))
         return (language, query, results)
 
     def random_from_catalog(self, folders=''):
