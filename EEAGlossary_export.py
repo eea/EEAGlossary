@@ -487,25 +487,25 @@ class glossary_export:
                     except Exception, error:
                         #LOG: error
                         print error
-                if name_one == 'VOC':
-                    obj_two = context_two._getOb('volatile_organic_compound_voc')
-                else:
-                    obj_two = context_two._getOb(self.ut_makeId(name_two))
-                    obj_two.set_translations_list('English', name_two)
-                    obj_two.set_history('English', name_two)
-                    obj_two.cu_recatalog_object(obj_two)
+                    if name_one == 'VOC':
+                        obj_two = context_two._getOb('volatile_organic_compound_voc')
+                    else:
+                        obj_two = context_two._getOb(self.ut_makeId(name_two))
+                        obj_two.set_translations_list('English', name_two)
+                        obj_two.set_history('English', name_two)
+                        obj_two.cu_recatalog_object(obj_two)
 
-                    try:
-                        context_one.manage_addGlossarySynonym(self.ut_makeId(name_one), [obj_two.absolute_url(1)])
-                    except Exception, error:
-                        #LOG: error
-                        print error
-                    obj_one = context_one._getOb(self.ut_makeId(name_one))
-                    obj_one.manageSynonymOtherProperties(name=name_one, disabled=0, approved=1)
+                        try:
+                            context_one.manage_addGlossarySynonym(self.ut_makeId(name_one), [obj_two.absolute_url(1)])
+                        except Exception, error:
+                            #LOG: error
+                            print error
+                        obj_one = context_one._getOb(self.ut_makeId(name_one))
+                        obj_one.manageSynonymOtherProperties(name=name_one, disabled=0, approved=1)
 
-                    #LOG: excel one added as syn
-                    #LOG: excel two added as elem
-                    #glog = "ADDED BOTH. First as SYN and second as ELEM."
+                        #LOG: excel one added as syn
+                        #LOG: excel two added as elem
+                        #glog = "ADDED BOTH. First as SYN and second as ELEM."
                 elif obj_one is not None and obj_two is None:
                     if obj_one.meta_type == EEA_GLOSSARY_SYNONYM_METATYPE:
                         #NOT: ('EMAS', 'Eco-Management and Audit Scheme')
