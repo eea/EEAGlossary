@@ -363,8 +363,13 @@ class glossary_export:
 
             #Search for the first term
             query_string = name_one
-            query_string = query_string.replace(' ', ' AND ')
-            results = gcat(name=query_string)
+            #xxx query_string = query_string.replace(' ', ' AND ')
+            query_string = query_string.replace('(', ' ')
+            query_string = query_string.replace(')', ' ')
+            try:
+                results = gcat(name=query_string)
+            except:
+                results = gcat(id=query_string, meta_type=[EEA_GLOSSARY_SYNONYM_METATYPE, EEA_GLOSSARY_ELEMENT_METATYPE])
             for obj in map(gcat.getobject, map(getattr, results, ('data_record_id_',)*len(results))):
                 if obj.disabled or (not obj.approved):
                     #Found '*_OLD' which are used no more
@@ -382,13 +387,18 @@ class glossary_export:
 
             #Search for the second term
             query_string = name_two
-            query_string = query_string.replace(' ', ' AND ')
+            #xxx query_string = query_string.replace(' ', ' AND ')
+            query_string = query_string.replace('(', ' ')
+            query_string = query_string.replace(')', ' ')
 
             if name_two == 'Global Resources Information Database':
                 #Exception: 'Global Resources Information Database'
                 obj_two = self.unrestrictedTraverse('EEAGlossary/G/GRID_United_Nations_Environment_Programme_Global_Resources_Information_Database', None)
             else:
-                results = gcat(name=query_string)
+                try:
+                    results = gcat(name=query_string)
+                except:
+                    results = gcat(id=query_string, meta_type=[EEA_GLOSSARY_SYNONYM_METATYPE, EEA_GLOSSARY_ELEMENT_METATYPE])
                 for obj in map(gcat.getobject, map(getattr, results, ('data_record_id_',)*len(results))):
                     if obj.disabled or (not obj.approved):
                         #Found '*_OLD' which are used no more
@@ -461,7 +471,7 @@ class glossary_export:
                                                         definition_source_publ_year='',
                                                         definition_source_url='',
                                                         definition_source_org='EEA',
-                                                        definition_source_org_fullname='dataservice, http://dataservice.eea.eu.int',
+                                                        definition_source_org_fullname='',
                                                         long_definition='',
                                                         disabled=0,
                                                         approved=1,
@@ -477,6 +487,9 @@ class glossary_export:
                     except Exception, error:
                         #LOG: error
                         print error
+                if name_one == 'VOC':
+                    obj_two = context_two._getOb('volatile_organic_compound_voc')
+                else:
                     obj_two = context_two._getOb(self.ut_makeId(name_two))
                     obj_two.set_translations_list('English', name_two)
                     obj_two.set_history('English', name_two)
@@ -490,7 +503,7 @@ class glossary_export:
                     obj_one = context_one._getOb(self.ut_makeId(name_one))
                     obj_one.manageSynonymOtherProperties(name=name_one, disabled=0, approved=1)
 
-                    #LOG: excel on added as syn
+                    #LOG: excel one added as syn
                     #LOG: excel two added as elem
                     #glog = "ADDED BOTH. First as SYN and second as ELEM."
                 elif obj_one is not None and obj_two is None:

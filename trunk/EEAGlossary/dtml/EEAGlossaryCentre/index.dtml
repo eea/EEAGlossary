@@ -68,9 +68,9 @@
 			<table width="100%" border="0" cellspacing="0" cellpadding="6">
 				<tr class="search_cell">
 				<td width="25%" height="1" align="left">Term:</td>
-				<td width="25%" height="1" align="right"><input type="text" name="query_gloss" value="" /></td>
+				<td width="25%" height="1" align="right"><input type="text" name="query_gloss:utf8:ustring" value="" /></td>
 				<td width="25%" height="1" align="center">Definition:</td>
-				<td width="25%" height="1" align="right"><input type="text" name="definition" value="" /></td>
+				<td width="25%" height="1" align="right"><input type="text" name="definition:utf8:ustring" value="" /></td>
 				</tr>
 			</table>
 			<table width="50%" border="0" cellspacing="0" cellpadding="6">

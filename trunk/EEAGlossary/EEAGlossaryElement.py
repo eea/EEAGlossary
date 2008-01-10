@@ -216,7 +216,7 @@ class EEAGlossaryElement(SimpleItem, ElementBasic, utils, catalog_utils):
 
     def get_translation_by_language(self, language):
         """ get translation by language """
-        try:    return getattr(self, language)
+        try:    return self.utUtf8Encode(getattr(self, language))
         except: return ''
 
     def check_if_no_translations(self):

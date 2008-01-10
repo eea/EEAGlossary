@@ -238,6 +238,11 @@ class utils:
         """ encode a iven value to utf-8 """
         return unicode(p_value, 'utf-8')
 
+    def utToUtf8(self, p_string):
+        #convert to utf-8
+        if isinstance(p_string, unicode): return p_string.encode('utf-8')
+        else: return str(p_string)
+
     def latin1_to_utf8(self, s):
         return unicode(s, 'latin1').encode('utf-8')
 
