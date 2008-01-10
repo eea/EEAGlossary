@@ -25,29 +25,33 @@
 			</div>
 			<dl class="definition_list">
 
-			<dtml-in res>
-				<dtml-if is_published>
-				<dtml-if synonyms>
-					<dt class="dt_sinonim"><a href="<dtml-var absolute_url>"><dtml-var name></a></dt>
-					<dd>
-						<span><dtml-var definition missing></span>
-						<span>Source: <dtml-var definition_source missing></span>
-					</dd>
-				<dtml-else>
-					<dtml-let translation="get_translation_by_language(language)">
-					<dt class="dt_element"><a href="<dtml-var absolute_url>"><dtml-var translation></a></dt>
-															<dtml-comment>
-																<dtml-if "lang in get_unicode_langs()"><dtml-var translation><dtml-else>
-																<dtml-var "display_unicode_langs(translation,get_language_charset(language))"></dtml-if>
-															</dtml-comment>
-					<dd>
-						<span><dtml-var definition missing></span>
-						<span>Source: <dtml-var definition_source missing></span>
-					</dd>
-					</dtml-let>
-				</dtml-if>
-				</dtml-if>
-			</dtml-in>
+			<dtml-if "len(res)>0">
+				<dtml-in res>
+					<dtml-if is_published>
+					<dtml-if synonyms>
+						<dt class="dt_sinonim"><a href="<dtml-var absolute_url>"><dtml-var name></a></dt>
+						<dd>
+							<span><dtml-var definition missing></span>
+							<span>Source: <dtml-var definition_source missing></span>
+						</dd>
+					<dtml-else>
+						<dtml-let translation="get_translation_by_language(language)">
+						<dt class="dt_element"><a href="<dtml-var absolute_url>"><dtml-var translation></a></dt>
+																<dtml-comment>
+																	<dtml-if "lang in get_unicode_langs()"><dtml-var translation><dtml-else>
+																	<dtml-var "display_unicode_langs(translation,get_language_charset(language))"></dtml-if>
+																</dtml-comment>
+						<dd>
+							<span><dtml-var definition missing></span>
+							<span>Source: <dtml-var definition_source missing></span>
+						</dd>
+						</dtml-let>
+					</dtml-if>
+					</dtml-if>
+				</dtml-in>
+			<dtml-else>
+				<dt>No results matching the criteria.</dt>
+			</dtml-if>
 
 			</dl>
 			</td>

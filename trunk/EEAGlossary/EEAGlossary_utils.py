@@ -453,11 +453,15 @@ class catalog_utils:
 
     def cu_search_catalog(self, meta_type=None, query='', size=10000, language='English', definition=''):
         """ search catalog """
+        results = []
+        results_name = []
         catalog = self.getGlossaryCatalog()
         command= "catalog(meta_type=" + str(meta_type) + ", " + language + "='" + query + "', definition='" + definition + "')"
         command_name= "catalog(meta_type=" + str(meta_type) + ", " + language + "='" + "" + "', definition='" + definition + "', name='" + query + "')"
-        results = eval(command)
-        results_name = eval(command_name)
+        try: results = eval(command)
+        except: pass
+        try: results_name = eval(command_name)
+        except: pass
         res = self.__get_objects(results)
         res.extend(self.__get_objects(results_name))
         return self.utEliminateDuplicates(res)[:int(size)]
