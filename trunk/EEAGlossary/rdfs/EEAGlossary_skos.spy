@@ -43,7 +43,7 @@ for record in container.GetElementsInfo()[int(fromidx):int(toidx)]:
     #Synonyms
     elem_synonyms = record.getSynonyms()
     for syn_obj in elem_synonyms:
-        print '<skos:altLabel xml:lang="en">%s</skos:altLabel>' % syn_obj.name
+        print '<skos:altLabel xml:lang="en">%s</skos:altLabel>' % alias_utXmlEncode(syn_obj.name)
 
     #Definition
     elem_definition = record.definition
@@ -65,8 +65,8 @@ for record in container.GetElementsInfo()[int(fromidx):int(toidx)]:
  elif record.meta_type=='EEA Glossary Synonym':
     #Synonym name
     syn_name = record.name
+    print '<skos:Concept rdf:about="%s">' % (record.absolute_url(0))
     if not isEmptyString(syn_name):
-        print '<skos:Concept rdf:about="%s">' % (record.absolute_url(0))
         print '<skos:prefLabel>%s</skos:prefLabel>' % alias_utXmlEncode(syn_name)
 
     syn_related_elem = record.utGetSynonyms()
@@ -79,7 +79,7 @@ for record in container.GetElementsInfo()[int(fromidx):int(toidx)]:
 
         #Synonyms
         for syn_obj in elem_synonyms:
-            print '<skos:altLabel xml:lang="en">%s</skos:altLabel>' % syn_obj.name
+            print '<skos:altLabel xml:lang="en">%s</skos:altLabel>' % alias_utXmlEncode(syn_obj.name)
 
         #Synonym definition
         syn_definition = ''

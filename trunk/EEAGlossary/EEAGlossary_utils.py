@@ -304,6 +304,7 @@ class utils:
         tmp=tmp.replace('é','e')
         tmp=tmp.replace('ê','e')
         tmp=tmp.replace('È','E')
+        tmp=tmp.replace('µ', 'Âµ') #TODO: change name and defintion values to unicode
         return tmp
 
     ######################
