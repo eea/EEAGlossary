@@ -58,6 +58,10 @@ class ElementBasic:
 
         self.long_definition = long_definition
 
+    security = ClassSecurityInfo()
+    security.setDefaultAccess("allow")
+
+InitializeClass(ElementBasic)
 
 manage_addGlossaryElement_html = DTMLFile('dtml/EEAGlossaryElement/add', globals())
 
