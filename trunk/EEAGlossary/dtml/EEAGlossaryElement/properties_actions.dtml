@@ -44,7 +44,7 @@
         </form>
         </table>
         </fieldset>
-        <br>
+        <br/>
         <fieldset><legend><b>Links</b></legend>
         <table border="0" cellspacing="0" cellpadding="0" width="100%">
         <form name="frmLinks" action="manageLinksProperties" method="post">

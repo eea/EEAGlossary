@@ -2,14 +2,14 @@
 <dtml-var style_console_css>
 <dtml-var manage_tabs>
 
-<br>
-The definiton and definition source cannot be changed. You have to go to the GlossaryElement this term is synonym of.<br><br>
+<br/>
+The definiton and definition source cannot be changed. You have to go to the GlossaryElement this term is synonym of.<br/><br/>
 
-<b>The original english term is:<br></b><dtml-var name><br><br>
+<b>The original english term is:<br/></b><dtml-var name><br/><br/>
 <dtml-in utGetSynonyms>
-    <dtml-if sequence-start><b>For definition and other properties see:</b><br></dtml-if>
+    <dtml-if sequence-start><b>For definition and other properties see:</b><br/></dtml-if>
     <dtml-if "_.len(_['sequence-item'].name)">
-        <a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a><br><br>
+        <a href="<dtml-var absolute_url>/manage_workspace"><dtml-var name></a><br/><br/>
     </dtml-if>
 </dtml-in>
 

@@ -17,7 +17,7 @@
         <td width="*">
             &nbsp;<dtml-var bobobase_modification_time>&nbsp;
             <dtml-if QA_needed>
-                <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
+                <img src="misc_/EEAGlossary/new.gif" border="0" alt="New glossary entry" />
             </dtml-if>
         </td>
     </tr>
@@ -27,7 +27,7 @@
         <td width="*">
             &nbsp;<dtml-var bobobase_modification_time>&nbsp;
             <dtml-if QA_needed>
-                <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
+                <img src="misc_/EEAGlossary/new.gif" border="0" alt="New glossary entry" />
             </dtml-if>
         </td>
     </tr>

@@ -8,7 +8,7 @@
 			<div class="path">
 				<dtml-with "PARENTS[1]">
 					<a href="<dtml-var absolute_url>">
-						<img border="0" src="<dtml-if "getId() in _.string.split(URL,'/')">
+						<img border="0" src="<dtml-if "getId() in _.string.split(URL,'/')" />
 										misc_/EEAGlossary/folder.gif
 								  <dtml-else>misc_/EEAGlossary/synonym.gif</dtml-if>" class="img-normal" alt="">
 						<dtml-var title_or_id>
@@ -16,7 +16,7 @@
 				</dtml-with>
 
 				<span class="separator"> | </span>
-				<img src="<dtml-if "getId() in _.string.split(URL,'/')">
+				<img src="<dtml-if "getId() in _.string.split(URL,'/')" />
 							  misc_/EEAGlossary/synonym.gif
 						  <dtml-else>
 							  misc_/EEAGlossary/element.gif
@@ -25,7 +25,7 @@
 				<span style="font-weight: bold; font-size: 18px;"><dtml-var name></span>
 
 				<dtml-if QA_needed>
-					<img src="misc_/EEAGlossary/new.gif" alt="New glossary entry">
+					<img src="misc_/EEAGlossary/new.gif" alt="New glossary entry" />
 				</dtml-if>
 			</div>
 

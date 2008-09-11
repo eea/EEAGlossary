@@ -13,7 +13,7 @@
                 <tr>
                   <td align="left" valign="top"><b>Synonym of</b></td>
                   <td align="left" valign="top">
-                    <select name="synonyms" size=10>
+                    <select name="synonyms" size="10">
                         <dtml-let record=id>
                             <dtml-in get_all_elements_by_type>
                                 <dtml-unless "is_duplicate(_['record'])">

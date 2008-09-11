@@ -1,17 +1,17 @@
 <table border="1" cellpadding="2" cellspacing="0" width="70%">
 <tr><td>
 <table width="100%" border="0" cellpadding="3" cellspacing="0">
-    <tr class="row-header"><td class="cell-header" align=center>Glossary Centre Help</td></tr>
+    <tr class="row-header"><td class="cell-header" align="center">Glossary Centre Help</td></tr>
 
     <tr>
         <td>
-            Click the tab <b>Contents</b> to list the terms (you may also click on the left frame). Then you can inspect and change translations by clicking on the term.<br><br>
-            Click the tab <b>View</b> if you want to preview the glossary on Internet with all available information.<br><br>
-            In order to change your password click <a href="change_pass_html"><b>Change Password</b></a>.<br><br>
+            Click the tab <b>Contents</b> to list the terms (you may also click on the left frame). Then you can inspect and change translations by clicking on the term.<br/><br/>
+            Click the tab <b>View</b> if you want to preview the glossary on Internet with all available information.<br/><br/>
+            In order to change your password click <a href="change_pass_html"><b>Change Password</b></a>.<br/><br/>
         </td>
     </tr>
 
-    <tr class="row-header"><td class="cell-header" align=center>Support/Contact Info</td></tr>
+    <tr class="row-header"><td class="cell-header" align="center">Support/Contact Info</td></tr>
 
     <tr><td><dtml-var help_contact_html></td></tr>
 </table>

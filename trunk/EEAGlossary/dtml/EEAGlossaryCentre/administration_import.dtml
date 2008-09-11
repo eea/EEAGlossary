@@ -2,14 +2,14 @@
 <dtml-var style_console_css>
 <dtml-var manage_tabs>
 
-<table border=0 cellpadding=3 cellspacing=0 width="90%">
+<table border="0" cellpadding="3" cellspacing="0" width="90%">
     <tr>
         <td><fieldset><legend><b>Import terms and translations from <font color="#000099">XLIFF</font> format</b></legend>
             <p class="form-help">XLIFF is the XML Localization Interchange File Format
-             designed by a group of software providers.<br>
-            You can import terms and their translations from XLIFF files.<br>
+             designed by a group of software providers.<br/>
+            You can import terms and their translations from XLIFF files.<br/>
             Enter the filename and click the <b>Import</b>&nbsp;button.</p>
-            <table border=0 cellpadding=2 cellspacing=0 width="100%">
+            <table border="0" cellpadding="2" cellspacing="0" width="100%">
             <form action="xliff_import" method="post" name="frmXliffImport" enctype="multipart/form-data">
                 <tr>
                     <td>Choose the XLIFF file</td>
@@ -30,9 +30,9 @@
             <p class="form-help">TMX stands for Translation Memory eXchange. The purpose of a translation memory
             is to gather thousands of translations. Whenever you need a term such as
             <i>abatement</i>&nbsp; for your glossary chances are it is already translated, and all
-            you have to do is to load a TMX file to get the translations.<br>
+            you have to do is to load a TMX file to get the translations.<br/>
             Enter the filename and click the <b>Import</b>&nbsp;button.</p>
-            <table border=0 cellpadding=2 cellspacing=0 width="100%">
+            <table border="0" cellpadding="2" cellspacing="0" width="100%">
             <form action="tmx_import" method="post" name="frmTMXImport" enctype="multipart/form-data">
                 <tr>
                     <td>Choose the TMX file</td>
@@ -50,9 +50,9 @@
     </tr>
     <tr>
         <td><fieldset><legend><b>Import terms and translations from <font color="#000099">old ZClasses product export</font> format</b></legend>
-            <p class="form-help">Imports the content of the old ZClasses product.   <br>
+            <p class="form-help">Imports the content of the old ZClasses product.   <br/>
             Enter the filename and click the <b>Import</b>&nbsp;button.</p>
-            <table border=0 cellpadding=2 cellspacing=0 width="100%">
+            <table border="0" cellpadding="2" cellspacing="0" width="100%">
             <form action="old_product_import" method="post" name="frmOldProductImport" enctype="multipart/form-data">
                 <tr>
                     <td>Choose the XML file</td>

@@ -9,7 +9,7 @@
 
 <form action="manage_addGlossaryElement">
 
-<table width="70%" cellpadding=0 cellspacing=3>
+<table width="70%" cellpadding="0" cellspacing="3">
 <tr>
     <td>
     <fieldset>
@@ -79,7 +79,7 @@
         <tr>
             <td align="left" valign="top"><label for="cb-subjects"><b>Subjects:</b></label></td>
             <td align="left" valign="top">
-                <select size=10 multiple name="subjects">
+                <select size="10" multiple="multiple" name="subjects">
                         <dtml-in get_subjects_list>
                             <dtml-let record="_['sequence-item']">
                             <option value="<dtml-var "record['code']">"><dtml-var "record['name']"></option>
@@ -133,7 +133,7 @@
 <tr>
     <td>&nbsp;</td>
     <td>
-        <input type=submit value=" Add ">
+        <input type="submit" value=" Add ">
     </td>
     <td>&nbsp;</td>
 </tr>

@@ -12,11 +12,11 @@
         </tr>
         <tr>
             <td colspan="2"><b>Definition:</b>&nbsp;
-            <dtml-if QA_needed><img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry"></dtml-if>
+            <dtml-if QA_needed><img src="misc_/EEAGlossary/new.gif" border="0" alt="New glossary entry" /></dtml-if>
             <dtml-if "REQUEST.has_key('definition')">
                 <dtml-var "toutf8(definition,'iso-8859-1')">
             </dtml-if>
-            <br>
+            <br/>
             <dtml-if utIsSynonym>
                 <dtml-in synonyms size=1>
                     <dtml-if sequence-start>See </dtml-if>
@@ -42,7 +42,7 @@
                     <td align="left" valign="top" width="70%">
                         <a href="<dtml-var absolute_url>/check_translation_html?lang_code=<dtml-var langid>" target="_new">
                             <dtml-var "get_translation_by_language(langid)">
-                        </a><br>
+                        </a><br/>
                     </td>
                 </tr>
             <dtml-else>

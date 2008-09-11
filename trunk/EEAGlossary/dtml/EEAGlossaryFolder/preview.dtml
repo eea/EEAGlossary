@@ -1,4 +1,4 @@
-<table width="100%" bgcolor=white>
+<table width="100%" bgcolor="white">
     <tr><td><dtml-var manage_tabs></td></tr>
 </table>
 

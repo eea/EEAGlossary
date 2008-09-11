@@ -5,7 +5,7 @@
 	<p>
 		<span>Term example:</span> &nbsp;<a href="<dtml-var absolute_url>">&dtml-name;</a>
 		<dtml-if QA_needed>
-			<img src="misc_/EEAGlossary/new.gif" class="img-normal" alt="New glossary entry">
+			<img src="misc_/EEAGlossary/new.gif" class="img-normal" alt="New glossary entry" />
 		</dtml-if>
 	</p>
 	<p>

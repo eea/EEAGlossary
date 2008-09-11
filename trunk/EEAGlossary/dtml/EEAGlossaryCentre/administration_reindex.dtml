@@ -2,7 +2,7 @@
 <dtml-var style_console_css>
 <dtml-var manage_tabs>
 
-<br>
+<br/>
 <dtml-if isManager>
     <dtml-if reindexCatalog>
         <b><ul><li>Rendexing done!</li></ul></b>

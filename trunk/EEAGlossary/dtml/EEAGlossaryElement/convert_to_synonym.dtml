@@ -5,22 +5,22 @@
         <table width="100%" border="0" cellpadding="2" cellspacing="0">
             <tr class="row-header"><td class="cell-header">
                 <dtml-unless "REQUEST.has_key('syn')">
-                    WARNING: No synonyms links submitted! Remember to enter synonyms manually after convertion.<br>
+                    WARNING: No synonyms links submitted! Remember to enter synonyms manually after convertion.<br/>
                 </dtml-unless>
             </td></tr>
 
             <tr><td class="row-odd">
-                <b>DELETING ORIGINAL TERM<br></b>
+                <b>DELETING ORIGINAL TERM<br/></b>
             </td></tr>
 
             <tr><td class="row-odd">
-               <b>ADDING SYNONYM</b><br>
+               <b>ADDING SYNONYM</b><br/>
             </td></tr>
 
             <tr><td>
-                <br>
+                <br/>
                 <dtml-call reindex_object>
-                <b>"<dtml-var id>"&nbsp;converted as Synonym! <br> Go to the converted <a href="<dtml-var absolute_url>/manage_workspace">Synonym</a><b>
+                <b>"<dtml-var id>"&nbsp;converted as Synonym! <br/> Go to the converted <a href="<dtml-var absolute_url>/manage_workspace">Synonym</a><b>
             </td></tr>
         </table>
     </td></tr>

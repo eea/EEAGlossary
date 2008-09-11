@@ -6,7 +6,7 @@
 		<td valign="top" class="main-cell">
 		<!-- Title -->
 		<h1>
-			<img src="misc_/EEAGlossary/glossary.gif" alt="" align="middle" >&nbsp;<dtml-var title_or_id>
+			<img src="misc_/EEAGlossary/glossary.gif" alt="" align="middle"  />&nbsp;<dtml-var title_or_id>
 		</h1>
 
 		<!-- Folder list -->
@@ -28,24 +28,24 @@
 		<table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
 		<tr>
 			<td height="1" align="right" valign="middle" class="search_help">
-				<img src="misc_/EEAGlossary/ico_searchhelp.gif" align="absmiddle" ><a href="search_help_html" target="_new">Search Help Page</a>
+				<img src="misc_/EEAGlossary/ico_searchhelp.gif" align="absmiddle"  /><a href="search_help_html" target="_new">Search Help Page</a>
 			</td>
 		</tr>
 		<tr>
 			<td height="20" valign="bottom">
 			<table width="100%" height="20" border="0" cellpadding="0" cellspacing="0">
 				<tr valign="bottom">
-					<td width="1" height="20" valign="bottom"><img src="misc_/EEAGlossary/s_lefttop.gif" width="46" height="20"></td>
-					<td align="center" valign="middle" nowrap class="search_title">Search for terms</td>
-					<td width="1" valign="bottom"><img src="misc_/EEAGlossary/s_toplines.gif" width="100" height="20" ></td>
-					<td width="90%" height="20" align="right" class="search_top_tr"><img src="misc_/EEAGlossary/s_righttop.gif" width="1" height="20"></td>
+					<td width="1" height="20" valign="bottom"><img src="misc_/EEAGlossary/s_lefttop.gif" width="46" height="20" /></td>
+					<td align="center" valign="middle" nowrap="nowrap" class="search_title">Search for terms</td>
+					<td width="1" valign="bottom"><img src="misc_/EEAGlossary/s_toplines.gif" width="100" height="20"  /></td>
+					<td width="90%" height="20" align="right" class="search_top_tr"><img src="misc_/EEAGlossary/s_righttop.gif" width="1" height="20" /></td>
 				</tr>
 			</table>
 			</td>
 		</tr>
 		<tr>
 			<td class="search_middle_tr">
-			<br>
+			<br/>
 			<table width="50%" border="0" cellspacing="0" cellpadding="6" class="search_cell">
 			<tr >
 				<td height="1" align="left">Select language</td>
@@ -58,7 +58,7 @@
 							type="text"
 						</dtml-if> name="language">
 					<dtml-in src_langs>
-						<option <dtml-if "_['sequence-item']=='English'">selected</dtml-if>><dtml-var sequence-item></option>
+						<option <dtml-if "_['sequence-item']=='English'">selected="selected"</dtml-if>><dtml-var sequence-item></option>
 					</dtml-in>
 					</select>&nbsp;
 					</dtml-let>
@@ -78,7 +78,7 @@
 				<td height="1" align="left">Show per page:</td>
 				<td height="1" align="right">
 					<select type="text" name="size">
-						<option selected>10</option>
+						<option selected="selected">10</option>
 						<option>20</option>
 						<option>50</option>
 						<option>100</option>
@@ -94,9 +94,9 @@
 					<td width="85%" align="left" class="search_bottom_tr">
 						<img src="misc_/EEAGlossary/s_leftbottom.gif" width="1" height="23" />
 					</td>
-					<td width="7%" align="right" nowrap><img src="misc_/EEAGlossary/s_bottomlines.gif" width="41" height="23" /></td>
-					<td width="8%" align="right" nowrap><input type="submit" class="search_button" name="SUBMIT" value="Find in Glossary" /></td>
-					<td width="1%" align="right" nowrap><img src="misc_/EEAGlossary/s_rightbottom.gif" width="24" height="23"></td>
+					<td width="7%" align="right" nowrap="nowrap"><img src="misc_/EEAGlossary/s_bottomlines.gif" width="41" height="23" /></td>
+					<td width="8%" align="right" nowrap="nowrap"><input type="submit" class="search_button" name="SUBMIT" value="Find in Glossary" /></td>
+					<td width="1%" align="right" nowrap="nowrap"><img src="misc_/EEAGlossary/s_rightbottom.gif" width="24" height="23" /></td>
 				</tr>
 			</table>
 			</td>
@@ -104,7 +104,7 @@
 		</table>
 		</form>
 
-		<br>
+		<br/>
 
 		<!-- Random box -->
 		<table width="90%" border="0" align="center" cellpadding="17" cellspacing="0">
@@ -115,16 +115,16 @@
 			</tr>
 		</table>
 
-		<br>
+		<br/>
 		<dtml-in element_list_sorted>
 			<dtml-unless disabled>
-				<a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/element.gif" class="img-normal" alt="">&nbsp;<dtml-var name></a>
-				<br>
+				<a href="<dtml-var absolute_url>"><img src="misc_/EEAGlossary/element.gif" class="img-normal" alt="" />&nbsp;<dtml-var name></a>
+				<br/>
 			</dtml-unless>
 		</dtml-in>
-		<br>
+		<br/>
 
-		<br>
+		<br/>
 		</td>
 	</tr>
 </table>
