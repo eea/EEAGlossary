@@ -3,13 +3,13 @@
     <tr>
         <td>
             <dtml-in get_all_objects>
-                <br>
+                <br/>
                 <dtml-if utIsSynonym>
                     <dtml-var view_box_html>
                 <dtml-else>
                     <dtml-var view_box_html>
                 </dtml-if>
-                <br>
+                <br/>
             </dtml-in>
         </td>
     </tr>

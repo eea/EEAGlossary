@@ -2,7 +2,7 @@
 <dtml-var style_console_css>
 <dtml-var manage_tabs>
 
-<table border=0 cellpadding=3 cellspacing=0 width="90%">
+<table border="0" cellpadding="3" cellspacing="0" width="90%">
     <tr>
         <td><fieldset><legend>Export in XLIFF format</legend>
             <p class="form-help">XLIFF is the XML Localization Interchange File Format designed by a group of software providers.
@@ -11,7 +11,7 @@
             translations to the selected language. Then click the <b>Export</b>&nbsp;
             button.</p>
 
-            <table border=0 cellpadding=2 cellspacing=0 width="100%">
+            <table border="0" cellpadding="2" cellspacing="0" width="100%">
             <form action="xliff_export" method="post" name="frmXliffExport">
                 <tr>
                     <td>Choose the language</td>
@@ -40,10 +40,10 @@
             <p class="form-help">TMX stands for Translation Memory eXchange. The purpose of a translation memory
             is to gather thousands of translations. Whenever you need a term such as
             <i>abatement</i>&nbsp; for your glossary chances are it is already translated, and all
-            you have to do is to load a TMX file to get the translations.<br>
+            you have to do is to load a TMX file to get the translations.<br/>
             You can export the terms and their translations to TMX level 1 files.
             To do that just click the <b>Export</b>&nbsp; button.</p>
-            <table border=0 cellpadding=2 cellspacing=0 width="100%">
+            <table border="0" cellpadding="2" cellspacing="0" width="100%">
             <form action="tmx_export" method="post" name="frmTMXExport">
                 <tr>
                     <td>Including the not published&nbsp;<input type="checkbox" name="published:boolean" value="1"></td>

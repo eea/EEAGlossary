@@ -22,7 +22,7 @@
     }
 </style>
 
-<table border=1 cellspacing="0" cellpadding="0" id="translations_table">
+<table border="1" cellspacing="0" cellpadding="0" id="translations_table">
     <tr>
         <th width="1%">ID</th>
         <dtml-in get_english_names>

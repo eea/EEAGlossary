@@ -21,7 +21,7 @@
         </dtml-if>
         <dtml-if sequence-end>
             <tr>
-                <td colspan="2"><hr size="1"><br><b>TOTAL NUMBER:&nbsp;</b><dtml-var record><br></td>
+                <td colspan="2"><hr size="1"><br/><b>TOTAL NUMBER:&nbsp;</b><dtml-var record><br/></td>
             </tr>
         </dtml-if>
         </dtml-let>

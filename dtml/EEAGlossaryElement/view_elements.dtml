@@ -16,9 +16,9 @@
             <dtml-if "REQUEST.has_key('at_definition')">
                 <tr>
                     <td colspan="2"><b>Definition:</b>&nbsp;
-                        <dtml-if QA_needed><img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry"></dtml-if>
+                        <dtml-if QA_needed><img src="misc_/EEAGlossary/new.gif" border="0" alt="New glossary entry" /></dtml-if>
                         <dtml-var "toutf8(definition,'iso-8859-1')">
-                        <br>
+                        <br/>
                         <dtml-if utIsSynonym>
                             <dtml-in synonyms size=1>
                                 <dtml-if sequence-start>See </dtml-if>
@@ -73,7 +73,7 @@
                         <dtml-in get_subjects>
                             <dtml-let record="_['sequence-item']">
                                 <b><dtml-var "record['code']"></b>: <dtml-var "record['name']">
-                                <br>
+                                <br/>
                             </dtml-let>
                         </dtml-in>
                         </ul>
@@ -92,7 +92,7 @@
                         <dtml-if "translation!=''">
                                 <tr>
                                     <td class="header-element" width="10%"><dtml-var language>:</td>
-                                    <td width="*" nowrap><dtml-var translation></td>
+                                    <td width="*" nowrap="nowrap"><dtml-var translation></td>
                                 </tr>
                             </dtml-if>
                     </dtml-let>

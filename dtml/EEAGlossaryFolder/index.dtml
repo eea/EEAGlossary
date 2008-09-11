@@ -8,11 +8,11 @@
 	<!-- Path -->
 	<div class="path" >
 		<dtml-with "PARENTS[1]">
-			<a href="<dtml-var absolute_url>"><img border="0" src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/glossary.gif<dtml-else><dtml-var icon></dtml-if>" alt=""></a>
+			<a href="<dtml-var absolute_url>"><img border="0" src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/glossary.gif<dtml-else><dtml-var icon></dtml-if>" alt="" /></a>
 			<a href="<dtml-var absolute_url>"><span><dtml-var title_or_id></span></a>
 		</dtml-with>
-		<img src="/misc_/EEAGlossary/separ.gif" align="absmiddle">
-		<img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/folder.gif<dtml-else><dtml-var icon></dtml-if>" alt="">&nbsp;
+		<img src="/misc_/EEAGlossary/separ.gif" align="absmiddle" />
+		<img src="<dtml-if "getId() in _.string.split(URL,'/')">/misc_/EEAGlossary/folder.gif<dtml-else><dtml-var icon></dtml-if>" alt="" />&nbsp;
 		<span><dtml-var title_or_id></span>
 	</div>
 
@@ -20,8 +20,8 @@
 
 	<!-- Note -->
 	<div class="note">
-		<img src="/misc_/EEAGlossary/spacer.gif" width="1" height="20" align="right">
-		<p>Here you see the list of terms found in <b><dtml-var title_or_id></b>-folder.<br>
+		<img src="/misc_/EEAGlossary/spacer.gif" width="1" height="20" align="right" />
+		<p>Here you see the list of terms found in <b><dtml-var title_or_id></b>-folder.<br/>
 		Click on the term to see the details like definition, translations etc..</p>
 	</div>
 
@@ -39,11 +39,11 @@
 					<!-- Elements and Synonyms display -->
 					<dtml-if synonyms>
 						<tr>
-						<td width="15" align="left" valign="top"><img  src="misc_/EEAGlossary/synonym.gif" alt=""></td>
+						<td width="15" align="left" valign="top"><img  src="misc_/EEAGlossary/synonym.gif" alt="" /></td>
 						<td width="707">
 							<dtml-var name>
 							<dtml-if QA_needed>
-								<img src="misc_/EEAGlossary/new.gif" class="img-normal" alt="New glossary entry">
+								<img src="misc_/EEAGlossary/new.gif" class="img-normal" alt="New glossary entry" />
 							</dtml-if>
 							<dtml-in synonyms size=1>
 								<dtml-in utGetSynonyms>
@@ -57,7 +57,7 @@
 						</tr>
 					<dtml-else>
 						<tr>
-						<td width="15" align="left" valign="top"><img src="misc_/EEAGlossary/element.gif" alt=""></td>
+						<td width="15" align="left" valign="top"><img src="misc_/EEAGlossary/element.gif" alt="" /></td>
 						<td width="707">
 							<a href="<dtml-var absolute_url>"><dtml-var name></a>
 						</td>

@@ -13,11 +13,11 @@
                 <td>
                     <table cellpadding="3" cellspacing="0" border="0" width="100%">
                         <tr class="row-header">
-                            <td class="cell-header" colspan="2"><b>User Info</b><br></td>
+                            <td class="cell-header" colspan="2"><b>User Info</b><br/></td>
                         </tr>
                         <tr>
                             <td class="cellodd"><b>User :&nbsp;</b></td>
-                            <td bgcolor="white"><dtml-var getAuthenticatedUser><br></td>
+                            <td bgcolor="white"><dtml-var getAuthenticatedUser><br/></td>
                         </tr>
                         <tr>
                             <td class="cellodd" valign="top"><b>Roles:&nbsp;</b></td>
@@ -30,7 +30,7 @@
                     </table>
                 </td>
             </tr>
-        </table><br>
+        </table><br/>
         <table cellpadding="0" cellspacing="0" border="1" width="100%">
              <tr>
                  <td>
@@ -45,7 +45,7 @@
                                     <dtml-in get_english_names>
                                         <dtml-let lang_id="_['sequence-item']">
                                         <dtml-if "check_allowed_translations(lang_id)">
-                                            <option <dtml-if "lang_code==lang_id"> selected </dtml-if>>
+                                            <option <dtml-if "lang_code==lang_id"> selected="selected" </dtml-if>>
                                                 <dtml-var "lang_id">
                                             </option>
                                         </dtml-if>
@@ -58,7 +58,7 @@
                     </table>
                 </td>
             </tr>
-        </table><br>
+        </table><br/>
         <dtml-if "lang_code != 'Nothing' and check_allowed_translations(lang_code)">
         <table cellpadding="0" cellspacing="0" border="1" width="100%">
             <tr>
@@ -116,7 +116,7 @@
             </td>
         </tr>
         </table>
-        <br>
+        <br/>
         <table width="100%" border="1" cellpadding="0" cellspacing="0">
             <tr><td>
                 <table width="100%" border="0" cellpadding="2" cellspacing="0">

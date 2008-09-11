@@ -5,7 +5,7 @@
 	<div class="category_subtitle">Definition (english only)</div>
 	<div class="category_content">
 		<dtml-if is_image_url>
-			<img src="<dtml-var image_url>" class="img-normal" alt="">
+			<img src="<dtml-var image_url>" class="img-normal" alt="" />
 		</dtml-if>
 		<dtml-var "display_unicode_langs(definition,charset='iso-8859-1')">
 	</div>
@@ -66,7 +66,7 @@
 					<dtml-let language="_['sequence-item']" translation="get_translation_by_language(language)">
 						<dtml-if "translation!=''">
 						<tr>
-							<td height="15" valign="top" nowrap class="language"><dtml-var language>:</td>
+							<td height="15" valign="top" nowrap="nowrap" class="language"><dtml-var language>:</td>
 							<td class="translation"><dtml-var translation></td>
 						</tr>
 						</dtml-if>

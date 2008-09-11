@@ -16,7 +16,7 @@ Change the synonyms propertie of this synonym.
                 <tr>
                   <td align="left" valign="top"><b>Synonym of</b></td>
                   <td align="left" valign="top">
-                    <select name="new_synonym" size=10>
+                    <select name="new_synonym" size="10">
                         <dtml-in get_all_elements_by_type>
                             <dtml-let record=sequence-item>
                                 <option  value="<dtml-var "absolute_url(1)">" <dtml-if "checksynonym(record)">SELECTED</dtml-if>>

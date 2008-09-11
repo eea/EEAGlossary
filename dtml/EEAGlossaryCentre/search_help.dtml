@@ -10,7 +10,7 @@
             </tr>
 
             <tr class="cellodd">
-                <td><b>water</b><br></td>
+                <td><b>water</b><br/></td>
             </tr>
             <tr class="celleven">
                 <td><li>searches for terms indexed under water.</li></td>

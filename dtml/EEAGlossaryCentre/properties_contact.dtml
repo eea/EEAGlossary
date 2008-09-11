@@ -60,7 +60,7 @@ translators of terms. Name and email are mandatory fields.
         </form>
         </table>
         </fieldset>
-        <br>
+        <br/>
         <fieldset><legend><b>Translation contacts</b></legend>
         <table border="0" cellspacing="0" cellpadding="3" width="100%">
         <form name="frmActions" action="manageTranslatorProperties" method="post">

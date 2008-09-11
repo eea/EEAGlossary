@@ -8,7 +8,7 @@
     Only the languages wich you have permission to check or has been translated are listed.
     
     The format is [translation] [date and time of modification] [user that made the changes].
-    <br><br></p>
+    <br/><br/></p>
 
 <table border="0" cellpadding="3" cellspacing="0" width="80%">
 <tr>
@@ -41,7 +41,7 @@
                     </dtml-let>
                     </dtml-in>
                 </table>
-                </fieldset><br>
+                </fieldset><br/>
             </dtml-if>
             </dtml-let>
         </dtml-in>
@@ -50,7 +50,7 @@
 </table>
 <dtml-else>
 <p class="form-help">
-<b>Sorry, access denied.</b><br><br>
+<b>Sorry, access denied.</b><br/><br/>
 You are not authorized to view the history of changes.
 </p>
 

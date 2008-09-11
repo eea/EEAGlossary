@@ -5,11 +5,11 @@
 
     <span><dtml-var title></span>
     <p>
-    <span>General Information</span><br>
-    <b>Glossary Link:</b><br>http://glossary.eea.eu.int/<br>
-    <b>Description:</b><br><dtml-var description><br>
-    <b>Publisher:</b><br>EEA (European Environment Agency)<br>
-    <b>Manager:</b><br>Tarja Porkka (mailto:Tarja.Porkka@eea.eu.int)<br>
+    <span>General Information</span><br/>
+    <b>Glossary Link:</b><br/>http://glossary.eea.eu.int/<br/>
+    <b>Description:</b><br/><dtml-var description><br/>
+    <b>Publisher:</b><br/>EEA (European Environment Agency)<br/>
+    <b>Manager:</b><br/>Tarja Porkka (mailto:Tarja.Porkka@eea.eu.int)<br/>
     </p>
 
     <table width="100%">
@@ -24,13 +24,13 @@
 <dtml-else>
 
     <fieldset><legend><b>Select properties to view:</b></legend>
-        <p class="form-help">List all elements and their properties according to your selection bellow.<br>
+        <p class="form-help">List all elements and their properties according to your selection bellow.<br/>
         <b>Warning:</b> This operation could take several minutes to complete.</p>
 
         <table width="100%">
             <form action="<dtml-var URL0>" method="post">
                 <tr>
-                    <td valign="top" width="50%"><input type="checkbox" name="at_name:boolean" value="1" checked>Including name&nbsp;</td>
+                    <td valign="top" width="50%"><input type="checkbox" name="at_name:boolean" value="1" checked="checked">Including name&nbsp;</td>
                     <td valign="top" width="50%"><input type="checkbox" name="at_definition:boolean" value="1">Including definition&nbsp;</td>
                 </tr>
                 <tr>

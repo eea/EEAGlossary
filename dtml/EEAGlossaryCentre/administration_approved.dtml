@@ -34,7 +34,7 @@
                     <td width="*">
                         &nbsp;<dtml-var bobobase_modification_time>&nbsp;
                         <dtml-if QA_needed>
-                            <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
+                            <img src="misc_/EEAGlossary/new.gif" border="0" alt="New glossary entry" />
                         </dtml-if>
                     </td>
                 </tr>
@@ -49,7 +49,7 @@
                 <td width="*">
                     &nbsp;<dtml-var bobobase_modification_time>&nbsp;
                     <dtml-if QA_needed>
-                        <img src="misc_/EEAGlossary/new.gif" border=0 alt="New glossary entry">
+                        <img src="misc_/EEAGlossary/new.gif" border="0" alt="New glossary entry" />
                     </dtml-if>
                 </td>
             </tr>
@@ -59,11 +59,11 @@
     </dtml-in>
     <tr>
         <td colspan="2">
-            <br>Tot. numbers of English terms (Published): <b><dtml-var tcount></b>
-            <br>Tot. numbers of concepts (Published): <b><dtml-var ccount></b>
+            <br/>Tot. numbers of English terms (Published): <b><dtml-var tcount></b>
+            <br/>Tot. numbers of concepts (Published): <b><dtml-var ccount></b>
             <dtml-let test=get_not_disabled>
-                <br>Tot. numbers of English terms (Published and Unpublished): <b><dtml-var "test[0]"></b>
-                <br>Tot. numbers of concepts (Published and Unpublished): <b><dtml-var "test[1]"></b><br>
+                <br/>Tot. numbers of English terms (Published and Unpublished): <b><dtml-var "test[0]"></b>
+                <br/>Tot. numbers of concepts (Published and Unpublished): <b><dtml-var "test[1]"></b><br/>
             </dtml-let>
         </td>
     </tr>

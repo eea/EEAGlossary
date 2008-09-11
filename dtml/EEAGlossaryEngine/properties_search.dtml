@@ -24,7 +24,7 @@ Manage the list of languages used in searching glossary terms.
                 <td class="<dtml-var cellclass>"><select name="language">
                     <dtml-let old_language="_['sequence-item']">
                     <dtml-in get_english_names>
-                        <option name="<dtml-var sequence-item>" <dtml-if "_['sequence-item']==old_language">selected</dtml-if>><dtml-var sequence-item html_quote></option>
+                        <option name="<dtml-var sequence-item>" <dtml-if "_['sequence-item']==old_language">selected="selected"</dtml-if>><dtml-var sequence-item html_quote></option>
                     </dtml-in>
                     </dtml-let>
                 <td class="<dtml-var cellclass>"><input type="submit" name="update" value="Update"></td>

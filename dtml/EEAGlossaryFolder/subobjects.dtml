@@ -22,10 +22,10 @@
                         <td width="30%" valign="top"><b>Select the kinds of things that can be added inside folders:</b></td>
                         
                         <td width="80%">
-                            <select name="subobjects" size="10" multiple="true">
+                            <select name="subobjects" size="10" multiple="multiple">
                                 <dtml-in getMetaTypes>
                                 <option value="<dtml-var sequence-item>" 
-                                    <dtml-if "_['sequence-item'] in adt_meta_types">selected</dtml-if>><dtml-var sequence-item></option>
+                                    <dtml-if "_['sequence-item'] in adt_meta_types">selected="selected"</dtml-if>><dtml-var sequence-item></option>
                                 </dtml-in>
                             </select>
                         </td>

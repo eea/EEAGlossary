@@ -2,7 +2,7 @@
 <dtml-var style_console_css>
 <dtml-var manage_tabs>
 
-<br>
+<br/>
 <dtml-if "REQUEST.has_key('languagescheck')">
 
     <table width="100%" border="1" cellpadding="0" cellspacing="0">
@@ -10,10 +10,10 @@
         <table width="100%" border="0" cellpadding="2" cellspacing="0">
             <tr class="row-header"><td class="cell-header"><span>General Information</span></td></tr>
             <tr><td>
-            <b>Glossary Link:</b><br>http://glossary.eea.eu.int/<br>
-            <b>Description:</b><br><dtml-var description><br>
-            <b>Publisher:</b><br>EEA (European Environment Agency)<br>
-            <b>Contact:</b><br><br>
+            <b>Glossary Link:</b><br/>http://glossary.eea.eu.int/<br/>
+            <b>Description:</b><br/><dtml-var description><br/>
+            <b>Publisher:</b><br/>EEA (European Environment Agency)<br/>
+            <b>Contact:</b><br/><br/>
             </td></tr>
         </table>
     </td></tr>
@@ -38,13 +38,13 @@
                     <form action="<dtml-var URL0>" method="post">
                         <tr>
                             <td rowspan="2" width="30%">
-                                <select name="languagescheck:list" multiple size=20>
+                                <select name="languagescheck:list" multiple="multiple" size="20">
                                     <dtml-in get_english_names>
                                         <option><dtml-var sequence-item html_quote></option>
                                     </dtml-in>
                                 </select>
                             </td>
-                            <td valign="top">Including definition&nbsp;<input type="checkbox" name="definition:boolean" value="1" checked></td>
+                            <td valign="top">Including definition&nbsp;<input type="checkbox" name="definition:boolean" value="1" checked="checked"></td>
                         </tr>
                         <tr>
                             <td valign="bottom">

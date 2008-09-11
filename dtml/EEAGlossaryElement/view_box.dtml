@@ -1,6 +1,6 @@
 <table border="0" class="table-normal" cellpadding="2">
     <tr>
-        <td><img src="misc_/EEAGlossary/element.gif" alt=""><b><dtml-var name></b></td>
+        <td><img src="misc_/EEAGlossary/element.gif" alt="" /><b><dtml-var name></b></td>
     </tr>
 
     <tr>
