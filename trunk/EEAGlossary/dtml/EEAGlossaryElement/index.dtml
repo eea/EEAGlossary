@@ -3,7 +3,7 @@
 <div class="path" >
 <h1><dtml-with "PARENTS[1]">
 					<img src="misc_/EEAGlossary/folder.gif" alt="" align="middle" />&nbsp;<a href="<dtml-var absolute_url>"><dtml-var title_or_id></a>
-				</dtml-with> <img src="/misc_/EEAGlossary/separ.gif" align="absmiddle" /> <img src="misc_/EEAGlossary/element.gif" alt="" align="middle" />
+				</dtml-with> <img src="/misc_/EEAGlossary/separ.gif" align="absmiddle" alt=""/> <img src="misc_/EEAGlossary/element.gif" alt="" align="middle" />
 				<dtml-let english_name="get_translation_by_language('English')">				
 				<dtml-if "_.len(english_name)>1"><dtml-var english_name><dtml-else><dtml-var name></dtml-if>
 				</dtml-let>
